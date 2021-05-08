@@ -4,7 +4,7 @@ author: jamesgeorge007, abhijoshi2k, PuneetGopinath
 
 inputs:
   GH_USERNAME:
-    description: 'Your GitHub username'
+    description: "Your GitHub username"
     default: ${{ github.repository_owner }}
     required: false
   COMMIT_MSG:
@@ -16,8 +16,14 @@ inputs:
     default: 5
     required: false
   README_FILE:
-    description: 'Path to your README.md file'
+    description: "Path to your README.md file"
     default: "./README.md"
+    required: false
+
+  # COMMENTS
+  COMMENTS:
+    description: "How the comments activity should be printed."
+    default: "🗣 Commented on {ID} in {REPO}"
     required: false
 
 branding:
