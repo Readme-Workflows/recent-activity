@@ -1,33 +1,82 @@
-# GitHub Activity in Readme
+# Recent Activity
+![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
 
-**Note:** This project is a fork of https://github.com/jamesgeorge007/github-activity-readme
+This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
+Its goal is to improve the original GitHub Action while also providing new features for the users.
 
-Updates `README.md` with the recent GitHub activity of a user.
+## Features
+The core feature of this GitHub Action is to update your README.md file, or any Markdown file, with the latest activities you made on GitHub.  
+Current activities include:
 
-<img width="735" alt="profile-repo" src="https://user-images.githubusercontent.com/25279263/87703301-3aa4a500-c7b8-11ea-8eb6-245121997a7b.png">
+- **Discussions** (Commenting)
+- **Issues** (Opening or closing them)
+- **Pull requests** (Opening, closing or merging them)
 
----
+Other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
 
-## Instructions
+## Setup
 
-- Add the comment `<!--START_SECTION:activity-->` (entry point) within `README.md`. You can find an example [here](https://github.com/jamesgeorge007/jamesgeorge007/blob/master/README.md).
+- To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started.
+- Next should you now move on to creating a new Workflow. As an example can we create `.github/workflows/update-readme.yml`
+- Now edit the YAML file and add the following content to it:
+  ```yaml
+  name: Update README
+  
+  on:
+    schedule:
+      - cron: "*/30 * * * *"
+    workflow_dispatch:
 
-- It's the time to create a workflow file.
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      name: Update this repo's README with recent activity
+      
+      steps:
+        - uses: actions/checkout@v2
+        - uses: Readme-Workflows/recent-activity@main
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  ```
+  **Notes:**
+  - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
+    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
+  <!-- Is this here true? If yes, remove the HTML commet tags
+  - Using `${{ secrets.GITHUB_TOKEN }}` will only show activities from public repositories. To show those of private ones will you need to create a Personal Access Token with the `repo` scope applied. -->
 
-`.github/workflows/update-readme.yml`
+## Settings
+The Action currently has the following Settings that you can set through the `with` option.
 
-```yml
+| Option        | Description                             | Default                                   |
+| ------------- | --------------------------------------- | ----------------------------------------- |
+| `COMMIT_MSG`  | Sets the message to use for the Commit. | ⚡ Update README with the recent activity |
+| `MAX_LINES`   | The total amount of lines to display.   | 5                                         |
+| `README_FILE` | Path to the MD file you want to edit.   | ./README.md                               |
+
+## History
+
+- The original project was inspired by [JasonEtco/activity-box](https://github.com/JasonEtco/activity-box)
+- Puneet and Abhishek wanted to add a new feature, the original project was no longer maintained, so Puneet created a fork and Abhishek supported him.
+
+## Examples
+Here are some examples of various configuration setups.  
+If you have a different setup that could be useful for others, let us know or PR it to this README!
+
+### Higher delay
+This example shows a Action that would update the README only twice a day.
+
+```yaml
 name: Update README
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: '0 0,12 * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Update this repo's README with recent activity
+    name: Update Profile README
 
     steps:
       - uses: actions/checkout@v2
@@ -36,38 +85,21 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-The above job runs every half an hour, you can change it as you wish based on the [cron syntax](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).
+### Higher amount of lines
+Displays 10 lines of activities instead of the normal 5.
 
-Please note that only those public events that belong to the following list show up:-
-
-- `IssueEvent`
-- `IssueCommentEvent`
-- `PullRequestEvent`
-
-You can find an example [here](https://github.com/jamesgeorge007/jamesgeorge007/blob/master/.github/workflows/update-readme.yml).
-
-### Override defaults
-
-Use the following `input params` to customize it for your use case:-
-
-| Input Param   | Default Value                                | Description                                               |
-| ------------- | -------------------------------------------- | --------------------------------------------------------- |
-| `COMMIT_MSG`  | :zap: Update README with the recent activity | Commit message used while committing to the repo          |
-| `MAX_LINES`   | 5                                            | The maximum number of lines populated in your readme file |
-| `README_FILE` | ./README.md                                  | The readme file you want to push your activity to         |
-
-```yml
+```yaml
 name: Update README
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Update this repo's README with recent activity
+    name: Update Profile README
 
     steps:
       - uses: actions/checkout@v2
@@ -75,11 +107,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          COMMIT_MSG: "Specify a custom commit message"
           MAX_LINES: 10
 ```
 
-## History
+### Different Commit Message
+Display a different Commit message
 
-- The original project was inspired by [JasonEtco/activity-box](https://github.com/JasonEtco/activity-box)
-- Puneet and Abhishek wanted to add a new feature, the original project was no longer maintained, so Puneet created a fork and Abhishek supported him.
+```yaml
+name: Update README
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update Profile README
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/recent-activity@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          COMMIT_MSG: "Update README with latest Activities"
+```
