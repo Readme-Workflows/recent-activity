@@ -1,0 +1,23 @@
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "12:00"
+      timezone: "Asia/Kolkata"
+    labels:
+      - "github-actions"
+      - "dependencies"
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "Github Actions"
+      include: "scope"
+    reviewers:
+      - PuneetGopinath
+      - abhijoshi2k
