@@ -21,7 +21,7 @@ inputs:
     required: false
 
   # COMMENTS
-  COMMENTS:
+  COMMENTS_ACTIVITY:
     description: "How the comments activity should be printed."
     default: "🗣 Commented on {ID} in {REPO}"
     required: false
