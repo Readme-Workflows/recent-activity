@@ -1,5 +1,5 @@
-name: GitHub Activity - Profile Readme
-description: Updates README with the recent GitHub activity of a user
+name: Recent GitHub Activity - Profile Readme
+description: Updates README with the recent GitHub activity of a user.
 author: jamesgeorge007, abhijoshi2k, PuneetGopinath
 
 inputs:
@@ -21,7 +21,7 @@ inputs:
     required: false
 
 branding:
-  color: yellow
+  color: orange
   icon: activity
 
 runs:
