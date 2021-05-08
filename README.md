@@ -17,7 +17,7 @@ Other activities can't be displayed since they aren't parts of what GitHub's API
 ## Setup
 
 - To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started.
-- Next should you now move on to creating a new Workflow. As an example can we create `.github/workflows/update-readme.yml`
+- Next should you now move on to creating a new Workflow. In this example we create `.github/workflows/update-readme.yml`
 - Now edit the YAML file and add the following content to it:
   ```yaml
   name: Update README
@@ -47,11 +47,11 @@ Other activities can't be displayed since they aren't parts of what GitHub's API
 ## Settings
 The Action currently has the following Settings that you can set through the `with` option.
 
-| Option        | Description                             | Default                                   |
-| ------------- | --------------------------------------- | ----------------------------------------- |
-| `COMMIT_MSG`  | Sets the message to use for the Commit. | ⚡ Update README with the recent activity |
-| `MAX_LINES`   | The total amount of lines to display.   | 5                                         |
-| `README_FILE` | Path to the MD file you want to edit.   | ./README.md                               |
+| Option        | Description                                                    | Default                                   |
+| ------------- | -------------------------------------------------------------- | ----------------------------------------- |
+| `COMMIT_MSG`  | Sets the message to use for the Commit.                        | ⚡ Update README with the recent activity |
+| `MAX_LINES`   | The total amount of lines to display.                          | 5                                         |
+| `README_FILE` | Path to the MD file you want to push the recent activity to.   | ./README.md                               |
 
 ## History
 
@@ -60,7 +60,7 @@ The Action currently has the following Settings that you can set through the `wi
 
 ## Examples
 Here are some examples of various configuration setups.  
-If you have a different setup that could be useful for others, let us know or PR it to this README!
+If you have a different setup that could be useful for others, let us know or submit a pr by editing this README.
 
 ### Higher delay
 This example shows a Action that would update the README only twice a day.
