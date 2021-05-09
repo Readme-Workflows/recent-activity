@@ -15244,6 +15244,7 @@ const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
 const MAX_LINES = core.getInput("MAX_LINES");
 const README_FILE = core.getInput("README_FILE");
+const COMMENTS_ACTIVITY = core.getInput("COMMENTS_ACTIVITY");
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
@@ -15318,9 +15319,14 @@ const commitFile = async () => {
 
 const serializers = {
   IssueCommentEvent: (item) => {
-    return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-      item.repo.name
-    )}`;
+    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
+      /{REPO}/g,
+      toUrlFormat(item.repo.name)
+    );
+
+    // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
+    //   item.repo.name
+    // )}`;
   },
   IssuesEvent: (item) => {
     return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
