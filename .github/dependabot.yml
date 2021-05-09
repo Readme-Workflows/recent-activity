@@ -2,7 +2,6 @@
 
 version: 2
 updates:
-
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -11,6 +10,7 @@ updates:
       time: "12:00"
       timezone: "Asia/Kolkata"
     labels:
+      - "github-actions"
       - "dependencies"
     pull-request-branch-name:
       separator: "-"
