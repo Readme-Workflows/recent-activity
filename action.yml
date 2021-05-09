@@ -33,6 +33,11 @@ inputs:
     default: false
     required: false
 
+  URL_FORMAT:
+    description: "Format in which {URL} will be replaced"
+    default: "{REPO}{ID}"
+    required: false
+
   # COMMENTS
   COMMENTS_ACTIVITY:
     description: "How the comments activity should be printed."

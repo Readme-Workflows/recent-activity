@@ -21,6 +21,7 @@ const PR_MERGED = core.getInput("PR_MERGED");
 const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
 const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
 const DISABLE_PR = core.getInput("DISABLE_PR");
+const URL_FORMAT = core.getInput("URL_FORMAT");
 
 /**
  * Returns the sentence case representation
@@ -39,6 +40,22 @@ const urlPrefix = "https://github.com";
  *
  * @returns {String}
  */
+
+const makeCustomUrl = (item) => {
+  return Object.hasOwnProperty.call(item.payload, "issue")
+    ? `[` +
+        URL_FORMAT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
+    : `[` +
+        URL_FORMAT.replace(
+          /{ID}/g,
+          `#${item.payload.pull_request.number}`
+        ).replace(/{REPO}/g, item.repo.name) +
+        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+};
 
 const toUrlFormat = (item) => {
   if (typeof item === "object") {
@@ -98,10 +115,9 @@ const serializers = {};
 
 if (DISABLE_COMMENTS === "false") {
   serializers.IssueCommentEvent = (item) => {
-    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
-      /{REPO}/g,
-      toUrlFormat(item.repo.name)
-    );
+    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      .replace(/{URL}/g, makeCustomUrl(item));
   };
   // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
   //   item.repo.name
@@ -110,15 +126,13 @@ if (DISABLE_COMMENTS === "false") {
 if (DISABLE_ISSUES === "false") {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
     } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
     } else {
       return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
         item
@@ -129,20 +143,17 @@ if (DISABLE_ISSUES === "false") {
 if (DISABLE_PR === "false") {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
-      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
+      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
     } else if (item.payload.action === "closed") {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
     } else if (item.payload.pull_request.merged) {
-      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
+      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
     }
 
     // if (item.payload.action === "opened") {
