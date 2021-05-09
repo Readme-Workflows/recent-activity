@@ -96,7 +96,7 @@ const commitFile = async () => {
 
 const serializers = {};
 
-if (!DISABLE_COMMENTS) {
+if (DISABLE_COMMENTS === "false") {
   serializers.IssueCommentEvent = (item) => {
     return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
       /{REPO}/g,
@@ -107,7 +107,7 @@ if (!DISABLE_COMMENTS) {
   //   item.repo.name
   // )}`;
 }
-if (!DISABLE_ISSUES) {
+if (DISABLE_ISSUES === "false") {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
       return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
@@ -126,7 +126,7 @@ if (!DISABLE_ISSUES) {
     }
   };
 }
-if (!DISABLE_PR) {
+if (DISABLE_PR === "false") {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
@@ -162,10 +162,6 @@ if (!DISABLE_PR) {
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
-
-    tools.log.debug(typeof DISABLE_COMMENTS);
-    tools.log.debug(typeof DISABLE_ISSUES);
-    tools.log.debug(typeof DISABLE_PR);
     tools.log.debug(`Getting activity for ${GH_USERNAME}`);
     const events = await tools.github.activity.listPublicEventsForUser({
       username: GH_USERNAME,
