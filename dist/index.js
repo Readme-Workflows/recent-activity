@@ -15250,6 +15250,10 @@ const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
+const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
+const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
+const DISABLE_PR = core.getInput("DISABLE_PR");
+
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
@@ -15294,7 +15298,7 @@ const exec = (cmd, args = []) =>
     });
     app.on("close", (code) => {
       if (code !== 0 && !stdout.includes("nothing to commit")) {
-        err = new Error(`Invalid status code: ${code} -- ${stdout}`);
+        err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         return reject(err);
       }
@@ -15322,18 +15326,21 @@ const commitFile = async () => {
   await exec("git", ["push"]);
 };
 
-const serializers = {
-  IssueCommentEvent: (item) => {
+const serializers = {};
+
+if (DISABLE_COMMENTS === "false") {
+  serializers.IssueCommentEvent = (item) => {
     return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
       /{REPO}/g,
       toUrlFormat(item.repo.name)
     );
-
-    // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-    //   item.repo.name
-    // )}`;
-  },
-  IssuesEvent: (item) => {
+  };
+  // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
+  //   item.repo.name
+  // )}`;
+}
+if (DISABLE_ISSUES === "false") {
+  serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
       return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
         /{REPO}/g,
@@ -15349,8 +15356,10 @@ const serializers = {
         item
       )} in ${toUrlFormat(item.repo.name)}`;
     }
-  },
-  PullRequestEvent: (item) => {
+  };
+}
+if (DISABLE_PR === "false") {
+  serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
         /{REPO}/g,
@@ -15379,8 +15388,8 @@ const serializers = {
     //     item.repo.name
     //   )}`;
     // }
-  },
-};
+  };
+}
 
 Toolkit.run(
   async (tools) => {
