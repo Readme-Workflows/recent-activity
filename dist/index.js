@@ -15253,7 +15253,7 @@ const PR_MERGED = core.getInput("PR_MERGED");
 const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
 const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
 const DISABLE_PR = core.getInput("DISABLE_PR");
-const URL_FORMAT = core.getInput("URL_FORMAT");
+const URL_TEXT = core.getInput("URL_TEXT");
 
 /**
  * Returns the sentence case representation
@@ -15276,13 +15276,13 @@ const urlPrefix = "https://github.com";
 const makeCustomUrl = (item) => {
   return Object.hasOwnProperty.call(item.payload, "issue")
     ? `[` +
-        URL_FORMAT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
         `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
     : `[` +
-        URL_FORMAT.replace(
+        URL_TEXT.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
