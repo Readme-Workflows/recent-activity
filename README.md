@@ -20,7 +20,7 @@ Other activities can't be displayed since they aren't parts of what GitHub's API
 
 If you're a beginner, then [here is an article](https://abhijoshi2k.medium.com/how-to-create-a-readme-for-your-github-profile-95e0fc474f49) made by [@abhijoshi2k](https://github.com/abhijoshi2k) that explains how you can create and manage your own Profile README.
 
-The official documentation about Profile READMEs can be found [here](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme).
+The official GitHub documentation about Profile READMEs can be found [here](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme).
 
 ## Setup
 
