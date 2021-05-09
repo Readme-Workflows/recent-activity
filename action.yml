@@ -33,7 +33,7 @@ inputs:
     default: false
     required: false
 
-  URL_FORMAT:
+  URL_TEXT:
     description: "Format in which {URL} will be replaced"
     default: "{REPO}{ID}"
     required: false
