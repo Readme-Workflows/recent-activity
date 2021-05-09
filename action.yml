@@ -29,11 +29,25 @@ inputs:
   # ISSUES
   ISSUE_OPENED:
     description: "How the 'issue opened' activity should be printed."
-    default: "Opened issue {ID} in {REPO}"
+    default: "❗️ Opened issue {ID} in {REPO}"
     required: false
   ISSUE_CLOSED:
     description: "How the 'issue closed' activity should be printed."
-    default: "Closed issue {ID} in {REPO}"
+    default: "❗️ Closed issue {ID} in {REPO}"
+    required: false
+
+  # PR
+  PR_OPENED:
+    description: "How the 'pull request opened' activity should be printed."
+    default: "💪 Opened PR {ID} in {REPO}"
+    required: false
+  PR_CLOSED:
+    description: "How the 'pull request closed' activity should be printed."
+    default: "❌ Closed PR {ID} in {REPO}"
+    required: false
+  PR_MERGED:
+    description: "How the 'pull request merged' activity should be printed."
+    default: "🎉 Merged PR {ID} in {REPO}"
     required: false
 
 branding:
