@@ -8,13 +8,14 @@ All notable changes to Recent Activity Workflow will be added to this file.
 
 Format is `version (*dd-mm-yyyy*)`
 
-### v1.1.2 (*unreleased*)
+### v1.2.0 (*unreleased*)
 
 #### Info
  * 🐛 Bug fix release
 
 ### Changes and Additions
 1. Add SUPPORT.md, CONTRIBUTING.md, ChangeLog.md
+2. New feature [#5](https://github.com/Readme-Workflows/recent-activity/issues/5) added in [#11](https://github.com/Readme-Workflows/recent-activity/pull/11)
 
 <h2><a name="older-changelogs">Older ChangeLogs</a></h2>
 

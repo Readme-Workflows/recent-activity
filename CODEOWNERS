@@ -1,0 +1,5 @@
+# By default @abhijoshi2k and @PuneetGopinath will review pull requests
+*       @abhijoshi2k @PuneetGopinath
+
+# Any file with .md extension will be reviewed by @Andre601
+*.md @Andre601
