@@ -13,6 +13,8 @@ const COMMIT_MSG = core.getInput("COMMIT_MSG");
 const MAX_LINES = core.getInput("MAX_LINES");
 const README_FILE = core.getInput("README_FILE");
 const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
+const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
+
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
