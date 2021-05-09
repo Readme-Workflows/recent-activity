@@ -12,6 +12,7 @@ const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
 const MAX_LINES = core.getInput("MAX_LINES");
 const README_FILE = core.getInput("README_FILE");
+const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
@@ -85,16 +86,6 @@ const commitFile = async () => {
 };
 
 const serializers = {
-  IssueCommentEvent: (item) => {
-    return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-      item.repo.name
-    )}`;
-  },
-  IssuesEvent: (item) => {
-    return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-      item
-    )} in ${toUrlFormat(item.repo.name)}`;
-  },
   PullRequestEvent: (item) => {
     const emoji = item.payload.action === "opened" ? "💪" : "❌";
     const line = item.payload.pull_request.merged
@@ -103,6 +94,20 @@ const serializers = {
     return `${line} PR ${toUrlFormat(item)} in ${toUrlFormat(item.repo.name)}`;
   },
 };
+if (!DISABLE_COMMENTS) {
+  serializers.IssueCommentEvent = (item) => {
+    return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
+      item.repo.name
+    )}`;
+  };
+}
+if (!DISABLE_ISSUES) {
+  serializers.IssuesEvent = (item) => {
+    return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+      item
+    )} in ${toUrlFormat(item.repo.name)}`;
+  };
+}
 
 Toolkit.run(
   async (tools) => {
