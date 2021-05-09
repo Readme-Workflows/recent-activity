@@ -59,25 +59,34 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 The Action currently has the following Settings that you can set through the `with` option.
 
-| Option              | Description                                                  | Default                                   |
-| ------------------- | ------------------------------------------------------------ | ----------------------------------------- |
-| `COMMIT_MSG`        | Sets the message to use for the Commit.                      | ⚡ Update README with the recent activity |
-| `MAX_LINES`         | The total amount of lines to display.                        | 5                                         |
-| `README_FILE`       | Path to the MD file you want to push the recent activity to. | ./README.md                               |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | 🗣 Commented on {ID} in {REPO}            |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | ❗️ Opened issue {ID} in {REPO}             |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | ❗️ Closed issue {ID} in {REPO}             |
-| `PR_OPENED`         | Sets the message to display when pull request is opened      | 💪 Opened PR {ID} in {REPO}               |
-| `PR_CLOSED`         | Sets the message to display when pull request is closed      | ❌ Closed PR {ID} in {REPO}               |
-| `PR_MERGED`         | Sets the message to display when pull request is merged      | 🎉 Merged PR {ID} in {REPO}               |
-| `DISABLE_COMMENTS`  | Whether the comments activity should be hidden               | `false` (Boolean)                         |
-| `DISABLE_ISSUES`    | Whether the issues events should be hidden                   | `false` (Boolean)                         |
-| `DISABLE_PR`        | Whether the pull request events should be hidden             | `false` (Boolean)                         |
+| Option              | Description                                                  | Default                                   | Supported Placeholders    |
+| ------------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------- |
+| `COMMIT_MSG`        | Sets the message to use for the Commit.                      | `⚡ Update README with the recent activity` | None                      |
+| `MAX_LINES`         | The total amount of lines to display.                        | `5`                                         | None                      |
+| `README_FILE`       | Path to the MD file you want to push the recent activity to. | `./README.md`                               | None                      |
+|                     |                                                              |                                             |                           |
+| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | `🗣 Commented on {ID} in {REPO}`            | `{REPO}`, `{ID}`, `{URL}` |
+| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | `❗️ Opened issue {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
+| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | `❗️ Closed issue {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
+| `PR_OPENED`         | Sets the message to display when pull request is opened      | `💪 Opened PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
+| `PR_CLOSED`         | Sets the message to display when pull request is closed      | `❌ Closed PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
+| `PR_MERGED`         | Sets the message to display when pull request is merged      | `🎉 Merged PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
+|                     |                                                              |                                             |                           |
+| `DISABLE_COMMENTS`  | Whether the comments activity should be hidden               | `false` (Boolean)                           | None                      |
+| `DISABLE_ISSUES`    | Whether the issues events should be hidden                   | `false` (Boolean)                           | None                      |
+| `DISABLE_PR`        | Whether the pull request events should be hidden             | `false` (Boolean)                           | None                      |
+|                     |                                                              |                                             |                           |
+| `URL_TEXT`          | Change the displayed link-text for `{URL}`                   | `{REPO}{ID}`                                | `{REPO}`, `{ID}`          |
 
-- {REPO}
-  Will be changed to the Username/Repository format.
-- {ID}
-  Will be changed to the issue or pull request ID this action belongs to.
+### Placeholders
+
+Following Placeholders are available and can be used in the mentioned options:
+
+| Placeholder | Description                                                                 |
+| ----------- | --------------------------------------------------------------------------- |
+| `{REPO}`    | Displays the User and Repository in the format `[:user/:repo](:url)`        |
+| `{ID}`      | Displays the ID of the Issue, PR or Discussion in the format `[#:id](:url)` |
+| `{URL}`     | Displays whatever was set in `URL_TEXT` in the format `[:url_text](:url)`   |
 
 ## History
 
@@ -223,4 +232,34 @@ jobs:
           DISABLE_COMMENTS: true
           DISABLE_ISSUES: false
           DISABLE_PR: false
+```
+
+### Change `{URL}` Text
+
+Change the text displayed by `{URL}`.  
+You can use `{REPO}` and `{ID}` in it.
+
+Note that the text provided by `URL_TEXT` will be used as displayed text in an embedded link.  
+For example will `{REPO}{ID}` become `[{REPO}{ID}](:url)`.
+
+```yaml
+name: Update README
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update Profile README
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/recent-activity@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          URL_TEXT: "`{REPO}{ID}`" # Turns into [`{REPO}{ID}`](:url)
 ```
