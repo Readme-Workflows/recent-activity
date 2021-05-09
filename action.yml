@@ -28,6 +28,10 @@ inputs:
     description: "Do you want to disable issues?"
     default: false
     required: false
+  DISABLE_PR:
+    description: "Do you want to disable pull request events?"
+    default: false
+    required: false
 
   # COMMENTS
   COMMENTS_ACTIVITY:
