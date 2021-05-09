@@ -58,9 +58,9 @@ The Action currently has the following Settings that you can set through the `wi
 | `COMMIT_MSG`        | Sets the message to use for the Commit.                      | ⚡ Update README with the recent activity |
 | `MAX_LINES`         | The total amount of lines to display.                        | 5                                         |
 | `README_FILE`       | Path to the MD file you want to push the recent activity to. | ./README.md                               |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | 🗣 Commented on {ID} in {REPO}             |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | ❗️ Opened issue {ID} in {REPO}           |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | ❗️ Closed issue {ID} in {REPO}           |
+| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | 🗣 Commented on {ID} in {REPO}            |
+| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | ❗️ Opened issue {ID} in {REPO}             |
+| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | ❗️ Closed issue {ID} in {REPO}             |
 | `PR_OPENED`         | Sets the message to display when pull request is opened      | 💪 Opened PR {ID} in {REPO}               |
 | `PR_CLOSED`         | Sets the message to display when pull request is closed      | ❌ Closed PR {ID} in {REPO}               |
 | `PR_MERGED`         | Sets the message to display when pull request is merged      | 🎉 Merged PR {ID} in {REPO}               |
