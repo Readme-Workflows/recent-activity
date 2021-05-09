@@ -18,6 +18,9 @@ const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
+const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
+const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
+
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
@@ -91,33 +94,6 @@ const commitFile = async () => {
 };
 
 const serializers = {
-  IssueCommentEvent: (item) => {
-    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
-      /{REPO}/g,
-      toUrlFormat(item.repo.name)
-    );
-
-    // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-    //   item.repo.name
-    // )}`;
-  },
-  IssuesEvent: (item) => {
-    if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
-    } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
-    } else {
-      return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-        item
-      )} in ${toUrlFormat(item.repo.name)}`;
-    }
-  },
   PullRequestEvent: (item) => {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
@@ -149,6 +125,37 @@ const serializers = {
     // }
   },
 };
+
+if (!DISABLE_COMMENTS) {
+  serializers.IssueCommentEvent = (item) => {
+    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item)).replace(
+      /{REPO}/g,
+      toUrlFormat(item.repo.name)
+    );
+  };
+  // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
+  //   item.repo.name
+  // )}`;
+}
+if (!DISABLE_ISSUES) {
+  serializers.IssuesEvent = (item) => {
+    if (item.payload.action === "opened") {
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else if (item.payload.action === "closed") {
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else {
+      return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+        item
+      )} in ${toUrlFormat(item.repo.name)}`;
+    }
+  };
+}
 
 Toolkit.run(
   async (tools) => {
