@@ -13,6 +13,8 @@ const COMMIT_MSG = core.getInput("COMMIT_MSG");
 const MAX_LINES = core.getInput("MAX_LINES");
 const README_FILE = core.getInput("README_FILE");
 const COMMENTS_ACTIVITY = core.getInput("COMMENTS_ACTIVITY");
+const ISSUE_OPENED = core.getInput("ISSUE_OPENED");
+const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
@@ -97,9 +99,21 @@ const serializers = {
     // )}`;
   },
   IssuesEvent: (item) => {
-    return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-      item
-    )} in ${toUrlFormat(item.repo.name)}`;
+    if (item.payload.action === "opened") {
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else if (item.payload.action === "closed") {
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else {
+      return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+        item
+      )} in ${toUrlFormat(item.repo.name)}`;
+    }
   },
   PullRequestEvent: (item) => {
     const emoji = item.payload.action === "opened" ? "💪" : "❌";

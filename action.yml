@@ -26,6 +26,16 @@ inputs:
     default: "🗣 Commented on {ID} in {REPO}"
     required: false
 
+  # ISSUES
+  ISSUE_OPENED:
+    description: "How the 'issue opened' activity should be printed."
+    default: "Opened issue {ID} in {REPO}"
+    required: false
+  ISSUE_CLOSED:
+    description: "How the 'issue closed' activity should be printed."
+    default: "Closed issue {ID} in {REPO}"
+    required: false
+
 branding:
   color: orange
   icon: activity
