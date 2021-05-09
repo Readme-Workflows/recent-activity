@@ -7,7 +7,7 @@ Its goal is to improve the original GitHub Action while also providing new featu
 
 ## Features
 
-The core feature of this GitHub Action is to update your README.md file, or any Markdown file, with the latest activities you made on GitHub.  
+The core feature of this GitHub Action is to update your *Profile README* file, or any Markdown file, with the latest activities you made on GitHub.  
 Current activities include:
 
 - **Discussions** (Commenting)
@@ -15,6 +15,12 @@ Current activities include:
 - **Pull requests** (Opening, closing or merging them)
 
 Other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
+
+### Setup a Profile README
+
+If you're a beginner, then [here is an article](https://abhijoshi2k.medium.com/how-to-create-a-readme-for-your-github-profile-95e0fc474f49) made by [@abhijoshi2k](https://github.com/abhijoshi2k) that explains how you can create and manage your own Profile README.
+
+The official documentation about Profile READMEs can be found [here](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme).
 
 ## Setup
 
