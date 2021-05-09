@@ -21,15 +21,15 @@ inputs:
     required: false
 
   DISABLE_COMMENTS:
-    description: "Do you want to disable comments?"
+    description: "Whether the comments should be disabled"
     default: false
     required: false
   DISABLE_ISSUES:
-    description: "Do you want to disable issues?"
+    description: "Whether the issues should be disabled"
     default: false
     required: false
   DISABLE_PR:
-    description: "Do you want to disable pull request events?"
+    description: "Whether the pull request events should be disabled"
     default: false
     required: false
 
