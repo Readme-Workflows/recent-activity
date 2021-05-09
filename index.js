@@ -20,6 +20,7 @@ const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
 const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
 const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
+const DISABLE_PR = core.getInput("DISABLE_PR");
 
 /**
  * Returns the sentence case representation
@@ -93,38 +94,7 @@ const commitFile = async () => {
   await exec("git", ["push"]);
 };
 
-const serializers = {
-  PullRequestEvent: (item) => {
-    if (item.payload.action === "opened") {
-      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
-    } else if (item.payload.action === "closed") {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
-    } else if (item.payload.pull_request.merged) {
-      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item)).replace(
-        /{REPO}/g,
-        toUrlFormat(item.repo.name)
-      );
-    }
-
-    // if (item.payload.action === "opened") {
-    //   return;
-    // } else {
-    //   const emoji = item.payload.action === "opened" ? "💪" : "❌";
-    //   const line = item.payload.pull_request.merged
-    //     ? "🎉 Merged"
-    //     : `${emoji} ${capitalize(item.payload.action)}`;
-    //   return `${line} PR ${toUrlFormat(item)} in ${toUrlFormat(
-    //     item.repo.name
-    //   )}`;
-    // }
-  },
-};
+const serializers = {};
 
 if (!DISABLE_COMMENTS) {
   serializers.IssueCommentEvent = (item) => {
@@ -154,6 +124,38 @@ if (!DISABLE_ISSUES) {
         item
       )} in ${toUrlFormat(item.repo.name)}`;
     }
+  };
+}
+if (!DISABLE_PR) {
+  serializers.PullRequestEvent = (item) => {
+    if (item.payload.action === "opened") {
+      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else if (item.payload.action === "closed") {
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    } else if (item.payload.pull_request.merged) {
+      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item)).replace(
+        /{REPO}/g,
+        toUrlFormat(item.repo.name)
+      );
+    }
+
+    // if (item.payload.action === "opened") {
+    //   return;
+    // } else {
+    //   const emoji = item.payload.action === "opened" ? "💪" : "❌";
+    //   const line = item.payload.pull_request.merged
+    //     ? "🎉 Merged"
+    //     : `${emoji} ${capitalize(item.payload.action)}`;
+    //   return `${line} PR ${toUrlFormat(item)} in ${toUrlFormat(
+    //     item.repo.name
+    //   )}`;
+    // }
   };
 }
 
