@@ -66,7 +66,7 @@ const exec = (cmd, args = []) =>
     });
     app.on("close", (code) => {
       if (code !== 0 && !stdout.includes("nothing to commit")) {
-        err = new Error(`Invalid status code: ${code} -- ${stdout}`);
+        err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         return reject(err);
       }
