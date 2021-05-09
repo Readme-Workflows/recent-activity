@@ -19,8 +19,13 @@ inputs:
     description: "Path to your README.md file"
     default: "./README.md"
     required: false
+
   DISABLE_COMMENTS:
     description: "Do you want to disable comments?"
+    default: false
+    required: false
+  DISABLE_ISSUES:
+    description: "Do you want to disable issues?"
     default: false
     required: false
 
