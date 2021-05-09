@@ -64,6 +64,9 @@ The Action currently has the following Settings that you can set through the `wi
 | `PR_OPENED`         | Sets the message to display when pull request is opened      | 💪 Opened PR {ID} in {REPO}               |
 | `PR_CLOSED`         | Sets the message to display when pull request is closed      | ❌ Closed PR {ID} in {REPO}               |
 | `PR_MERGED`         | Sets the message to display when pull request is merged      | 🎉 Merged PR {ID} in {REPO}               |
+| `DISABLE_COMMENTS`  | Whether the comments should be disabled                      | 💪 Opened PR {ID} in {REPO}               |
+| `DISABLE_ISSUES`    | Whether the issues should be disabled                        | ❌ Closed PR {ID} in {REPO}               |
+| `DISABLE_PR`        | Whether the pull request events should be disabled           | 🎉 Merged PR {ID} in {REPO}               |
 
 - {REPO}
   Will be changed to the Username/Repository format.
