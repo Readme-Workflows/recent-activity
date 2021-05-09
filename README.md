@@ -262,7 +262,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           URL_TEXT: "`{REPO}{ID}`" # Turns into [`{REPO}{ID}`](:url)
-          PR_OPENED: "Made Pull request {ID} in {REPO}"
-          PR_CLOSED: "Closed Pull request {ID} in {REPO}"
-          PR_MERGED: "Merged Pull request {ID} in {REPO}"
+          PR_OPENED: "Made Pull request {URL}"
+          PR_CLOSED: "Closed Pull request {URL}"
+          PR_MERGED: "Merged Pull request {URL}"
 ```
