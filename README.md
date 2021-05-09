@@ -7,7 +7,7 @@ Its goal is to improve the original GitHub Action while also providing new featu
 
 ## Features
 
-The core feature of this GitHub Action is to update your *Profile README* file, or any Markdown file, with the latest activities you made on GitHub.  
+The core feature of this GitHub Action is to update your _Profile README_ file, or any Markdown file, with the latest activities you made on GitHub.  
 Current activities include:
 
 - **Discussions** (Commenting)
@@ -59,15 +59,15 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 The Action currently has the following Settings that you can set through the `with` option.
 
-| Option              | Description                                                  | Default                                   | Supported Placeholders    |
+| Option              | Description                                                  | Default                                     | Supported Placeholders    |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------- |
 | `COMMIT_MSG`        | Sets the message to use for the Commit.                      | `⚡ Update README with the recent activity` | None                      |
 | `MAX_LINES`         | The total amount of lines to display.                        | `5`                                         | None                      |
 | `README_FILE`       | Path to the MD file you want to push the recent activity to. | `./README.md`                               | None                      |
 |                     |                                                              |                                             |                           |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | `🗣 Commented on {ID} in {REPO}`            | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | `❗️ Opened issue {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | `❗️ Closed issue {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
+| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | `🗣 Commented on {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
+| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | `❗️ Opened issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
+| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | `❗️ Closed issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
 | `PR_OPENED`         | Sets the message to display when pull request is opened      | `💪 Opened PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
 | `PR_CLOSED`         | Sets the message to display when pull request is closed      | `❌ Closed PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
 | `PR_MERGED`         | Sets the message to display when pull request is merged      | `🎉 Merged PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
@@ -262,4 +262,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           URL_TEXT: "`{REPO}{ID}`" # Turns into [`{REPO}{ID}`](:url)
+          PR_OPENED: "Made Pull request {ID} in {REPO}"
+          PR_CLOSED: "Closed Pull request {ID} in {REPO}"
+          PR_MERGED: "Merged Pull request {ID} in {REPO}"
 ```
