@@ -94,6 +94,10 @@ const commitFile = async () => {
   await exec("git", ["push"]);
 };
 
+tools.log.debug(typeof DISABLE_COMMENTS);
+tools.log.debug(typeof DISABLE_ISSUES);
+tools.log.debug(typeof DISABLE_PR);
+
 const serializers = {};
 
 if (!DISABLE_COMMENTS) {
