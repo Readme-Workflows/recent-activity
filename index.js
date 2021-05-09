@@ -94,10 +94,6 @@ const commitFile = async () => {
   await exec("git", ["push"]);
 };
 
-tools.log.debug(typeof DISABLE_COMMENTS);
-tools.log.debug(typeof DISABLE_ISSUES);
-tools.log.debug(typeof DISABLE_PR);
-
 const serializers = {};
 
 if (!DISABLE_COMMENTS) {
@@ -166,6 +162,10 @@ if (!DISABLE_PR) {
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
+
+    tools.log.debug(typeof DISABLE_COMMENTS);
+    tools.log.debug(typeof DISABLE_ISSUES);
+    tools.log.debug(typeof DISABLE_PR);
     tools.log.debug(`Getting activity for ${GH_USERNAME}`);
     const events = await tools.github.activity.listPublicEventsForUser({
       username: GH_USERNAME,
