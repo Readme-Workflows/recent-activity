@@ -58,9 +58,9 @@ The Action currently has the following Settings that you can set through the `wi
 | `COMMIT_MSG`        | Sets the message to use for the Commit.                      | ⚡ Update README with the recent activity |
 | `MAX_LINES`         | The total amount of lines to display.                        | 5                                         |
 | `README_FILE`       | Path to the MD file you want to push the recent activity to. | ./README.md                               |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | 🗣 Commented on {ID} in {REPO}             |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | ❗️ Opened issue {ID} in {REPO}           |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | ❗️ Closed issue {ID} in {REPO}           |
+| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | 🗣 Commented on {ID} in {REPO}            |
+| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | ❗️ Opened issue {ID} in {REPO}             |
+| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | ❗️ Closed issue {ID} in {REPO}             |
 | `PR_OPENED`         | Sets the message to display when pull request is opened      | 💪 Opened PR {ID} in {REPO}               |
 | `PR_CLOSED`         | Sets the message to display when pull request is closed      | ❌ Closed PR {ID} in {REPO}               |
 | `PR_MERGED`         | Sets the message to display when pull request is merged      | 🎉 Merged PR {ID} in {REPO}               |
@@ -135,7 +135,7 @@ jobs:
 
 ### Different Commit Message
 
-Display a different Commit message
+Display a different Commit message.
 
 ```yaml
 name: Update README
@@ -157,4 +157,64 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           COMMIT_MSG: "Update README with latest Activities"
+```
+
+### Different Action Messages
+
+Display a different message for a specific action such as merging a Pull request.
+
+```yaml
+name: Update README
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update Profile README
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/recent-activity@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          COMMENTS_ACTIVITY: "Gave a comment on {ID} in {REPO}"
+          ISSUE_OPENED: "Made Issue {ID} in {REPO}"
+          ISSUE_CLOSED: "Closed Issue {ID} in {REPO}"
+          PR_OPENED: "Made Pull request {ID} in {REPO}"
+          PR_CLOSED: "Closed Pull request {ID} in {REPO}"
+          PR_MERGED: "Merged Pull request {ID} in {REPO}"
+```
+
+### Disable specific Activities
+
+Hides specific activities from the list.  
+This is useful if you do one specific activity a lot like commenting on Discussions and don't want it to fill the list.
+
+```yaml
+name: Update README
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Update Profile README
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Readme-Workflows/recent-activity@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          DISABLE_COMMENTS: true
+          DISABLE_ISSUES: false
+          DISABLE_PR: false
 ```
