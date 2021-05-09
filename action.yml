@@ -20,6 +20,15 @@ inputs:
     default: "./README.md"
     required: false
 
+  DISABLE_COMMENTS:
+    description: "Do you want to disable comments?"
+    default: false
+    required: false
+  DISABLE_ISSUES:
+    description: "Do you want to disable issues?"
+    default: false
+    required: false
+
   # COMMENTS
   COMMENTS_ACTIVITY:
     description: "How the comments activity should be printed."
