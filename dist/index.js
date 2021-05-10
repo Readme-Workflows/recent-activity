@@ -15250,8 +15250,10 @@ const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
-const DISABLE_EVENTS = JSON.parse(core.getInput("DISABLE_EVENTS"));
 const URL_TEXT = core.getInput("URL_TEXT");
+
+let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
+DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
 
 /**
  * Returns the sentence case representation
