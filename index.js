@@ -156,12 +156,12 @@ if (!DISABLE_EVENTS.includes("pr")) {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
-    } else if (item.payload.action === "closed") {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
     } else if (item.payload.pull_request.merged) {
       return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    } else if (item.payload.action === "closed") {
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
     } else {
