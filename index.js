@@ -128,24 +128,23 @@ if (DISABLE_COMMENTS === "false") {
   // )}`;
 }
 
-const allowedIssueActions = ["opened", "closed", "reopened"];
 if (DISABLE_ISSUES === "false") {
   serializers.IssuesEvent = (item) => {
-    if (allowedIssueActions.includes(item.payload.action)) {
-      if (item.payload.action === "opened") {
-        return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
-          .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-          .replace(/{URL}/g, makeCustomUrl(item));
-      } else if (item.payload.action === "closed") {
-        return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-          .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-          .replace(/{URL}/g, makeCustomUrl(item));
-      } else {
-        return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-          item
-        )} in ${toUrlFormat(item.repo.name)}`;
-      }
-    } else {
+    if (item.payload.action === "opened") {
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    } else if (item.payload.action === "closed") {
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    }
+    // else {
+    //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+    //     item
+    //   )} in ${toUrlFormat(item.repo.name)}`;
+    // }
+    else {
       return "";
     }
   };
