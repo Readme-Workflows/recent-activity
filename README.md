@@ -43,7 +43,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
       steps:
         - uses: actions/checkout@v2
-        - uses: Readme-Workflows/recent-activity@main
+        - uses: Readme-Workflows/recent-activity@v1.2.1
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
@@ -221,7 +221,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -245,7 +245,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -271,7 +271,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -297,7 +297,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -329,7 +329,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -359,7 +359,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
+      - uses: Readme-Workflows/recent-activity@1.2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
