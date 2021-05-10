@@ -15392,7 +15392,10 @@ if (!DISABLE_EVENTS.includes("pr")) {
       return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
-    } else if (item.payload.action === "closed") {
+    } else if (
+      item.payload.action === "closed" &&
+      !item.payload.pull_request.merged
+    ) {
       return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
