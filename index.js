@@ -115,31 +115,42 @@ const serializers = {};
 
 if (DISABLE_COMMENTS === "false") {
   serializers.IssueCommentEvent = (item) => {
-    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-      .replace(/{URL}/g, makeCustomUrl(item));
+    if (item.payload.action === "created") {
+      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    } else {
+      return "";
+    }
   };
   // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
   //   item.repo.name
   // )}`;
 }
+
+const allowedIssueActions = ["opened", "closed", "reopened"];
 if (DISABLE_ISSUES === "false") {
   serializers.IssuesEvent = (item) => {
-    if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
-    } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+    if (allowedIssueActions.includes(item.payload.action)) {
+      if (item.payload.action === "opened") {
+        return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
+          .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+          .replace(/{URL}/g, makeCustomUrl(item));
+      } else if (item.payload.action === "closed") {
+        return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
+          .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+          .replace(/{URL}/g, makeCustomUrl(item));
+      } else {
+        return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+          item
+        )} in ${toUrlFormat(item.repo.name)}`;
+      }
     } else {
-      return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-        item
-      )} in ${toUrlFormat(item.repo.name)}`;
+      return "";
     }
   };
 }
+
 if (DISABLE_PR === "false") {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
@@ -154,6 +165,8 @@ if (DISABLE_PR === "false") {
       return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
+    } else {
+      return "";
     }
 
     // if (item.payload.action === "opened") {
@@ -182,13 +195,28 @@ Toolkit.run(
       `Activity for ${GH_USERNAME}, ${events.data.length} events found.`
     );
 
-    const content = events.data
+    let content = events.data
       // Filter out any boring activity
-      .filter((event) => serializers.hasOwnProperty(event.type))
-      // We only have five lines to work with
-      .slice(0, MAX_LINES)
-      // Call the serializer to construct a string
-      .map((item) => serializers[item.type](item));
+      .filter((event) => serializers.hasOwnProperty(event.type));
+
+    let temp_content = [];
+
+    for (i = 0; i < content.length; i++) {
+      let event_string = serializers[content[i].type](content[i]);
+      if (event_string !== "") {
+        temp_content.push(event_string);
+      }
+      if (temp_content.length == MAX_LINES) {
+        break;
+      }
+    }
+
+    content = temp_content;
+
+    // We only have five lines to work with
+    // .slice(0, MAX_LINES)
+    // // Call the serializer to construct a string
+    // .map((item) => serializers[item.type](item));
 
     let readmeContent;
 
