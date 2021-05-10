@@ -15434,6 +15434,7 @@ Toolkit.run(
 
     for (i = 0; i < content.length; i++) {
       let event_string = serializers[content[i].type](content[i]);
+      tools.log.debug(`Line: ${event_string}`);
       if (event_string !== "") {
         temp_content.push(event_string);
       }
