@@ -15250,9 +15250,7 @@ const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
-const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
-const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
-const DISABLE_PR = core.getInput("DISABLE_PR");
+const DISABLE_EVENTS = JSON.parse(core.getInput("DISABLE_EVENTS"));
 const URL_TEXT = core.getInput("URL_TEXT");
 
 /**
@@ -15345,7 +15343,7 @@ const commitFile = async () => {
 
 const serializers = {};
 
-if (DISABLE_COMMENTS === "false") {
+if (!DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = (item) => {
     if (item.payload.action === "created") {
       return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
@@ -15360,7 +15358,7 @@ if (DISABLE_COMMENTS === "false") {
   // )}`;
 }
 
-if (DISABLE_ISSUES === "false") {
+if (!DISABLE_EVENTS.includes("issues")) {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
       return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
@@ -15382,7 +15380,7 @@ if (DISABLE_ISSUES === "false") {
   };
 }
 
-if (DISABLE_PR === "false") {
+if (!DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
