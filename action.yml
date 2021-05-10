@@ -22,7 +22,7 @@ inputs:
 
   DISABLE_EVENTS:
     description: "Events to be disabled"
-    default: "[]"
+    default: ""
     required: false
 
   URL_TEXT:
