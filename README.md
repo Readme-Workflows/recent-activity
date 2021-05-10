@@ -59,34 +59,138 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 The Action currently has the following Settings that you can set through the `with` option.
 
-| Option              | Description                                                  | Default                                     | Supported Placeholders    |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------- |
-| `COMMIT_MSG`        | Sets the message to use for the Commit.                      | `⚡ Update README with the recent activity` | None                      |
-| `MAX_LINES`         | The total amount of lines to display.                        | `5`                                         | None                      |
-| `README_FILE`       | Path to the MD file you want to push the recent activity to. | `./README.md`                               | None                      |
-|                     |                                                              |                                             |                           |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | `🗣 Commented on {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | `❗️ Opened issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | `❗️ Closed issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_OPENED`         | Sets the message to display when pull request is opened      | `💪 Opened PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_CLOSED`         | Sets the message to display when pull request is closed      | `❌ Closed PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_MERGED`         | Sets the message to display when pull request is merged      | `🎉 Merged PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-|                     |                                                              |                                             |                           |
-| `DISABLE_COMMENTS`  | Whether the comments activity should be hidden               | `false` (Boolean)                           | None                      |
-| `DISABLE_ISSUES`    | Whether the issues events should be hidden                   | `false` (Boolean)                           | None                      |
-| `DISABLE_PR`        | Whether the pull request events should be hidden             | `false` (Boolean)                           | None                      |
-|                     |                                                              |                                             |                           |
-| `URL_TEXT`          | Change the displayed link-text for `{URL}`                   | `{REPO}{ID}`                                | `{REPO}`, `{ID}`          |
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Supported Placeholder</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>COMMIT_MSG</code></td>
+      <td>The Commit Message to use when updating the README</td>
+      <td><code>⚡ Update README with the recent activity</code></td>
+      <td><i>None</i></td>
+    </tr>
+    <tr>
+      <td><code>MAX_LINES</code></td>
+      <td>How many activities to display</td>
+      <td><code>5</code></td>
+      <td><i>None</i></td>
+    </tr>
+    <tr>
+      <td><code>README_FILE</code></td>
+      <td>The location of the README.md (or any Markdown file) relative to the root directory.</td>
+      <td><code>./README.md</code></td>
+      <td><i>None</i></td>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>COMMENTS_ACTIVITY</code></td>
+      <td>Text displayed for making a comment.<br/>Includes comments on Issues and Pull requests</td>
+      <td><code>🗣 Commented on {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>ISSUE_OPENED</code></td>
+      <td>Text displayed for opening an issue.</td>
+      <td><code>❗️ Opened issue {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>ISSUE_CLOSED</code></td>
+      <td>Text displayed for closing an issue.</td>
+      <td><code>❗️ Closed issue {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_OPENED</code></td>
+      <td>Text displayed for opening a Pull request.</td>
+      <td><code>💪 Opened PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_CLOSED</code></td>
+      <td>Text displayed for closing a Pull request without merging.</td>
+      <td><code>❌ Closed PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_MERGED</code></td>
+      <td>Text displayed for merging a Pull request.</td>
+      <td><code>🎉 Merged PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>DISABLE_EVENTS</code></td>
+      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code> and <code>COMMENTS</code></td>
+      <td><i>Empty String</i></td>
+      <td><i>None</i></td>
+    </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>URL_TEXT</code></td>
+      <td>Text to display when using the <code>{URL}</code> placeholder.See the <a href="#placeholders">Placeholders section</a> for more info.</td>
+      <td><code>{REPO}{ID}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Placeholders
 
-Following Placeholders are available and can be used in the mentioned options:
+The following placeholders may be used in the aforementioned settings, if the `Supported Placeholders` section lists them.
 
-| Placeholder | Description                                                                 |
-| ----------- | --------------------------------------------------------------------------- |
-| `{REPO}`    | Displays the User and Repository in the format `[:user/:repo](:url)`        |
-| `{ID}`      | Displays the ID of the Issue, PR or Discussion in the format `[#:id](:url)` |
-| `{URL}`     | Displays whatever was set in `URL_TEXT` in the format `[:url_text](:url)`   |
+**Important Notes:**
+
+- Each placeholder will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
+  For example will `{ID}` turn into `[#:id](:url)` and `{URL}` turns into `[:url_text](:url)`.
+- Using `{ID}` or `{REPO}` in the `URL_TEXT` setting won't turn them into embedded links. `{ID}` will still have a `#` before it.
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>Description</th>
+      <th>Example Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>{REPO}</code></td>
+      <td>Displays the username and Repository in the <code>:username/:repository</code> format.</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity</a></td>
+    </tr>
+    <tr>
+      <td><code>{ID}</code></td>
+      <td>Displays the issue, pull request or discussion ID with a <code>#</code> added in front of it</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">#1</a></td>
+    </tr>
+    <tr>
+      <td><code>{URL}</code></td>
+      <td>Displays the text provided by <code>URL_TEXT</code>.</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity#1</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## History
 
@@ -229,9 +333,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          DISABLE_COMMENTS: true
-          DISABLE_ISSUES: false
-          DISABLE_PR: false
+          DISABLE_EVENTS: "COMMENTS"
 ```
 
 ### Change `{URL}` Text
