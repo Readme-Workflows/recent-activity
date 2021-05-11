@@ -42,8 +42,8 @@ The official GitHub documentation about Profile READMEs can be found [here](http
       name: Update this repo's README with recent activity
 
       steps:
-        - uses: actions/checkout@v2
-        - uses: Readme-Workflows/recent-activity@main
+        - uses: actions/checkout@v2.3.4
+        - uses: Readme-Workflows/recent-activity@v1.2.1
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
@@ -52,41 +52,143 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
   - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
-  <!-- Is this here true? If yes, remove the HTML commet tags
-  - Using `${{ secrets.GITHUB_TOKEN }}` will only show activities from public repositories. To show those of private ones will you need to create a Personal Access Token with the `repo` scope applied. -->
 
 ## Settings
 
 The Action currently has the following Settings that you can set through the `with` option.
 
-| Option              | Description                                                  | Default                                     | Supported Placeholders    |
-| ------------------- | ------------------------------------------------------------ | ------------------------------------------- | ------------------------- |
-| `COMMIT_MSG`        | Sets the message to use for the Commit.                      | `⚡ Update README with the recent activity` | None                      |
-| `MAX_LINES`         | The total amount of lines to display.                        | `5`                                         | None                      |
-| `README_FILE`       | Path to the MD file you want to push the recent activity to. | `./README.md`                               | None                      |
-|                     |                                                              |                                             |                           |
-| `COMMENTS_ACTIVITY` | Sets the message to use for the Comments Activity.           | `🗣 Commented on {ID} in {REPO}`             | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_OPENED`      | Sets the message to display when issue is opened             | `❗️ Opened issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
-| `ISSUE_CLOSED`      | Sets the message to display when issue is closed             | `❗️ Closed issue {ID} in {REPO}`           | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_OPENED`         | Sets the message to display when pull request is opened      | `💪 Opened PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_CLOSED`         | Sets the message to display when pull request is closed      | `❌ Closed PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-| `PR_MERGED`         | Sets the message to display when pull request is merged      | `🎉 Merged PR {ID} in {REPO}`               | `{REPO}`, `{ID}`, `{URL}` |
-|                     |                                                              |                                             |                           |
-| `DISABLE_COMMENTS`  | Whether the comments activity should be hidden               | `false` (Boolean)                           | None                      |
-| `DISABLE_ISSUES`    | Whether the issues events should be hidden                   | `false` (Boolean)                           | None                      |
-| `DISABLE_PR`        | Whether the pull request events should be hidden             | `false` (Boolean)                           | None                      |
-|                     |                                                              |                                             |                           |
-| `URL_TEXT`          | Change the displayed link-text for `{URL}`                   | `{REPO}{ID}`                                | `{REPO}`, `{ID}`          |
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+      <th>Default</th>
+      <th>Supported Placeholder</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>COMMIT_MSG</code></td>
+      <td>The Commit Message to use when updating the README</td>
+      <td><code>⚡ Update README with the recent activity</code></td>
+      <td><i>None</i></td>
+    </tr>
+    <tr>
+      <td><code>MAX_LINES</code></td>
+      <td>How many activities to display</td>
+      <td><code>5</code></td>
+      <td><i>None</i></td>
+    </tr>
+    <tr>
+      <td><code>README_FILE</code></td>
+      <td>The location of the README.md (or any Markdown file) relative to the root directory.</td>
+      <td><code>./README.md</code></td>
+      <td><i>None</i></td>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>COMMENTS_ACTIVITY</code></td>
+      <td>Text displayed for making a comment.<br/>Includes comments on Issues and Pull requests</td>
+      <td><code>🗣 Commented on {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>ISSUE_OPENED</code></td>
+      <td>Text displayed for opening an issue.</td>
+      <td><code>❗️ Opened issue {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>ISSUE_CLOSED</code></td>
+      <td>Text displayed for closing an issue.</td>
+      <td><code>❗️ Closed issue {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_OPENED</code></td>
+      <td>Text displayed for opening a Pull request.</td>
+      <td><code>💪 Opened PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_CLOSED</code></td>
+      <td>Text displayed for closing a Pull request without merging.</td>
+      <td><code>❌ Closed PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    <tr>
+      <td><code>PR_MERGED</code></td>
+      <td>Text displayed for merging a Pull request.</td>
+      <td><code>🎉 Merged PR {ID} in {REPO}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
+    </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>DISABLE_EVENTS</code></td>
+      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code> and <code>COMMENTS</code></td>
+      <td><i>Empty String</i></td>
+      <td><i>None</i></td>
+    </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>URL_TEXT</code></td>
+      <td>Text to display when using the <code>{URL}</code> placeholder.See the <a href="#placeholders">Placeholders section</a> for more info.</td>
+      <td><code>{REPO}{ID}</code></td>
+      <td><code>{REPO}</code><br/><code>{ID}</code></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Placeholders
 
-Following Placeholders are available and can be used in the mentioned options:
+The following placeholders may be used in the aforementioned settings, if the `Supported Placeholders` section lists them.
 
-| Placeholder | Description                                                                 |
-| ----------- | --------------------------------------------------------------------------- |
-| `{REPO}`    | Displays the User and Repository in the format `[:user/:repo](:url)`        |
-| `{ID}`      | Displays the ID of the Issue, PR or Discussion in the format `[#:id](:url)` |
-| `{URL}`     | Displays whatever was set in `URL_TEXT` in the format `[:url_text](:url)`   |
+**Important Notes:**
+
+- Each placeholder will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
+  For example will `{ID}` turn into `[#:id](:url)` and `{URL}` turns into `[:url_text](:url)`.
+- Using `{ID}` or `{REPO}` in the `URL_TEXT` setting won't turn them into embedded links. `{ID}` will still have a `#` before it.
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>Description</th>
+      <th>Example Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>{REPO}</code></td>
+      <td>Displays the username and Repository in the <code>:username/:repository</code> format.</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity</a></td>
+    </tr>
+    <tr>
+      <td><code>{ID}</code></td>
+      <td>Displays the issue, pull request or discussion ID with a <code>#</code> added in front of it</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">#1</a></td>
+    </tr>
+    <tr>
+      <td><code>{URL}</code></td>
+      <td>Displays the text provided by <code>URL_TEXT</code>.</td>
+      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity#1</a></td>
+    </tr>
+  </tbody>
+</table>
 
 ## History
 
@@ -95,174 +197,4 @@ Following Placeholders are available and can be used in the mentioned options:
 
 ## Examples
 
-Here are some examples of various configuration setups.  
-If you have a different setup that could be useful for others, let us know or submit a pr by editing this README.
-
-### Higher delay
-
-This example shows a Action that would update the README only twice a day.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "0 0,12 * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-```
-
-### Higher amount of lines
-
-Displays 10 lines of activities instead of the normal 5.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          MAX_LINES: 10
-```
-
-### Different Commit Message
-
-Display a different Commit message.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          COMMIT_MSG: "Update README with latest Activities"
-```
-
-### Different Action Messages
-
-Display a different message for a specific action such as merging a Pull request.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          COMMENTS_ACTIVITY: "Gave a comment on {ID} in {REPO}"
-          ISSUE_OPENED: "Made Issue {ID} in {REPO}"
-          ISSUE_CLOSED: "Closed Issue {ID} in {REPO}"
-          PR_OPENED: "Made Pull request {ID} in {REPO}"
-          PR_CLOSED: "Closed Pull request {ID} in {REPO}"
-          PR_MERGED: "Merged Pull request {ID} in {REPO}"
-```
-
-### Disable specific Activities
-
-Hides specific activities from the list.  
-This is useful if you do one specific activity a lot like commenting on Discussions and don't want it to fill the list.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          DISABLE_COMMENTS: true
-          DISABLE_ISSUES: false
-          DISABLE_PR: false
-```
-
-### Change `{URL}` Text
-
-Change the text displayed by `{URL}`.  
-You can use `{REPO}` and `{ID}` in it.
-
-Note that the text provided by `URL_TEXT` will be used as displayed text in an embedded link.  
-For example will `{REPO}{ID}` become `[{REPO}{ID}](:url)`.
-
-```yaml
-name: Update README
-
-on:
-  schedule:
-    - cron: "*/30 * * * *"
-  workflow_dispatch:
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    name: Update Profile README
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: Readme-Workflows/recent-activity@main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          URL_TEXT: "`{REPO}{ID}`" # Turns {URL} into [`{REPO}{ID}`](:url)
-          PR_OPENED: "Made Pull request {URL}"
-          PR_CLOSED: "Closed Pull request {URL}"
-          PR_MERGED: "Merged Pull request {URL}"
-```
+A list of examples can be found on the [Wiki](https://github.com/Readme-Workflows/recent-activity/wiki/Examples)
