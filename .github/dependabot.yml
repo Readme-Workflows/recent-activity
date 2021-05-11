@@ -10,7 +10,7 @@ updates:
       time: "12:00"
       timezone: "Asia/Kolkata"
     labels:
-      - "github_actions"
+      - "github actions"
       - "dependencies"
     pull-request-branch-name:
       separator: "-"
