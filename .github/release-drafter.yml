@@ -17,6 +17,7 @@ categories:
   - title: "📖 Docs"
     labels:
       - "documentation"
+      - "github actions"
   #- title: "🏭 Installation"
   #  labels:
   #    - "install"
@@ -25,7 +26,11 @@ categories:
       - "dependencies"
 autolabeler:
   - label: "documentation"
-    files: "*.md"
+    files:
+      - "*.md"
+  - label: "github actions"
+    files:
+      - ".github/workflows/*.yml"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 version-resolver:
   major:
