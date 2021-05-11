@@ -1,23 +1,40 @@
-# Recent Activity ChangeLog 1.2
+# Changelog
 
-All notable changes to Recent Activity Workflow will be added to this file.
+The changelogs of the Recent-Activity GitHub Action.
 
-[Older ChangeLogs](#older-changelogs)
+Note that the displayed date is in the format `dd-mm-yyyy`
 
-## Releases
+## [v1.2.1]
+> **Released:** `TBA`
 
-Format is `version (*dd-mm-yyyy*)`
+### Added features
+- Add single Method to disable/hide multiple events [[#17]]
 
-### v1.2.0 (*unreleased*)
+### Removed features
+- `DISABLE_COMMENTS`, `DISABLE_ISSUES` and `DISABLE_PR` options [[#17]]
 
-#### Info
- * 🐛 Bug fix release
+  [v1.2.1]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.1
+  [#17]: https://github.com/Readme-Workflows/recent-activity/pull/17
 
-### Changes and Additions
-1. Add SUPPORT.md, CONTRIBUTING.md, ChangeLog.md
-2. New feature [Option to customize the different activity messages](https://github.com/Readme-Workflows/recent-activity/issues/5) added in [#11](https://github.com/Readme-Workflows/recent-activity/pull/11) and optimize it in [#19](https://github.com/Readme-Workflows/recent-activity/pull/19)
-3. New feature [Option to disable specific activity types from being shown in the activity list](https://github.com/Readme-Workflows/recent-activity/issues/4) added in [#13](https://github.com/Readme-Workflows/recent-activity/pull/13)
+## [v1.2.0]
+> **Released:** `09.05.2021`
 
-<h2><a name="older-changelogs">Older ChangeLogs</a></h2>
+### Added features
+- Options to customize displayed text for actions [[#11]]
+- Options to disable/hide specific actions [[#13]]
+  - `DISABLE_COMMENTS` to disable comment actions
+  - `DISABLE_ISSUES` to disable issue actions
+  - `DISABLE_PR` to disable Pull request actions
+- Added `URL_FORMAT` to customize text for `{URL}` placeholder [[#15]]
 
- * No older changelogs
+### Chores
+- Added `dependabot.yml`, `ChangeLog.md`, `SUPPORT.md`, `PULL_REQUEST_TEMPLATE.md` and `release-notes.yml` [[#8]]
+- Updated `actions/setup-node` from `v1` to `v2.1.5` [[#9]]
+
+  [v1.2.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.0
+  [#11]: https://github.com/Readme-Workflows/recent-activity/pull/11
+  [#13]: https://github.com/Readme-Workflows/recent-activity/pull/13
+  [#15]: https://github.com/Readme-Workflows/recent-activity/pull/15
+  
+  [#8]: https://github.com/Readme-Workflows/recent-activity/pull/8
+  [#9]: https://github.com/Readme-Workflows/recent-activity/pull/9

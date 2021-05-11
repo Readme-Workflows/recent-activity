@@ -42,7 +42,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
       name: Update this repo's README with recent activity
 
       steps:
-        - uses: actions/checkout@v2
+        - uses: actions/checkout@v2.3.4
         - uses: Readme-Workflows/recent-activity@v1.2.1
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,8 +52,6 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
   - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
-  <!-- Is this here true? If yes, remove the HTML commet tags
-  - Using `${{ secrets.GITHUB_TOKEN }}` will only show activities from public repositories. To show those of private ones will you need to create a Personal Access Token with the `repo` scope applied. -->
 
 ## Settings
 
