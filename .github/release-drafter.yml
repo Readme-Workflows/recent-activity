@@ -17,13 +17,13 @@ categories:
   - title: "📖 Docs"
     labels:
       - "documentation"
-      - "github actions"
   #- title: "🏭 Installation"
   #  labels:
   #    - "install"
   - title: "🔧 Chores"
     labels:
       - "dependencies"
+      - "github actions"
 autolabeler:
   - label: "documentation"
     files:
