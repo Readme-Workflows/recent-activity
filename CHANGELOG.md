@@ -17,7 +17,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
   [#17]: https://github.com/Readme-Workflows/recent-activity/pull/17
 
 ## [v1.2.0]
-> **Released:** `09.05.2021`
+> **Released:** `09-05-2021`
 
 ### Added features
 - Options to customize displayed text for actions [[#11]]
