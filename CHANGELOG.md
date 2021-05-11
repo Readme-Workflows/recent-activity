@@ -1,6 +1,6 @@
 # Changelog
 
-The changelogs of the Recent-Activity GitHub Action.
+The changelog of the Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
