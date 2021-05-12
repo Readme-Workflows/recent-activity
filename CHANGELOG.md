@@ -18,6 +18,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
   [v1.2.1]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.1
   [#17]: https://github.com/Readme-Workflows/recent-activity/pull/17
+  [#21]: https://github.com/Readme-Workflows/recent-activity/pull/21
 
 ## [v1.2.0]
 > **Released:** `09-05-2021`
@@ -35,10 +36,8 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 - Bump `actions/setup-node` from `v1` to `v2.1.5` [[#9]]
 
   [v1.2.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.0
+  [#8]: https://github.com/Readme-Workflows/recent-activity/pull/8
+  [#9]: https://github.com/Readme-Workflows/recent-activity/pull/9
   [#11]: https://github.com/Readme-Workflows/recent-activity/pull/11
   [#13]: https://github.com/Readme-Workflows/recent-activity/pull/13
   [#15]: https://github.com/Readme-Workflows/recent-activity/pull/15
-  
-  [#8]: https://github.com/Readme-Workflows/recent-activity/pull/8
-  [#9]: https://github.com/Readme-Workflows/recent-activity/pull/9
-  [#21]: https://github.com/Readme-Workflows/recent-activity/pull/21
