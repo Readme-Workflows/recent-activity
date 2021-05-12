@@ -46,3 +46,6 @@ version-resolver:
 template: |
   ## Release Notes
   $CHANGES
+
+  ## Thanks to
+  $CONTRIBUTORS
