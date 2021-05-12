@@ -21,3 +21,22 @@ updates:
       - PuneetGopinath
       - abhijoshi2k
       - Andre601
+
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "sunday"
+      time: "12:00"
+      timezone: "Asia/Kolkata"
+    labels:
+      - "dependencies"
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: "npm"
+      include: "scope"
+    reviewers:
+      - PuneetGopinath
+      - abhijoshi2k
+      - Andre601
