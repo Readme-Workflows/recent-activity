@@ -7,6 +7,9 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 ## [v1.2.1]
 > **Released:** `TBA`
 
+### Chores
+- Bump `actions/checkout` from `v2` to `v2.3.4` [[#21]]
+
 ### Added features
 - Add single Method to disable/hide multiple events [[#17]]
 
@@ -29,7 +32,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 ### Chores
 - Added `dependabot.yml`, `ChangeLog.md`, `SUPPORT.md`, `PULL_REQUEST_TEMPLATE.md` and `release-notes.yml` [[#8]]
-- Updated `actions/setup-node` from `v1` to `v2.1.5` [[#9]]
+- Bump `actions/setup-node` from `v1` to `v2.1.5` [[#9]]
 
   [v1.2.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.0
   [#11]: https://github.com/Readme-Workflows/recent-activity/pull/11
@@ -38,3 +41,4 @@ Note that the displayed date is in the format `dd-mm-yyyy`
   
   [#8]: https://github.com/Readme-Workflows/recent-activity/pull/8
   [#9]: https://github.com/Readme-Workflows/recent-activity/pull/9
+  [#21]: https://github.com/Readme-Workflows/recent-activity/pull/21
