@@ -11,7 +11,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 - Bump `actions/checkout` from `v2` to `v2.3.4` [[#21]]
 
 ### Added features
-- Add single Method to disable/hide multiple events [[#17]]
+- Add `DISABLE_EVENTS` to disable one or multiple events. Replaces the removed features below. [[#17]]
 
 ### Removed features
 - `DISABLE_COMMENTS`, `DISABLE_ISSUES` and `DISABLE_PR` options [[#17]]
