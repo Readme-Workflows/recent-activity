@@ -18,10 +18,10 @@ const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
 const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
-const DISABLE_COMMENTS = core.getInput("DISABLE_COMMENTS");
-const DISABLE_ISSUES = core.getInput("DISABLE_ISSUES");
-const DISABLE_PR = core.getInput("DISABLE_PR");
 const URL_TEXT = core.getInput("URL_TEXT");
+
+let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
+DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
 
 /**
  * Returns the sentence case representation
@@ -113,17 +113,22 @@ const commitFile = async () => {
 
 const serializers = {};
 
-if (DISABLE_COMMENTS === "false") {
+if (!DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = (item) => {
-    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-      .replace(/{URL}/g, makeCustomUrl(item));
+    if (item.payload.action === "created") {
+      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    } else {
+      return "";
+    }
   };
   // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
   //   item.repo.name
   // )}`;
 }
-if (DISABLE_ISSUES === "false") {
+
+if (!DISABLE_EVENTS.includes("issues")) {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
       return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
@@ -133,27 +138,37 @@ if (DISABLE_ISSUES === "false") {
       return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
-    } else {
-      return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-        item
-      )} in ${toUrlFormat(item.repo.name)}`;
+    }
+    // else {
+    //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+    //     item
+    //   )} in ${toUrlFormat(item.repo.name)}`;
+    // }
+    else {
+      return "";
     }
   };
 }
-if (DISABLE_PR === "false") {
+
+if (!DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
-    } else if (item.payload.action === "closed") {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
     } else if (item.payload.pull_request.merged) {
       return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
         .replace(/{URL}/g, makeCustomUrl(item));
+    } else if (
+      item.payload.action === "closed" &&
+      !item.payload.pull_request.merged
+    ) {
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+        .replace(/{URL}/g, makeCustomUrl(item));
+    } else {
+      return "";
     }
 
     // if (item.payload.action === "opened") {
@@ -182,13 +197,29 @@ Toolkit.run(
       `Activity for ${GH_USERNAME}, ${events.data.length} events found.`
     );
 
-    const content = events.data
+    let content = events.data
       // Filter out any boring activity
-      .filter((event) => serializers.hasOwnProperty(event.type))
-      // We only have five lines to work with
-      .slice(0, MAX_LINES)
-      // Call the serializer to construct a string
-      .map((item) => serializers[item.type](item));
+      .filter((event) => serializers.hasOwnProperty(event.type));
+
+    let temp_content = [];
+
+    for (i = 0; i < content.length; i++) {
+      let event_string = serializers[content[i].type](content[i]);
+
+      if (event_string !== "") {
+        temp_content.push(event_string);
+      }
+      if (temp_content.length == MAX_LINES) {
+        break;
+      }
+    }
+
+    content = temp_content;
+
+    // We only have five lines to work with
+    // .slice(0, MAX_LINES)
+    // // Call the serializer to construct a string
+    // .map((item) => serializers[item.type](item));
 
     let readmeContent;
 

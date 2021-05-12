@@ -20,17 +20,9 @@ inputs:
     default: "./README.md"
     required: false
 
-  DISABLE_COMMENTS:
-    description: "Whether the comments should be disabled"
-    default: false
-    required: false
-  DISABLE_ISSUES:
-    description: "Whether the issues should be disabled"
-    default: false
-    required: false
-  DISABLE_PR:
-    description: "Whether the pull request events should be disabled"
-    default: false
+  DISABLE_EVENTS:
+    description: "Events to be disabled"
+    default: ""
     required: false
 
   URL_TEXT:
