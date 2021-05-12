@@ -1,5 +1,7 @@
-// Copyright (c) 2020 James George
-// Copyright (c) 2021 Abhishek Joshi and Puneet Gopinath
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 Abhishek Joshi and Puneet Gopinath
+ */
 
 const core = require("@actions/core");
 const fs = require("fs");
@@ -247,11 +249,11 @@ Toolkit.run(
     );
 
     if (!content.length) {
-      tools.exit.failure("No PullRequest/Issue/IssueComment events found");
+      tools.exit.success("No PullRequest/Issue/IssueComment events found. Leaving readme unchanged.");
     }
 
-    if (content.length < 5) {
-      tools.log.info("Found less than 5 activities");
+    if (content.length < MAX_LINES) {
+      tools.log.info(`Found less than ${MAX_LINES} activities`);
     }
 
     if (startIdx !== -1 && endIdx === -1) {
@@ -287,7 +289,7 @@ Toolkit.run(
       .join("\n");
 
     if (oldContent.trim() === newContent.trim())
-      tools.exit.success("No changes detected");
+      tools.exit.success("No changes detected.");
 
     startIdx++;
 
