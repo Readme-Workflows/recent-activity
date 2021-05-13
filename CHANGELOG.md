@@ -5,7 +5,7 @@ The changelog of the Recent-Activity GitHub Action.
 Note that the displayed date is in the format `dd-mm-yyyy`
 
 ## [v1.2.1]
-> **Released:** `TBA`
+> **Released:** `12-05-2021`
 
 ### Chores
 - Bump `actions/checkout` from `v2` to `v2.3.4` [[#21]]
