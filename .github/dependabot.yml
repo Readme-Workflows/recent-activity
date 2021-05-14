@@ -20,7 +20,6 @@ updates:
     reviewers:
       - PuneetGopinath
       - abhijoshi2k
-      - Andre601
 
   - package-ecosystem: "npm"
     directory: "/"
@@ -39,4 +38,3 @@ updates:
     reviewers:
       - PuneetGopinath
       - abhijoshi2k
-      - Andre601
