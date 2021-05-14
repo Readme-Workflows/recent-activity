@@ -3,7 +3,7 @@ name: Run Build
 on:
   push:
     paths:
-    - **.js
+    - "**.js"
   workflow_dispatch:
 
 jobs:
