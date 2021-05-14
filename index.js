@@ -9,7 +9,7 @@ const path = require("path");
 const { spawn } = require("child_process");
 const { Toolkit } = require("actions-toolkit");
 
-// Get config
+// Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
 const MAX_LINES = core.getInput("MAX_LINES");
@@ -196,7 +196,7 @@ Toolkit.run(
       per_page: 100,
     });
     tools.log.debug(
-      `Activity for ${GH_USERNAME}, ${events.data.length} events found.`
+      `${events.data.length} events found for ${GH_USERNAME}.`
     );
 
     let content = events.data
@@ -239,7 +239,7 @@ Toolkit.run(
     // Early return in case the <!--START_SECTION:activity--> comment was not found
     if (startIdx === -1) {
       return tools.exit.failure(
-        `Couldn't find the <!--START_SECTION:activity--> comment. Exiting!`
+        "Couldn't find the <!--START_SECTION:activity--> comment. Exiting!"
       );
     }
 

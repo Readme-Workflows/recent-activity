@@ -1,6 +1,6 @@
 # Recent Activity
 
-[![GitHub issues](https://img.shields.io/github/issues/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/issues) ![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity) ![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code)
+[![GitHub issues](https://img.shields.io/github/issues/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/issues) ![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity) ![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code) [![Discord Chat](https://img.shields.io/discord/826082157259915264?color=%237289da&label=discord)](https://discord.gg/BxNXeanT8k)
 
 ![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
 
