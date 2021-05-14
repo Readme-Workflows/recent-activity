@@ -5,7 +5,7 @@ The changelog of the Recent-Activity GitHub Action.
 Note that the displayed date is in the format `dd-mm-yyyy`
 
 ## [v1.2.2]
-> **Released:** `TBA`
+> **Released:** `14.05.2021`
 
 ### Chores
 - Trigger Build whenever changes to JS files are pushed [[#28]]
