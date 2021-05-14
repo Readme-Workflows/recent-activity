@@ -4,6 +4,15 @@ The changelog of the Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
+## [v1.2.2]
+> **Released:** `14.05.2021`
+
+### Chores
+- Trigger Build whenever changes to JS files are pushed [[#28]]
+
+  [v1.2.2]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.1
+  [#28]: https://github.com/Readme-Workflows/recent-activity/pull/28
+
 ## [v1.2.1]
 > **Released:** `12-05-2021`
 
