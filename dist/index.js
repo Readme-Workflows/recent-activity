@@ -15428,9 +15428,7 @@ Toolkit.run(
       username: GH_USERNAME,
       per_page: 100,
     });
-    tools.log.debug(
-      `${events.data.length} events found for ${GH_USERNAME}.`
-    );
+    tools.log.debug(`${events.data.length} events found for ${GH_USERNAME}.`);
 
     let content = events.data
       // Filter out any boring activity
