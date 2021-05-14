@@ -19,6 +19,8 @@ jobs:
       - run: npm ci
       - name: Run build
         run: npm run build --if-present
+      - name:
+        run: npm run format
       - name: Commit and push changes
         run: |
           if [[ "$(git status --porcelain)" != "" ]]; then
