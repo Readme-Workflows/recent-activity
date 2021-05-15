@@ -239,3 +239,8 @@ Thanks to all contributors again!
 ## Roadmap
 
 Visit [our Roadmap](https://github.com/Readme-Workflows/recent-activity/projects/1) for planned and upcoming features.
+
+## Support us
+
+Do you like this project?
+Why don't show your support by staring it and joining all the [other stargazers](https://github.com/Readme-Workflows/recent-activity/stargazers)?
