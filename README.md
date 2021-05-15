@@ -23,13 +23,7 @@ Current activities include:
 
 Some other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
 
-You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events like:
-
-1. CreateEvent
-2. ForkEvent
-3. ReleaseEvent
-4. DeleteEvent
-5. PullRequestReviewEvent
+You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events:
 
 ### Setup a Profile README
 
