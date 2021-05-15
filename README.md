@@ -228,13 +228,13 @@ You have proved that Recent Activity workflow has some value!!
 
 ### Stargazers
 
-[![Stargazers for @Readme-Workflows/recent-activity](https://reporoster.com/stars/Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/stargazers)
+[![Stargazers for @Readme-Workflows/recent-activity](https://reporoster.com/stars/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/stargazers)
 
 ### Contributors
 
 Thanks to all contributors again!
 
-[![GitHub Contributors Image](https://contrib.rocks/image?repo=Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/contributors)
+[![GitHub Contributors Image](https://contrib.rocks/image?repo=Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/contributors)
 
 ## Roadmap
 
