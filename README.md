@@ -33,6 +33,8 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 ## Setup
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Readme-Workflows/recent-activity?label=Latest%20Version)
+
 - To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started.
 - Next should you now move on to creating a new Workflow. In this example we create `.github/workflows/update-readme.yml`
 - Now edit the YAML file and add the following content to it:
@@ -52,7 +54,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
       steps:
         - uses: actions/checkout@v2.3.4
-        - uses: Readme-Workflows/recent-activity@v1.2.2
+        - uses: Readme-Workflows/recent-activity@{version} # Replace {version} with the latest available version on the Repository.
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
