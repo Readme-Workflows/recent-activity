@@ -49,3 +49,20 @@ labels:
           
           Your Pull request is **no longer marked as Invalid**.
         action: open
+  - name: 'duplicate'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Issue has been marked as **Duplicate** which means that an issue with the same Feature request or Bug report already exists.
+          Please check for already existing issues next time.
+        action: close
+      pr:
+        body: |-
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Pull request has been marked as **Duplicate** which means that a Pull request with the same changes already exists.
+          Please check for already existing Pull requests next time.
+        action: close
