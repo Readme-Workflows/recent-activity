@@ -26,22 +26,26 @@ labels:
         body: |-
           Hello @{{ issue.user.login }},
           
-          Your Issue has been marked as **Invalid**.
-          Please make sure that you're following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Issue accordingly to not risk getting it closed.
+          Your Issue has been marked as **Invalid** and was automatically closed.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Issue accordingly.
+        action: close
       pr:
         body: |-
           Hello @{{ issue.user.login }},
           
-          Your Pull request has been marked as **Invalid**.
-          Please make sure that you're following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly to not risk getting it closed without merging.
+          Your Pull request has been marked as **Invalid** and was automatically closed.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly.
+        action: close
     unlabeled:
       issue:
         body: |-
           Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
           
           Your Issue is **no longer marked as Invalid**.
+        action: open
       pr:
         body: |-
           Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
           
           Your Pull request is **no longer marked as Invalid**.
+        action: open
