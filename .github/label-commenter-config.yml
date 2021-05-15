@@ -60,7 +60,6 @@ labels:
         action: close
       pr:
         body: |-
-        body: |-
           Hello @{{ issue.user.login }},
           
           Your Pull request has been marked as **Duplicate** which means that a Pull request with the same changes already exists.
