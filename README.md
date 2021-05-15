@@ -222,9 +222,9 @@ Please see the [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/
 
 ## Supporters
 
-👏 Thank you very much !
+👏 Thank you very much!
 
-You have proved that IRCbot has some value !!
+You have proved that IRCbot has some value!!
 
 ### Stargazers
 
@@ -236,6 +236,6 @@ You have proved that IRCbot has some value !!
 
 ### Contributors
 
-Thanks to all contributors again !!
+Thanks to all contributors again!!
 
 [![GitHub Contributors Image](https://contrib.rocks/image?repo=Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/contributors)
