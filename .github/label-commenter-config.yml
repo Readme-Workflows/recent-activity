@@ -1,0 +1,22 @@
+comment:
+  footer: "\
+    ----\n\n
+    > *This is an automated response created by a **GitHub Action***\n
+    > *Mentioning the bot won't have any effect!*
+    "
+
+# Send a Comment when the PR was (un)labeled with the "Status: Ready" label
+labels:
+  - name: 'Status: Ready'
+    labeled:
+      pr:
+        body: |-
+          The Pull request of @{{ issue.user.login }} has been marked as **Ready**!
+          
+          It can now be reviewed and merged by Maintainers.
+    unlabeled:
+      pr:
+        body: |-
+          The Pull request of @{{ issue.user.login }} is **no longer marked as Ready**!
+          
+          Maintainers should wait with merging the Pull request until it is marked as ready again.
