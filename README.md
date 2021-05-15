@@ -77,22 +77,27 @@ The Action currently has the following Settings that you can set through the `wi
   </thead>
   <tbody>
     <tr>
+      <td><code>GH_USERNAME</code></td>
+      <td>The User to get latest activity from</td>
+      <td><i>Repository Owner</i></td>
+      <td></td>
+    <tr>
       <td><code>COMMIT_MSG</code></td>
       <td>The Commit Message to use when updating the README</td>
       <td><code>⚡ Update README with the recent activity</code></td>
-      <td><i>None</i></td>
+      <td></td>
     </tr>
     <tr>
       <td><code>MAX_LINES</code></td>
       <td>How many activities to display</td>
       <td><code>5</code></td>
-      <td><i>None</i></td>
+      <td></td>
     </tr>
     <tr>
       <td><code>README_FILE</code></td>
       <td>The location of the README.md (or any Markdown file) relative to the root directory.</td>
       <td><code>./README.md</code></td>
-      <td><i>None</i></td>
+      <td></td>
     </tr>
       <td>&#8203;</td>
       <td>&#8203;</td>
@@ -145,7 +150,7 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>DISABLE_EVENTS</code></td>
       <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code> and <code>COMMENTS</code></td>
       <td><i>Empty String</i></td>
-      <td><i>None</i></td>
+      <td></td>
     </tr>
     </tr>
       <td>&#8203;</td>
