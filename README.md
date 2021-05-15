@@ -222,9 +222,9 @@ Please see the [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/
 
 ## Supporters
 
-👏 Thank you very much!
+👏 A big thank you goes to all the supporters of this project!
 
-You have proved that Recent Activity workflow has some value!!
+You prove that the Recent-Activity Action has some value for you!
 
 ### Stargazers
 
