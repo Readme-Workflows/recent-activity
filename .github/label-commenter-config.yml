@@ -1,0 +1,67 @@
+comment:
+  footer: "\
+    ----\n\n
+    > *This is an automated response created by a **GitHub Action***\n
+    > *Mentioning the bot won't have any effect!*
+    "
+
+# Send a Comment when the PR was (un)labeled with the "Status: Ready" label
+labels:
+  - name: 'Status: Ready'
+    labeled:
+      pr:
+        body: |-
+          The Pull request of @{{ issue.user.login }} has been marked as **Ready**!
+          
+          It can now be reviewed and merged by Maintainers.
+    unlabeled:
+      pr:
+        body: |-
+          The Pull request of @{{ issue.user.login }} is **no longer marked as Ready**!
+          
+          Maintainers should wait with merging the Pull request until it is marked as ready again.
+  - name: 'invalid'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Issue has been marked as **Invalid** and was automatically closed.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Issue accordingly.
+        action: close
+      pr:
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Pull request has been marked as **Invalid** and was automatically closed.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly.
+        action: close
+    unlabeled:
+      issue:
+        body: |-
+          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
+          
+          Your Issue is **no longer marked as Invalid**.
+        action: open
+      pr:
+        body: |-
+          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
+          
+          Your Pull request is **no longer marked as Invalid**.
+        action: open
+  - name: 'duplicate'
+    labeled:
+      issue:
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Issue has been marked as **Duplicate** which means that an issue with the same Feature request or Bug report already exists.
+          Please check for already existing issues next time.
+        action: close
+      pr:
+        body: |-
+          Hello @{{ issue.user.login }},
+          
+          Your Pull request has been marked as **Duplicate** which means that a Pull request with the same changes already exists.
+          Please check for already existing Pull requests next time.
+        action: close
