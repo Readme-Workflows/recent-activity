@@ -230,10 +230,6 @@ You have proved that Recent Activity workflow has some value!!
 
 [![Stargazers for @Readme-Workflows/recent-activity](https://reporoster.com/stars/Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/stargazers)
 
-### Forks
-
-[![Forkers for @Readme-Workflows/recent-activity](https://reporoster.com/forks/Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/network/members)
-
 ### Contributors
 
 Thanks to all contributors again!
