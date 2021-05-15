@@ -224,7 +224,7 @@ Please see the [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/
 
 👏 Thank you very much!
 
-You have proved that IRCbot has some value!!
+You have proved that Recent Activity workflow has some value!!
 
 ### Stargazers
 
