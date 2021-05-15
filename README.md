@@ -1,22 +1,29 @@
 # Recent Activity
 
-[![GitHub issues](https://img.shields.io/github/issues/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/issues) ![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity) ![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code) [![Discord Chat](https://img.shields.io/discord/826082157259915264?color=%237289da&label=discord)](https://discord.gg/BxNXeanT8k)
+[![GitHub issues](https://img.shields.io/github/issues/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/issues)
+![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity)
+![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code)
+[![Discord Chat](https://img.shields.io/discord/826082157259915264?color=%237289da&label=discord)](https://discord.gg/BxNXeanT8k)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/PuneetGopinath/IRCbot/blob/main/.github/CODE_OF_CONDUCT.md)
+
+This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
+Its our goal is to improve the original GitHub Action while also providing new features for the users.
+
+## Preview
 
 ![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
 
-This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
-Its goal is to improve the original GitHub Action while also providing new features for the users.
-
 ## Features
 
-The core feature of this GitHub Action is to update your _Profile README_ file, or any Markdown file, with the latest activities you made on GitHub.  
+The core feature of this GitHub Action is to update your _Profile README_ file, or any _Markdown file_, with the latest activities you made on GitHub.  
 Current activities include:
 
-- **Discussions** (Commenting)
-- **Issues** (Opening or closing them)
-- **Pull requests** (Opening, closing or merging them)
+- **Issues** (Opening, closing and commenting)
+- **Pull requests** (Opening, closing and merging)
 
-Other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
+Some other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
+
+You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events:
 
 ### Setup a Profile README
 
@@ -45,7 +52,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
       steps:
         - uses: actions/checkout@v2.3.4
-        - uses: Readme-Workflows/recent-activity@v1.2.1
+        - uses: Readme-Workflows/recent-activity@v1.2.2
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
@@ -200,3 +207,34 @@ The following placeholders may be used in the aforementioned settings, if the `S
 ## Examples
 
 A list of examples can be found on the [Wiki](https://github.com/Readme-Workflows/recent-activity/wiki/Examples)
+
+## Community
+
+Get updates on Recent Activity's development and chat with the Recent Activity maintainers and community members.
+
+Please see the [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/SUPPORT.md) file for links.
+
+## Supporters
+
+👏 A big thank you goes to all the supporters of this project!
+
+You prove that the Recent-Activity Action has some value for you!
+
+### Stargazers
+
+[![Stargazers for @Readme-Workflows/recent-activity](https://reporoster.com/stars/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/stargazers)
+
+### Contributors
+
+Thanks to all contributors again!
+
+[![GitHub Contributors Image](https://contrib.rocks/image?repo=Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/contributors)
+
+## Roadmap
+
+Visit [our Roadmap](https://github.com/Readme-Workflows/recent-activity/projects/1) for planned and upcoming features.
+
+## Support us
+
+Do you like this project?
+Why don't show your support by staring it and joining all the [other stargazers](https://github.com/Readme-Workflows/recent-activity/stargazers)?
