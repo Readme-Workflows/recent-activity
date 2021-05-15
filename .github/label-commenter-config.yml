@@ -11,13 +11,13 @@ labels:
     labeled:
       pr:
         body: |-
-          The Pull request of @{{ issue.user.login }} has been marked as **Ready**!
+          The Pull request of @{{ pull_request.user.login }} has been marked as **Ready**!
           
           It can now be reviewed and merged by Maintainers.
     unlabeled:
       pr:
         body: |-
-          The Pull request of @{{ issue.user.login }} is **no longer marked as Ready**!
+          The Pull request of @{{ pull_request.user.login }} is **no longer marked as Ready**!
           
           Maintainers should wait with merging the Pull request until it is marked as ready again.
   - name: 'invalid'
@@ -31,7 +31,7 @@ labels:
         action: close
       pr:
         body: |-
-          Hello @{{ issue.user.login }},
+          Hello @{{ pull_request.user.login }},
           
           Your Pull request has been marked as **Invalid** and was automatically closed.
           To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly.
@@ -45,7 +45,7 @@ labels:
         action: open
       pr:
         body: |-
-          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
+          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ pull_request.user.login }}!
           
           Your Pull request is **no longer marked as Invalid**.
         action: open
@@ -60,7 +60,7 @@ labels:
         action: close
       pr:
         body: |-
-          Hello @{{ issue.user.login }},
+          Hello @{{ pull_request.user.login }},
           
           Your Pull request has been marked as **Duplicate** which means that a Pull request with the same changes already exists.
           Please check for already existing Pull requests next time.
