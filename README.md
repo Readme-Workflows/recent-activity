@@ -218,7 +218,7 @@ A list of examples can be found on the [Wiki](https://github.com/Readme-Workflow
 
 Get updates on Recent Activity's development and chat with the Recent Activity maintainers and community members.
 
-Plz see [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/SUPPORT.md) file.
+Please see the [SUPPORT.md](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/SUPPORT.md) file for links.
 
 ## Supporters
 
