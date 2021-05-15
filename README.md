@@ -58,7 +58,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
       steps:
         - uses: actions/checkout@v2.3.4
-        - uses: Readme-Workflows/recent-activity@v1.2.1
+        - uses: Readme-Workflows/recent-activity@v1.2.2
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
@@ -236,6 +236,10 @@ You have proved that Recent Activity workflow has some value!!
 
 ### Contributors
 
-Thanks to all contributors again!!
+Thanks to all contributors again!
 
 [![GitHub Contributors Image](https://contrib.rocks/image?repo=Readme-Workflows/recent-activity)](https://github.com/PuneetGopinath/IRCbot/contributors)
+
+## Roadmap
+
+Visit [project #1](https://github.com/Readme-Workflows/recent-activity/projects/1) for the roadmap.
