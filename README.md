@@ -6,21 +6,30 @@
 [![Discord Chat](https://img.shields.io/discord/826082157259915264?color=%237289da&label=discord)](https://discord.gg/BxNXeanT8k)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/PuneetGopinath/IRCbot/blob/main/.github/CODE_OF_CONDUCT.md)
 
-![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
-
 This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
-Its goal is to improve the original GitHub Action while also providing new features for the users.
+Its our goal is to improve the original GitHub Action while also providing new features for the users.
+
+## Preview
+
+![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
 
 ## Features
 
-The core feature of this GitHub Action is to update your _Profile README_ file, or any Markdown file, with the latest activities you made on GitHub.  
+The core feature of this GitHub Action is to update your _Profile README_ file, or any _Markdown file_, with the latest activities you made on GitHub.  
 Current activities include:
 
-- **Discussions** (Commenting)
-- **Issues** (Opening or closing them)
-- **Pull requests** (Opening, closing or merging them)
+- **Issues** (Opening, closing and commenting)
+- **Pull requests** (Opening, closing and merging)
 
-Other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
+Some other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
+
+You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events like:
+
+1. CreateEvent
+2. ForkEvent
+3. ReleaseEvent
+4. DeleteEvent
+5. PullRequestReviewEvent
 
 ### Setup a Profile README
 
