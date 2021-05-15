@@ -242,4 +242,4 @@ Thanks to all contributors again!
 
 ## Roadmap
 
-Visit [project #1](https://github.com/Readme-Workflows/recent-activity/projects/1) for the roadmap.
+Visit [our Roadmap](https://github.com/Readme-Workflows/recent-activity/projects/1) for planned and upcoming features.
