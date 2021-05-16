@@ -7,28 +7,28 @@ exclude-labels:
 categories:
   - title: "🚀 Features"
     labels:
-      - "enhancement"
+      - "Type: enhancement"
   - title: "🐛 Bug fixes"
     labels:
-      - "bug"
-  - title: "⚡ Performance Improvements"
-    labels:
-      - "performance"
+      - "Type: bug"
+  #- title: "⚡ Performance Improvements"
+  #  labels:
+  #    - "performance"
   - title: "📖 Docs"
     labels:
-      - "documentation"
+      - "Updates: documentation"
   #- title: "🏭 Installation"
   #  labels:
   #    - "install"
   - title: "🔧 Chores"
     labels:
-      - "dependencies"
-      - "github actions"
+      - "Updates: dependencies"
+      - "Updates: github action"
 autolabeler:
-  - label: "documentation"
+  - label: "Updates: documentation"
     files:
       - "*.md"
-  - label: "github actions"
+  - label: "Updates: github action"
     files:
       - ".github/workflows/*.yml"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
