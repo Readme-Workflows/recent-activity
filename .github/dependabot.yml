@@ -10,8 +10,8 @@ updates:
       time: "12:00"
       timezone: "Asia/Kolkata"
     labels:
-      - "github actions"
-      - "dependencies"
+      - "Updates: github action"
+      - "Updates: dependencies"
     pull-request-branch-name:
       separator: "-"
     commit-message:
@@ -29,7 +29,7 @@ updates:
       time: "12:00"
       timezone: "Asia/Kolkata"
     labels:
-      - "dependencies"
+      - "Updates: dependencies"
     pull-request-branch-name:
       separator: "-"
     commit-message:
