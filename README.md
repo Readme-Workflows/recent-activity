@@ -23,7 +23,11 @@ Current activities include:
 
 Some other activities can't be displayed since they aren't parts of what GitHub's API returns as public events.
 
-You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events:
+You can [request a feature](https://github.com/Readme-Workflows/recent-activity/issues/new?template=feature_request.md) if you want to add some other events.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md)</a> file.
 
 ### Setup a Profile README
 
