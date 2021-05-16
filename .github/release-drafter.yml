@@ -4,7 +4,7 @@ category-template: "### $TITLE"
 
 publish: false
 exclude-labels:
-  - "skip-changelog"
+  - "Updates: github action"
 categories:
   - title: "🚀 Features"
     labels:
