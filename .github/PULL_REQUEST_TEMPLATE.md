@@ -7,7 +7,9 @@ If necessary:
 - [ ] I have updated the README and documentation.
 - [ ] I have updated the ChangeLog with the changes I have made.
 
-> Replace this line with a short description about the changes you have made in this PR e.g. Corrected spelling mistakes in docs
+## Description
+
+Replace this line with a description about the changes you have made in this PR e.g. Corrected spelling mistakes in docs
 
 <!--
 If this pull request closes an issue, then add the issue number below
