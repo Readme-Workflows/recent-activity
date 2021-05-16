@@ -1,6 +1,7 @@
 name-template: "Recent Activity v$RESOLVED_VERSION Released!"
 tag-template: "v$RESOLVED_VERSION"
-prerelease: false
+category-template: "### $TITLE"
+
 publish: false
 exclude-labels:
   - "skip-changelog"
