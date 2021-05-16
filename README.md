@@ -41,8 +41,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 - To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started. See [below](#options) for more clear description for them.
 - Next should you now move on to creating a new Workflow. In this example we create `.github/workflows/update-readme.yml`
-- Now edit the YAML file and add the following content to it:
-
+- Now edit the YAML file and add the following content to it:  
   ```yaml
   name: Update README
 
@@ -62,42 +61,67 @@ The official GitHub documentation about Profile READMEs can be found [here](http
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
-
   **Notes:**
-
   - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
 
 ## Options
 
-The Action currently have some other options (or comments that you can add to your readme) other than `<!--START_SECTION:activity-->` and `<!--END_SECTION:activity-->`. But these two comments will also be mentioned here.
+The Action has different Options that are set through HTML Comments (`<!-- text -->`) in the markdown file.  
+Some are required and some are optional. All comments are case-sensitive.
 
 <table>
   <thead>
     <tr>
       <th>Option</th>
       <th>Description</th>
-      <th>Keys: should be added by adding a comma in the comment</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code><!--START_SECTION:activity--></code></td>
-      <td>The starting section for the recent activity list</td>
-      <td></td>
+      <td><code>RECENT_ACTIVITY:start</code></td>
+      <td>Indicates the start of the Activity-list.<br>The list itself will be added **below** this comment and finished of with the <code>RECENT_ACTIVITY:end</code> comment.</td>
     </tr>
     <tr>
-      <td><code><!--END_SECTION:activity--></code></td>
-      <td>The ending section for the recent activity list</td>
-      <td></td>
+      <td><code>RECENT_ACTIVITY:end</code></td>
+      <td>Indicates the end of the Activity-list.<br>You don't have to set this option as the Action will do that on its own.<br>The Action will stop once it reaches this comment or the list has reached the <a href="#settings">MAX_LINES</a> amount.</td>
     </tr>
     <tr>
-      <td><code><!--TIME OF UPDATE--></code></td>
-      <td>The current time when the recent activity was added</td>
-      <td>TIMEZONE: GMT + x</td>
+      <td><code>RECENT_ACTIVITY:last_update</code></td>
+      <td>Sets the date of when the List was last updated.<br>The Text displayed is set in the <a href="#settings">Settings</a> of the Action and will be added <b>below</b> this comment together with the <code>RECENT_ACTIVITY:last_update_end</code> comment.</td>
+    </tr>
+    <tr>
+      <td><code>RECENT_ACTIVITY:last_update_end</code></td>
+      <td>Indicates the end of the Date section.<br>You don't have to set this option as the Action will do that on its own.</td>
     </tr>
   </tbody>
 </table>
+
+### Comments example
+
+Below is a small example of how the Markdown could look like:  
+```markdown
+## Recent Activity
+This is a list of my most recent Activity on GitHub.
+<!--RECENT_ACTIVITY:last_update-->
+<!--RECENT_ACTIVITY:start-->
+```
+
+And this would be the result of it:  
+```markdown
+## Recent Activity
+This is a list of my most recent Activity on GitHub.
+<!--RECENT_ACTIVITY:last_update-->
+Last updated: `01.01.2021 00:00`
+<!--RECENT_ACTIVITY:last_update_end-->
+<!--RECENT_ACTIVITY:start-->
+1. ❗️ Closed issue [#5](https://github.com/Readme-Workflows/recent-activity/issues/5) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/5)
+2. 🎉 Merged PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
+3. 🗣 Commented on [#3](https://github.com/Readme-Workflows/recent-activity/discussions/3) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/discussions/3)
+4. ❗️ Closed issue [#4](https://github.com/Readme-Workflows/recent-activity/issues/4) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/4)
+5. 💪 Opened PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
+<!--RECENT_ACTIVITY:end-->
+```
 
 ## Settings
 
