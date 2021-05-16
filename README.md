@@ -39,7 +39,7 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Readme-Workflows/recent-activity?label=Latest%20Version)
 
-- To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started.
+- To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started. See [below](#options) for more clear description for them.
 - Next should you now move on to creating a new Workflow. In this example we create `.github/workflows/update-readme.yml`
 - Now edit the YAML file and add the following content to it:
 
@@ -68,6 +68,37 @@ The official GitHub documentation about Profile READMEs can be found [here](http
   - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
 
+## Options
+
+The Action currently have some other options (or comments that you can add to your readme) other than `<!--START_SECTION:activity-->` and `<!--END_SECTION:activity-->`. But these two comments will also be mentioned here.
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+      <th>Keys: should be added by adding a comma in the comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code><!--START_SECTION:activity--></code></td>
+      <td>The starting section for the recent activity list</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code><!--END_SECTION:activity--></code></td>
+      <td>The ending section for the recent activity list</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code><!--TIME OF UPDATE--></code></td>
+      <td>The current time when the recent activity was added</td>
+      <td>TIMEZONE: GMT + x</td>
+    </tr>
+  </tbody>
+</table>
+
 ## Settings
 
 The Action currently has the following Settings that you can set through the `with` option.
@@ -87,6 +118,7 @@ The Action currently has the following Settings that you can set through the `wi
       <td>The User to get latest activity from</td>
       <td><i>Repository Owner</i></td>
       <td></td>
+    </tr>
     <tr>
       <td><code>COMMIT_MSG</code></td>
       <td>The Commit Message to use when updating the README</td>
