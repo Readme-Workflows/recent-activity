@@ -321,6 +321,39 @@ Toolkit.run(
       tools.log.success("Updated README with the recent activity");
     }
 
+    let dateStartIdx = readmeContent.findIndex((content) =>
+      content.includes("<!--TIME OF UPDATE")
+    );
+
+    if (dateStartIdx !== -1) {
+      let dateEndIdx = readmeContent.findIndex(
+        (content, index) =>
+          content.includes("<!--TIME OF UPDATE ENDS-->") &&
+          index + 1 === dateStartIdx
+      );
+
+      let offsetDate = 0;
+      const customTZ = readmeContent[dateStartIdx].indexOf("TIMEZONE:");
+      if (customTZ > -1) {
+        let signed =
+          readmeContent[dateStartIdx][customTZ + 10] == "+" ||
+          readmeContent[dateStartIdx][customTZ + 10] == "-";
+
+        if (
+          signed ||
+          (!signed &&
+            !isNaN(parseInt(readmeContent[dateStartIdx][customTZ + 10])))
+        ) {
+        }
+      }
+
+      if (dateEndIdx === -1) {
+        readmeContent.splice(dateStartIdx + 1, 0, "<!--TIME OF UPDATE ENDS-->");
+      } else {
+        readmeContent[dateEndIdx] = "<!--TIME OF UPDATE ENDS-->";
+      }
+    }
+
     // Update README
     fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
