@@ -1,10 +1,11 @@
 name-template: "Recent Activity v$RESOLVED_VERSION Released!"
 tag-template: "v$RESOLVED_VERSION"
-category-template: "### $TITLE"
-
+commitish: main
 publish: false
 exclude-labels:
   - "Updates: github action"
+
+category-template: "### $TITLE"
 categories:
   - title: "🚀 Features"
     labels:
@@ -24,14 +25,11 @@ categories:
   - title: "🔧 Chores"
     labels:
       - "Updates: dependencies"
-      - "Updates: github action"
+
 autolabeler:
   - label: "Updates: documentation"
     files:
       - "*.md"
-  - label: "Updates: github action"
-    files:
-      - ".github/workflows/*.yml"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 version-resolver:
   major:
