@@ -60,6 +60,16 @@ inputs:
     default: "🎉 Merged PR {ID} in {REPO}"
     required: false
 
+  # DATE
+  TIMEZONE_OFFSET:
+    description: "Timezone in which time is to be displayed"
+    default: "0"
+    required: false
+  DATE_STRING:
+    description: "Format of how last updation time to be printed"
+    default: "Last Updated: DD/MM/YYYY hh:mm:ss AA"
+    required: false
+
 branding:
   color: orange
   icon: activity

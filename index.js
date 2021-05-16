@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawn } = require("child_process");
 const { Toolkit } = require("actions-toolkit");
+const { time } = require("console");
 
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
@@ -21,6 +22,8 @@ const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
 const URL_TEXT = core.getInput("URL_TEXT");
+const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
+const DATE_STRING = core.getInput("DATE_STRING");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -42,6 +45,14 @@ const urlPrefix = "https://github.com";
  *
  * @returns {String}
  */
+
+const to2Digit = (entity) => {
+  if (entity > 9) {
+    return entity + "";
+  } else {
+    return "0" + entity;
+  }
+};
 
 const makeCustomUrl = (item) => {
   return Object.hasOwnProperty.call(item.payload, "issue")
@@ -229,21 +240,21 @@ Toolkit.run(
       return tools.exit.failure(`Couldn't find the file named ${README_FILE}`);
     }
 
-    // Find the index corresponding to <!--START_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:start--> comment
     let startIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--START_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:start-->"
     );
 
-    // Early return in case the <!--START_SECTION:activity--> comment was not found
+    // Early return in case the <!--RECENT_ACTIVITY:start--> comment was not found
     if (startIdx === -1) {
       return tools.exit.failure(
-        "Couldn't find the <!--START_SECTION:activity--> comment. Exiting!"
+        "Couldn't find the <!--RECENT_ACTIVITY:start--> comment. Exiting!"
       );
     }
 
-    // Find the index corresponding to <!--END_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:end--> comment
     const endIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--END_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:end-->"
     );
 
     if (!content.length) {
@@ -263,11 +274,11 @@ Toolkit.run(
         readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
       );
 
-      // Append <!--END_SECTION:activity--> comment
+      // Append <!--RECENT_ACTIVITY:end--> comment
       readmeContent.splice(
         startIdx + content.length,
         0,
-        "<!--END_SECTION:activity-->"
+        "<!--RECENT_ACTIVITY:end-->"
       );
 
       // Update README
@@ -305,7 +316,7 @@ Toolkit.run(
       });
       tools.log.success("Wrote to README");
     } else {
-      // It is likely that a newline is inserted after the <!--START_SECTION:activity--> comment (code formatter)
+      // It is likely that a newline is inserted after the <!--RECENT_ACTIVITY:start--> comment (code formatter)
       let count = 0;
 
       readmeActivitySection.some((line, idx) => {
@@ -321,36 +332,60 @@ Toolkit.run(
       tools.log.success("Updated README with the recent activity");
     }
 
-    let dateStartIdx = readmeContent.findIndex((content) =>
-      content.includes("<!--TIME OF UPDATE")
+    let dateStartIdx = readmeContent.findIndex(
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
     );
 
     if (dateStartIdx !== -1) {
       let dateEndIdx = readmeContent.findIndex(
         (content, index) =>
-          content.includes("<!--TIME OF UPDATE ENDS-->") &&
-          index + 1 === dateStartIdx
+          content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
+          index - 2 === dateStartIdx
       );
 
-      let offsetDate = 0;
-      const customTZ = readmeContent[dateStartIdx].indexOf("TIMEZONE:");
-      if (customTZ > -1) {
-        let signed =
-          readmeContent[dateStartIdx][customTZ + 10] == "+" ||
-          readmeContent[dateStartIdx][customTZ + 10] == "-";
+      let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+      let offset =
+        parseInt(timezone[0].trim()) * 60 + parseInt(timezone[1].trim());
 
-        if (
-          signed ||
-          (!signed &&
-            !isNaN(parseInt(readmeContent[dateStartIdx][customTZ + 10])))
-        ) {
-        }
+      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+      let finalDate = new Date(utc - offset * 60000);
+
+      let finalDateString = DATE_STRING.replace("DD", finalDate.getDate() + "")
+        .replace("MM", finalDate.getMonth() + 1 + "")
+        .replace("YYYY", finalDate.getFullYear() + "")
+        .replace("YY", (finalDate.getFullYear() % 100) + "");
+
+      let finalMinutes = to2Digit(finalDate.getMinutes());
+      let finalSeconds = to2Digit(finalDate.getSeconds());
+      let final24Hours = to2Digit(finalDate.getHours());
+
+      let final12Hours = finalDate.getHours();
+      let AmPm = "am";
+
+      if (finalDate.getHours() > 12) {
+        final12Hours = final12Hours % 12;
+        AmPm = "pm";
       }
 
+      final12Hours = to2Digit(final12Hours);
+
+      finalDateString = finalDateString
+        .replace("aa", AmPm)
+        .replace("AA", AmPm.toUpperCase())
+        .replace("mm", finalMinutes)
+        .replace("HH", final24Hours)
+        .replace("hh", final12Hours)
+        .replace("ss", finalSeconds);
+
       if (dateEndIdx === -1) {
-        readmeContent.splice(dateStartIdx + 1, 0, "<!--TIME OF UPDATE ENDS-->");
+        readmeContent.splice(
+          dateStartIdx + 1,
+          0,
+          finalDateString,
+          "<!--RECENT_ACTIVITY:last_update_end-->"
+        );
       } else {
-        readmeContent[dateEndIdx] = "<!--TIME OF UPDATE ENDS-->";
+        readmeContent[dateEndIdx - 1] = finalDateString;
       }
     }
 
