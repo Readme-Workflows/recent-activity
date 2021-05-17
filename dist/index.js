@@ -15500,9 +15500,7 @@ Toolkit.run(
     );
 
     if (!content.length) {
-      tools.exit.success(
-        "No PullRequest/Issue/IssueComment events found. Leaving readme unchanged."
-      );
+      tools.exit.success("No events found. Leaving readme unchanged.");
     }
 
     if (content.length < MAX_LINES) {
