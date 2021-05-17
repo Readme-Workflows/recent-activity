@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawn } = require("child_process");
 const { Toolkit } = require("actions-toolkit");
+var dateFormat = require("dateformat");
 
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
@@ -21,6 +22,9 @@ const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
 const URL_TEXT = core.getInput("URL_TEXT");
+const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
+const DATE_STRING = core.getInput("DATE_STRING");
+const DATE_FORMAT = core.getInput("DATE_FORMAT");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -42,6 +46,63 @@ const urlPrefix = "https://github.com";
  *
  * @returns {String}
  */
+
+const appendDate = (fullContent) => {
+  let dateStartIdx = fullContent.findIndex(
+    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
+  );
+
+  if (dateStartIdx !== -1) {
+    let dateEndIdx = fullContent.findIndex(
+      (content, index) =>
+        content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
+        index - 2 === dateStartIdx
+    );
+
+    let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+    let offset;
+
+    tz_hours = parseInt(timezone[0].trim());
+
+    if (timezone.length > 1) {
+      offset = tz_hours * 60 + parseInt(timezone[1].trim());
+    } else {
+      if (tz_hours > 99) {
+        offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+      } else {
+        offset = tz_hours * 60;
+      }
+    }
+
+    const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+    let finalDate = new Date(utc + offset * 60000);
+
+    finalDateString = DATE_STRING.replace(
+      "{DATE}",
+      dateFormat(finalDate, DATE_FORMAT)
+    );
+
+    if (dateEndIdx === -1) {
+      fullContent.splice(
+        dateStartIdx + 1,
+        0,
+        finalDateString,
+        "<!--RECENT_ACTIVITY:last_update_end-->"
+      );
+    } else {
+      fullContent[dateEndIdx - 1] = finalDateString;
+    }
+  }
+  return fullContent;
+};
+
+const to2Digit = (entity) => {
+  if (entity > 9) {
+    return entity + "";
+  } else {
+    return "0" + entity;
+  }
+};
 
 const makeCustomUrl = (item) => {
   return Object.hasOwnProperty.call(item.payload, "issue")
@@ -214,6 +275,8 @@ Toolkit.run(
       }
     }
 
+    tools.log.debug(temp_content);
+
     content = temp_content;
 
     // We only have five lines to work with
@@ -229,27 +292,25 @@ Toolkit.run(
       return tools.exit.failure(`Couldn't find the file named ${README_FILE}`);
     }
 
-    // Find the index corresponding to <!--START_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:start--> comment
     let startIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--START_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:start-->"
     );
 
-    // Early return in case the <!--START_SECTION:activity--> comment was not found
+    // Early return in case the <!--RECENT_ACTIVITY:start--> comment was not found
     if (startIdx === -1) {
       return tools.exit.failure(
-        "Couldn't find the <!--START_SECTION:activity--> comment. Exiting!"
+        "Couldn't find the <!--RECENT_ACTIVITY:start--> comment. Exiting!"
       );
     }
 
-    // Find the index corresponding to <!--END_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:end--> comment
     const endIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--END_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:end-->"
     );
 
     if (!content.length) {
-      tools.exit.success(
-        "No PullRequest/Issue/IssueComment events found. Leaving readme unchanged."
-      );
+      tools.exit.success("No events found. Leaving readme unchanged.");
     }
 
     if (content.length < MAX_LINES) {
@@ -263,12 +324,14 @@ Toolkit.run(
         readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
       );
 
-      // Append <!--END_SECTION:activity--> comment
+      // Append <!--RECENT_ACTIVITY:end--> comment
       readmeContent.splice(
         startIdx + content.length,
         0,
-        "<!--END_SECTION:activity-->"
+        "<!--RECENT_ACTIVITY:end-->"
       );
+
+      readmeContent = appendDate(readmeContent);
 
       // Update README
       fs.writeFileSync(README_FILE, readmeContent.join("\n"));
@@ -288,8 +351,8 @@ Toolkit.run(
       .map((line, idx) => `${idx + 1}. ${line}`)
       .join("\n");
 
-    if (oldContent.trim() === newContent.trim())
-      tools.exit.success("No changes detected.");
+    // if (oldContent.trim() === newContent.trim())
+    //   tools.exit.success("No changes detected.");
 
     startIdx++;
 
@@ -305,7 +368,7 @@ Toolkit.run(
       });
       tools.log.success("Wrote to README");
     } else {
-      // It is likely that a newline is inserted after the <!--START_SECTION:activity--> comment (code formatter)
+      // It is likely that a newline is inserted after the <!--RECENT_ACTIVITY:start--> comment (code formatter)
       let count = 0;
 
       readmeActivitySection.some((line, idx) => {
@@ -320,6 +383,8 @@ Toolkit.run(
       });
       tools.log.success("Updated README with the recent activity");
     }
+
+    readmeContent = appendDate(readmeContent);
 
     // Update README
     fs.writeFileSync(README_FILE, readmeContent.join("\n"));

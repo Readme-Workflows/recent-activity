@@ -7383,6 +7383,14 @@ module.exports = resolveCommand;
 
 /***/ }),
 
+/***/ 1512:
+/***/ ((module, exports) => {
+
+"use strict";
+function _typeof(obj){"@babel/helpers - typeof";if(typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"){_typeof=function _typeof(obj){return typeof obj}}else{_typeof=function _typeof(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj}}return _typeof(obj)}(function(global){var _arguments=arguments;var dateFormat=function(){var token=/d{1,4}|D{3,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|W{1,2}|[LlopSZN]|"[^"]*"|'[^']*'/g;var timezone=/\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;var timezoneClip=/[^-+\dA-Z]/g;return function(date,mask,utc,gmt){if(_arguments.length===1&&kindOf(date)==="string"&&!/\d/.test(date)){mask=date;date=undefined}date=date||date===0?date:new Date;if(!(date instanceof Date)){date=new Date(date)}if(isNaN(date)){throw TypeError("Invalid date")}mask=String(dateFormat.masks[mask]||mask||dateFormat.masks["default"]);var maskSlice=mask.slice(0,4);if(maskSlice==="UTC:"||maskSlice==="GMT:"){mask=mask.slice(4);utc=true;if(maskSlice==="GMT:"){gmt=true}}var _=function _(){return utc?"getUTC":"get"};var _d=function d(){return date[_()+"Date"]()};var D=function D(){return date[_()+"Day"]()};var _m=function m(){return date[_()+"Month"]()};var y=function y(){return date[_()+"FullYear"]()};var _H=function H(){return date[_()+"Hours"]()};var _M=function M(){return date[_()+"Minutes"]()};var _s=function s(){return date[_()+"Seconds"]()};var _L=function L(){return date[_()+"Milliseconds"]()};var _o=function o(){return utc?0:date.getTimezoneOffset()};var _W=function W(){return getWeek(date)};var _N=function N(){return getDayOfWeek(date)};var flags={d:function d(){return _d()},dd:function dd(){return pad(_d())},ddd:function ddd(){return dateFormat.i18n.dayNames[D()]},DDD:function DDD(){return getDayName({y:y(),m:_m(),d:_d(),_:_(),dayName:dateFormat.i18n.dayNames[D()],short:true})},dddd:function dddd(){return dateFormat.i18n.dayNames[D()+7]},DDDD:function DDDD(){return getDayName({y:y(),m:_m(),d:_d(),_:_(),dayName:dateFormat.i18n.dayNames[D()+7]})},m:function m(){return _m()+1},mm:function mm(){return pad(_m()+1)},mmm:function mmm(){return dateFormat.i18n.monthNames[_m()]},mmmm:function mmmm(){return dateFormat.i18n.monthNames[_m()+12]},yy:function yy(){return String(y()).slice(2)},yyyy:function yyyy(){return pad(y(),4)},h:function h(){return _H()%12||12},hh:function hh(){return pad(_H()%12||12)},H:function H(){return _H()},HH:function HH(){return pad(_H())},M:function M(){return _M()},MM:function MM(){return pad(_M())},s:function s(){return _s()},ss:function ss(){return pad(_s())},l:function l(){return pad(_L(),3)},L:function L(){return pad(Math.floor(_L()/10))},t:function t(){return _H()<12?dateFormat.i18n.timeNames[0]:dateFormat.i18n.timeNames[1]},tt:function tt(){return _H()<12?dateFormat.i18n.timeNames[2]:dateFormat.i18n.timeNames[3]},T:function T(){return _H()<12?dateFormat.i18n.timeNames[4]:dateFormat.i18n.timeNames[5]},TT:function TT(){return _H()<12?dateFormat.i18n.timeNames[6]:dateFormat.i18n.timeNames[7]},Z:function Z(){return gmt?"GMT":utc?"UTC":(String(date).match(timezone)||[""]).pop().replace(timezoneClip,"").replace(/GMT\+0000/g,"UTC")},o:function o(){return(_o()>0?"-":"+")+pad(Math.floor(Math.abs(_o())/60)*100+Math.abs(_o())%60,4)},p:function p(){return(_o()>0?"-":"+")+pad(Math.floor(Math.abs(_o())/60),2)+":"+pad(Math.floor(Math.abs(_o())%60),2)},S:function S(){return["th","st","nd","rd"][_d()%10>3?0:(_d()%100-_d()%10!=10)*_d()%10]},W:function W(){return _W()},WW:function WW(){return pad(_W())},N:function N(){return _N()}};return mask.replace(token,function(match){if(match in flags){return flags[match]()}return match.slice(1,match.length-1)})}}();dateFormat.masks={default:"ddd mmm dd yyyy HH:MM:ss",shortDate:"m/d/yy",paddedShortDate:"mm/dd/yyyy",mediumDate:"mmm d, yyyy",longDate:"mmmm d, yyyy",fullDate:"dddd, mmmm d, yyyy",shortTime:"h:MM TT",mediumTime:"h:MM:ss TT",longTime:"h:MM:ss TT Z",isoDate:"yyyy-mm-dd",isoTime:"HH:MM:ss",isoDateTime:"yyyy-mm-dd'T'HH:MM:sso",isoUtcDateTime:"UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",expiresHeaderFormat:"ddd, dd mmm yyyy HH:MM:ss Z"};dateFormat.i18n={dayNames:["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],monthNames:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec","January","February","March","April","May","June","July","August","September","October","November","December"],timeNames:["a","p","am","pm","A","P","AM","PM"]};var pad=function pad(val,len){val=String(val);len=len||2;while(val.length<len){val="0"+val}return val};var getDayName=function getDayName(_ref){var y=_ref.y,m=_ref.m,d=_ref.d,_=_ref._,dayName=_ref.dayName,_ref$short=_ref["short"],_short=_ref$short===void 0?false:_ref$short;var today=new Date;var yesterday=new Date;yesterday.setDate(yesterday[_+"Date"]()-1);var tomorrow=new Date;tomorrow.setDate(tomorrow[_+"Date"]()+1);var today_d=function today_d(){return today[_+"Date"]()};var today_m=function today_m(){return today[_+"Month"]()};var today_y=function today_y(){return today[_+"FullYear"]()};var yesterday_d=function yesterday_d(){return yesterday[_+"Date"]()};var yesterday_m=function yesterday_m(){return yesterday[_+"Month"]()};var yesterday_y=function yesterday_y(){return yesterday[_+"FullYear"]()};var tomorrow_d=function tomorrow_d(){return tomorrow[_+"Date"]()};var tomorrow_m=function tomorrow_m(){return tomorrow[_+"Month"]()};var tomorrow_y=function tomorrow_y(){return tomorrow[_+"FullYear"]()};if(today_y()===y&&today_m()===m&&today_d()===d){return _short?"Tdy":"Today"}else if(yesterday_y()===y&&yesterday_m()===m&&yesterday_d()===d){return _short?"Ysd":"Yesterday"}else if(tomorrow_y()===y&&tomorrow_m()===m&&tomorrow_d()===d){return _short?"Tmw":"Tomorrow"}return dayName};var getWeek=function getWeek(date){var targetThursday=new Date(date.getFullYear(),date.getMonth(),date.getDate());targetThursday.setDate(targetThursday.getDate()-(targetThursday.getDay()+6)%7+3);var firstThursday=new Date(targetThursday.getFullYear(),0,4);firstThursday.setDate(firstThursday.getDate()-(firstThursday.getDay()+6)%7+3);var ds=targetThursday.getTimezoneOffset()-firstThursday.getTimezoneOffset();targetThursday.setHours(targetThursday.getHours()-ds);var weekDiff=(targetThursday-firstThursday)/(864e5*7);return 1+Math.floor(weekDiff)};var getDayOfWeek=function getDayOfWeek(date){var dow=date.getDay();if(dow===0){dow=7}return dow};var kindOf=function kindOf(val){if(val===null){return"null"}if(val===undefined){return"undefined"}if(_typeof(val)!=="object"){return _typeof(val)}if(Array.isArray(val)){return"array"}return{}.toString.call(val).slice(8,-1).toLowerCase()};if(typeof define==="function"&&define.amd){define(function(){return dateFormat})}else if(( false?0:_typeof(exports))==="object"){module.exports=dateFormat}else{global.dateFormat=dateFormat}})(void 0);
+
+/***/ }),
+
 /***/ 8932:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -15241,6 +15249,7 @@ const fs = __nccwpck_require__(5747);
 const path = __nccwpck_require__(5622);
 const { spawn } = __nccwpck_require__(3129);
 const { Toolkit } = __nccwpck_require__(7045);
+var dateFormat = __nccwpck_require__(1512);
 
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
@@ -15254,6 +15263,9 @@ const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
 const URL_TEXT = core.getInput("URL_TEXT");
+const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
+const DATE_STRING = core.getInput("DATE_STRING");
+const DATE_FORMAT = core.getInput("DATE_FORMAT");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -15275,6 +15287,63 @@ const urlPrefix = "https://github.com";
  *
  * @returns {String}
  */
+
+const appendDate = (fullContent) => {
+  let dateStartIdx = fullContent.findIndex(
+    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
+  );
+
+  if (dateStartIdx !== -1) {
+    let dateEndIdx = fullContent.findIndex(
+      (content, index) =>
+        content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
+        index - 2 === dateStartIdx
+    );
+
+    let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+    let offset;
+
+    tz_hours = parseInt(timezone[0].trim());
+
+    if (timezone.length > 1) {
+      offset = tz_hours * 60 + parseInt(timezone[1].trim());
+    } else {
+      if (tz_hours > 99) {
+        offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+      } else {
+        offset = tz_hours * 60;
+      }
+    }
+
+    const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+    let finalDate = new Date(utc + offset * 60000);
+
+    finalDateString = DATE_STRING.replace(
+      "{DATE}",
+      dateFormat(finalDate, DATE_FORMAT)
+    );
+
+    if (dateEndIdx === -1) {
+      fullContent.splice(
+        dateStartIdx + 1,
+        0,
+        finalDateString,
+        "<!--RECENT_ACTIVITY:last_update_end-->"
+      );
+    } else {
+      fullContent[dateEndIdx - 1] = finalDateString;
+    }
+  }
+  return fullContent;
+};
+
+const to2Digit = (entity) => {
+  if (entity > 9) {
+    return entity + "";
+  } else {
+    return "0" + entity;
+  }
+};
 
 const makeCustomUrl = (item) => {
   return Object.hasOwnProperty.call(item.payload, "issue")
@@ -15447,6 +15516,8 @@ Toolkit.run(
       }
     }
 
+    tools.log.debug(temp_content);
+
     content = temp_content;
 
     // We only have five lines to work with
@@ -15462,27 +15533,25 @@ Toolkit.run(
       return tools.exit.failure(`Couldn't find the file named ${README_FILE}`);
     }
 
-    // Find the index corresponding to <!--START_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:start--> comment
     let startIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--START_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:start-->"
     );
 
-    // Early return in case the <!--START_SECTION:activity--> comment was not found
+    // Early return in case the <!--RECENT_ACTIVITY:start--> comment was not found
     if (startIdx === -1) {
       return tools.exit.failure(
-        "Couldn't find the <!--START_SECTION:activity--> comment. Exiting!"
+        "Couldn't find the <!--RECENT_ACTIVITY:start--> comment. Exiting!"
       );
     }
 
-    // Find the index corresponding to <!--END_SECTION:activity--> comment
+    // Find the index corresponding to <!--RECENT_ACTIVITY:end--> comment
     const endIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--END_SECTION:activity-->"
+      (content) => content.trim() === "<!--RECENT_ACTIVITY:end-->"
     );
 
     if (!content.length) {
-      tools.exit.success(
-        "No PullRequest/Issue/IssueComment events found. Leaving readme unchanged."
-      );
+      tools.exit.success("No events found. Leaving readme unchanged.");
     }
 
     if (content.length < MAX_LINES) {
@@ -15496,12 +15565,14 @@ Toolkit.run(
         readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
       );
 
-      // Append <!--END_SECTION:activity--> comment
+      // Append <!--RECENT_ACTIVITY:end--> comment
       readmeContent.splice(
         startIdx + content.length,
         0,
-        "<!--END_SECTION:activity-->"
+        "<!--RECENT_ACTIVITY:end-->"
       );
+
+      readmeContent = appendDate(readmeContent);
 
       // Update README
       fs.writeFileSync(README_FILE, readmeContent.join("\n"));
@@ -15521,8 +15592,8 @@ Toolkit.run(
       .map((line, idx) => `${idx + 1}. ${line}`)
       .join("\n");
 
-    if (oldContent.trim() === newContent.trim())
-      tools.exit.success("No changes detected.");
+    // if (oldContent.trim() === newContent.trim())
+    //   tools.exit.success("No changes detected.");
 
     startIdx++;
 
@@ -15538,7 +15609,7 @@ Toolkit.run(
       });
       tools.log.success("Wrote to README");
     } else {
-      // It is likely that a newline is inserted after the <!--START_SECTION:activity--> comment (code formatter)
+      // It is likely that a newline is inserted after the <!--RECENT_ACTIVITY:start--> comment (code formatter)
       let count = 0;
 
       readmeActivitySection.some((line, idx) => {
@@ -15553,6 +15624,8 @@ Toolkit.run(
       });
       tools.log.success("Updated README with the recent activity");
     }
+
+    readmeContent = appendDate(readmeContent);
 
     // Update README
     fs.writeFileSync(README_FILE, readmeContent.join("\n"));
