@@ -232,6 +232,12 @@ The Action currently has the following Settings that you can set through the `wi
       <td>0</td>
       <td></td>
     </tr>
+    <tr>
+      <td><code>DATE_STRING</code></td>
+      <td>String to be printed while printing updation date</td>
+      <td>Last Updated: {DATE}</td>
+      <td><code>{DATE}</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -268,6 +274,11 @@ The following placeholders may be used in the aforementioned settings, if the `S
       <td><code>{URL}</code></td>
       <td>Displays the text provided by <code>URL_TEXT</code>.</td>
       <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity#1</a></td>
+    </tr>
+    <tr>
+      <td><code>{DATE}</code></td>
+      <td>Current time and date.</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
