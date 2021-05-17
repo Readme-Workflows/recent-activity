@@ -10,12 +10,8 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 ### Chores
 - Trigger Build whenever changes to JS files are pushed [[#28]]
 
-### Added features
-- Add option to display date and time of last update [[#40]]
-
   [v1.2.2]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.1
   [#28]: https://github.com/Readme-Workflows/recent-activity/pull/28
-  [#40]: https://github.com/Readme-Workflows/recent-activity/pull/40
 
 ## [v1.2.1]
 > **Released:** `12-05-2021`
