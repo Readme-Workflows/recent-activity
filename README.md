@@ -234,7 +234,7 @@ The Action currently has the following Settings that you can set through the `wi
     </tr>
     <tr>
       <td><code>TIMEZONE_OFFSET</code></td>
-      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> and is relative to the GMT timezone.</td>
+      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> / <code>-xx:xx</code> and is relative to the GMT timezone.</td>
       <td>0</td>
       <td></td>
     </tr>
