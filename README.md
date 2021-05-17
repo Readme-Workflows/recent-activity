@@ -83,16 +83,8 @@ Some are required and some are optional. All comments are case-sensitive.
       <td>Indicates the start of the Activity-list.<br>The list itself will be added **below** this comment and finished of with the <code>RECENT_ACTIVITY:end</code> comment.</td>
     </tr>
     <tr>
-      <td><code>RECENT_ACTIVITY:end</code></td>
-      <td>Indicates the end of the Activity-list.<br>You don't have to set this option as the Action will do that on its own.<br>The Action will stop once it reaches this comment or the list has reached the <a href="#settings">MAX_LINES</a> amount.</td>
-    </tr>
-    <tr>
       <td><code>RECENT_ACTIVITY:last_update</code></td>
       <td>Sets the date of when the List was last updated.<br>The Text displayed is set in the <a href="#settings">Settings</a> of the Action and will be added <b>below</b> this comment together with the <code>RECENT_ACTIVITY:last_update_end</code> comment.</td>
-    </tr>
-    <tr>
-      <td><code>RECENT_ACTIVITY:last_update_end</code></td>
-      <td>Indicates the end of the Date section.<br>You don't have to set this option as the Action will do that on its own.</td>
     </tr>
   </tbody>
 </table>
