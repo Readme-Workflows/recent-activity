@@ -56,7 +56,7 @@ const appendDate = (fullContent) => {
     let dateEndIdx = fullContent.findIndex(
       (content, index) =>
         content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
-        index - 2 === dateStartIdx
+        index > dateStartIdx
     );
 
     let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
@@ -90,7 +90,11 @@ const appendDate = (fullContent) => {
         "<!--RECENT_ACTIVITY:last_update_end-->"
       );
     } else {
-      fullContent[dateEndIdx - 1] = finalDateString;
+      fullContent.splice(
+        dateStartIdx + 1,
+        dateEndIdx - dateStartIdx - 1,
+        finalDateString
+      );
     }
   }
   return fullContent;
