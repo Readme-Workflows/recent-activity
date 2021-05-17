@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.7",
-    "actions-toolkit": "^6.0.1"
+    "actions-toolkit": "^6.0.1",
+    "dateformat": "^4.5.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.28.5",

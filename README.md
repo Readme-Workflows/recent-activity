@@ -39,10 +39,9 @@ The official GitHub documentation about Profile READMEs can be found [here](http
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/Readme-Workflows/recent-activity?label=Latest%20Version)
 
-- To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started.
+- To get started, first make sure you add `<!--START_SECTION:activity-->` somewhere in your README.md file. This is where the list will appear when the action started. See [below](#options) for more clear description for them.
 - Next should you now move on to creating a new Workflow. In this example we create `.github/workflows/update-readme.yml`
-- Now edit the YAML file and add the following content to it:
-
+- Now edit the YAML file and add the following content to it:  
   ```yaml
   name: Update README
 
@@ -62,11 +61,59 @@ The official GitHub documentation about Profile READMEs can be found [here](http
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   ```
-
   **Notes:**
-
   - The example above would be triggered every 30 minutes. A page explaining the Cron syntax in GitHub Workflows can be found [here](https://jasonet.co/posts/scheduled-actions/#the-cron-syntax).  
    You can also use [Crontab.guru](https://crontab.guru) to create the right Cron-format to use.
+
+## Options
+
+The Action has different Options that are set through HTML Comments (`<!-- text -->`) in the markdown file.  
+Some are required and some are optional. All comments are case-sensitive.
+
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>RECENT_ACTIVITY:start</code></td>
+      <td>Indicates the start of the Activity-list.<br>The list itself will be added **below** this comment and finished of with the <code>RECENT_ACTIVITY:end</code> comment.</td>
+    </tr>
+    <tr>
+      <td><code>RECENT_ACTIVITY:last_update</code></td>
+      <td>Sets the date of when the List was last updated.<br>The Text displayed is set in the <a href="#settings">Settings</a> of the Action and will be added <b>below</b> this comment together with the <code>RECENT_ACTIVITY:last_update_end</code> comment.</td>
+    </tr>
+  </tbody>
+</table>
+
+### Comments example
+
+Below is a small example of how the Markdown could look like:  
+```markdown
+## Recent Activity
+This is a list of my most recent Activity on GitHub.
+<!--RECENT_ACTIVITY:last_update-->
+<!--RECENT_ACTIVITY:start-->
+```
+
+And this would be the result of it:  
+```markdown
+## Recent Activity
+This is a list of my most recent Activity on GitHub.
+<!--RECENT_ACTIVITY:last_update-->
+Last updated: `01.01.2021 00:00`
+<!--RECENT_ACTIVITY:last_update_end-->
+<!--RECENT_ACTIVITY:start-->
+1. ❗️ Closed issue [#5](https://github.com/Readme-Workflows/recent-activity/issues/5) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/5)
+2. 🎉 Merged PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
+3. 🗣 Commented on [#3](https://github.com/Readme-Workflows/recent-activity/discussions/3) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/discussions/3)
+4. ❗️ Closed issue [#4](https://github.com/Readme-Workflows/recent-activity/issues/4) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/4)
+5. 💪 Opened PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
+<!--RECENT_ACTIVITY:end-->
+```
 
 ## Settings
 
@@ -87,6 +134,7 @@ The Action currently has the following Settings that you can set through the `wi
       <td>The User to get latest activity from</td>
       <td><i>Repository Owner</i></td>
       <td></td>
+    </tr>
     <tr>
       <td><code>COMMIT_MSG</code></td>
       <td>The Commit Message to use when updating the README</td>
@@ -170,6 +218,30 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>{REPO}{ID}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code></td>
     </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>TIMEZONE_OFFSET</code></td>
+      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> / <code>-xx:xx</code> and is relative to the GMT timezone.</td>
+      <td>0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>DATE_STRING</code></td>
+      <td>The text to print when using the <a href="#options"><code>RECENT_ACTIVITY:last_update</code></a> Comment option.</td>
+      <td>Last Updated: {DATE}</td>
+      <td><code>{DATE}</code></td>
+    </tr>
+    <tr>
+      <td><code>DATE_FORMAT</code></td>
+      <td>The date and time format which should be used for the <code>{DATE}</code> Placeholder.<br><a href="https://www.npmjs.com/package/dateformat">More info about the Date formatting</a></td>
+      <td>dddd, mmmm dS, yyyy, h:MM:ss TT</td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
@@ -179,7 +251,7 @@ The following placeholders may be used in the aforementioned settings, if the `S
 
 **Important Notes:**
 
-- Each placeholder will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
+- Each placeholder with exception of `{DATE}` will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
   For example will `{ID}` turn into `[#:id](:url)` and `{URL}` turns into `[:url_text](:url)`.
 - Using `{ID}` or `{REPO}` in the `URL_TEXT` setting won't turn them into embedded links. `{ID}` will still have a `#` before it.
 
@@ -206,6 +278,11 @@ The following placeholders may be used in the aforementioned settings, if the `S
       <td><code>{URL}</code></td>
       <td>Displays the text provided by <code>URL_TEXT</code>.</td>
       <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity#1</a></td>
+    </tr>
+    <tr>
+      <td><code>{DATE}</code></td>
+      <td>Current time and date to display.<br>This is <b>ONLY</b> usable in the <a href="#settings">DATE_STRING</a> setting!</b></td>
+      <td>01.01.2021 00:00:00</td>
     </tr>
   </tbody>
 </table>
