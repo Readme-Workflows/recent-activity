@@ -281,7 +281,7 @@ The following placeholders may be used in the aforementioned settings, if the `S
     </tr>
     <tr>
       <td><code>{DATE}</code></td>
-      <td>Current time and date to display.</td>
+      <td>Current time and date to display.<br>This is <b>ONLY</b> usable in the <a href="#settings">DATE_STRING</a> setting!</b></td>
       <td>01.01.2021 00:00:00</td>
     </tr>
   </tbody>
