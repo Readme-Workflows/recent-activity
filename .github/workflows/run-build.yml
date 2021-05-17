@@ -16,14 +16,15 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: "12.x"
-      - name: Update dependencies
+      - name: Install dependencies
+        run: npm install
       - run: npm ci
       - name: Run format
         run: npm run format
       - name: Check code style
         run: npm run format:check
       - name: Run build
-        run: npm run build --if-present
+        run: npm run build
       - name: Commit and push changes
         run: |
           if [[ "$(git status --porcelain)" != "" ]]; then
