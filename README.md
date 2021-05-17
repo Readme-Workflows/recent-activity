@@ -226,6 +226,12 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>{REPO}{ID}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code></td>
     </tr>
+    <tr>
+      <td><code>TIMEZONE_OFFSET</code></td>
+      <td>Timezone in which time is to be displayed</td>
+      <td>0</td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
