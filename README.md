@@ -226,21 +226,27 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>{REPO}{ID}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code></td>
     </tr>
+    </tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
     <tr>
       <td><code>TIMEZONE_OFFSET</code></td>
-      <td>Timezone in which time is to be displayed</td>
+      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> and is relative to the GMT timezone.</td>
       <td>0</td>
       <td></td>
     </tr>
     <tr>
       <td><code>DATE_STRING</code></td>
-      <td>String to be printed while printing updation date</td>
+      <td>The text to print when using the <a href="#options"><code>RECENT_ACTIVITY:last_update</code></a> Comment option.</td>
       <td>Last Updated: {DATE}</td>
       <td><code>{DATE}</code></td>
     </tr>
     <tr>
       <td><code>DATE_FORMAT</code></td>
-      <td>Format of how last updation time to be printed</td>
+      <td>The date and time format which should be used for the <code>{DATE}</code> Placeholder.<br><a href="https://www.npmjs.com/package/dateformat">More info about the Date formatting</a></td>
       <td>dddd, mmmm dS, yyyy, h:MM:ss TT</td>
       <td></td>
     </tr>
@@ -253,7 +259,7 @@ The following placeholders may be used in the aforementioned settings, if the `S
 
 **Important Notes:**
 
-- Each placeholder will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
+- Each placeholder with exception of `{DATE}` will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
   For example will `{ID}` turn into `[#:id](:url)` and `{URL}` turns into `[:url_text](:url)`.
 - Using `{ID}` or `{REPO}` in the `URL_TEXT` setting won't turn them into embedded links. `{ID}` will still have a `#` before it.
 
@@ -283,8 +289,8 @@ The following placeholders may be used in the aforementioned settings, if the `S
     </tr>
     <tr>
       <td><code>{DATE}</code></td>
-      <td>Current time and date.</td>
-      <td></td>
+      <td>Current time and date to display.</td>
+      <td>01.01.2021 00:00:00</td>
     </tr>
   </tbody>
 </table>
