@@ -300,8 +300,8 @@ Toolkit.run(
       .map((line, idx) => `${idx + 1}. ${line}`)
       .join("\n");
 
-    if (oldContent.trim() === newContent.trim())
-      tools.exit.success("No changes detected.");
+    // if (oldContent.trim() === newContent.trim())
+    //   tools.exit.success("No changes detected.");
 
     startIdx++;
 
