@@ -238,6 +238,12 @@ The Action currently has the following Settings that you can set through the `wi
       <td>Last Updated: {DATE}</td>
       <td><code>{DATE}</code></td>
     </tr>
+    <tr>
+      <td><code>DATE_FORMAT</code></td>
+      <td>Format of how last updation time to be printed</td>
+      <td>dddd, mmmm dS, yyyy, h:MM:ss TT</td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
 
