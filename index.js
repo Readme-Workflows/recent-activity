@@ -347,11 +347,16 @@ Toolkit.run(
       let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
       let offset;
 
+      tz_hours = parseInt(timezone[0].trim());
+
       if (timezone.length > 1) {
-        offset =
-          parseInt(timezone[0].trim()) * 60 + parseInt(timezone[1].trim());
+        offset = tz_hours * 60 + parseInt(timezone[1].trim());
       } else {
-        offset = parseInt(timezone[0].trim()) * 60;
+        if (tz_hours > 99) {
+          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+        } else {
+          offset = tz_hours * 60;
+        }
       }
 
       const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
