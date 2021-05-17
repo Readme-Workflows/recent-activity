@@ -7,21 +7,18 @@ exclude-labels:
 
 category-template: "### $TITLE"
 categories:
+  - title: "💥 Breaking Changes"
+    labels:
+      - "Type: breaking"
   - title: "🚀 Features"
     labels:
       - "Type: enhancement"
   - title: "🐛 Bug fixes"
     labels:
       - "Type: bug"
-  #- title: "⚡ Performance Improvements"
-  #  labels:
-  #    - "performance"
   - title: "📖 Docs"
     labels:
       - "Updates: documentation"
-  #- title: "🏭 Installation"
-  #  labels:
-  #    - "install"
   - title: "🔧 Chores"
     labels:
       - "Updates: dependencies"
