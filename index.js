@@ -47,6 +47,55 @@ const urlPrefix = "https://github.com";
  * @returns {String}
  */
 
+const appendDate = (fullContent) => {
+  let dateStartIdx = fullContent.findIndex(
+    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
+  );
+
+  if (dateStartIdx !== -1) {
+    let dateEndIdx = fullContent.findIndex(
+      (content, index) =>
+        content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
+        index - 2 === dateStartIdx
+    );
+
+    let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+    let offset;
+
+    tz_hours = parseInt(timezone[0].trim());
+
+    if (timezone.length > 1) {
+      offset = tz_hours * 60 + parseInt(timezone[1].trim());
+    } else {
+      if (tz_hours > 99) {
+        offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+      } else {
+        offset = tz_hours * 60;
+      }
+    }
+
+    const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+    let finalDate = new Date(utc + offset * 60000);
+
+    finalDateString = DATE_STRING.replace(
+      "{DATE}",
+      dateFormat(finalDate, DATE_FORMAT)
+    );
+
+    if (dateEndIdx === -1) {
+      fullContent.splice(
+        dateStartIdx + 1,
+        0,
+        finalDateString,
+        "<!--RECENT_ACTIVITY:last_update_end-->"
+      );
+    } else {
+      fullContent[dateEndIdx - 1] = finalDateString;
+    }
+  }
+  return fullContent;
+};
+
 const to2Digit = (entity) => {
   if (entity > 9) {
     return entity + "";
@@ -282,6 +331,8 @@ Toolkit.run(
         "<!--RECENT_ACTIVITY:end-->"
       );
 
+      readmeContent = appendDate(readmeContent);
+
       // Update README
       fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
@@ -333,51 +384,7 @@ Toolkit.run(
       tools.log.success("Updated README with the recent activity");
     }
 
-    let dateStartIdx = readmeContent.findIndex(
-      (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
-    );
-
-    if (dateStartIdx !== -1) {
-      let dateEndIdx = readmeContent.findIndex(
-        (content, index) =>
-          content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
-          index - 2 === dateStartIdx
-      );
-
-      let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
-      let offset;
-
-      tz_hours = parseInt(timezone[0].trim());
-
-      if (timezone.length > 1) {
-        offset = tz_hours * 60 + parseInt(timezone[1].trim());
-      } else {
-        if (tz_hours > 99) {
-          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
-        } else {
-          offset = tz_hours * 60;
-        }
-      }
-
-      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-      let finalDate = new Date(utc + offset * 60000);
-
-      finalDateString = DATE_STRING.replace(
-        "{DATE}",
-        dateFormat(finalDate, DATE_FORMAT)
-      );
-
-      if (dateEndIdx === -1) {
-        readmeContent.splice(
-          dateStartIdx + 1,
-          0,
-          finalDateString,
-          "<!--RECENT_ACTIVITY:last_update_end-->"
-        );
-      } else {
-        readmeContent[dateEndIdx - 1] = finalDateString;
-      }
-    }
+    readmeContent = appendDate(readmeContent);
 
     // Update README
     fs.writeFileSync(README_FILE, readmeContent.join("\n"));
