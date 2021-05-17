@@ -279,6 +279,8 @@ Toolkit.run(
       }
     }
 
+    tools.log.debug(temp_content);
+
     content = temp_content;
 
     // We only have five lines to work with
