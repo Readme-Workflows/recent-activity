@@ -345,8 +345,14 @@ Toolkit.run(
       );
 
       let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
-      let offset =
-        parseInt(timezone[0].trim()) * 60 + parseInt(timezone[1].trim());
+      let offset;
+
+      if (timezone.length > 1) {
+        offset =
+          parseInt(timezone[0].trim()) * 60 + parseInt(timezone[1].trim());
+      } else {
+        offset = parseInt(timezone[0].trim()) * 60;
+      }
 
       const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
       let finalDate = new Date(utc + offset * 60000);
