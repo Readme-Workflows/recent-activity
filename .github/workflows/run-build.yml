@@ -17,7 +17,6 @@ jobs:
         with:
           node-version: "12.x"
       - name: Update dependencies
-        run: npm install
       - run: npm ci
       - name: Run format
         run: npm run format
