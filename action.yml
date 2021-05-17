@@ -66,8 +66,12 @@ inputs:
     default: "0"
     required: false
   DATE_STRING:
+    description: "String to be printed while printing updation date"
+    default: "Last Updated: {DATE}"
+    required: false
+  DATE_FORMAT:
     description: "Format of how last updation time to be printed"
-    default: "Last Updated: DD/MM/YYYY hh:mm:ss AA"
+    default: "dddd, mmmm dS, yyyy, h:MM:ss TT"
     required: false
 
 branding:

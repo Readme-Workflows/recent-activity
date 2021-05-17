@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const { spawn } = require("child_process");
 const { Toolkit } = require("actions-toolkit");
-const { time } = require("console");
+var dateFormat = require("dateformat");
 
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
@@ -24,6 +24,7 @@ const PR_MERGED = core.getInput("PR_MERGED");
 const URL_TEXT = core.getInput("URL_TEXT");
 const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
 const DATE_STRING = core.getInput("DATE_STRING");
+const DATE_FORMAT = core.getInput("DATE_FORMAT");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -348,34 +349,12 @@ Toolkit.run(
         parseInt(timezone[0].trim()) * 60 + parseInt(timezone[1].trim());
 
       const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-      let finalDate = new Date(utc - offset * 60000);
+      let finalDate = new Date(utc + offset * 60000);
 
-      let finalDateString = DATE_STRING.replace("DD", finalDate.getDate() + "")
-        .replace("MM", finalDate.getMonth() + 1 + "")
-        .replace("YYYY", finalDate.getFullYear() + "")
-        .replace("YY", (finalDate.getFullYear() % 100) + "");
-
-      let finalMinutes = to2Digit(finalDate.getMinutes());
-      let finalSeconds = to2Digit(finalDate.getSeconds());
-      let final24Hours = to2Digit(finalDate.getHours());
-
-      let final12Hours = finalDate.getHours();
-      let AmPm = "am";
-
-      if (finalDate.getHours() > 12) {
-        final12Hours = final12Hours % 12;
-        AmPm = "pm";
-      }
-
-      final12Hours = to2Digit(final12Hours);
-
-      finalDateString = finalDateString
-        .replace("aa", AmPm)
-        .replace("AA", AmPm.toUpperCase())
-        .replace("mm", finalMinutes)
-        .replace("HH", final24Hours)
-        .replace("hh", final12Hours)
-        .replace("ss", finalSeconds);
+      finalDateString = DATE_STRING.replace(
+        "{DATE}",
+        dateFormat(finalDate, DATE_FORMAT)
+      );
 
       if (dateEndIdx === -1) {
         readmeContent.splice(
