@@ -26,8 +26,8 @@ categories:
 autolabeler:
   - label: "Updates: documentation"
     files:
-      - "README.md"
-      - "CHANGELOG.md"
+      - "./README.md"
+      - "./CHANGELOG.md"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 version-resolver:
   major:
