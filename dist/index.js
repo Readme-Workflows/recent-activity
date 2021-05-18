@@ -15349,20 +15349,30 @@ const to2Digit = (entity) => {
   }
 };
 
-const makeCustomUrl = (item) => {
-  return Object.hasOwnProperty.call(item.payload, "issue")
+const makeCustomUrl = (item, type) => {
+  let url = Object.hasOwnProperty.call(item.payload, "issue")
     ? `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
-        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
     : `[` +
-        URL_TEXT.replace(
-          /{ID}/g,
-          `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.pull_request.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+  if (type === "comment") {
+    url =
+      `[` +
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${item.payload.comment.html_url})`;
+  }
+  return url;
 };
 
 const toUrlFormat = (item) => {
@@ -15426,7 +15436,7 @@ if (!DISABLE_EVENTS.includes("comments")) {
     if (item.payload.action === "created") {
       return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "comment"));
     } else {
       return "";
     }
@@ -15441,11 +15451,11 @@ if (!DISABLE_EVENTS.includes("issues")) {
     if (item.payload.action === "opened") {
       return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
     } else if (item.payload.action === "closed") {
       return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
     }
     // else {
     //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
@@ -15463,18 +15473,18 @@ if (!DISABLE_EVENTS.includes("pr")) {
     if (item.payload.action === "opened") {
       return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
     } else if (item.payload.pull_request.merged) {
       return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
     } else if (
       item.payload.action === "closed" &&
       !item.payload.pull_request.merged
     ) {
       return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
     } else {
       return "";
     }

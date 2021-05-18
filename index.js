@@ -109,6 +109,7 @@ const to2Digit = (entity) => {
 };
 
 const makeCustomUrl = (item, type) => {
+<<<<<<< HEAD
     let url;
     switch (type.toLowerCase()) {
         case "issue_open":
@@ -136,6 +137,30 @@ const makeCustomUrl = (item, type) => {
             tools.exit.failure("Failed while creating the url string.")
             break;
     }
+=======
+  let url = Object.hasOwnProperty.call(item.payload, "issue")
+    ? `[` +
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
+    : `[` +
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.pull_request.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+  if (type === "comment") {
+    url =
+      `[` +
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${item.payload.comment.html_url})`;
+  }
+>>>>>>> d3e9f67a32700a3c7aa93541c1e65635a8a3a15e
   return url;
 };
 
