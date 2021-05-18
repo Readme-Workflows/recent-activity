@@ -109,33 +109,41 @@ const to2Digit = (entity) => {
 };
 
 const makeCustomUrl = (item, type) => {
-    let url = "";
-    switch (type.toLowerCase()) {
-        case "issue_open":
-        case "issue_close":
-            url = `[` + URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+  let url;
+  switch (type.toLowerCase()) {
+    case "issue_open":
+    case "issue_close":
+      url =
+        `[` +
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
-        ) + `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`;
-            break;
-        case "comment":
-            `[` + URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        ) +
+        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`;
+      break;
+    case "comment":
+      `[` +
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
-        ) + `](${item.payload.comment.html_url})`;
-            break;
-        case "pr_open":
-        case "pr_close":
-        case "pr_merge":
-            url = `[` + URL_TEXT.replace(
+        ) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "pr_open":
+    case "pr_close":
+    case "pr_merge":
+      url =
+        `[` +
+        URL_TEXT.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) + `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
-            break;
-        default:
-            tools.exit.failure(`Failed to create the url string. Type: ${type}`)
-            break;
-    }
+        ).replace(/{REPO}/g, item.repo.name) +
+        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+      break;
+    default:
+      tools.exit.failure("Failed while creating the url string.");
+      break;
+  }
   return url;
 };
 
