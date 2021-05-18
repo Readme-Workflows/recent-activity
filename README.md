@@ -326,3 +326,7 @@ Visit [our Roadmap](https://github.com/Readme-Workflows/recent-activity/projects
 
 Do you like this project?
 Why don't show your support by staring it and joining all the [other stargazers](https://github.com/Readme-Workflows/recent-activity/stargazers)?
+
+## News
+
+See messages in #news channel in our discord server, [here is the invite](https://discord.gg/aR6TcVzpbF)
