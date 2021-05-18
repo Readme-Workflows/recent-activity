@@ -15072,7 +15072,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"signale","version":"1.4.0","description":"👋 Hackable console logger","license":"MIT","repository":"klaussinani/signale","author":{"name":"Klaus Sinani","email":"klaussinani@gmail.com","url":"https://klaussinani.github.io"},"maintainers":[{"name":"Mario Sinani","email":"mariosinani@protonmail.ch","url":"https://mariocfhq.github.io"}],"engines":{"node":">=6"},"files":["index.js","signale.js","types.js"],"keywords":["hackable","colorful","console","logger"],"scripts":{"test":"xo"},"dependencies":{"chalk":"^2.3.2","figures":"^2.0.0","pkg-conf":"^2.1.0"},"devDependencies":{"xo":"*"},"options":{"default":{"displayScope":true,"displayBadge":true,"displayDate":false,"displayFilename":false,"displayLabel":true,"displayTimestamp":false,"underlineLabel":true,"underlineMessage":false,"underlinePrefix":false,"underlineSuffix":false,"uppercaseLabel":false}},"xo":{"space":2},"_resolved":"https://registry.npmjs.org/signale/-/signale-1.4.0.tgz","_integrity":"sha512-iuh+gPf28RkltuJC7W5MRi6XAjTDCAPC/prJUpQoG4vIP3MJZ+GTydVnodXA7pwvTKb2cA0m9OFZW/cdWy/I/w==","_from":"signale@1.4.0"}');
+module.exports = JSON.parse('{"name":"signale","version":"1.4.0","description":"👋 Hackable console logger","license":"MIT","repository":"klaussinani/signale","author":{"name":"Klaus Sinani","email":"klaussinani@gmail.com","url":"https://klaussinani.github.io"},"maintainers":[{"name":"Mario Sinani","email":"mariosinani@protonmail.ch","url":"https://mariocfhq.github.io"}],"engines":{"node":">=6"},"files":["index.js","signale.js","types.js"],"keywords":["hackable","colorful","console","logger"],"scripts":{"test":"xo"},"dependencies":{"chalk":"^2.3.2","figures":"^2.0.0","pkg-conf":"^2.1.0"},"devDependencies":{"xo":"*"},"options":{"default":{"displayScope":true,"displayBadge":true,"displayDate":false,"displayFilename":false,"displayLabel":true,"displayTimestamp":false,"underlineLabel":true,"underlineMessage":false,"underlinePrefix":false,"underlineSuffix":false,"uppercaseLabel":false}},"xo":{"space":2}}');
 
 /***/ }),
 
@@ -15350,27 +15350,40 @@ const to2Digit = (entity) => {
 };
 
 const makeCustomUrl = (item, type) => {
-  let url = Object.hasOwnProperty.call(item.payload, "issue")
-    ? `[` +
-      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-        /{REPO}/g,
-        item.repo.name
-      ) +
-      `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
-    : `[` +
-      URL_TEXT.replace(/{ID}/g, `#${item.payload.pull_request.number}`).replace(
-        /{REPO}/g,
-        item.repo.name
-      ) +
-      `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
-  if (type === "comment") {
-    url =
+  let url;
+  switch (type.toLowerCase()) {
+    case "issue_open":
+    case "issue_close":
+      url =
+        `[` +
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`;
+      break;
+    case "comment":
       `[` +
-      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-        /{REPO}/g,
-        item.repo.name
-      ) +
-      `](${item.payload.comment.html_url})`;
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "pr_open":
+    case "pr_close":
+    case "pr_merge":
+      url =
+        `[` +
+        URL_TEXT.replace(
+          /{ID}/g,
+          `#${item.payload.pull_request.number}`
+        ).replace(/{REPO}/g, item.repo.name) +
+        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+      break;
+    default:
+      tools.exit.failure("Failed while creating the url string.");
+      break;
   }
   return url;
 };
