@@ -109,7 +109,7 @@ const to2Digit = (entity) => {
 };
 
 const makeCustomUrl = (item, type) => {
-    let url;
+    let url = "";
     switch (type.toLowerCase()) {
         case "issue_open":
         case "issue_close":
@@ -133,7 +133,7 @@ const makeCustomUrl = (item, type) => {
         ).replace(/{REPO}/g, item.repo.name) + `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
             break;
         default:
-            tools.exit.failure("Failed while creating the url string.")
+            tools.exit.failure(`Failed to create the url string. Type: ${type}`)
             break;
     }
   return url;

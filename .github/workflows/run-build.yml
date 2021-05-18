@@ -16,7 +16,8 @@ jobs:
         uses: actions/setup-node@v2.1.5
         with:
           node-version: "12.x"
-      - run: npm ci
+      - name: Install/Update dependencies
+        run: npm install
       - name: Run format
         run: npm run format
       - name: Check code style
