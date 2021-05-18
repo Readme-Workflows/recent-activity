@@ -111,24 +111,25 @@ const to2Digit = (entity) => {
 const makeCustomUrl = (item, type) => {
   let url = Object.hasOwnProperty.call(item.payload, "issue")
     ? `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
-        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
     : `[` +
-        URL_TEXT.replace(
-          /{ID}/g,
-          `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.pull_request.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
   if (type === "comment") {
-    url = `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
-        `](${item.payload.comment.html_url})`
+    url =
+      `[` +
+      URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        /{REPO}/g,
+        item.repo.name
+      ) +
+      `](${item.payload.comment.html_url})`;
   }
   return url;
 };
