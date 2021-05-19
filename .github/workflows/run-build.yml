@@ -20,12 +20,8 @@ jobs:
         run: npm ci
       - name: Run build
         run: npm run build
-      - name: Update dependencies
-        run: npm ci
       - name: Run format
         run: npm run format
-      - name: Set core.autocrlf
-        run: git config core.autocrlf input
       - name: Check code style
         run: npm run format:check
       - name: Commit and push changes
