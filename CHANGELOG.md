@@ -4,13 +4,13 @@ The changelog of the Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
-## [v1.3.1]
+## [v1.4.0]
 > **Released:** `19.05.2021`
 
 ### Changed
-- Make `{ID}` point to the exact issue/PR/Discussion comment for comment actions [[#42]]
+- Make `{ID}` point to the exact issue comment for comment actions [[#42]]
 
-[v1.3.1]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.3.1
+[v1.4.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.4.0
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
 
 ## [v1.3.0]
