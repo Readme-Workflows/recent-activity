@@ -4,6 +4,7 @@ commitish: main
 publish: false
 exclude-labels:
   - "Updates: github action"
+  - "No changelog"
 
 category-template: "### $TITLE"
 categories:
