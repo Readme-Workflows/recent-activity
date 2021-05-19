@@ -15072,7 +15072,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"signale","version":"1.4.0","description":"👋 Hackable console logger","license":"MIT","repository":"klaussinani/signale","author":{"name":"Klaus Sinani","email":"klaussinani@gmail.com","url":"https://klaussinani.github.io"},"maintainers":[{"name":"Mario Sinani","email":"mariosinani@protonmail.ch","url":"https://mariocfhq.github.io"}],"engines":{"node":">=6"},"files":["index.js","signale.js","types.js"],"keywords":["hackable","colorful","console","logger"],"scripts":{"test":"xo"},"dependencies":{"chalk":"^2.3.2","figures":"^2.0.0","pkg-conf":"^2.1.0"},"devDependencies":{"xo":"*"},"options":{"default":{"displayScope":true,"displayBadge":true,"displayDate":false,"displayFilename":false,"displayLabel":true,"displayTimestamp":false,"underlineLabel":true,"underlineMessage":false,"underlinePrefix":false,"underlineSuffix":false,"uppercaseLabel":false}},"xo":{"space":2},"_resolved":"https://registry.npmjs.org/signale/-/signale-1.4.0.tgz","_integrity":"sha512-iuh+gPf28RkltuJC7W5MRi6XAjTDCAPC/prJUpQoG4vIP3MJZ+GTydVnodXA7pwvTKb2cA0m9OFZW/cdWy/I/w==","_from":"signale@1.4.0"}');
+module.exports = JSON.parse('{"_args":[["signale@1.4.0","/home/runner/work/recent-activity/recent-activity"]],"_from":"signale@1.4.0","_id":"signale@1.4.0","_inBundle":false,"_integrity":"sha512-iuh+gPf28RkltuJC7W5MRi6XAjTDCAPC/prJUpQoG4vIP3MJZ+GTydVnodXA7pwvTKb2cA0m9OFZW/cdWy/I/w==","_location":"/signale","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"signale@1.4.0","name":"signale","escapedName":"signale","rawSpec":"1.4.0","saveSpec":null,"fetchSpec":"1.4.0"},"_requiredBy":["/actions-toolkit"],"_resolved":"https://registry.npmjs.org/signale/-/signale-1.4.0.tgz","_spec":"1.4.0","_where":"/home/runner/work/recent-activity/recent-activity","author":{"name":"Klaus Sinani","email":"klaussinani@gmail.com","url":"https://klaussinani.github.io"},"bugs":{"url":"https://github.com/klaussinani/signale/issues"},"dependencies":{"chalk":"^2.3.2","figures":"^2.0.0","pkg-conf":"^2.1.0"},"description":"👋 Hackable console logger","devDependencies":{"xo":"*"},"engines":{"node":">=6"},"files":["index.js","signale.js","types.js"],"homepage":"https://github.com/klaussinani/signale#readme","keywords":["hackable","colorful","console","logger"],"license":"MIT","maintainers":[{"name":"Mario Sinani","email":"mariosinani@protonmail.ch","url":"https://mariocfhq.github.io"}],"name":"signale","options":{"default":{"displayScope":true,"displayBadge":true,"displayDate":false,"displayFilename":false,"displayLabel":true,"displayTimestamp":false,"underlineLabel":true,"underlineMessage":false,"underlinePrefix":false,"underlineSuffix":false,"uppercaseLabel":false}},"repository":{"type":"git","url":"git+https://github.com/klaussinani/signale.git"},"scripts":{"test":"xo"},"version":"1.4.0","xo":{"space":2}}');
 
 /***/ }),
 
@@ -15349,27 +15349,67 @@ const to2Digit = (entity) => {
   }
 };
 
-const makeCustomUrl = (item) => {
-  return Object.hasOwnProperty.call(item.payload, "issue")
-    ? `[` +
+const makeCustomUrl = (item, type) => {
+  let url;
+  switch (type.toLowerCase()) {
+    case "issue_open":
+    case "issue_close":
+      url =
+        `[` +
         URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
-        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
-    : `[` +
+        `](${item.payload.issue.html_url})`;
+      break;
+    case "comment":
+      url =
+        `[` +
+        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "pr_open":
+    case "pr_close":
+    case "pr_merge":
+      url =
+        `[` +
         URL_TEXT.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+        `](${item.payload.pull_request.html_url})`;
+      break;
+    default:
+      tools.exit.failure("Failed while creating the url string.");
+      break;
+  }
+  return url;
 };
 
-const toUrlFormat = (item) => {
+const toUrlFormat = (item, type) => {
+  let url;
   if (typeof item === "object") {
-    return Object.hasOwnProperty.call(item.payload, "issue")
-      ? `[#${item.payload.issue.number}](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
-      : `[#${item.payload.pull_request.number}](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+    switch (type.toLowerCase()) {
+      case "issue_open":
+      case "issue_close":
+        url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
+        break;
+      case "comment":
+        url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+        break;
+      case "pr_open":
+      case "pr_close":
+      case "pr_merge":
+        url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+        break;
+      default:
+        tools.exit.failure("Failed while creating the url format.");
+        break;
+    }
+    return url;
   }
   return `[${item}](${urlPrefix}/${item})`;
 };
@@ -15424,9 +15464,9 @@ const serializers = {};
 if (!DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = (item) => {
     if (item.payload.action === "created") {
-      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "comment"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
+        .replace(/{URL}/g, makeCustomUrl(item, "comment"));
     } else {
       return "";
     }
@@ -15439,13 +15479,13 @@ if (!DISABLE_EVENTS.includes("comments")) {
 if (!DISABLE_EVENTS.includes("issues")) {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
+        .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
     } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
+        .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
     }
     // else {
     //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
@@ -15461,20 +15501,20 @@ if (!DISABLE_EVENTS.includes("issues")) {
 if (!DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
-      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
     } else if (item.payload.pull_request.merged) {
-      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
     } else if (
       item.payload.action === "closed" &&
       !item.payload.pull_request.merged
     ) {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
-        .replace(/{URL}/g, makeCustomUrl(item));
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
+        .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
     } else {
       return "";
     }
