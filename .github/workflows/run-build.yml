@@ -28,7 +28,7 @@ jobs:
         run: npm run format:check
       - name: Commit and push changes
         run: |
-          git config core.autocrlf false
+          git config core.autocrlf input
           if [[ "$(git status --porcelain)" != "" ]]; then
             echo "$(git status --porcelain)"
             git config user.name github-actions[bot]
