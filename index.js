@@ -113,8 +113,7 @@ const makeCustomUrl = (item, type) => {
   switch (type.toLowerCase()) {
     case "issue_open":
     case "issue_close":
-      url =
-        `[` +
+      url = `[` +
         URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
@@ -122,7 +121,7 @@ const makeCustomUrl = (item, type) => {
         `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`;
       break;
     case "comment":
-      `[` +
+      url = `[` +
         URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
@@ -132,8 +131,7 @@ const makeCustomUrl = (item, type) => {
     case "pr_open":
     case "pr_close":
     case "pr_merge":
-      url =
-        `[` +
+      url = `[` +
         URL_TEXT.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
