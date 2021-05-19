@@ -118,7 +118,7 @@ const makeCustomUrl = (item, type) => {
           /{REPO}/g,
           item.repo.name
         ) +
-        `](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`;
+        `](${item.payload.issue.html_url})`;
       break;
     case "comment":
       url = `[` +
@@ -136,7 +136,7 @@ const makeCustomUrl = (item, type) => {
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+        `](${item.payload.pull_request.html_url})`;
       break;
     default:
       tools.exit.failure("Failed while creating the url string.");
@@ -145,11 +145,27 @@ const makeCustomUrl = (item, type) => {
   return url;
 };
 
-const toUrlFormat = (item) => {
+const toUrlFormat = (item, type) => {
+  let url;
   if (typeof item === "object") {
-    return Object.hasOwnProperty.call(item.payload, "issue")
-      ? `[#${item.payload.issue.number}](${urlPrefix}/${item.repo.name}/issues/${item.payload.issue.number})`
-      : `[#${item.payload.pull_request.number}](${urlPrefix}/${item.repo.name}/pull/${item.payload.pull_request.number})`;
+    switch (type.toLowerCase()) {
+        case "issue_open":
+        case "issue_close":
+            url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
+            break;
+        case "comment":
+            url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`
+            break;
+        case "pr_open":
+        case "pr_close":
+        case "pr_merge":
+            url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+            break;
+        default:
+            tools.exit.failure("Failed while creating the url format.");
+            break;
+    }
+    return url;
   }
   return `[${item}](${urlPrefix}/${item})`;
 };
@@ -204,8 +220,8 @@ const serializers = {};
 if (!DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = (item) => {
     if (item.payload.action === "created") {
-      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "comment"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
         .replace(/{URL}/g, makeCustomUrl(item, "comment"));
     } else {
       return "";
@@ -219,12 +235,12 @@ if (!DISABLE_EVENTS.includes("comments")) {
 if (!DISABLE_EVENTS.includes("issues")) {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
         .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
     } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
         .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
     }
     // else {
@@ -241,19 +257,19 @@ if (!DISABLE_EVENTS.includes("issues")) {
 if (!DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
-      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
     } else if (item.payload.pull_request.merged) {
-      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
     } else if (
       item.payload.action === "closed" &&
       !item.payload.pull_request.merged
     ) {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name))
+      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
     } else {
       return "";
