@@ -21,9 +21,11 @@ I have...
 
 - [ ] **Minor Change**  
   This Pull request doesn't break existing configuration.
-- [ ] **Major Change**
+- [ ] **Major Change**  
   This Pull request will break existing configuration.
-- [ ] **Documentation**
+- [ ] **Bug fix**  
+  This Pull request will fix a (critical) bug.
+- [ ] **Documentation**  
   This Pull request only changes documentation (README.md, CHANGELOG.md, etc.)
 - [ ] **Other:** `__________` <!-- Replace the __________ with what you changed -->
 
