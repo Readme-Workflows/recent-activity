@@ -4,6 +4,15 @@ The changelog of the Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
+## [v1.3.1]
+> **Released:** `19.05.2021`
+
+### Changed
+- Make `{ID}` point to the exact issue/PR/Discussion comment for comment actions [[#42]]
+
+[v1.3.1]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.3.1
+[#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
+
 ## [v1.3.0]
 > **Released:** `17.05.2021`
 
@@ -20,7 +29,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 - `DATE_FORMAT` setting [[#40]]  
   The Date Pattern to use to display the current date in `{DATE}`. Read more about the date pattern [here][dateFormat].
 
-[v1.3.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.2.1
+[v1.3.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.3.0
 [#40]: https://github.com/Readme-Workflows/recent-activity/pull/40
 [dateFormat]: https://www.npmjs.com/package/dateformat
 
