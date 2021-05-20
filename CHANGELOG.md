@@ -1,17 +1,19 @@
-# Changelog
+# Changelog v1
 
-The changelog of the Recent-Activity GitHub Action.
+The Changelog of the major version 1 of Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
 ## [v1.4.0]
-> **Released:** `19.05.2021`
+> **Released:** `TBA`
 
-### Changed
+### Changes
+- Split the index.js file into different modules [[#45]]
 - Make `{ID}` point to the exact issue comment for comment actions [[#42]]
 
 [v1.4.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.4.0
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
+[#45]: https://github.com/Readme-Workflows/recent-activity/pull/45
 
 ## [v1.3.0]
 > **Released:** `17.05.2021`

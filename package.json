@@ -10,8 +10,8 @@
   "author": "James George, Abhishek Joshi, Puneet Gopinath",
   "license": "MIT",
   "scripts": {
-    "format:check": "prettier --check index.js",
-    "format": "prettier --write index.js",
+    "format:check": "prettier --check **/*.js",
+    "format": "prettier --write **/*.js",
     "build": "ncc build index.js --license LICENSE"
   },
   "dependencies": {
