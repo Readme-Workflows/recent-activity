@@ -3,6 +3,8 @@ name: Test our workflow and update live preview
 on:
   push:
     branches: [ main ]
+    paths:
+      - "build/*.js"
   workflow_dispatch:
 
 jobs:
