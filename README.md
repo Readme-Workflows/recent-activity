@@ -9,9 +9,12 @@
 This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
 Its our goal is to improve the original GitHub Action while also providing new features for the users.
 
-## Preview
+## Live Preview
 
-![image](https://user-images.githubusercontent.com/11576465/117540853-75125380-b011-11eb-8368-f473a575333b.png)
+This is an example live preview that is updated every time a commit is pushed using github actions.
+
+<!--RECENT_ACTIVITY:last_update-->
+<!--RECENT_ACTIVITY:start-->
 
 ## Features
 
