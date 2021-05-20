@@ -1,6 +1,6 @@
-# ChangeLog v1
+# Changelog v1
 
-The ChangeLog of the major version 1 of Recent-Activity GitHub Action.
+The Changelog of the major version 1 of Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
