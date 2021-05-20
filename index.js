@@ -9,6 +9,9 @@ const { spawn } = require("child_process");
 const { Toolkit } = require("actions-toolkit");
 var dateFormat = require("dateformat");
 
+// configuration
+const conf = require("core_inputs");
+
 /**
  * Returns the sentence case representation
  * @param {String} str - the string
