@@ -10,7 +10,7 @@ const { Toolkit } = require("actions-toolkit");
 var dateFormat = require("dateformat");
 
 // configuration
-const conf = require("core_inputs");
+const conf = require("conf");
 
 /**
  * Returns the sentence case representation
