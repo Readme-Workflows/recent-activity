@@ -1,0 +1,42 @@
+# Common
+
+## Log files
+*.err
+*.log
+*.diff
+*.cache
+*.out
+
+## Backup files
+*.bak
+*.tmp
+*.old
+
+## GPG
+secring.*
+
+# Windows
+
+## Folder config file
+[Dd]esktop.ini
+
+# Linux
+
+## usual suffix for text editors backup files
+*~
+
+## temporary files which can be created if a process still has a handle open of a deleted file
+.fuse_hidden*
+
+## .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
+# MacOS
+
+## General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Thumbnails
+._*

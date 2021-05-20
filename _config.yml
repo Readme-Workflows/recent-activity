@@ -1,0 +1,16 @@
+# Name of website and author
+title: Recent Activity workflow
+description: Add your recent activity to your profile readme!
+author: James George, Abhishek Joshi, Puneet Gopinath, Andre
+
+safe: true
+
+#include: [.htaccess]
+#theme: jekyll-theme-modernist
+
+encoding: "utf-8"
+layouts_dir: _layouts
+includes_dir: _includes
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
