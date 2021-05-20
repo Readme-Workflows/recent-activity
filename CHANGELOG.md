@@ -7,11 +7,9 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 ## [v1.4.0]
 > **Released:** `TBA`
 
-### Added features
-- Make `{ID}` point to the exact issue comment for comment actions [[#42]]
-
 ### Changes
 - Split the index.js file into different modules [[#45]]
+- Make `{ID}` point to the exact issue comment for comment actions [[#42]]
 
 [v1.4.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.4.0
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
