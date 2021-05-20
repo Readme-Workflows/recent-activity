@@ -14,7 +14,7 @@ const filterContent = (eventData) => {
       break;
     }
   }
-  console.log(temp_content);
+
   return temp_content;
 };
 
