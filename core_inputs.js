@@ -19,6 +19,8 @@ const DATE_FORMAT = core.getInput("DATE_FORMAT");
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
 
+const urlPrefix = "https://github.com";
+
 module.exports = {
   GH_USERNAME,
   COMMIT_MSG,
@@ -35,4 +37,5 @@ module.exports = {
   DATE_STRING,
   DATE_FORMAT,
   DISABLE_EVENTS,
+  urlPrefix,
 };
