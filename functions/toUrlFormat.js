@@ -1,0 +1,28 @@
+const urlPrefix = "https://github.com";
+
+const toUrlFormat = (item, type) => {
+  let url;
+  if (typeof item === "object") {
+    switch (type.toLowerCase()) {
+      case "issue_open":
+      case "issue_close":
+        url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
+        break;
+      case "comment":
+        url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+        break;
+      case "pr_open":
+      case "pr_close":
+      case "pr_merge":
+        url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+        break;
+      default:
+        tools.exit.failure("Failed while creating the url format.");
+        break;
+    }
+    return url;
+  }
+  return `[${item}](${urlPrefix}/${item})`;
+};
+
+module.exports = toUrlFormat;
