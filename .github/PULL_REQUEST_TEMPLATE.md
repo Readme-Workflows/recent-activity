@@ -37,4 +37,4 @@ Replace this line with a description about the changes you have made in this PR 
 Closes #
 
 <!-- Do not edit anything below this line! -->
-[contributing]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md)
+[contributing]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md
