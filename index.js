@@ -42,7 +42,7 @@ const appendDate = (fullContent) => {
         index > dateStartIdx
     );
 
-    let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+    let timezone = conf.TIMEZONE_OFFSET.replace("GMT", "").split(":");
     let offset;
 
     tz_hours = parseInt(timezone[0].trim());
@@ -60,9 +60,9 @@ const appendDate = (fullContent) => {
     const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
     let finalDate = new Date(utc + offset * 60000);
 
-    finalDateString = DATE_STRING.replace(
+    finalDateString = conf.DATE_STRING.replace(
       "{DATE}",
-      dateFormat(finalDate, DATE_FORMAT)
+      dateFormat(finalDate, conf.DATE_FORMAT)
     );
 
     if (dateEndIdx === -1) {
@@ -98,7 +98,7 @@ const makeCustomUrl = (item, type) => {
     case "issue_close":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        conf.URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -107,7 +107,7 @@ const makeCustomUrl = (item, type) => {
     case "comment":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        conf.URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -118,7 +118,7 @@ const makeCustomUrl = (item, type) => {
     case "pr_merge":
       url =
         `[` +
-        URL_TEXT.replace(
+        conf.URL_TEXT.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
@@ -196,17 +196,17 @@ const commitFile = async () => {
     "41898282+github-actions[bot]@users.noreply.github.com",
   ]);
   await exec("git", ["config", "--global", "user.name", "readme-bot"]);
-  await exec("git", ["add", README_FILE]);
-  await exec("git", ["commit", "-m", COMMIT_MSG]);
+  await exec("git", ["add", conf.README_FILE]);
+  await exec("git", ["commit", "-m", conf.COMMIT_MSG]);
   await exec("git", ["push"]);
 };
 
 const serializers = {};
 
-if (!DISABLE_EVENTS.includes("comments")) {
+if (!conf.DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = (item) => {
     if (item.payload.action === "created") {
-      return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "comment"))
+      return conf.COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "comment"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
         .replace(/{URL}/g, makeCustomUrl(item, "comment"));
     } else {
@@ -218,14 +218,14 @@ if (!DISABLE_EVENTS.includes("comments")) {
   // )}`;
 }
 
-if (!DISABLE_EVENTS.includes("issues")) {
+if (!conf.DISABLE_EVENTS.includes("issues")) {
   serializers.IssuesEvent = (item) => {
     if (item.payload.action === "opened") {
-      return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+      return conf.ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
         .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
     } else if (item.payload.action === "closed") {
-      return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+      return conf.ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
         .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
     }
@@ -240,21 +240,21 @@ if (!DISABLE_EVENTS.includes("issues")) {
   };
 }
 
-if (!DISABLE_EVENTS.includes("pr")) {
+if (!conf.DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = (item) => {
     if (item.payload.action === "opened") {
-      return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+      return conf.PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
     } else if (item.payload.pull_request.merged) {
-      return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+      return conf.PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
     } else if (
       item.payload.action === "closed" &&
       !item.payload.pull_request.merged
     ) {
-      return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+      return conf.PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
         .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
         .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
     } else {
@@ -278,12 +278,12 @@ if (!DISABLE_EVENTS.includes("pr")) {
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
-    tools.log.debug(`Getting activity for ${GH_USERNAME}`);
+    tools.log.debug(`Getting activity for ${conf.GH_USERNAME}`);
     const events = await tools.github.activity.listPublicEventsForUser({
-      username: GH_USERNAME,
+      username: conf.GH_USERNAME,
       per_page: 100,
     });
-    tools.log.debug(`${events.data.length} events found for ${GH_USERNAME}.`);
+    tools.log.debug(`${events.data.length} events found for ${conf.GH_USERNAME}.`);
 
     let content = events.data
       // Filter out any boring activity
@@ -297,7 +297,7 @@ Toolkit.run(
       if (event_string !== "") {
         temp_content.push(event_string);
       }
-      if (temp_content.length == MAX_LINES) {
+      if (temp_content.length == conf.MAX_LINES) {
         break;
       }
     }
@@ -307,16 +307,16 @@ Toolkit.run(
     content = temp_content;
 
     // We only have five lines to work with
-    // .slice(0, MAX_LINES)
+    // .slice(0, conf.MAX_LINES)
     // // Call the serializer to construct a string
     // .map((item) => serializers[item.type](item));
 
     let readmeContent;
 
     try {
-      readmeContent = fs.readFileSync(README_FILE, "utf-8").split("\n");
+      readmeContent = fs.readFileSync(conf.README_FILE, "utf-8").split("\n");
     } catch (err) {
-      return tools.exit.failure(`Couldn't find the file named ${README_FILE}`);
+      return tools.exit.failure(`Couldn't find the file named ${conf.README_FILE}`);
     }
 
     // Find the index corresponding to <!--RECENT_ACTIVITY:start--> comment
@@ -340,8 +340,8 @@ Toolkit.run(
       tools.exit.success("No events found. Leaving readme unchanged.");
     }
 
-    if (content.length < MAX_LINES) {
-      tools.log.info(`Found less than ${MAX_LINES} activities`);
+    if (content.length < conf.MAX_LINES) {
+      tools.log.info(`Found less than ${conf.MAX_LINES} activities`);
     }
 
     if (startIdx !== -1 && endIdx === -1) {
@@ -361,7 +361,7 @@ Toolkit.run(
       readmeContent = appendDate(readmeContent);
 
       // Update README
-      fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+      fs.writeFileSync(conf.README_FILE, readmeContent.join("\n"));
 
       // Commit to the remote repository
       try {
@@ -414,7 +414,7 @@ Toolkit.run(
     readmeContent = appendDate(readmeContent);
 
     // Update README
-    fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+    fs.writeFileSync(conf.README_FILE, readmeContent.join("\n"));
 
     // Commit to the remote repository
     try {
