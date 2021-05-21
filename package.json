@@ -7,7 +7,7 @@
     "github-profile",
     "activity"
   ],
-  "author": "James George, Abhishek Joshi, Puneet Gopinath",
+  "author": "James George, The Readme-Workflows organisation",
   "license": "MIT",
   "scripts": {
     "format:check": "prettier --check **/*.js",
@@ -25,10 +25,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PuneetGopinath/github-activity-readme.git"
+    "url": "git+https://github.com/Readme-Workflows/recent-activity.git"
   },
   "bugs": {
-    "url": "https://github.com/PuneetGopinath/github-activity-readme/issues"
+    "url": "https://github.com/Readme-Workflows/recent-activity/issues"
   },
-  "homepage": "https://github.com/PuneetGopinath/github-activity-readme#readme"
+  "homepage": "https://github.com/Readme-Workflows/recent-activity#readme"
 }
