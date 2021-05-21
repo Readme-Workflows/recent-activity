@@ -4,9 +4,9 @@ const toUrlFormat = require("./functions/toUrlFormat");
 
 const IssueCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "comment"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "comment"));
+    return COMMENTS_ACTIVITY.replace(/{ID}/g, toUrlFormat(item, "issuecomment"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issuecomment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "issuecomment"));
   } else {
     return "";
   }

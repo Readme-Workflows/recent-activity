@@ -18,13 +18,31 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.payload.issue.html_url})`;
       break;
-    case "comment":
+    case "issuecomment":
       url =
         `[` +
         URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "commitcomment":
+      url =
+        `[` +
+        URL_TEXT.replace(/{ID}/g, `#commit`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "prreviewcomment":
+      url =
+        `[` +
+        URL_TEXT.replace(
+          /{ID}/g,
+          `#${item.payload.pull_request.number}`
+        ).replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.comment.html_url})`;
       break;
     case "pr_open":

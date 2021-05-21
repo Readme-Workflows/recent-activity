@@ -13,8 +13,14 @@ const toUrlFormat = (item, type) => {
       case "issue_close":
         url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
         break;
-      case "comment":
+      case "issuecomment":
         url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+        break;
+      case "commitcomment":
+        url = `[commit](${item.payload.comment.html_url})`;
+        break;
+      case "prreviewcomment":
+        url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
         break;
       case "pr_open":
       case "pr_close":

@@ -5,14 +5,19 @@
 
 const { DISABLE_EVENTS } = require("./config");
 
+// Events
 const IssueCommentEvent = require("./events/IssueCommentEvent");
 const IssuesEvent = require("./events/IssuesEvent");
 const PullRequestEvent = require("./events/PullRequestEvent");
+const CommitCommentEvent = require("./events/CommitCommentEvent");
+const PullRequestReviewCommentEvent = require("./events/PullRequestReviewCommentEvent");
 
 const serializers = {};
 
 if (!DISABLE_EVENTS.includes("comments")) {
   serializers.IssueCommentEvent = IssueCommentEvent;
+  serializers.CommitCommentEvent = CommitCommentEvent;
+  serializers.PullRequestReviewCommentEvent = PullRequestReviewCommentEvent;
 }
 
 if (!DISABLE_EVENTS.includes("issues")) {
