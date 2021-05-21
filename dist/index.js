@@ -28,12 +28,15 @@
       const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
       const DATE_STRING = core.getInput("DATE_STRING");
       const DATE_FORMAT = core.getInput("DATE_FORMAT");
+      const CREATE_REPO = core.getInput("CREATE_REPO");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
         .toLowerCase()
         .split(",");
       DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
+
+      const urlPrefix = "https://github.com";
 
       module.exports = {
         GH_USERNAME,
@@ -51,6 +54,8 @@
         DATE_STRING,
         DATE_FORMAT,
         DISABLE_EVENTS,
+        CREATE_REPO,
+        urlPrefix,
       };
 
       /***/
@@ -79,6 +84,31 @@
       };
 
       module.exports = CommitCommentEvent;
+
+      /***/
+    },
+
+    /***/ 7744: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { CREATE_REPO } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const CreateEvent = (item) => {
+        if (item.payload.ref_type === "repository") {
+          return CREATE_REPO.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "createrepo")
+          ).replace(/{URL}/g, makeCustomUrl(item, "createrepo"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = CreateEvent;
 
       /***/
     },
@@ -18802,10 +18832,11 @@
 
       // Events
       const IssueCommentEvent = __nccwpck_require__(454);
-      const IssuesEvent = __nccwpck_require__(1183);
-      const PullRequestEvent = __nccwpck_require__(8089);
       const CommitCommentEvent = __nccwpck_require__(6986);
       const PullRequestReviewCommentEvent = __nccwpck_require__(1552);
+      const IssuesEvent = __nccwpck_require__(1183);
+      const PullRequestEvent = __nccwpck_require__(8089);
+      const CreateEvent = __nccwpck_require__(7744);
 
       const serializers = {};
 
@@ -18822,6 +18853,10 @@
 
       if (!DISABLE_EVENTS.includes("pr")) {
         serializers.PullRequestEvent = PullRequestEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("create_repo")) {
+        serializers.CreateEvent = CreateEvent;
       }
 
       module.exports = serializers;
