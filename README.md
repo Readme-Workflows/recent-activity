@@ -67,6 +67,7 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>./README.md</code></td>
       <td></td>
     </tr>
+    <tr>
       <td>&#8203;</td>
       <td>&#8203;</td>
       <td>&#8203;</td>
@@ -108,6 +109,12 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>🎉 Merged PR {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
+    <tr>
+      <td><code>CREATE_REPO</code></td>
+      <td>Text displayed for creating a new Repository.</td>
+      <td><code>📔 Created new repository {REPO}</code></td>
+      <td><code>{REPO}</code</td>
+    </tr>
     </tr>
       <td>&#8203;</td>
       <td>&#8203;</td>
@@ -116,7 +123,7 @@ The Action currently has the following Settings that you can set through the `wi
     </tr>
     <tr>
       <td><code>DISABLE_EVENTS</code></td>
-      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code> and <code>COMMENTS</code></td>
+      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code>, <code>COMMENTS</code> and <code>CREATE_REPO</code></td>
       <td><i>Empty String</i></td>
       <td></td>
     </tr>
