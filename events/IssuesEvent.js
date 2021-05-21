@@ -1,6 +1,6 @@
-const { ISSUE_OPENED, ISSUE_CLOSED } = require("./config");
-const makeCustomUrl = require("./functions/makeCustomUrl");
-const toUrlFormat = require("./functions/toUrlFormat");
+const { ISSUE_OPENED, ISSUE_CLOSED } = require("../config");
+const makeCustomUrl = require("../functions/makeCustomUrl");
+const toUrlFormat = require("../functions/toUrlFormat");
 
 const IssuesEvent = (item) => {
   if (item.payload.action === "opened") {

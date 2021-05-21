@@ -1,6 +1,6 @@
-const { CREATE_REPO } = require("./config");
-const makeCustomUrl = require("./functions/makeCustomUrl");
-const toUrlFormat = require("./functions/toUrlFormat");
+const { CREATE_REPO } = require("../config");
+const makeCustomUrl = require("../functions/makeCustomUrl");
+const toUrlFormat = require("../functions/toUrlFormat");
 
 const CreateEvent = (item) => {
   if (item.payload.ref_type === "repository") {

@@ -1,6 +1,6 @@
-const { PR_OPENED, PR_MERGED, PR_CLOSED } = require("./config");
-const makeCustomUrl = require("./functions/makeCustomUrl");
-const toUrlFormat = require("./functions/toUrlFormat");
+const { PR_OPENED, PR_MERGED, PR_CLOSED } = require("../config");
+const makeCustomUrl = require("../functions/makeCustomUrl");
+const toUrlFormat = require("../functions/toUrlFormat");
 
 const PullRequestEvent = (item) => {
   if (item.payload.action === "opened") {
