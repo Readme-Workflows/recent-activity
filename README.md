@@ -1,5 +1,7 @@
 # Recent Activity
 
+[![GitHub stars](https://img.shields.io/github/stars/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/network)
 [![GitHub issues](https://img.shields.io/github/issues/Readme-Workflows/recent-activity)](https://github.com/Readme-Workflows/recent-activity/issues)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity)
 ![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code)
