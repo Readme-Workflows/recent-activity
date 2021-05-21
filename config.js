@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
 const core = require("@actions/core");

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2021 The Readme-Workflows organisation
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
 const dateFormat = require("dateformat");
