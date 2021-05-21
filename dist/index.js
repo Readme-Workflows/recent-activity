@@ -56,6 +56,33 @@
       /***/
     },
 
+    /***/ 6986: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const CommitCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "commitcomment")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commitcomment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "commitcomment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = CommitCommentEvent;
+
+      /***/
+    },
+
     /***/ 454: /***/ (
       module,
       __unused_webpack_exports,
@@ -69,10 +96,10 @@
         if (item.payload.action === "created") {
           return COMMENTS_ACTIVITY.replace(
             /{ID}/g,
-            toUrlFormat(item, "comment")
+            toUrlFormat(item, "issuecomment")
           )
-            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
-            .replace(/{URL}/g, makeCustomUrl(item, "comment"));
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issuecomment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issuecomment"));
         } else {
           return "";
         }
@@ -148,6 +175,33 @@
       };
 
       module.exports = PullRequestEvent;
+
+      /***/
+    },
+
+    /***/ 1552: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const PullRequestReviewCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "prreviewcomment")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "prreviewcomment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "prreviewcomment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestReviewCommentEvent;
 
       /***/
     },
@@ -18746,14 +18800,20 @@
 
       const { DISABLE_EVENTS } = __nccwpck_require__(5532);
 
+      // Events
       const IssueCommentEvent = __nccwpck_require__(454);
       const IssuesEvent = __nccwpck_require__(1183);
       const PullRequestEvent = __nccwpck_require__(8089);
+      const CommitCommentEvent = __nccwpck_require__(6986);
+      const PullRequestReviewCommentEvent = __nccwpck_require__(1552);
 
       const serializers = {};
 
       if (!DISABLE_EVENTS.includes("comments")) {
         serializers.IssueCommentEvent = IssueCommentEvent;
+        serializers.CommitCommentEvent = CommitCommentEvent;
+        serializers.PullRequestReviewCommentEvent =
+          PullRequestReviewCommentEvent;
       }
 
       if (!DISABLE_EVENTS.includes("issues")) {
@@ -18976,7 +19036,7 @@
     const { Toolkit } = __nccwpck_require__(7045);
 
     // configuration
-    const config = __nccwpck_require__(5532);
+    const { GH_USERNAME, README_FILE, MAX_LINES } = __nccwpck_require__(5532);
 
     // functions
     const appendDate = __nccwpck_require__(2310);
@@ -18989,13 +19049,13 @@
     Toolkit.run(
       async (tools) => {
         // Get the user's public events
-        tools.log.debug(`Getting activity for ${config.GH_USERNAME}`);
+        tools.log.debug(`Getting activity for ${GH_USERNAME}`);
         const events = await tools.github.activity.listPublicEventsForUser({
-          username: config.GH_USERNAME,
+          username: GH_USERNAME,
           per_page: 100,
         });
         tools.log.debug(
-          `${events.data.length} events found for ${config.GH_USERNAME}.`
+          `${events.data.length} events found for ${GH_USERNAME}.`
         );
 
         let eventData = events.data
@@ -19007,12 +19067,10 @@
         let readmeContent;
 
         try {
-          readmeContent = fs
-            .readFileSync(config.README_FILE, "utf-8")
-            .split("\n");
+          readmeContent = fs.readFileSync(README_FILE, "utf-8").split("\n");
         } catch (err) {
           return tools.exit.failure(
-            `Couldn't find the file named ${config.README_FILE}`
+            `Couldn't find the file named ${README_FILE}`
           );
         }
 
@@ -19037,8 +19095,8 @@
           tools.exit.success("No events found. Leaving readme unchanged.");
         }
 
-        if (content.length < config.MAX_LINES) {
-          tools.log.info(`Found less than ${config.MAX_LINES} activities`);
+        if (content.length < MAX_LINES) {
+          tools.log.info(`Found less than ${MAX_LINES} activities`);
         }
 
         if (startIdx !== -1 && endIdx === -1) {
@@ -19058,7 +19116,7 @@
           readmeContent = appendDate(readmeContent);
 
           // Update README
-          fs.writeFileSync(config.README_FILE, readmeContent.join("\n"));
+          fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
           // Commit to the remote repository
           try {
@@ -19111,7 +19169,7 @@
         readmeContent = appendDate(readmeContent);
 
         // Update README
-        fs.writeFileSync(config.README_FILE, readmeContent.join("\n"));
+        fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
         // Commit to the remote repository
         try {
