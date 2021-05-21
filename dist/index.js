@@ -516,7 +516,7 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const { urlPrefix } = __nccwpck_require__(6938);
+      const { urlPrefix } = __nccwpck_require__(5532);
 
       const toUrlFormat = (item, type) => {
         let url;
@@ -18989,12 +18989,6 @@
       }
 
       module.exports = serializers;
-
-      /***/
-    },
-
-    /***/ 6938: /***/ (module) => {
-      module.exports = eval("require")("./config");
 
       /***/
     },
