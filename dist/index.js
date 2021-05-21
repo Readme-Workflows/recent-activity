@@ -56,6 +56,102 @@
       /***/
     },
 
+    /***/ 454: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const IssueCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "comment")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "comment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = IssueCommentEvent;
+
+      /***/
+    },
+
+    /***/ 1183: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { ISSUE_OPENED, ISSUE_CLOSED } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const IssuesEvent = (item) => {
+        if (item.payload.action === "opened") {
+          return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
+        } else if (item.payload.action === "closed") {
+          return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
+        }
+        // else {
+        //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
+        //     item
+        //   )} in ${toUrlFormat(item.repo.name)}`;
+        // }
+        else {
+          return "";
+        }
+      };
+
+      module.exports = IssuesEvent;
+
+      /***/
+    },
+
+    /***/ 8089: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { PR_OPENED, PR_MERGED, PR_CLOSED } = __nccwpck_require__(6938);
+      const makeCustomUrl = __nccwpck_require__(588);
+      const toUrlFormat = __nccwpck_require__(9567);
+
+      const PullRequestEvent = (item) => {
+        if (item.payload.action === "opened") {
+          return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
+        } else if (item.payload.pull_request.merged) {
+          return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
+        } else if (
+          item.payload.action === "closed" &&
+          !item.payload.pull_request.merged
+        ) {
+          return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestEvent;
+
+      /***/
+    },
+
     /***/ 2310: /***/ (
       module,
       __unused_webpack_exports,
@@ -241,101 +337,6 @@
       };
 
       module.exports = filterContent;
-
-      /***/
-    },
-
-    /***/ 9397: /***/ (
-      module,
-      __unused_webpack_exports,
-      __nccwpck_require__
-    ) => {
-      /**
-       * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
-       */
-
-      const { URL_TEXT } = __nccwpck_require__(5532);
-
-      const makeCustomUrl = (item, type) => {
-        let url;
-        switch (type.toLowerCase()) {
-          case "issue_open":
-          case "issue_close":
-            url =
-              `[` +
-              URL_TEXT.replace(
-                /{ID}/g,
-                `#${item.payload.issue.number}`
-              ).replace(/{REPO}/g, item.repo.name) +
-              `](${item.payload.issue.html_url})`;
-            break;
-          case "comment":
-            url =
-              `[` +
-              URL_TEXT.replace(
-                /{ID}/g,
-                `#${item.payload.issue.number}`
-              ).replace(/{REPO}/g, item.repo.name) +
-              `](${item.payload.comment.html_url})`;
-            break;
-          case "pr_open":
-          case "pr_close":
-          case "pr_merge":
-            url =
-              `[` +
-              URL_TEXT.replace(
-                /{ID}/g,
-                `#${item.payload.pull_request.number}`
-              ).replace(/{REPO}/g, item.repo.name) +
-              `](${item.payload.pull_request.html_url})`;
-            break;
-          default:
-            tools.exit.failure("Failed while creating the url string.");
-            break;
-        }
-        return url;
-      };
-
-      module.exports = makeCustomUrl;
-
-      /***/
-    },
-
-    /***/ 394: /***/ (module) => {
-      /**
-       * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
-       */
-
-      const urlPrefix = "https://github.com";
-
-      const toUrlFormat = (item, type) => {
-        let url;
-        if (typeof item === "object") {
-          switch (type.toLowerCase()) {
-            case "issue_open":
-            case "issue_close":
-              url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
-              break;
-            case "comment":
-              url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
-              break;
-            case "pr_open":
-            case "pr_close":
-            case "pr_merge":
-              url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
-              break;
-            default:
-              tools.exit.failure("Failed while creating the url format.");
-              break;
-          }
-          return url;
-        }
-        return `[${item}](${urlPrefix}/${item})`;
-      };
-
-      module.exports = toUrlFormat;
 
       /***/
     },
@@ -18743,91 +18744,45 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const config = __nccwpck_require__(5532);
-      const makeCustomUrl = __nccwpck_require__(9397);
-      const toUrlFormat = __nccwpck_require__(394);
+      const { DISABLE_EVENTS } = __nccwpck_require__(5532);
+
+      const IssueCommentEvent = __nccwpck_require__(454);
+      const IssuesEvent = __nccwpck_require__(1183);
+      const PullRequestEvent = __nccwpck_require__(8089);
 
       const serializers = {};
 
-      if (!config.DISABLE_EVENTS.includes("comments")) {
-        serializers.IssueCommentEvent = (item) => {
-          if (item.payload.action === "created") {
-            return config.COMMENTS_ACTIVITY.replace(
-              /{ID}/g,
-              toUrlFormat(item, "comment")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
-              .replace(/{URL}/g, makeCustomUrl(item, "comment"));
-          } else {
-            return "";
-          }
-        };
-        // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-        //   item.repo.name
-        // )}`;
+      if (!DISABLE_EVENTS.includes("comments")) {
+        serializers.IssueCommentEvent = IssueCommentEvent;
       }
 
-      if (!config.DISABLE_EVENTS.includes("issues")) {
-        serializers.IssuesEvent = (item) => {
-          if (item.payload.action === "opened") {
-            return config.ISSUE_OPENED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "issue_open")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
-              .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
-          } else if (item.payload.action === "closed") {
-            return config.ISSUE_CLOSED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "issue_close")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
-              .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-          }
-          // else {
-          //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-          //     item
-          //   )} in ${toUrlFormat(item.repo.name)}`;
-          // }
-          else {
-            return "";
-          }
-        };
+      if (!DISABLE_EVENTS.includes("issues")) {
+        serializers.IssuesEvent = IssuesEvent;
       }
 
-      if (!config.DISABLE_EVENTS.includes("pr")) {
-        serializers.PullRequestEvent = (item) => {
-          if (item.payload.action === "opened") {
-            return config.PR_OPENED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_open")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
-          } else if (item.payload.pull_request.merged) {
-            return config.PR_MERGED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_merge")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
-          } else if (
-            item.payload.action === "closed" &&
-            !item.payload.pull_request.merged
-          ) {
-            return config.PR_CLOSED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_close")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
-          } else {
-            return "";
-          }
-        };
+      if (!DISABLE_EVENTS.includes("pr")) {
+        serializers.PullRequestEvent = PullRequestEvent;
       }
 
       module.exports = serializers;
+
+      /***/
+    },
+
+    /***/ 6938: /***/ (module) => {
+      module.exports = eval("require")("./config");
+
+      /***/
+    },
+
+    /***/ 588: /***/ (module) => {
+      module.exports = eval("require")("./functions/makeCustomUrl");
+
+      /***/
+    },
+
+    /***/ 9567: /***/ (module) => {
+      module.exports = eval("require")("./functions/toUrlFormat");
 
       /***/
     },
