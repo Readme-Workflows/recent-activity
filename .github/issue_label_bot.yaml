@@ -1,0 +1,4 @@
+label-alias:
+  bug: 'Type: bug'
+  feature_request: 'Type: enhancement'
+  question: 'Type: question'
