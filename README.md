@@ -6,7 +6,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/Readme-Workflows/recent-activity)
 ![Lines of code](https://img.shields.io/tokei/lines/github/Readme-Workflows/recent-activity?label=total%20lines%20of%20code)
 [![Discord Chat](https://img.shields.io/discord/826082157259915264?color=%237289da&label=discord)](https://discord.gg/BxNXeanT8k)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://github.com/Readme-Workflows/recent-activity/blob/main/CODE_OF_CONDUCT.md)
 
 This GitHub Action is a Fork of the original [GitHub Activity Readme](https://github.com/jamesgeorge007/github-activity-readme) Action by [jamesgeorge007](https://github.com/jamesgeorge007).  
 Its our goal is to improve the original GitHub Action while also providing new features for the users.
