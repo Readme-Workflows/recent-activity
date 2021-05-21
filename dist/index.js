@@ -66,9 +66,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const CommitCommentEvent = (item) => {
         if (item.payload.action === "created") {
@@ -93,9 +93,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { CREATE_REPO } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { CREATE_REPO } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const CreateEvent = (item) => {
         if (item.payload.ref_type === "repository") {
@@ -118,9 +118,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const IssueCommentEvent = (item) => {
         if (item.payload.action === "created") {
@@ -145,9 +145,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { ISSUE_OPENED, ISSUE_CLOSED } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { ISSUE_OPENED, ISSUE_CLOSED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const IssuesEvent = (item) => {
         if (item.payload.action === "opened") {
@@ -179,9 +179,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { PR_OPENED, PR_MERGED, PR_CLOSED } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { PR_OPENED, PR_MERGED, PR_CLOSED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const PullRequestEvent = (item) => {
         if (item.payload.action === "opened") {
@@ -214,9 +214,9 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(6938);
-      const makeCustomUrl = __nccwpck_require__(588);
-      const toUrlFormat = __nccwpck_require__(9567);
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
 
       const PullRequestReviewCommentEvent = (item) => {
         if (item.payload.action === "created") {
@@ -421,6 +421,135 @@
       };
 
       module.exports = filterContent;
+
+      /***/
+    },
+
+    /***/ 9397: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
+      const { URL_TEXT, urlPrefix } = __nccwpck_require__(5532);
+
+      const makeCustomUrl = (item, type) => {
+        let url;
+        switch (type.toLowerCase()) {
+          case "issue_open":
+          case "issue_close":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.issue.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.issue.html_url})`;
+            break;
+          case "issuecomment":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.issue.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.comment.html_url})`;
+            break;
+          case "commitcomment":
+            url =
+              `[` +
+              URL_TEXT.replace(/{ID}/g, `#commit`).replace(
+                /{REPO}/g,
+                item.repo.name
+              ) +
+              `](${item.payload.comment.html_url})`;
+            break;
+          case "prreviewcomment":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.pull_request.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.comment.html_url})`;
+            break;
+          case "pr_open":
+          case "pr_close":
+          case "pr_merge":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.pull_request.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.pull_request.html_url})`;
+            break;
+          case "createrepo":
+            url =
+              `[` +
+              URL_TEXT.replace(/{REPO}/g, item.repo.name) +
+              `](${urlPrefix}/${item.repo.name})`;
+            break;
+          default:
+            tools.exit.failure("Failed while creating the url string.");
+            break;
+        }
+        return url;
+      };
+
+      module.exports = makeCustomUrl;
+
+      /***/
+    },
+
+    /***/ 394: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
+      const { urlPrefix } = __nccwpck_require__(6938);
+
+      const toUrlFormat = (item, type) => {
+        let url;
+        if (typeof item === "object") {
+          switch (type.toLowerCase()) {
+            case "issue_open":
+            case "issue_close":
+              url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
+              break;
+            case "issuecomment":
+              url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+              break;
+            case "commitcomment":
+              url = `[commit](${item.payload.comment.html_url})`;
+              break;
+            case "prreviewcomment":
+              url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
+              break;
+            case "pr_open":
+            case "pr_close":
+            case "pr_merge":
+              url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+              break;
+            default:
+              tools.exit.failure("Failed while creating the url format.");
+              break;
+          }
+          return url;
+        }
+        return `[${item}](${urlPrefix}/${item})`;
+      };
+
+      module.exports = toUrlFormat;
 
       /***/
     },
@@ -18866,18 +18995,6 @@
 
     /***/ 6938: /***/ (module) => {
       module.exports = eval("require")("./config");
-
-      /***/
-    },
-
-    /***/ 588: /***/ (module) => {
-      module.exports = eval("require")("./functions/makeCustomUrl");
-
-      /***/
-    },
-
-    /***/ 9567: /***/ (module) => {
-      module.exports = eval("require")("./functions/toUrlFormat");
 
       /***/
     },
