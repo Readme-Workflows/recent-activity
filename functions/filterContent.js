@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation
+ */
+
 const serializers = require("../serializers");
 const { MAX_LINES } = require("../config");
 
