@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { urlPrefix } = require("./config");
+const { urlPrefix } = require("../config");
 
 const toUrlFormat = (item, type) => {
   let url;
