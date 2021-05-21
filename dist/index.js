@@ -210,6 +210,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const serializers = __nccwpck_require__(102);
       const { MAX_LINES } = __nccwpck_require__(5532);
 
