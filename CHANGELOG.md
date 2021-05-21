@@ -7,6 +7,10 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 ## [v1.4.0]
 > **Released:** `TBA`
 
+### Added features
+- The Action now allows to list Repositories created and Pull request comments or reviews given [[#50
+- `CREATE_REPO`
+
 ### Changes
 - Split the index.js file into different modules [[#45]]
 - Make `{ID}` point to the exact issue comment for comment actions [[#42]]
