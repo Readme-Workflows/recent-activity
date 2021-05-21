@@ -22,7 +22,7 @@ By participating, you are expected to uphold this code. Please report unacceptab
 ## General Support
 
 Please read the [SUPPORT.md file][support] for how to get support with Recent Activity.  
-Do not use issues to ask questions. Issues are reserved for Bug reports and Feature requests. Any issue for asking question will be changed into a [Discussion].
+Do not use issues to ask questions. Issues are reserved for Bug reports and Feature requests and may be turned into a [Discussion] if used to ask questions.
 
 ## Using the Issue tracker
 
