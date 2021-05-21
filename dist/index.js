@@ -18709,6 +18709,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const config = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
