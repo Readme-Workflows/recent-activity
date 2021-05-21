@@ -7,10 +7,11 @@ const { DISABLE_EVENTS } = require("./config");
 
 // Events
 const IssueCommentEvent = require("./events/IssueCommentEvent");
-const IssuesEvent = require("./events/IssuesEvent");
-const PullRequestEvent = require("./events/PullRequestEvent");
 const CommitCommentEvent = require("./events/CommitCommentEvent");
 const PullRequestReviewCommentEvent = require("./events/PullRequestReviewCommentEvent");
+const IssuesEvent = require("./events/IssuesEvent");
+const PullRequestEvent = require("./events/PullRequestEvent");
+const CreateEvent = require("./events/CreateEvent");
 
 const serializers = {};
 
@@ -26,6 +27,10 @@ if (!DISABLE_EVENTS.includes("issues")) {
 
 if (!DISABLE_EVENTS.includes("pr")) {
   serializers.PullRequestEvent = PullRequestEvent;
+}
+
+if (!DISABLE_EVENTS.includes("create_repo")) {
+  serializers.CreateEvent = CreateEvent;
 }
 
 module.exports = serializers;

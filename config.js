@@ -20,9 +20,12 @@ const URL_TEXT = core.getInput("URL_TEXT");
 const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
 const DATE_STRING = core.getInput("DATE_STRING");
 const DATE_FORMAT = core.getInput("DATE_FORMAT");
+const CREATE_REPO = core.getInput("CREATE_REPO");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
+
+const urlPrefix = "https://github.com";
 
 module.exports = {
   GH_USERNAME,
@@ -40,4 +43,6 @@ module.exports = {
   DATE_STRING,
   DATE_FORMAT,
   DISABLE_EVENTS,
+  CREATE_REPO,
+  urlPrefix,
 };

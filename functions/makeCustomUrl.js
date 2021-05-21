@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { URL_TEXT } = require("../config");
+const { URL_TEXT, urlPrefix } = require("../config");
 
 const makeCustomUrl = (item, type) => {
   let url;
@@ -55,6 +55,12 @@ const makeCustomUrl = (item, type) => {
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.pull_request.html_url})`;
+      break;
+    case "createrepo":
+      url =
+        `[` +
+        URL_TEXT.replace(/{REPO}/g, item.repo.name) +
+        `](${urlPrefix}/${item.repo.name})`;
       break;
     default:
       tools.exit.failure("Failed while creating the url string.");
