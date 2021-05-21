@@ -61,6 +61,10 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const dateFormat = __nccwpck_require__(1512);
 
       const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } =
