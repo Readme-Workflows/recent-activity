@@ -203,6 +203,7 @@ The following placeholders may be used in the aforementioned settings, if the `S
 
 - The original project was inspired by [JasonEtco/activity-box](https://github.com/JasonEtco/activity-box)
 - Puneet and Abhishek wanted to add a new feature, the original project was no longer maintained, so Puneet created a fork and Abhishek supported him.
+- Andre joined to support us in documentation
 
 ## Examples
 
@@ -232,13 +233,21 @@ Thanks to all contributors again!
 
 ## Roadmap
 
-Visit [our Roadmap](https://github.com/Readme-Workflows/recent-activity/projects/1) for planned and upcoming features.
+Visit our [Roadmap] for planned and upcoming features.
 
 ## Support us
 
 Do you like this project?
-Why don't show your support by staring it and joining all the [other stargazers](https://github.com/Readme-Workflows/recent-activity/stargazers)?
+Why don't show your support by staring it and joining all the other [stargazers]?
+
+## Contributing
+
+You can find the contributing guidelines [here](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md)
 
 ## News
 
 See messages in #news channel in our discord server, [here is the invite](https://discord.gg/aR6TcVzpbF)
+
+<!-- Links -->
+[Roadmap]: https://github.com/Readme-Workflows/recent-activity/projects/1
+[stargazers]: https://github.com/Readme-Workflows/recent-activity/stargazers
