@@ -134,6 +134,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const { README_FILE, COMMIT_MSG } = __nccwpck_require__(5532);
 
       const exec = __nccwpck_require__(4058);
