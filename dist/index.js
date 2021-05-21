@@ -8,7 +8,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const core = __nccwpck_require__(2186);
@@ -62,7 +62,7 @@
       __nccwpck_require__
     ) => {
       /**
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const dateFormat = __nccwpck_require__(1512);
@@ -136,7 +136,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const { README_FILE, COMMIT_MSG } = __nccwpck_require__(5532);
@@ -174,7 +174,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const { spawn } = __nccwpck_require__(3129);
@@ -217,7 +217,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const serializers = __nccwpck_require__(102);
@@ -252,7 +252,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const { URL_TEXT } = __nccwpck_require__(5532);
@@ -305,7 +305,7 @@
     /***/ 394: /***/ (module) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const urlPrefix = "https://github.com";
@@ -18740,7 +18740,7 @@
     ) => {
       /**
        * Copyright (c) 2020 James George
-       * Copyright (c) 2021 The Readme-Workflows organisation
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
       const config = __nccwpck_require__(5532);
@@ -19014,7 +19014,7 @@
   (() => {
     /**
      * Copyright (c) 2020 James George
-     * Copyright (c) 2021 The Readme-Workflows organisation
+     * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
      */
 
     const fs = __nccwpck_require__(5747);
