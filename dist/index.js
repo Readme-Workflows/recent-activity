@@ -6,6 +6,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const core = __nccwpck_require__(2186);
 
       // Get config inputs
