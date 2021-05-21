@@ -6,6 +6,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const core = __nccwpck_require__(2186);
 
       // Get config inputs
@@ -56,6 +61,10 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const dateFormat = __nccwpck_require__(1512);
 
       const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } =
@@ -125,6 +134,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const { README_FILE, COMMIT_MSG } = __nccwpck_require__(5532);
 
       const exec = __nccwpck_require__(4058);
@@ -158,6 +172,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const { spawn } = __nccwpck_require__(3129);
 
       /**
@@ -196,6 +215,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const serializers = __nccwpck_require__(102);
       const { MAX_LINES } = __nccwpck_require__(5532);
 
@@ -226,6 +250,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const { URL_TEXT } = __nccwpck_require__(5532);
 
       const makeCustomUrl = (item, type) => {
@@ -274,6 +303,11 @@
     },
 
     /***/ 394: /***/ (module) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const urlPrefix = "https://github.com";
 
       const toUrlFormat = (item, type) => {
@@ -18704,6 +18738,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+       */
+
       const config = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
@@ -18975,7 +19014,7 @@
   (() => {
     /**
      * Copyright (c) 2020 James George
-     * Copyright (c) 2021 Abhishek Joshi and Puneet Gopinath
+     * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
      */
 
     const fs = __nccwpck_require__(5747);

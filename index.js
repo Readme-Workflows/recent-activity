@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2020 James George
- * Copyright (c) 2021 Abhishek Joshi and Puneet Gopinath
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
 const fs = require("fs");

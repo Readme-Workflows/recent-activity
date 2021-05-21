@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
 const dateFormat = require("dateformat");
 
 const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } = require("../config");
