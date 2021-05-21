@@ -172,6 +172,11 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const { spawn } = __nccwpck_require__(3129);
 
       /**
@@ -298,6 +303,11 @@
     },
 
     /***/ 394: /***/ (module) => {
+      /**
+       * Copyright (c) 2020 James George
+       * Copyright (c) 2021 The Readme-Workflows organisation
+       */
+
       const urlPrefix = "https://github.com";
 
       const toUrlFormat = (item, type) => {
