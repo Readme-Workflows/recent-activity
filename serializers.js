@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation
+ */
+
 const config = require("./config");
 const makeCustomUrl = require("./functions/makeCustomUrl");
 const toUrlFormat = require("./functions/toUrlFormat");
