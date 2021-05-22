@@ -31,6 +31,7 @@
       const CREATE_REPO = core.getInput("CREATE_REPO");
       const FORK_REPO = core.getInput("FORK_REPO");
       const WIKI_CREATE = core.getInput("WIKI_CREATE");
+      const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -59,6 +60,7 @@
         CREATE_REPO,
         FORK_REPO,
         WIKI_CREATE,
+        ADDED_MEMBER,
         urlPrefix,
       };
 
@@ -222,6 +224,31 @@
       };
 
       module.exports = IssuesEvent;
+
+      /***/
+    },
+
+    /***/ 466: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { ADDED_MEMBER } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const MemberEvent = (item) => {
+        if (item.payload.action === "added") {
+          return ADDED_MEMBER.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "member")
+          ).replace(/{URL}/g, makeCustomUrl(item, "member"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = MemberEvent;
 
       /***/
     },
@@ -569,6 +596,12 @@
                 item.repo_name
               ) +
               `](${item.html_url})`;
+            break;
+          case "member":
+            url =
+              `[` +
+              URL_TEXT.replace(/{REPO}/g, item.repo_name) +
+              `](${urlPrefix}/${item.repo.name})`;
             break;
           default:
             tools.exit.failure("Failed while creating the url string.");
@@ -19050,6 +19083,7 @@
       const CreateEvent = __nccwpck_require__(7744);
       const ForkEvent = __nccwpck_require__(9634);
       const GollumEvent = __nccwpck_require__(7021);
+      const MemberEvent = __nccwpck_require__(466);
 
       const serializers = {};
 
@@ -19078,6 +19112,10 @@
 
       if (!DISABLE_EVENTS.includes("wiki")) {
         serializers.GollumEvent = GollumEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("member")) {
+        serializers.MemberEvent = MemberEvent;
       }
 
       module.exports = serializers;
