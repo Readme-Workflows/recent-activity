@@ -26,9 +26,9 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 - Make `{ID}` point to the exact issue comment for comment actions [[#42]]
 
 [v1.4.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.4.0
-[#50]: https://github.com/Readme-Workflows/recent-activity/pull/50
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
 [#45]: https://github.com/Readme-Workflows/recent-activity/pull/45
+[#50]: https://github.com/Readme-Workflows/recent-activity/pull/50
 
 ## [v1.3.0]
 > **Released:** `17.05.2021`
