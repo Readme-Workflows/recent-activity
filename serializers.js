@@ -17,6 +17,7 @@ const GollumEvent = require("./events/GollumEvent");
 const MemberEvent = require("./events/MemberEvent");
 const PullRequestReviewEvent = require("./events/PullRequestReviewEvent");
 const ReleaseEvent = require("./events/ReleaseEvent");
+const WatchEvent = require("./events/WatchEvent");
 
 const serializers = {};
 
@@ -54,8 +55,12 @@ if (!DISABLE_EVENTS.includes("review")) {
   serializers.PullRequestReviewEvent = PullRequestReviewEvent;
 }
 
-if (!DISABLE_EVENTS.includes("review")) {
+if (!DISABLE_EVENTS.includes("release")) {
   serializers.ReleaseEvent = ReleaseEvent;
+}
+
+if (!DISABLE_EVENTS.includes("star")) {
+  serializers.WatchEvent = WatchEvent;
 }
 
 module.exports = serializers;

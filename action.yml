@@ -98,6 +98,12 @@ inputs:
     default: "✌️ Released {ID} in {REPO}"
     required: false
 
+  # STAR
+  STAR:
+    description: "How the 'starred' activity should be printed."
+    default: "⭐ Starred {REPO}"
+    required: false
+
   # DATE
   TIMEZONE_OFFSET:
     description: "Timezone in which time is to be displayed"

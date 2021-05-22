@@ -66,6 +66,8 @@ const makeCustomUrl = (item, type) => {
         `](${item.payload.review.html_url})`;
       break;
     case "create_repo":
+    case "member":
+    case "star":
       url =
         `[` +
         URL_TEXT.replace(/{REPO}/g, item.repo.name) +
@@ -74,7 +76,7 @@ const makeCustomUrl = (item, type) => {
     case "fork":
       url =
         `[` +
-        URL_TEXT.replace(/{FORK}/g, `${item.payload.forkee.full_name}`).replace(
+        URL_TEXT.replace(/{ID}/g, `${item.payload.forkee.full_name}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -83,17 +85,11 @@ const makeCustomUrl = (item, type) => {
     case "wiki":
       url =
         `[` +
-        URL_TEXT.replace(/{WIKI}/g, `${item.page_name}`).replace(
+        URL_TEXT.replace(/{ID}/g, `${item.page_name}`).replace(
           /{REPO}/g,
           item.repo_name
         ) +
         `](${item.html_url})`;
-      break;
-    case "member":
-      url =
-        `[` +
-        URL_TEXT.replace(/{REPO}/g, item.repo_name) +
-        `](${urlPrefix}/${item.repo.name})`;
       break;
     case "release":
       url =

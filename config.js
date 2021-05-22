@@ -27,6 +27,7 @@ const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
 const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
 const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
 const RELEASE = core.getInput("RELEASE");
+const STAR = core.getInput("STAR");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -56,5 +57,6 @@ module.exports = {
   REVIEW_APPROVED,
   CHANGES_REQUESTED,
   RELEASE,
+  STAR,
   urlPrefix,
 };
