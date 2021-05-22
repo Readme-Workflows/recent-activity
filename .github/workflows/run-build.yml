@@ -5,6 +5,7 @@ on:
     paths:
       - "**.js"
       - "package.json"
+  branches: [ main ]
   workflow_dispatch:
 
 jobs:
