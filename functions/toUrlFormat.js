@@ -27,6 +27,9 @@ const toUrlFormat = (item, type) => {
       case "pr_merge":
         url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
         break;
+      case "pr_review":
+        url = `[#${item.payload.pull_request.number}](${item.payload.review.html_url})`;
+        break;
       case "fork":
         url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
         break;

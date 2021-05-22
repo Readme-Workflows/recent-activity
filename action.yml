@@ -82,6 +82,16 @@ inputs:
     default: "🤝 Became collaborator on {REPO}"
     required: false
 
+  # PR REVIEW
+  REVIEW_APPROVED:
+    description: "How the 'review approved' activity should be printed."
+    default: "👍 Approved {ID} in {REPO}"
+    required: false
+  CHANGES_REQUESTED:
+    description: "How the 'changes requested' activity should be printed."
+    default: "🔴 Requested changes in {ID} in {REPO}"
+    required: false
+
   # DATE
   TIMEZONE_OFFSET:
     description: "Timezone in which time is to be displayed"

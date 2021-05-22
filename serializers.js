@@ -15,6 +15,7 @@ const CreateEvent = require("./events/CreateEvent");
 const ForkEvent = require("./events/ForkEvent");
 const GollumEvent = require("./events/GollumEvent");
 const MemberEvent = require("./events/MemberEvent");
+const PullRequestReviewEvent = require("./events/PullRequestReviewEvent");
 
 const serializers = {};
 
@@ -46,6 +47,10 @@ if (!DISABLE_EVENTS.includes("wiki")) {
 
 if (!DISABLE_EVENTS.includes("member")) {
   serializers.MemberEvent = MemberEvent;
+}
+
+if (!DISABLE_EVENTS.includes("review")) {
+  serializers.PullRequestReviewEvent = PullRequestReviewEvent;
 }
 
 module.exports = serializers;

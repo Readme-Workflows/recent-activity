@@ -56,6 +56,15 @@ const makeCustomUrl = (item, type) => {
         ).replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.pull_request.html_url})`;
       break;
+    case "pr_review":
+      url =
+        `[` +
+        URL_TEXT.replace(
+          /{ID}/g,
+          `#${item.payload.pull_request.number}`
+        ).replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.review.html_url})`;
+      break;
     case "create_repo":
       url =
         `[` +
