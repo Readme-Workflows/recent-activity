@@ -73,7 +73,7 @@ inputs:
   # WIKI
   WIKI_CREATE:
     description: "How the 'create wiki' activity should be printed."
-    default: "📖 Created new wiki {WIKI} in {REPO}"
+    default: "📖 Created new wiki page {WIKI} in {REPO}"
     required: false
 
   # DATE
