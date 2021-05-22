@@ -8,8 +8,18 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 > **Released:** `TBA`
 
 ### Added features
-- The Action now allows to list repositories created and pull request reviews (including pr review comment) [[#50]]
-  - `CREATE_REPO`
+- New Action types added [[#50]]
+  - `CREATE_REPO` - When creating a new Repository
+  - `FORK_REPO` - When forking a Repository (Uses new `{FORK}` Placeholder)
+  - `WIKI_CREATE` - When creating a new Wiki page (Uses new `{WIKI}` Placeholder)
+  - `ADDED_MEMBER` - When adding a new Collaborator to a Repository
+  - `REVIEW_APPROVED` - When approving a Pull request
+  - `CHANGES_REQUESTED` - When requesting changes in a Pull request
+  - `RELEASE` - When publishing a new Release
+  - `STAR` - When staring a Repository
+- New Placeholder `{FORK}` for forked repository [[#50]]
+- New Placeholder `{WIKI}` for new Wiki pages [[#50]]
+- `COMMENT` now includes Commit and Pull request Comments (Not Change requests or approvals) [[#50]]
 
 ### Changes
 - Split the index.js file into different modules [[#45]]
