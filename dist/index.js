@@ -46,6 +46,16 @@ let conf = {
   ...userVals,
 };
 
+let disabled = [];
+conf.disable_events
+  .toLowerCase()
+  .split(",")
+  .forEach((item) => {
+    disabled.push(item.trim());
+  });
+
+conf.disable_events = disabled;
+
 const urlPrefix = "https://github.com";
 
 module.exports = {
@@ -65,10 +75,8 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const CommitCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity.replace(
-      /{ID}/g,
-      toUrlFormat(item, "commit_comment")
-    )
+    return comments_activity
+      .replace(/{ID}/g, toUrlFormat(item, "commit_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
   } else {
@@ -90,10 +98,9 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const CreateEvent = (item) => {
   if (item.payload.ref_type === "repository") {
-    return create_repo.replace(
-      /{REPO}/g,
-      toUrlFormat(item.repo.name, "create_repo")
-    ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
+    return create_repo
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "create_repo"))
+      .replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
   } else {
     return "";
   }
@@ -112,7 +119,8 @@ const makeCustomUrl = __nccwpck_require__(9397);
 const toUrlFormat = __nccwpck_require__(394);
 
 const ForkEvent = (item) => {
-  return fork_repo.replace(/{FORK}/g, toUrlFormat(item, "fork"))
+  return fork_repo
+    .replace(/{FORK}/g, toUrlFormat(item, "fork"))
     .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
     .replace(/{URL}/g, makeCustomUrl(item, "fork"));
 };
@@ -135,7 +143,8 @@ const GollumEvent = (item) => {
     if (page.action === "created") {
       page.repo_name = item.repo.name;
       finalArray.push(
-        wiki_create.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+        wiki_create
+          .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
           .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
           .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
       );
@@ -163,10 +172,8 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const IssueCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity.replace(
-      /{ID}/g,
-      toUrlFormat(item, "issue_comment")
-    )
+    return comments_activity
+      .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
   } else {
@@ -188,11 +195,13 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const IssuesEvent = (item) => {
   if (item.payload.action === "opened") {
-    return issue_opened.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+    return issue_opened
+      .replace(/{ID}/g, toUrlFormat(item, "issue_open"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
       .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
   } else if (item.payload.action === "closed") {
-    return issue_closed.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+    return issue_closed
+      .replace(/{ID}/g, toUrlFormat(item, "issue_close"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
       .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
   } else {
@@ -214,10 +223,9 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const MemberEvent = (item) => {
   if (item.payload.action === "added") {
-    return added_member.replace(
-      /{REPO}/g,
-      toUrlFormat(item.repo.name, "member")
-    ).replace(/{URL}/g, makeCustomUrl(item, "member"));
+    return added_member
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "member"))
+      .replace(/{URL}/g, makeCustomUrl(item, "member"));
   } else {
     return "";
   }
@@ -237,18 +245,21 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const PullRequestEvent = (item) => {
   if (item.payload.action === "opened") {
-    return pr_opened.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+    return pr_opened
+      .replace(/{ID}/g, toUrlFormat(item, "pr_open"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
   } else if (item.payload.pull_request.merged) {
-    return pr_merged.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+    return pr_merged
+      .replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
   } else if (
     item.payload.action === "closed" &&
     !item.payload.pull_request.merged
   ) {
-    return pr_closed.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+    return pr_closed
+      .replace(/{ID}/g, toUrlFormat(item, "pr_close"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
   } else {
@@ -270,10 +281,8 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const PullRequestReviewCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity.replace(
-      /{ID}/g,
-      toUrlFormat(item, "pr_review_comment")
-    )
+    return comments_activity
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
   } else {
@@ -298,14 +307,16 @@ const PullRequestReviewEvent = (item) => {
     item.payload.action === "created" &&
     item.payload.review.state == "approved"
   ) {
-    return review_approved.replace(/{ID}/g, toUrlFormat(item, "pr_review"))
+    return review_approved
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
   } else if (
     item.payload.action === "created" &&
     item.payload.review.state == "changes_requested"
   ) {
-    return changes_requested.replace(/{ID}/g, toUrlFormat(item, "pr_review"))
+    return changes_requested
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
   } else {
@@ -327,7 +338,8 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const ReleaseEvent = (item) => {
   if (item.payload.action === "published") {
-    return new_release.replace(/{ID}/g, toUrlFormat(item, "release"))
+    return new_release
+      .replace(/{ID}/g, toUrlFormat(item, "release"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
       .replace(/{URL}/g, makeCustomUrl(item, "release"));
   } else {
@@ -349,10 +361,9 @@ const toUrlFormat = __nccwpck_require__(394);
 
 const WatchEvent = (item) => {
   if (item.payload.action === "started") {
-    return new_star.replace(/{REPO}/g, toUrlFormat(item.repo.name, "star")).replace(
-      /{URL}/g,
-      makeCustomUrl(item, "star")
-    );
+    return new_star
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "star"))
+      .replace(/{URL}/g, makeCustomUrl(item, "star"));
   } else {
     return "";
   }
@@ -386,23 +397,29 @@ const appendDate = (fullContent) => {
         index > dateStartIdx
     );
 
-    let timezone = timezone.replace("GMT", "").split(":");
     let offset;
+    let finalDate;
 
-    let tz_hours = parseInt(timezone[0].trim());
-
-    if (timezone.length > 1) {
-      offset = tz_hours * 60 + parseInt(timezone[1].trim());
+    if (timezone.split("/").length === 2) {
+      process.env.TZ = timezone;
+      finalDate = new Date();
     } else {
-      if (tz_hours > 99) {
-        offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
-      } else {
-        offset = tz_hours * 60;
-      }
-    }
+      let tz = timezone.replace("GMT", "").split(":");
+      let tz_hours = parseInt(tz[0].trim());
 
-    const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-    let finalDate = new Date(utc + offset * 60000);
+      if (tz.length > 1) {
+        offset = tz_hours * 60 + parseInt(tz[1].trim());
+      } else {
+        if (tz_hours > 99) {
+          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+        } else {
+          offset = tz_hours * 60;
+        }
+      }
+
+      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+      finalDate = new Date(utc + offset * 60000);
+    }
 
     finalDateString = date_string.replace(
       "{DATE}",
@@ -564,37 +581,33 @@ const makeCustomUrl = (item, type) => {
     case "issue_close":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.issue.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.issue.html_url})`;
       break;
     case "issue_comment":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.issue.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.comment.html_url})`;
       break;
     case "commit_comment":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `#commit`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
+        url_text
+          .replace(/{ID}/g, `#commit`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.comment.html_url})`;
       break;
     case "pr_review_comment":
       url =
         `[` +
-        url_text.replace(
-          /{ID}/g,
-          `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.comment.html_url})`;
       break;
     case "pr_open":
@@ -602,19 +615,17 @@ const makeCustomUrl = (item, type) => {
     case "pr_merge":
       url =
         `[` +
-        url_text.replace(
-          /{ID}/g,
-          `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.pull_request.html_url})`;
       break;
     case "pr_review":
       url =
         `[` +
-        url_text.replace(
-          /{ID}/g,
-          `#${item.payload.pull_request.number}`
-        ).replace(/{REPO}/g, item.repo.name) +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.review.html_url})`;
       break;
     case "create_repo":
@@ -628,28 +639,25 @@ const makeCustomUrl = (item, type) => {
     case "fork":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `${item.payload.forkee.full_name}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
+        url_text
+          .replace(/{ID}/g, `${item.payload.forkee.full_name}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.forkee.html_url})`;
       break;
     case "wiki":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `${item.page_name}`).replace(
-          /{REPO}/g,
-          item.repo_name
-        ) +
+        url_text
+          .replace(/{ID}/g, `${item.page_name}`)
+          .replace(/{REPO}/g, item.repo_name) +
         `](${item.html_url})`;
       break;
     case "release":
       url =
         `[` +
-        url_text.replace(/{ID}/g, `${item.payload.release.name}`).replace(
-          /{REPO}/g,
-          item.repo.name
-        ) +
+        url_text
+          .replace(/{ID}/g, `${item.payload.release.name}`)
+          .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.release.html_url})`;
       break;
     default:
