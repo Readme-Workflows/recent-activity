@@ -74,10 +74,10 @@
         if (item.payload.action === "created") {
           return COMMENTS_ACTIVITY.replace(
             /{ID}/g,
-            toUrlFormat(item, "commitcomment")
+            toUrlFormat(item, "commit_comment")
           )
-            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commitcomment"))
-            .replace(/{URL}/g, makeCustomUrl(item, "commitcomment"));
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
         } else {
           return "";
         }
@@ -101,14 +101,34 @@
         if (item.payload.ref_type === "repository") {
           return CREATE_REPO.replace(
             /{REPO}/g,
-            toUrlFormat(item.repo.name, "createrepo")
-          ).replace(/{URL}/g, makeCustomUrl(item, "createrepo"));
+            toUrlFormat(item.repo.name, "create_repo")
+          ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
         } else {
           return "";
         }
       };
 
       module.exports = CreateEvent;
+
+      /***/
+    },
+
+    /***/ 9634: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { FORK_REPO } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const ForkEvent = (item) => {
+        return FORK_REPO.replace(/{FORK}/g, toUrlFormat(item, "fork"))
+          .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
+          .replace(/{URL}/g, makeCustomUrl(item, "fork"));
+      };
+
+      module.exports = ForkEvent;
 
       /***/
     },
@@ -126,10 +146,10 @@
         if (item.payload.action === "created") {
           return COMMENTS_ACTIVITY.replace(
             /{ID}/g,
-            toUrlFormat(item, "issuecomment")
+            toUrlFormat(item, "issue_comment")
           )
-            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issuecomment"))
-            .replace(/{URL}/g, makeCustomUrl(item, "issuecomment"));
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
         } else {
           return "";
         }
@@ -158,13 +178,7 @@
           return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
             .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-        }
-        // else {
-        //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-        //     item
-        //   )} in ${toUrlFormat(item.repo.name)}`;
-        // }
-        else {
+        } else {
           return "";
         }
       };
@@ -222,10 +236,13 @@
         if (item.payload.action === "created") {
           return COMMENTS_ACTIVITY.replace(
             /{ID}/g,
-            toUrlFormat(item, "prreviewcomment")
+            toUrlFormat(item, "pr_review_comment")
           )
-            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "prreviewcomment"))
-            .replace(/{URL}/g, makeCustomUrl(item, "prreviewcomment"));
+            .replace(
+              /{REPO}/g,
+              toUrlFormat(item.repo.name, "pr_review_comment")
+            )
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
         } else {
           return "";
         }
@@ -450,7 +467,7 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.issue.html_url})`;
             break;
-          case "issuecomment":
+          case "issue_comment":
             url =
               `[` +
               URL_TEXT.replace(
@@ -459,7 +476,7 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.comment.html_url})`;
             break;
-          case "commitcomment":
+          case "commit_comment":
             url =
               `[` +
               URL_TEXT.replace(/{ID}/g, `#commit`).replace(
@@ -468,7 +485,7 @@
               ) +
               `](${item.payload.comment.html_url})`;
             break;
-          case "prreviewcomment":
+          case "pr_review_comment":
             url =
               `[` +
               URL_TEXT.replace(
@@ -488,11 +505,20 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.pull_request.html_url})`;
             break;
-          case "createrepo":
+          case "create_repo":
             url =
               `[` +
               URL_TEXT.replace(/{REPO}/g, item.repo.name) +
               `](${urlPrefix}/${item.repo.name})`;
+            break;
+          case "fork":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{FORK}/g,
+                `${item.payload.forkee.full_name}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.forkee.html_url})`;
             break;
           default:
             tools.exit.failure("Failed while creating the url string.");
@@ -526,19 +552,22 @@
             case "issue_close":
               url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
               break;
-            case "issuecomment":
+            case "issue_comment":
               url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
               break;
-            case "commitcomment":
+            case "commit_comment":
               url = `[commit](${item.payload.comment.html_url})`;
               break;
-            case "prreviewcomment":
+            case "pr_review_comment":
               url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
               break;
             case "pr_open":
             case "pr_close":
             case "pr_merge":
               url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+              break;
+            case "fork":
+              url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
               break;
             default:
               tools.exit.failure("Failed while creating the url format.");
@@ -18966,6 +18995,7 @@
       const IssuesEvent = __nccwpck_require__(1183);
       const PullRequestEvent = __nccwpck_require__(8089);
       const CreateEvent = __nccwpck_require__(7744);
+      const ForkEvent = __nccwpck_require__(9634);
 
       const serializers = {};
 
@@ -18986,6 +19016,10 @@
 
       if (!DISABLE_EVENTS.includes("create_repo")) {
         serializers.CreateEvent = CreateEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("fork")) {
+        serializers.ForkEvent = ForkEvent;
       }
 
       module.exports = serializers;
