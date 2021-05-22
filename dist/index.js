@@ -32,6 +32,8 @@
       const FORK_REPO = core.getInput("FORK_REPO");
       const WIKI_CREATE = core.getInput("WIKI_CREATE");
       const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
+      const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
+      const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -61,6 +63,8 @@
         FORK_REPO,
         WIKI_CREATE,
         ADDED_MEMBER,
+        REVIEW_APPROVED,
+        CHANGES_REQUESTED,
         urlPrefix,
       };
 
@@ -314,6 +318,46 @@
       };
 
       module.exports = PullRequestReviewCommentEvent;
+
+      /***/
+    },
+
+    /***/ 2185: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { REVIEW_APPROVED, CHANGES_REQUESTED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const PullRequestReviewEvent = (item) => {
+        if (
+          item.payload.action === "created" &&
+          item.payload.review.state == "approved"
+        ) {
+          return REVIEW_APPROVED.replace(
+            /{ID}/g,
+            toUrlFormat(item, "pr_review")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+        } else if (
+          item.payload.action === "created" &&
+          item.payload.review.state == "changes_requested"
+        ) {
+          return CHANGES_REQUESTED.replace(
+            /{ID}/g,
+            toUrlFormat(item, "pr_review")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestReviewEvent;
 
       /***/
     },
@@ -573,6 +617,15 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.pull_request.html_url})`;
             break;
+          case "pr_review":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.pull_request.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.review.html_url})`;
+            break;
           case "create_repo":
             url =
               `[` +
@@ -648,6 +701,9 @@
             case "pr_close":
             case "pr_merge":
               url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+              break;
+            case "pr_review":
+              url = `[#${item.payload.pull_request.number}](${item.payload.review.html_url})`;
               break;
             case "fork":
               url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
@@ -19084,6 +19140,7 @@
       const ForkEvent = __nccwpck_require__(9634);
       const GollumEvent = __nccwpck_require__(7021);
       const MemberEvent = __nccwpck_require__(466);
+      const PullRequestReviewEvent = __nccwpck_require__(2185);
 
       const serializers = {};
 
@@ -19116,6 +19173,10 @@
 
       if (!DISABLE_EVENTS.includes("member")) {
         serializers.MemberEvent = MemberEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("review")) {
+        serializers.PullRequestReviewEvent = PullRequestReviewEvent;
       }
 
       module.exports = serializers;
