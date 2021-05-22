@@ -29,6 +29,7 @@
       const DATE_STRING = core.getInput("DATE_STRING");
       const DATE_FORMAT = core.getInput("DATE_FORMAT");
       const CREATE_REPO = core.getInput("CREATE_REPO");
+      const FORK_REPO = core.getInput("FORK_REPO");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -55,6 +56,7 @@
         DATE_FORMAT,
         DISABLE_EVENTS,
         CREATE_REPO,
+        FORK_REPO,
         urlPrefix,
       };
 

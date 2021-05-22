@@ -46,7 +46,7 @@ module.exports = {
   DATE_FORMAT,
   DISABLE_EVENTS,
   CREATE_REPO,
-  urlPrefix,
   FORK_REPO,
   WIKI_CREATE,
+  urlPrefix,
 };
