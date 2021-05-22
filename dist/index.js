@@ -14,12 +14,17 @@ const core = __nccwpck_require__(2186);
 const parseYaml = __nccwpck_require__(8414);
 
 const defaultVals = {
-  gh_username: core.getInput("GH_USERNAME"),
+  username: core.getInput("GH_USERNAME"),
   commit_msg: ":zap: Update README with the recent activity",
   max_lines: 5,
   readme_file: "./README.md",
-  disable_events: "",
+  disabled_events: [],
   url_text: "{REPO}{ID}",
+  date: {
+    timezone: "0",
+    text: "Last Updated: {DATE}",
+    format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
+  },
   comments: "💬 Commented on {ID} in {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",
   issue_closed: "✔️ Closed issue {ID} in {REPO}",
@@ -34,12 +39,13 @@ const defaultVals = {
   changes_requested: "🔴 Requested changes in {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
-  timezone: "0",
-  date_string: "Last Updated: {DATE}",
-  date_format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));
+
+if (userVals.settings) {
+  userVals.settings.date = { ...defaultVals.date, ...userVals.settings.date };
+}
 
 let conf = {
   ...defaultVals,
@@ -48,11 +54,11 @@ let conf = {
 };
 
 let disabled = [];
-conf.disable_events.forEach((event) => {
+conf.disabled_events.forEach((event) => {
   disabled.push(event.trim().toLowerCase());
 });
 
-conf.disable_events = disabled;
+conf.disabled_events = disabled;
 
 const urlPrefix = "https://github.com";
 
@@ -381,7 +387,7 @@ module.exports = WatchEvent;
 
 const dateFormat = __nccwpck_require__(1512);
 
-const { timezone, date_format, date_string } = __nccwpck_require__(5532);
+const { date } = __nccwpck_require__(5532);
 
 const appendDate = (fullContent) => {
   let dateStartIdx = fullContent.findIndex(
@@ -398,11 +404,11 @@ const appendDate = (fullContent) => {
     let offset;
     let finalDate;
 
-    if (timezone.split("/").length === 2) {
-      process.env.TZ = timezone;
+    if (date.timezone.split("/").length === 2) {
+      process.env.TZ = date.timezone;
       finalDate = new Date();
     } else {
-      let tz = timezone.replace("GMT", "").split(":");
+      let tz = date.timezone.replace("GMT", "").split(":");
       let tz_hours = parseInt(tz[0].trim());
 
       if (tz.length > 1) {
@@ -419,9 +425,9 @@ const appendDate = (fullContent) => {
       finalDate = new Date(utc + offset * 60000);
     }
 
-    finalDateString = date_string.replace(
+    finalDateString = date.text.replace(
       "{DATE}",
-      dateFormat(finalDate, date_format)
+      dateFormat(finalDate, date.format)
     );
 
     if (dateEndIdx === -1) {
@@ -20179,7 +20185,7 @@ function wrappy (fn, cb) {
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { disable_events } = __nccwpck_require__(5532);
+const { disabled_events } = __nccwpck_require__(5532);
 
 // Events
 const IssueCommentEvent = __nccwpck_require__(454);
@@ -20197,45 +20203,45 @@ const WatchEvent = __nccwpck_require__(7137);
 
 const serializers = {};
 
-if (!disable_events.includes("comments")) {
+if (!disabled_events.includes("comments")) {
   serializers.IssueCommentEvent = IssueCommentEvent;
   serializers.CommitCommentEvent = CommitCommentEvent;
   serializers.PullRequestReviewCommentEvent = PullRequestReviewCommentEvent;
 }
 
-if (!disable_events.includes("issues")) {
+if (!disabled_events.includes("issues")) {
   serializers.IssuesEvent = IssuesEvent;
 }
 
-if (!disable_events.includes("pr")) {
+if (!disabled_events.includes("pr")) {
   serializers.PullRequestEvent = PullRequestEvent;
 }
 
-if (!disable_events.includes("create_repo")) {
+if (!disabled_events.includes("create_repo")) {
   serializers.CreateEvent = CreateEvent;
 }
 
-if (!disable_events.includes("fork")) {
+if (!disabled_events.includes("fork")) {
   serializers.ForkEvent = ForkEvent;
 }
 
-if (!disable_events.includes("wiki")) {
+if (!disabled_events.includes("wiki")) {
   serializers.GollumEvent = GollumEvent;
 }
 
-if (!disable_events.includes("member")) {
+if (!disabled_events.includes("member")) {
   serializers.MemberEvent = MemberEvent;
 }
 
-if (!disable_events.includes("review")) {
+if (!disabled_events.includes("review")) {
   serializers.PullRequestReviewEvent = PullRequestReviewEvent;
 }
 
-if (!disable_events.includes("release")) {
+if (!disabled_events.includes("release")) {
   serializers.ReleaseEvent = ReleaseEvent;
 }
 
-if (!disable_events.includes("star")) {
+if (!disabled_events.includes("star")) {
   serializers.WatchEvent = WatchEvent;
 }
 
@@ -20432,7 +20438,7 @@ const fs = __nccwpck_require__(5747);
 const { Toolkit } = __nccwpck_require__(7045);
 
 // configuration
-const { gh_username, readme_file, max_lines } = __nccwpck_require__(5532);
+const { username, readme_file, max_lines } = __nccwpck_require__(5532);
 
 // functions
 const appendDate = __nccwpck_require__(2310);
@@ -20445,12 +20451,12 @@ const serializers = __nccwpck_require__(102);
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
-    tools.log.debug(`Getting activity for ${gh_username}`);
+    tools.log.debug(`Getting activity for ${username}`);
     const events = await tools.github.activity.listPublicEventsForUser({
-      username: gh_username,
+      username: username,
       per_page: 100,
     });
-    tools.log.debug(`${events.data.length} events found for ${gh_username}.`);
+    tools.log.debug(`${events.data.length} events found for ${username}.`);
 
     let eventData = events.data
       // Filter out any boring activity
