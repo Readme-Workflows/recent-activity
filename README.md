@@ -33,58 +33,6 @@ Last Updated: Thursday, May 20th, 2021, 3:17:39 PM (GMT)
 
 All available settings can be found on the [Wiki](https://github.com/Readme-Workflows/recent-activity/wiki/Configuration).
 
-### Placeholders
-
-The following placeholders may be used in the settings, if the `Supported Placeholders` section lists them.
-
-**Important Notes:**
-
-- Each placeholder with exception of `{DATE}` will turn into an embedded link pointing to the issue, pull request or discussion of that respective action.  
-  For example will `{ID}` turn into `[#:id](:url)` and `{URL}` turns into `[:url_text](:url)`.
-- Using `{ID}` or `{REPO}` in the `URL_TEXT` setting won't turn them into embedded links. `{ID}` will still have a `#` before it.
-
-<table>
-  <thead>
-    <tr>
-      <th>Placeholder</th>
-      <th>Description</th>
-      <th>Example Output</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>{REPO}</code></td>
-      <td>Displays the username and Repository in the <code>:username/:repository</code> format.</td>
-      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity</a></td>
-    </tr>
-    <tr>
-      <td><code>{ID}</code></td>
-      <td>Displays the issue, pull request or discussion ID with a <code>#</code> added in front of it</td>
-      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">#1</a></td>
-    </tr>
-    <tr>
-      <td><code>{URL}</code></td>
-      <td>Displays the text provided by <code>URL_TEXT</code>.</td>
-      <td><a href="https://github.com/Readme-Workflows/recent-activity/discussions/1">Readme-Workflows/recent-activity#1</a></td>
-    </tr>
-    <tr>
-      <td><code>{DATE}</code></td>
-      <td>Current time and date to display.<br>This is <b>ONLY</b> usable in the <a href="#settings">DATE_STRING</a> setting!</b></td>
-      <td>01.01.2021 00:00:00</td>
-    </tr>
-    <tr>
-      <td><code>{FORK}</code></td>
-      <td>The forked repo name.</td>
-      <td>Readme-Workflows/forked-repo</td>
-    </tr>
-    <tr>
-      <td><code>{WIKI}</code></td>
-      <td>The Wiki page name</b></td>
-      <td>Home</td>
-    </tr>
-  </tbody>
-</table>
-
 ## History
 
 - The original project was inspired by [JasonEtco/activity-box](https://github.com/JasonEtco/activity-box)
