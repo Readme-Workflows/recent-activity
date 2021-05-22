@@ -7,6 +7,21 @@ const core = require("@actions/core");
 
 const parseYaml = require("./functions/parseYaml.js");
 
+const defaultVals = {
+    "GH_USERNAME": ${{ github.repository_owner }},
+    "COMMIT_MSG": ":zap: Update README with the recent activity",
+    "MAX_LINES": 5,
+    "README_FILE": "./README.md",
+    "DISABLE_EVENTS": "",
+    "URL_TEXT": "{REPO}{ID}",
+    "COMMENTS_ACTIVITY": "💬 Commented on {ID} in {REPO}",
+    "ISSUE_OPENED": "❗️ Opened issue {ID} in {REPO}",
+    "ISSUE_CLOSED": "✔️ Closed issue {ID} in {REPO}",
+    "PR_OPENED": "💪 Opened PR {ID} in {REPO}",
+    "PR_CLOSED": "❌ Closed PR {ID} in {REPO}",
+    "PR_MERGED": "🎉 Merged PR {ID} in {REPO}",
+};
+
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
