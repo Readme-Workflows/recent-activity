@@ -25,7 +25,7 @@
       const PR_CLOSED = core.getInput("PR_CLOSED");
       const PR_MERGED = core.getInput("PR_MERGED");
       const URL_TEXT = core.getInput("URL_TEXT");
-      const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
+      const TIMEZONE = core.getInput("TIMEZONE");
       const DATE_STRING = core.getInput("DATE_STRING");
       const DATE_FORMAT = core.getInput("DATE_FORMAT");
       const CREATE_REPO = core.getInput("CREATE_REPO");
@@ -57,7 +57,7 @@
         PR_CLOSED,
         PR_MERGED,
         URL_TEXT,
-        TIMEZONE_OFFSET,
+        TIMEZONE,
         DATE_STRING,
         DATE_FORMAT,
         DISABLE_EVENTS,
@@ -426,8 +426,7 @@
 
       const dateFormat = __nccwpck_require__(1512);
 
-      const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } =
-        __nccwpck_require__(5532);
+      const { TIMEZONE, DATE_FORMAT, DATE_STRING } = __nccwpck_require__(5532);
 
       const appendDate = (fullContent) => {
         let dateStartIdx = fullContent.findIndex(
@@ -441,24 +440,30 @@
               index > dateStartIdx
           );
 
-          let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
           let offset;
+          let finalDate;
 
-          let tz_hours = parseInt(timezone[0].trim());
-
-          if (timezone.length > 1) {
-            offset = tz_hours * 60 + parseInt(timezone[1].trim());
+          if (TIMEZONE.split("/").length === 2) {
+            process.env.TZ = TIMEZONE;
+            finalDate = new Date();
           } else {
-            if (tz_hours > 99) {
-              offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
-            } else {
-              offset = tz_hours * 60;
-            }
-          }
+            let tz = TIMEZONE.replace("GMT", "").split(":");
+            let tz_hours = parseInt(tz[0].trim());
 
-          const utc =
-            new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-          let finalDate = new Date(utc + offset * 60000);
+            if (tz.length > 1) {
+              offset = tz_hours * 60 + parseInt(tz[1].trim());
+            } else {
+              if (tz_hours > 99) {
+                offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+              } else {
+                offset = tz_hours * 60;
+              }
+            }
+
+            const utc =
+              new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+            finalDate = new Date(utc + offset * 60000);
+          }
 
           finalDateString = DATE_STRING.replace(
             "{DATE}",

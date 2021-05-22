@@ -105,8 +105,8 @@ inputs:
     required: false
 
   # DATE
-  TIMEZONE_OFFSET:
-    description: "Timezone in which time is to be displayed"
+  TIMEZONE:
+    description: "Timezone in which time is to be displayed f.e. GMT+0530 or Asia/Kolkata"
     default: "0"
     required: false
   DATE_STRING:

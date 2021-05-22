@@ -188,8 +188,8 @@ The Action currently has the following Settings that you can set through the `wi
       <td>&#8203;</td>
     </tr>
     <tr>
-      <td><code>TIMEZONE_OFFSET</code></td>
-      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> / <code>-xx:xx</code> and is relative to the GMT timezone.</td>
+      <td><code>TIMEZONE</code></td>
+      <td>Timezone in which the date and time should be displayed.<br>The format is <code>+xx:xx</code> / <code>-xx:xx</code> / <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones"><code>continent/city</code></a> and is relative to the GMT timezone. <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Supported locale-based timezones</a></td>
       <td>0</td>
       <td></td>
     </tr>
