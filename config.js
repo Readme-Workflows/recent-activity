@@ -17,7 +17,7 @@ const PR_OPENED = core.getInput("PR_OPENED");
 const PR_CLOSED = core.getInput("PR_CLOSED");
 const PR_MERGED = core.getInput("PR_MERGED");
 const URL_TEXT = core.getInput("URL_TEXT");
-const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
+const TIMEZONE = core.getInput("TIMEZONE");
 const DATE_STRING = core.getInput("DATE_STRING");
 const DATE_FORMAT = core.getInput("DATE_FORMAT");
 const CREATE_REPO = core.getInput("CREATE_REPO");
@@ -46,7 +46,7 @@ module.exports = {
   PR_CLOSED,
   PR_MERGED,
   URL_TEXT,
-  TIMEZONE_OFFSET,
+  TIMEZONE,
   DATE_STRING,
   DATE_FORMAT,
   DISABLE_EVENTS,

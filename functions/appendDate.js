@@ -4,7 +4,7 @@
 
 const dateFormat = require("dateformat");
 
-const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } = require("../config");
+const { TIMEZONE, DATE_FORMAT, DATE_STRING } = require("../config");
 
 const appendDate = (fullContent) => {
   let dateStartIdx = fullContent.findIndex(
@@ -21,16 +21,15 @@ const appendDate = (fullContent) => {
     let offset;
     let finalDate;
 
-    if (TIMEZONE_OFFSET.split("/").length === 2) {
-      console.log(TIMEZONE_OFFSET);
-      process.env.TZ = TIMEZONE_OFFSET;
+    if (TIMEZONE.split("/").length === 2) {
+      process.env.TZ = TIMEZONE;
       finalDate = new Date();
     } else {
-      let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
-      let tz_hours = parseInt(timezone[0].trim());
+      let tz = TIMEZONE.replace("GMT", "").split(":");
+      let tz_hours = parseInt(tz[0].trim());
 
-      if (timezone.length > 1) {
-        offset = tz_hours * 60 + parseInt(timezone[1].trim());
+      if (tz.length > 1) {
+        offset = tz_hours * 60 + parseInt(tz[1].trim());
       } else {
         if (tz_hours > 99) {
           offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
