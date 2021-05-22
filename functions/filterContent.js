@@ -4,7 +4,7 @@
  */
 
 const serializers = require("../serializers");
-const { MAX_LINES } = require("../config");
+const { max_lines } = require("../config");
 
 const filterContent = (eventData) => {
   let temp_content = [];
@@ -15,13 +15,13 @@ const filterContent = (eventData) => {
     if (event_string !== "") {
       temp_content.push(event_string);
     }
-    if (temp_content.length == MAX_LINES) {
+    if (temp_content.length == max_lines) {
       break;
     }
   }
 
   temp_content = temp_content.flat();
-  temp_content.length = MAX_LINES;
+  temp_content.length = max_lines;
 
   console.log(temp_content);
 

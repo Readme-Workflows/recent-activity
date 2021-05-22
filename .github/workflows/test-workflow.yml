@@ -22,4 +22,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           # Dates
-          DATE_STRING: "Last Updated: {DATE} (GMT)"
+          date_string: "Last Updated: {DATE} (GMT)"

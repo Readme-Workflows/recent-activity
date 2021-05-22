@@ -14,61 +14,61 @@
       const core = __nccwpck_require__(2186);
 
       // Get config inputs
-      const GH_USERNAME = core.getInput("GH_USERNAME");
-      const COMMIT_MSG = core.getInput("COMMIT_MSG");
-      const MAX_LINES = core.getInput("MAX_LINES");
-      const README_FILE = core.getInput("README_FILE");
-      const COMMENTS_ACTIVITY = core.getInput("COMMENTS_ACTIVITY");
-      const ISSUE_OPENED = core.getInput("ISSUE_OPENED");
-      const ISSUE_CLOSED = core.getInput("ISSUE_CLOSED");
-      const PR_OPENED = core.getInput("PR_OPENED");
-      const PR_CLOSED = core.getInput("PR_CLOSED");
-      const PR_MERGED = core.getInput("PR_MERGED");
-      const URL_TEXT = core.getInput("URL_TEXT");
-      const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
-      const DATE_STRING = core.getInput("DATE_STRING");
-      const DATE_FORMAT = core.getInput("DATE_FORMAT");
-      const CREATE_REPO = core.getInput("CREATE_REPO");
-      const FORK_REPO = core.getInput("FORK_REPO");
-      const WIKI_CREATE = core.getInput("WIKI_CREATE");
-      const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
-      const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
-      const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
-      const RELEASE = core.getInput("RELEASE");
-      const STAR = core.getInput("STAR");
+      const gh_username = core.getInput("gh_username");
+      const commit_msg = core.getInput("commit_msg");
+      const max_lines = core.getInput("max_lines");
+      const readme_file = core.getInput("readme_file");
+      const comments_activity = core.getInput("comments_activity");
+      const issue_opened = core.getInput("issue_opened");
+      const issue_closed = core.getInput("issue_closed");
+      const pr_opened = core.getInput("pr_opened");
+      const pr_closed = core.getInput("pr_closed");
+      const pr_merged = core.getInput("pr_merged");
+      const url_text = core.getInput("url_text");
+      const timezone = core.getInput("timezone");
+      const date_string = core.getInput("date_string");
+      const date_format = core.getInput("date_format");
+      const create_repo = core.getInput("create_repo");
+      const fork_repo = core.getInput("fork_repo");
+      const wiki_create = core.getInput("wiki_create");
+      const added_member = core.getInput("added_member");
+      const review_approved = core.getInput("review_approved");
+      const changes_requested = core.getInput("changes_requested");
+      const new_release = core.getInput("new_release");
+      const new_star = core.getInput("new_star");
 
-      let DISABLE_EVENTS = core
-        .getInput("DISABLE_EVENTS")
+      let disable_events = core
+        .getInput("disable_events")
         .toLowerCase()
         .split(",");
-      DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
+      disable_events = disable_events.map((event) => event.trim());
 
       const urlPrefix = "https://github.com";
 
       module.exports = {
-        GH_USERNAME,
-        COMMIT_MSG,
-        MAX_LINES,
-        README_FILE,
-        COMMENTS_ACTIVITY,
-        ISSUE_OPENED,
-        ISSUE_CLOSED,
-        PR_OPENED,
-        PR_CLOSED,
-        PR_MERGED,
-        URL_TEXT,
-        TIMEZONE_OFFSET,
-        DATE_STRING,
-        DATE_FORMAT,
-        DISABLE_EVENTS,
-        CREATE_REPO,
-        FORK_REPO,
-        WIKI_CREATE,
-        ADDED_MEMBER,
-        REVIEW_APPROVED,
-        CHANGES_REQUESTED,
-        RELEASE,
-        STAR,
+        gh_username,
+        commit_msg,
+        max_lines,
+        readme_file,
+        comments_activity,
+        issue_opened,
+        issue_closed,
+        pr_opened,
+        pr_closed,
+        pr_merged,
+        url_text,
+        timezone,
+        date_string,
+        date_format,
+        disable_events,
+        create_repo,
+        fork_repo,
+        wiki_create,
+        added_member,
+        review_approved,
+        changes_requested,
+        new_release,
+        new_star,
         urlPrefix,
       };
 
@@ -80,13 +80,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const { comments_activity } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const CommitCommentEvent = (item) => {
         if (item.payload.action === "created") {
-          return COMMENTS_ACTIVITY.replace(
+          return comments_activity.replace(
             /{ID}/g,
             toUrlFormat(item, "commit_comment")
           )
@@ -107,13 +107,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { CREATE_REPO } = __nccwpck_require__(5532);
+      const { create_repo } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const CreateEvent = (item) => {
         if (item.payload.ref_type === "repository") {
-          return CREATE_REPO.replace(
+          return create_repo.replace(
             /{REPO}/g,
             toUrlFormat(item.repo.name, "create_repo")
           ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
@@ -132,12 +132,12 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { FORK_REPO } = __nccwpck_require__(5532);
+      const { fork_repo } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const ForkEvent = (item) => {
-        return FORK_REPO.replace(/{FORK}/g, toUrlFormat(item, "fork"))
+        return fork_repo.replace(/{FORK}/g, toUrlFormat(item, "fork"))
           .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
           .replace(/{URL}/g, makeCustomUrl(item, "fork"));
       };
@@ -152,7 +152,7 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { WIKI_CREATE } = __nccwpck_require__(5532);
+      const { wiki_create } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
@@ -162,7 +162,7 @@
           if (page.action === "created") {
             page.repo_name = item.repo.name;
             finalArray.push(
-              WIKI_CREATE.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+              wiki_create.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
                 .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
                 .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
             );
@@ -186,13 +186,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const { comments_activity } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const IssueCommentEvent = (item) => {
         if (item.payload.action === "created") {
-          return COMMENTS_ACTIVITY.replace(
+          return comments_activity.replace(
             /{ID}/g,
             toUrlFormat(item, "issue_comment")
           )
@@ -213,17 +213,17 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { ISSUE_OPENED, ISSUE_CLOSED } = __nccwpck_require__(5532);
+      const { issue_opened, issue_closed } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const IssuesEvent = (item) => {
         if (item.payload.action === "opened") {
-          return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+          return issue_opened.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
             .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
         } else if (item.payload.action === "closed") {
-          return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+          return issue_closed.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
             .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
         } else {
@@ -241,13 +241,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { ADDED_MEMBER } = __nccwpck_require__(5532);
+      const { added_member } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const MemberEvent = (item) => {
         if (item.payload.action === "added") {
-          return ADDED_MEMBER.replace(
+          return added_member.replace(
             /{REPO}/g,
             toUrlFormat(item.repo.name, "member")
           ).replace(/{URL}/g, makeCustomUrl(item, "member"));
@@ -266,24 +266,24 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { PR_OPENED, PR_MERGED, PR_CLOSED } = __nccwpck_require__(5532);
+      const { pr_opened, pr_merged, pr_closed } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const PullRequestEvent = (item) => {
         if (item.payload.action === "opened") {
-          return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+          return pr_opened.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
             .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
         } else if (item.payload.pull_request.merged) {
-          return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+          return pr_merged.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
             .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
         } else if (
           item.payload.action === "closed" &&
           !item.payload.pull_request.merged
         ) {
-          return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+          return pr_closed.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
             .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
         } else {
@@ -301,13 +301,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const { comments_activity } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const PullRequestReviewCommentEvent = (item) => {
         if (item.payload.action === "created") {
-          return COMMENTS_ACTIVITY.replace(
+          return comments_activity.replace(
             /{ID}/g,
             toUrlFormat(item, "pr_review_comment")
           )
@@ -331,7 +331,7 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { REVIEW_APPROVED, CHANGES_REQUESTED } = __nccwpck_require__(5532);
+      const { review_approved, changes_requested } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
@@ -340,7 +340,7 @@
           item.payload.action === "created" &&
           item.payload.review.state == "approved"
         ) {
-          return REVIEW_APPROVED.replace(
+          return review_approved.replace(
             /{ID}/g,
             toUrlFormat(item, "pr_review")
           )
@@ -350,7 +350,7 @@
           item.payload.action === "created" &&
           item.payload.review.state == "changes_requested"
         ) {
-          return CHANGES_REQUESTED.replace(
+          return changes_requested.replace(
             /{ID}/g,
             toUrlFormat(item, "pr_review")
           )
@@ -371,13 +371,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { RELEASE } = __nccwpck_require__(5532);
+      const { new_release } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const ReleaseEvent = (item) => {
         if (item.payload.action === "published") {
-          return RELEASE.replace(/{ID}/g, toUrlFormat(item, "release"))
+          return new_release.replace(/{ID}/g, toUrlFormat(item, "release"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
             .replace(/{URL}/g, makeCustomUrl(item, "release"));
         } else {
@@ -395,13 +395,13 @@
       __unused_webpack_exports,
       __nccwpck_require__
     ) => {
-      const { STAR } = __nccwpck_require__(5532);
+      const { new_star } = __nccwpck_require__(5532);
       const makeCustomUrl = __nccwpck_require__(9397);
       const toUrlFormat = __nccwpck_require__(394);
 
       const WatchEvent = (item) => {
         if (item.payload.action === "started") {
-          return STAR.replace(
+          return new_star.replace(
             /{REPO}/g,
             toUrlFormat(item.repo.name, "star")
           ).replace(/{URL}/g, makeCustomUrl(item, "star"));
@@ -426,7 +426,7 @@
 
       const dateFormat = __nccwpck_require__(1512);
 
-      const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } =
+      const { timezone, date_format, date_string } =
         __nccwpck_require__(5532);
 
       const appendDate = (fullContent) => {
@@ -441,7 +441,7 @@
               index > dateStartIdx
           );
 
-          let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+          let timezone = timezone.replace("GMT", "").split(":");
           let offset;
 
           let tz_hours = parseInt(timezone[0].trim());
@@ -460,9 +460,9 @@
             new Date().getTime() + new Date().getTimezoneOffset() * 60000;
           let finalDate = new Date(utc + offset * 60000);
 
-          finalDateString = DATE_STRING.replace(
+          finalDateString = date_string.replace(
             "{DATE}",
-            dateFormat(finalDate, DATE_FORMAT)
+            dateFormat(finalDate, date_format)
           );
 
           if (dateEndIdx === -1) {
@@ -498,7 +498,7 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const { README_FILE, COMMIT_MSG } = __nccwpck_require__(5532);
+      const { readme_file, commit_msg } = __nccwpck_require__(5532);
 
       const exec = __nccwpck_require__(4058);
 
@@ -516,8 +516,8 @@
           "41898282+github-actions[bot]@users.noreply.github.com",
         ]);
         await exec("git", ["config", "--global", "user.name", "readme-bot"]);
-        await exec("git", ["add", README_FILE]);
-        await exec("git", ["commit", "-m", COMMIT_MSG]);
+        await exec("git", ["add", readme_file]);
+        await exec("git", ["commit", "-m", commit_msg]);
         await exec("git", ["push"]);
       };
 
@@ -580,7 +580,7 @@
        */
 
       const serializers = __nccwpck_require__(102);
-      const { MAX_LINES } = __nccwpck_require__(5532);
+      const { max_lines } = __nccwpck_require__(5532);
 
       const filterContent = (eventData) => {
         let temp_content = [];
@@ -591,13 +591,13 @@
           if (event_string !== "") {
             temp_content.push(event_string);
           }
-          if (temp_content.length == MAX_LINES) {
+          if (temp_content.length == max_lines) {
             break;
           }
         }
 
         temp_content = temp_content.flat();
-        temp_content.length = MAX_LINES;
+        temp_content.length = max_lines;
 
         console.log(temp_content);
 
@@ -619,7 +619,7 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const { URL_TEXT, urlPrefix } = __nccwpck_require__(5532);
+      const { url_text, urlPrefix } = __nccwpck_require__(5532);
 
       const makeCustomUrl = (item, type) => {
         let url;
@@ -628,7 +628,7 @@
           case "issue_close":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `#${item.payload.issue.number}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -637,7 +637,7 @@
           case "issue_comment":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `#${item.payload.issue.number}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -646,7 +646,7 @@
           case "commit_comment":
             url =
               `[` +
-              URL_TEXT.replace(/{ID}/g, `#commit`).replace(
+              url_text.replace(/{ID}/g, `#commit`).replace(
                 /{REPO}/g,
                 item.repo.name
               ) +
@@ -655,7 +655,7 @@
           case "pr_review_comment":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `#${item.payload.pull_request.number}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -666,7 +666,7 @@
           case "pr_merge":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `#${item.payload.pull_request.number}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -675,7 +675,7 @@
           case "pr_review":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `#${item.payload.pull_request.number}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -686,13 +686,13 @@
           case "star":
             url =
               `[` +
-              URL_TEXT.replace(/{REPO}/g, item.repo.name) +
+              url_text.replace(/{REPO}/g, item.repo.name) +
               `](${urlPrefix}/${item.repo.name})`;
             break;
           case "fork":
             url =
               `[` +
-              URL_TEXT.replace(
+              url_text.replace(
                 /{ID}/g,
                 `${item.payload.forkee.full_name}`
               ).replace(/{REPO}/g, item.repo.name) +
@@ -701,7 +701,7 @@
           case "wiki":
             url =
               `[` +
-              URL_TEXT.replace(/{ID}/g, `${item.page_name}`).replace(
+              url_text.replace(/{ID}/g, `${item.page_name}`).replace(
                 /{REPO}/g,
                 item.repo_name
               ) +
@@ -710,7 +710,7 @@
           case "release":
             url =
               `[` +
-              URL_TEXT.replace(/{ID}/g, `${item.payload.release.name}`).replace(
+              url_text.replace(/{ID}/g, `${item.payload.release.name}`).replace(
                 /{REPO}/g,
                 item.repo.name
               ) +
@@ -16452,8 +16452,8 @@
         "\\s*$";
 
       // Star ranges basically just allow anything at all.
-      var STAR = R++;
-      src[STAR] = "(<|>)?=?\\s*\\*";
+      var new_star = R++;
+      src[new_star] = "(<|>)?=?\\s*\\*";
 
       // Compile to actual regexp objects.
       // All are flag-free, unless they were created above with a flag.
@@ -17484,7 +17484,7 @@
       function replaceStars(comp, options) {
         debug("replaceStars", comp, options);
         // Looseness is ignored here.  star is always as loose as it gets!
-        return comp.trim().replace(re[STAR], "");
+        return comp.trim().replace(re[new_star], "");
       }
 
       // This function is passed to string.replace(re[HYPHENRANGE])
@@ -19191,7 +19191,7 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const { DISABLE_EVENTS } = __nccwpck_require__(5532);
+      const { disable_events } = __nccwpck_require__(5532);
 
       // Events
       const IssueCommentEvent = __nccwpck_require__(454);
@@ -19209,46 +19209,46 @@
 
       const serializers = {};
 
-      if (!DISABLE_EVENTS.includes("comments")) {
+      if (!disable_events.includes("comments")) {
         serializers.IssueCommentEvent = IssueCommentEvent;
         serializers.CommitCommentEvent = CommitCommentEvent;
         serializers.PullRequestReviewCommentEvent =
           PullRequestReviewCommentEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("issues")) {
+      if (!disable_events.includes("issues")) {
         serializers.IssuesEvent = IssuesEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("pr")) {
+      if (!disable_events.includes("pr")) {
         serializers.PullRequestEvent = PullRequestEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("create_repo")) {
+      if (!disable_events.includes("create_repo")) {
         serializers.CreateEvent = CreateEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("fork")) {
+      if (!disable_events.includes("fork")) {
         serializers.ForkEvent = ForkEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("wiki")) {
+      if (!disable_events.includes("wiki")) {
         serializers.GollumEvent = GollumEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("member")) {
+      if (!disable_events.includes("member")) {
         serializers.MemberEvent = MemberEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("review")) {
+      if (!disable_events.includes("review")) {
         serializers.PullRequestReviewEvent = PullRequestReviewEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("release")) {
+      if (!disable_events.includes("release")) {
         serializers.ReleaseEvent = ReleaseEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("star")) {
+      if (!disable_events.includes("star")) {
         serializers.WatchEvent = WatchEvent;
       }
 
@@ -19446,7 +19446,7 @@
     const { Toolkit } = __nccwpck_require__(7045);
 
     // configuration
-    const { GH_USERNAME, README_FILE, MAX_LINES } = __nccwpck_require__(5532);
+    const { gh_username, readme_file, max_lines } = __nccwpck_require__(5532);
 
     // functions
     const appendDate = __nccwpck_require__(2310);
@@ -19459,13 +19459,13 @@
     Toolkit.run(
       async (tools) => {
         // Get the user's public events
-        tools.log.debug(`Getting activity for ${GH_USERNAME}`);
+        tools.log.debug(`Getting activity for ${gh_username}`);
         const events = await tools.github.activity.listPublicEventsForUser({
-          username: GH_USERNAME,
+          username: gh_username,
           per_page: 100,
         });
         tools.log.debug(
-          `${events.data.length} events found for ${GH_USERNAME}.`
+          `${events.data.length} events found for ${gh_username}.`
         );
 
         let eventData = events.data
@@ -19477,10 +19477,10 @@
         let readmeContent;
 
         try {
-          readmeContent = fs.readFileSync(README_FILE, "utf-8").split("\n");
+          readmeContent = fs.readFileSync(readme_file, "utf-8").split("\n");
         } catch (err) {
           return tools.exit.failure(
-            `Couldn't find the file named ${README_FILE}`
+            `Couldn't find the file named ${readme_file}`
           );
         }
 
@@ -19505,8 +19505,8 @@
           tools.exit.success("No events found. Leaving readme unchanged.");
         }
 
-        if (content.length < MAX_LINES) {
-          tools.log.info(`Found less than ${MAX_LINES} activities`);
+        if (content.length < max_lines) {
+          tools.log.info(`Found less than ${max_lines} activities`);
         }
 
         if (startIdx !== -1 && endIdx === -1) {
@@ -19526,7 +19526,7 @@
           readmeContent = appendDate(readmeContent);
 
           // Update README
-          fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+          fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
           // Commit to the remote repository
           try {
@@ -19579,7 +19579,7 @@
         readmeContent = appendDate(readmeContent);
 
         // Update README
-        fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+        fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
         // Commit to the remote repository
         try {

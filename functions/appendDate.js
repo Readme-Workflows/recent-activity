@@ -4,7 +4,7 @@
 
 const dateFormat = require("dateformat");
 
-const { TIMEZONE_OFFSET, DATE_FORMAT, DATE_STRING } = require("../config");
+const { timezone, date_format, date_string } = require("../config");
 
 const appendDate = (fullContent) => {
   let dateStartIdx = fullContent.findIndex(
@@ -18,7 +18,7 @@ const appendDate = (fullContent) => {
         index > dateStartIdx
     );
 
-    let timezone = TIMEZONE_OFFSET.replace("GMT", "").split(":");
+    let timezone = timezone.replace("GMT", "").split(":");
     let offset;
 
     let tz_hours = parseInt(timezone[0].trim());
@@ -36,9 +36,9 @@ const appendDate = (fullContent) => {
     const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
     let finalDate = new Date(utc + offset * 60000);
 
-    finalDateString = DATE_STRING.replace(
+    finalDateString = date_string.replace(
       "{DATE}",
-      dateFormat(finalDate, DATE_FORMAT)
+      dateFormat(finalDate, date_format)
     );
 
     if (dateEndIdx === -1) {

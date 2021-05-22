@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { URL_TEXT, urlPrefix } = require("../config");
+const { url_text, urlPrefix } = require("../config");
 
 const makeCustomUrl = (item, type) => {
   let url;
@@ -12,7 +12,7 @@ const makeCustomUrl = (item, type) => {
     case "issue_close":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        url_text.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -21,7 +21,7 @@ const makeCustomUrl = (item, type) => {
     case "issue_comment":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
+        url_text.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -30,7 +30,7 @@ const makeCustomUrl = (item, type) => {
     case "commit_comment":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `#commit`).replace(
+        url_text.replace(/{ID}/g, `#commit`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -39,7 +39,7 @@ const makeCustomUrl = (item, type) => {
     case "pr_review_comment":
       url =
         `[` +
-        URL_TEXT.replace(
+        url_text.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
@@ -50,7 +50,7 @@ const makeCustomUrl = (item, type) => {
     case "pr_merge":
       url =
         `[` +
-        URL_TEXT.replace(
+        url_text.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
@@ -59,7 +59,7 @@ const makeCustomUrl = (item, type) => {
     case "pr_review":
       url =
         `[` +
-        URL_TEXT.replace(
+        url_text.replace(
           /{ID}/g,
           `#${item.payload.pull_request.number}`
         ).replace(/{REPO}/g, item.repo.name) +
@@ -70,13 +70,13 @@ const makeCustomUrl = (item, type) => {
     case "star":
       url =
         `[` +
-        URL_TEXT.replace(/{REPO}/g, item.repo.name) +
+        url_text.replace(/{REPO}/g, item.repo.name) +
         `](${urlPrefix}/${item.repo.name})`;
       break;
     case "fork":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `${item.payload.forkee.full_name}`).replace(
+        url_text.replace(/{ID}/g, `${item.payload.forkee.full_name}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
@@ -85,7 +85,7 @@ const makeCustomUrl = (item, type) => {
     case "wiki":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `${item.page_name}`).replace(
+        url_text.replace(/{ID}/g, `${item.page_name}`).replace(
           /{REPO}/g,
           item.repo_name
         ) +
@@ -94,7 +94,7 @@ const makeCustomUrl = (item, type) => {
     case "release":
       url =
         `[` +
-        URL_TEXT.replace(/{ID}/g, `${item.payload.release.name}`).replace(
+        url_text.replace(/{ID}/g, `${item.payload.release.name}`).replace(
           /{REPO}/g,
           item.repo.name
         ) +
