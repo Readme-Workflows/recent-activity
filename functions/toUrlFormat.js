@@ -13,19 +13,22 @@ const toUrlFormat = (item, type) => {
       case "issue_close":
         url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
         break;
-      case "issuecomment":
+      case "issue_comment":
         url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
         break;
-      case "commitcomment":
+      case "commit_comment":
         url = `[commit](${item.payload.comment.html_url})`;
         break;
-      case "prreviewcomment":
+      case "pr_review_comment":
         url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
         break;
       case "pr_open":
       case "pr_close":
       case "pr_merge":
         url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+        break;
+      case "fork":
+        url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
         break;
       default:
         tools.exit.failure("Failed while creating the url format.");

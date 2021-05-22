@@ -6,10 +6,10 @@ const CommitCommentEvent = (item) => {
   if (item.payload.action === "created") {
     return COMMENTS_ACTIVITY.replace(
       /{ID}/g,
-      toUrlFormat(item, "commitcomment")
+      toUrlFormat(item, "commit_comment")
     )
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commitcomment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "commitcomment"));
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
   } else {
     return "";
   }

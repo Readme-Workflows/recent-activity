@@ -12,6 +12,7 @@ const PullRequestReviewCommentEvent = require("./events/PullRequestReviewComment
 const IssuesEvent = require("./events/IssuesEvent");
 const PullRequestEvent = require("./events/PullRequestEvent");
 const CreateEvent = require("./events/CreateEvent");
+const ForkEvent = require("./events/ForkEvent");
 
 const serializers = {};
 
@@ -31,6 +32,10 @@ if (!DISABLE_EVENTS.includes("pr")) {
 
 if (!DISABLE_EVENTS.includes("create_repo")) {
   serializers.CreateEvent = CreateEvent;
+}
+
+if (!DISABLE_EVENTS.includes("fork")) {
+  serializers.ForkEvent = ForkEvent;
 }
 
 module.exports = serializers;

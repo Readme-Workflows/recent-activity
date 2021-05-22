@@ -6,10 +6,10 @@ const PullRequestReviewCommentEvent = (item) => {
   if (item.payload.action === "created") {
     return COMMENTS_ACTIVITY.replace(
       /{ID}/g,
-      toUrlFormat(item, "prreviewcomment")
+      toUrlFormat(item, "pr_review_comment")
     )
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "prreviewcomment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "prreviewcomment"));
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
   } else {
     return "";
   }

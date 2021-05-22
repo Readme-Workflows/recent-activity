@@ -18,7 +18,7 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.payload.issue.html_url})`;
       break;
-    case "issuecomment":
+    case "issue_comment":
       url =
         `[` +
         URL_TEXT.replace(/{ID}/g, `#${item.payload.issue.number}`).replace(
@@ -27,7 +27,7 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.payload.comment.html_url})`;
       break;
-    case "commitcomment":
+    case "commit_comment":
       url =
         `[` +
         URL_TEXT.replace(/{ID}/g, `#commit`).replace(
@@ -36,7 +36,7 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.payload.comment.html_url})`;
       break;
-    case "prreviewcomment":
+    case "pr_review_comment":
       url =
         `[` +
         URL_TEXT.replace(
@@ -56,11 +56,20 @@ const makeCustomUrl = (item, type) => {
         ).replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.pull_request.html_url})`;
       break;
-    case "createrepo":
+    case "create_repo":
       url =
         `[` +
         URL_TEXT.replace(/{REPO}/g, item.repo.name) +
         `](${urlPrefix}/${item.repo.name})`;
+      break;
+    case "fork":
+      url =
+        `[` +
+        URL_TEXT.replace(/{FORK}/g, `${item.payload.forkee.full_name}`).replace(
+          /{REPO}/g,
+          item.repo.name
+        ) +
+        `](${item.payload.forkee.html_url})`;
       break;
     default:
       tools.exit.failure("Failed while creating the url string.");

@@ -11,13 +11,7 @@ const IssuesEvent = (item) => {
     return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
       .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-  }
-  // else {
-  //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-  //     item
-  //   )} in ${toUrlFormat(item.repo.name)}`;
-  // }
-  else {
+  } else {
     return "";
   }
 };

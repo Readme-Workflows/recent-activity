@@ -6,8 +6,8 @@ const CreateEvent = (item) => {
   if (item.payload.ref_type === "repository") {
     return CREATE_REPO.replace(
       /{REPO}/g,
-      toUrlFormat(item.repo.name, "createrepo")
-    ).replace(/{URL}/g, makeCustomUrl(item, "createrepo"));
+      toUrlFormat(item.repo.name, "create_repo")
+    ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
   } else {
     return "";
   }

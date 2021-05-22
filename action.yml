@@ -65,6 +65,10 @@ inputs:
     description: "How the 'create new repository' activity should be printed."
     default: "📔 Created new repository {REPO}"
     required: false
+  FORK_REPO:
+    description: "How the 'fork repository' activity should be printed."
+    default: "🔱 Forked {FORK} from {REPO}"
+    required: false
 
   # DATE
   TIMEZONE_OFFSET:
