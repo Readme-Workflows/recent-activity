@@ -37,16 +37,14 @@ const userVals = parseYaml(core.getInput("CONFIG_FILE"));
 
 let conf = {
   ...defaultVals,
-  ...userVals,
+  ...userVals.settings,
+  ...userVals.messages,
 };
 
 let disabled = [];
-conf.disable_events
-  .toLowerCase()
-  .split(",")
-  .forEach((item) => {
-    disabled.push(item.trim());
-  });
+conf.disable_events.forEach((event) => {
+  disabled.push(event.trim().toLowerCase());
+});
 
 conf.disable_events = disabled;
 

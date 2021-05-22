@@ -9,7 +9,7 @@ inputs:
     required: false
   CONFIG_FILE:
     description: "Path to configuration file"
-    default: ".github/activity-config.yml"
+    default: "./.github/activity-config.yml"
 
 branding:
   color: orange
