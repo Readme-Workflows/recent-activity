@@ -40,6 +40,13 @@ let conf = {
   ...userVals,
 };
 
+let disabled = []
+conf.disable_events.toLowerCase().split(',').forEach(item => {
+  disabled.push(item.trim())
+});
+
+conf.disable_events = disabled
+
 const urlPrefix = "https://github.com";
 
 module.exports = {

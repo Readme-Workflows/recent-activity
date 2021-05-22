@@ -18,23 +18,29 @@ const appendDate = (fullContent) => {
         index > dateStartIdx
     );
 
-    let timezone = timezone.replace("GMT", "").split(":");
     let offset;
+    let finalDate;
 
-    let tz_hours = parseInt(timezone[0].trim());
-
-    if (timezone.length > 1) {
-      offset = tz_hours * 60 + parseInt(timezone[1].trim());
+    if (timezone.split("/").length === 2) {
+      process.env.TZ = timezone;
+      finalDate = new Date();
     } else {
-      if (tz_hours > 99) {
-        offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
-      } else {
-        offset = tz_hours * 60;
-      }
-    }
+      let tz = timezone.replace("GMT", "").split(":");
+      let tz_hours = parseInt(tz[0].trim());
 
-    const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-    let finalDate = new Date(utc + offset * 60000);
+      if (tz.length > 1) {
+        offset = tz_hours * 60 + parseInt(tz[1].trim());
+      } else {
+        if (tz_hours > 99) {
+          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+        } else {
+          offset = tz_hours * 60;
+        }
+      }
+
+      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+      finalDate = new Date(utc + offset * 60000);
+    }
 
     finalDateString = date_string.replace(
       "{DATE}",

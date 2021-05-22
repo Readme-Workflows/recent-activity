@@ -1,6 +1,6 @@
 name: Recent GitHub Activity - Profile Readme
 description: Add your recent activity to your profile readme!
-author: jamesgeorge007, abhijoshi2k, PuneetGopinath
+author: jamesgeorge007, abhijoshi2k, PuneetGopinath, Andre601
 
 inputs:
   GH_USERNAME:
