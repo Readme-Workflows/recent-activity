@@ -76,6 +76,12 @@ inputs:
     default: "📖 Created new wiki page {WIKI} in {REPO}"
     required: false
 
+  # MEMBER
+  ADDED_MEMBER:
+    description: "How the 'added as collaborator' activity should be printed."
+    default: "🤝 Became collaborator on {REPO}"
+    required: false
+
   # DATE
   TIMEZONE_OFFSET:
     description: "Timezone in which time is to be displayed"

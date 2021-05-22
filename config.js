@@ -23,6 +23,7 @@ const DATE_FORMAT = core.getInput("DATE_FORMAT");
 const CREATE_REPO = core.getInput("CREATE_REPO");
 const FORK_REPO = core.getInput("FORK_REPO");
 const WIKI_CREATE = core.getInput("WIKI_CREATE");
+const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
@@ -48,5 +49,6 @@ module.exports = {
   CREATE_REPO,
   FORK_REPO,
   WIKI_CREATE,
+  ADDED_MEMBER,
   urlPrefix,
 };

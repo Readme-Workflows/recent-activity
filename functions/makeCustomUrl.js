@@ -80,6 +80,12 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.html_url})`;
       break;
+    case "member":
+      url =
+        `[` +
+        URL_TEXT.replace(/{REPO}/g, item.repo_name) +
+        `](${urlPrefix}/${item.repo.name})`;
+      break;
     default:
       tools.exit.failure("Failed while creating the url string.");
       break;
