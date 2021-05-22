@@ -70,6 +70,6 @@ DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
 const urlPrefix = "https://github.com";
 
 module.exports = {
-  conf,
+  ...conf,
   urlPrefix,
 };
