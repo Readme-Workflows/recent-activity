@@ -4,6 +4,8 @@ The Changelog of the major version 2 of Recent-Activity GitHub Action.
 
 Note that the displayed date is in the format `dd-mm-yyyy`
 
+[Older changelogs](#older-changelogs)
+
 ## [v2.0.0]
 > **Released:** `TBA`
 
@@ -33,3 +35,6 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 [#45]: https://github.com/Readme-Workflows/recent-activity/pull/45
 [#50]: https://github.com/Readme-Workflows/recent-activity/pull/50
 [#54]: https://github.com/Readme-Workflows/recent-activity/pull/54
+
+## Older changelogs
+- [v1](https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.3.0)
