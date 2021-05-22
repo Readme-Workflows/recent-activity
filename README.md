@@ -119,13 +119,13 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>FORK_REPO</code></td>
       <td>Text displayed when forking a repo.</td>
       <td><code>🔱 Forked {FORK} from {REPO}</code></td>
-      <td><code>{FORK}</code> and <code>{REPO}</code></td>
+      <td><code>{FORK}</code><br/><code>{REPO}</code></td>
     </tr>
     <tr>
       <td><code>WIKI_CREATE</code></td>
       <td>Text displayed when creating a wiki page.</td>
       <td><code>📖 Created new wiki page {WIKI} in {REPO}</code></td>
-      <td><code>{WIKI}</code> and <code>{REPO}</code></td>
+      <td><code>{WIKI}</code><br/><code>{REPO}</code></td>
     </tr>
     <tr>
       <td><code>ADDED_MEMBER</code></td>
@@ -137,19 +137,19 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>REVIEW_APPROVED</code></td>
       <td>Text displayed when you approved a pr.</td>
       <td><code>👍 Approved {ID} in {REPO}</code></td>
-      <td><code>{ID}</code> and <code>{REPO}</code></td>
+      <td><code>{ID}</code><br/><code>{REPO}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>CHANGES_REQUESTED</code></td>
       <td>Text displayed when you requested changes when approving a pr.</td>
       <td><code>🔴 Requested changes in {ID} in {REPO}</code></td>
-      <td><code>{ID}</code> and <code>{REPO}</code></td>
+      <td><code>{ID}</code><br/><code>{REPO}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>RELEASE</code></td>
       <td>Text displayed when you release new version in a repo.</td>
       <td><code>✌️ Released {ID} in {REPO}</code></td>
-      <td><code>{ID}</code> and <code>{REPO}</code></td>
+      <td><code>{ID}</code><br/><code>{REPO}</code></td>
     </tr>
     <tr>
       <td><code>STAR</code></td>
