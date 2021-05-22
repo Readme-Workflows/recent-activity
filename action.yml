@@ -33,7 +33,7 @@ inputs:
   # COMMENTS
   COMMENTS_ACTIVITY:
     description: "How the comments activity should be printed."
-    default: "🗣 Commented on {ID} in {REPO}"
+    default: "💬 Commented on {ID} in {REPO}"
     required: false
 
   # ISSUES
@@ -43,7 +43,7 @@ inputs:
     required: false
   ISSUE_CLOSED:
     description: "How the 'issue closed' activity should be printed."
-    default: "❗️ Closed issue {ID} in {REPO}"
+    default: "✔️ Closed issue {ID} in {REPO}"
     required: false
 
   # PR
@@ -58,6 +58,50 @@ inputs:
   PR_MERGED:
     description: "How the 'pull request merged' activity should be printed."
     default: "🎉 Merged PR {ID} in {REPO}"
+    required: false
+
+  # REPO
+  CREATE_REPO:
+    description: "How the 'create new repository' activity should be printed."
+    default: "📔 Created new repository {REPO}"
+    required: false
+  FORK_REPO:
+    description: "How the 'fork repository' activity should be printed."
+    default: "🔱 Forked {FORK} from {REPO}"
+    required: false
+
+  # WIKI
+  WIKI_CREATE:
+    description: "How the 'create wiki' activity should be printed."
+    default: "📖 Created new wiki page {WIKI} in {REPO}"
+    required: false
+
+  # MEMBER
+  ADDED_MEMBER:
+    description: "How the 'added as collaborator' activity should be printed."
+    default: "🤝 Became collaborator on {REPO}"
+    required: false
+
+  # PR REVIEW
+  REVIEW_APPROVED:
+    description: "How the 'review approved' activity should be printed."
+    default: "👍 Approved {ID} in {REPO}"
+    required: false
+  CHANGES_REQUESTED:
+    description: "How the 'changes requested' activity should be printed."
+    default: "🔴 Requested changes in {ID} in {REPO}"
+    required: false
+
+  # RELEASE
+  RELEASE:
+    description: "How the 'release' activity should be printed."
+    default: "✌️ Released {ID} in {REPO}"
+    required: false
+
+  # STAR
+  STAR:
+    description: "How the 'starred' activity should be printed."
+    default: "⭐ Starred {REPO}"
     required: false
 
   # DATE

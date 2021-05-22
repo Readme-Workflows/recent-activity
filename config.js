@@ -20,9 +20,19 @@ const URL_TEXT = core.getInput("URL_TEXT");
 const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
 const DATE_STRING = core.getInput("DATE_STRING");
 const DATE_FORMAT = core.getInput("DATE_FORMAT");
+const CREATE_REPO = core.getInput("CREATE_REPO");
+const FORK_REPO = core.getInput("FORK_REPO");
+const WIKI_CREATE = core.getInput("WIKI_CREATE");
+const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
+const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
+const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
+const RELEASE = core.getInput("RELEASE");
+const STAR = core.getInput("STAR");
 
 let DISABLE_EVENTS = core.getInput("DISABLE_EVENTS").toLowerCase().split(",");
 DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
+
+const urlPrefix = "https://github.com";
 
 module.exports = {
   GH_USERNAME,
@@ -40,4 +50,13 @@ module.exports = {
   DATE_STRING,
   DATE_FORMAT,
   DISABLE_EVENTS,
+  CREATE_REPO,
+  FORK_REPO,
+  WIKI_CREATE,
+  ADDED_MEMBER,
+  REVIEW_APPROVED,
+  CHANGES_REQUESTED,
+  RELEASE,
+  STAR,
+  urlPrefix,
 };

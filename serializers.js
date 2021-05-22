@@ -3,79 +3,64 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const config = require("./config");
-const makeCustomUrl = require("./functions/makeCustomUrl");
-const toUrlFormat = require("./functions/toUrlFormat");
+const { DISABLE_EVENTS } = require("./config");
+
+// Events
+const IssueCommentEvent = require("./events/IssueCommentEvent");
+const CommitCommentEvent = require("./events/CommitCommentEvent");
+const PullRequestReviewCommentEvent = require("./events/PullRequestReviewCommentEvent");
+const IssuesEvent = require("./events/IssuesEvent");
+const PullRequestEvent = require("./events/PullRequestEvent");
+const CreateEvent = require("./events/CreateEvent");
+const ForkEvent = require("./events/ForkEvent");
+const GollumEvent = require("./events/GollumEvent");
+const MemberEvent = require("./events/MemberEvent");
+const PullRequestReviewEvent = require("./events/PullRequestReviewEvent");
+const ReleaseEvent = require("./events/ReleaseEvent");
+const WatchEvent = require("./events/WatchEvent");
 
 const serializers = {};
 
-if (!config.DISABLE_EVENTS.includes("comments")) {
-  serializers.IssueCommentEvent = (item) => {
-    if (item.payload.action === "created") {
-      return config.COMMENTS_ACTIVITY.replace(
-        /{ID}/g,
-        toUrlFormat(item, "comment")
-      )
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
-        .replace(/{URL}/g, makeCustomUrl(item, "comment"));
-    } else {
-      return "";
-    }
-  };
-  // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-  //   item.repo.name
-  // )}`;
+if (!DISABLE_EVENTS.includes("comments")) {
+  serializers.IssueCommentEvent = IssueCommentEvent;
+  serializers.CommitCommentEvent = CommitCommentEvent;
+  serializers.PullRequestReviewCommentEvent = PullRequestReviewCommentEvent;
 }
 
-if (!config.DISABLE_EVENTS.includes("issues")) {
-  serializers.IssuesEvent = (item) => {
-    if (item.payload.action === "opened") {
-      return config.ISSUE_OPENED.replace(
-        /{ID}/g,
-        toUrlFormat(item, "issue_open")
-      )
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
-        .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
-    } else if (item.payload.action === "closed") {
-      return config.ISSUE_CLOSED.replace(
-        /{ID}/g,
-        toUrlFormat(item, "issue_close")
-      )
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
-        .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-    }
-    // else {
-    //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-    //     item
-    //   )} in ${toUrlFormat(item.repo.name)}`;
-    // }
-    else {
-      return "";
-    }
-  };
+if (!DISABLE_EVENTS.includes("issues")) {
+  serializers.IssuesEvent = IssuesEvent;
 }
 
-if (!config.DISABLE_EVENTS.includes("pr")) {
-  serializers.PullRequestEvent = (item) => {
-    if (item.payload.action === "opened") {
-      return config.PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
-        .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
-    } else if (item.payload.pull_request.merged) {
-      return config.PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
-        .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
-    } else if (
-      item.payload.action === "closed" &&
-      !item.payload.pull_request.merged
-    ) {
-      return config.PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
-        .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
-        .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
-    } else {
-      return "";
-    }
-  };
+if (!DISABLE_EVENTS.includes("pr")) {
+  serializers.PullRequestEvent = PullRequestEvent;
+}
+
+if (!DISABLE_EVENTS.includes("create_repo")) {
+  serializers.CreateEvent = CreateEvent;
+}
+
+if (!DISABLE_EVENTS.includes("fork")) {
+  serializers.ForkEvent = ForkEvent;
+}
+
+if (!DISABLE_EVENTS.includes("wiki")) {
+  serializers.GollumEvent = GollumEvent;
+}
+
+if (!DISABLE_EVENTS.includes("member")) {
+  serializers.MemberEvent = MemberEvent;
+}
+
+if (!DISABLE_EVENTS.includes("review")) {
+  serializers.PullRequestReviewEvent = PullRequestReviewEvent;
+}
+
+if (!DISABLE_EVENTS.includes("release")) {
+  serializers.ReleaseEvent = ReleaseEvent;
+}
+
+if (!DISABLE_EVENTS.includes("star")) {
+  serializers.WatchEvent = WatchEvent;
 }
 
 module.exports = serializers;

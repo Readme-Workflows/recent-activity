@@ -28,12 +28,22 @@
       const TIMEZONE_OFFSET = core.getInput("TIMEZONE_OFFSET");
       const DATE_STRING = core.getInput("DATE_STRING");
       const DATE_FORMAT = core.getInput("DATE_FORMAT");
+      const CREATE_REPO = core.getInput("CREATE_REPO");
+      const FORK_REPO = core.getInput("FORK_REPO");
+      const WIKI_CREATE = core.getInput("WIKI_CREATE");
+      const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
+      const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
+      const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
+      const RELEASE = core.getInput("RELEASE");
+      const STAR = core.getInput("STAR");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
         .toLowerCase()
         .split(",");
       DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
+
+      const urlPrefix = "https://github.com";
 
       module.exports = {
         GH_USERNAME,
@@ -51,7 +61,356 @@
         DATE_STRING,
         DATE_FORMAT,
         DISABLE_EVENTS,
+        CREATE_REPO,
+        FORK_REPO,
+        WIKI_CREATE,
+        ADDED_MEMBER,
+        REVIEW_APPROVED,
+        CHANGES_REQUESTED,
+        RELEASE,
+        STAR,
+        urlPrefix,
       };
+
+      /***/
+    },
+
+    /***/ 6986: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const CommitCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "commit_comment")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = CommitCommentEvent;
+
+      /***/
+    },
+
+    /***/ 7744: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { CREATE_REPO } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const CreateEvent = (item) => {
+        if (item.payload.ref_type === "repository") {
+          return CREATE_REPO.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "create_repo")
+          ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = CreateEvent;
+
+      /***/
+    },
+
+    /***/ 9634: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { FORK_REPO } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const ForkEvent = (item) => {
+        return FORK_REPO.replace(/{FORK}/g, toUrlFormat(item, "fork"))
+          .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
+          .replace(/{URL}/g, makeCustomUrl(item, "fork"));
+      };
+
+      module.exports = ForkEvent;
+
+      /***/
+    },
+
+    /***/ 7021: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { WIKI_CREATE } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const GollumEvent = (item) => {
+        let finalArray = [];
+        item.payload.pages.forEach((page) => {
+          if (page.action === "created") {
+            page.repo_name = item.repo.name;
+            finalArray.push(
+              WIKI_CREATE.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+                .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
+                .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
+            );
+          }
+        });
+
+        if (finalArray.length == 0) {
+          return "";
+        } else {
+          return finalArray;
+        }
+      };
+
+      module.exports = GollumEvent;
+
+      /***/
+    },
+
+    /***/ 454: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const IssueCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "issue_comment")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = IssueCommentEvent;
+
+      /***/
+    },
+
+    /***/ 1183: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { ISSUE_OPENED, ISSUE_CLOSED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const IssuesEvent = (item) => {
+        if (item.payload.action === "opened") {
+          return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
+        } else if (item.payload.action === "closed") {
+          return ISSUE_CLOSED.replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
+            .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = IssuesEvent;
+
+      /***/
+    },
+
+    /***/ 466: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { ADDED_MEMBER } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const MemberEvent = (item) => {
+        if (item.payload.action === "added") {
+          return ADDED_MEMBER.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "member")
+          ).replace(/{URL}/g, makeCustomUrl(item, "member"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = MemberEvent;
+
+      /***/
+    },
+
+    /***/ 8089: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { PR_OPENED, PR_MERGED, PR_CLOSED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const PullRequestEvent = (item) => {
+        if (item.payload.action === "opened") {
+          return PR_OPENED.replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
+        } else if (item.payload.pull_request.merged) {
+          return PR_MERGED.replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
+        } else if (
+          item.payload.action === "closed" &&
+          !item.payload.pull_request.merged
+        ) {
+          return PR_CLOSED.replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestEvent;
+
+      /***/
+    },
+
+    /***/ 1552: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { COMMENTS_ACTIVITY } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const PullRequestReviewCommentEvent = (item) => {
+        if (item.payload.action === "created") {
+          return COMMENTS_ACTIVITY.replace(
+            /{ID}/g,
+            toUrlFormat(item, "pr_review_comment")
+          )
+            .replace(
+              /{REPO}/g,
+              toUrlFormat(item.repo.name, "pr_review_comment")
+            )
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestReviewCommentEvent;
+
+      /***/
+    },
+
+    /***/ 2185: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { REVIEW_APPROVED, CHANGES_REQUESTED } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const PullRequestReviewEvent = (item) => {
+        if (
+          item.payload.action === "created" &&
+          item.payload.review.state == "approved"
+        ) {
+          return REVIEW_APPROVED.replace(
+            /{ID}/g,
+            toUrlFormat(item, "pr_review")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+        } else if (
+          item.payload.action === "created" &&
+          item.payload.review.state == "changes_requested"
+        ) {
+          return CHANGES_REQUESTED.replace(
+            /{ID}/g,
+            toUrlFormat(item, "pr_review")
+          )
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+            .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = PullRequestReviewEvent;
+
+      /***/
+    },
+
+    /***/ 2348: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { RELEASE } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const ReleaseEvent = (item) => {
+        if (item.payload.action === "published") {
+          return RELEASE.replace(/{ID}/g, toUrlFormat(item, "release"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
+            .replace(/{URL}/g, makeCustomUrl(item, "release"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = ReleaseEvent;
+
+      /***/
+    },
+
+    /***/ 7137: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { STAR } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const WatchEvent = (item) => {
+        if (item.payload.action === "started") {
+          return STAR.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "star")
+          ).replace(/{URL}/g, makeCustomUrl(item, "star"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = WatchEvent;
 
       /***/
     },
@@ -237,6 +596,11 @@
           }
         }
 
+        temp_content = temp_content.flat();
+        temp_content.length = MAX_LINES;
+
+        console.log(temp_content);
+
         return temp_content;
       };
 
@@ -255,7 +619,7 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const { URL_TEXT } = __nccwpck_require__(5532);
+      const { URL_TEXT, urlPrefix } = __nccwpck_require__(5532);
 
       const makeCustomUrl = (item, type) => {
         let url;
@@ -270,12 +634,30 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.issue.html_url})`;
             break;
-          case "comment":
+          case "issue_comment":
             url =
               `[` +
               URL_TEXT.replace(
                 /{ID}/g,
                 `#${item.payload.issue.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.comment.html_url})`;
+            break;
+          case "commit_comment":
+            url =
+              `[` +
+              URL_TEXT.replace(/{ID}/g, `#commit`).replace(
+                /{REPO}/g,
+                item.repo.name
+              ) +
+              `](${item.payload.comment.html_url})`;
+            break;
+          case "pr_review_comment":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.pull_request.number}`
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.comment.html_url})`;
             break;
@@ -290,6 +672,50 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.pull_request.html_url})`;
             break;
+          case "pr_review":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `#${item.payload.pull_request.number}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.review.html_url})`;
+            break;
+          case "create_repo":
+          case "member":
+          case "star":
+            url =
+              `[` +
+              URL_TEXT.replace(/{REPO}/g, item.repo.name) +
+              `](${urlPrefix}/${item.repo.name})`;
+            break;
+          case "fork":
+            url =
+              `[` +
+              URL_TEXT.replace(
+                /{ID}/g,
+                `${item.payload.forkee.full_name}`
+              ).replace(/{REPO}/g, item.repo.name) +
+              `](${item.payload.forkee.html_url})`;
+            break;
+          case "wiki":
+            url =
+              `[` +
+              URL_TEXT.replace(/{ID}/g, `${item.page_name}`).replace(
+                /{REPO}/g,
+                item.repo_name
+              ) +
+              `](${item.html_url})`;
+            break;
+          case "release":
+            url =
+              `[` +
+              URL_TEXT.replace(/{ID}/g, `${item.payload.release.name}`).replace(
+                /{REPO}/g,
+                item.repo.name
+              ) +
+              `](${item.payload.release.html_url})`;
+            break;
           default:
             tools.exit.failure("Failed while creating the url string.");
             break;
@@ -302,13 +728,17 @@
       /***/
     },
 
-    /***/ 394: /***/ (module) => {
+    /***/ 394: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
       /**
        * Copyright (c) 2020 James George
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const urlPrefix = "https://github.com";
+      const { urlPrefix } = __nccwpck_require__(5532);
 
       const toUrlFormat = (item, type) => {
         let url;
@@ -318,13 +748,31 @@
             case "issue_close":
               url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
               break;
-            case "comment":
+            case "issue_comment":
               url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+              break;
+            case "commit_comment":
+              url = `[commit](${item.payload.comment.html_url})`;
+              break;
+            case "pr_review_comment":
+              url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
               break;
             case "pr_open":
             case "pr_close":
             case "pr_merge":
               url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+              break;
+            case "pr_review":
+              url = `[#${item.payload.pull_request.number}](${item.payload.review.html_url})`;
+              break;
+            case "fork":
+              url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
+              break;
+            case "wiki":
+              url = `[${item.page_name}](${item.html_url})`;
+              break;
+            case "release":
+              url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
               break;
             default:
               tools.exit.failure("Failed while creating the url format.");
@@ -18743,88 +19191,65 @@
        * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
        */
 
-      const config = __nccwpck_require__(5532);
-      const makeCustomUrl = __nccwpck_require__(9397);
-      const toUrlFormat = __nccwpck_require__(394);
+      const { DISABLE_EVENTS } = __nccwpck_require__(5532);
+
+      // Events
+      const IssueCommentEvent = __nccwpck_require__(454);
+      const CommitCommentEvent = __nccwpck_require__(6986);
+      const PullRequestReviewCommentEvent = __nccwpck_require__(1552);
+      const IssuesEvent = __nccwpck_require__(1183);
+      const PullRequestEvent = __nccwpck_require__(8089);
+      const CreateEvent = __nccwpck_require__(7744);
+      const ForkEvent = __nccwpck_require__(9634);
+      const GollumEvent = __nccwpck_require__(7021);
+      const MemberEvent = __nccwpck_require__(466);
+      const PullRequestReviewEvent = __nccwpck_require__(2185);
+      const ReleaseEvent = __nccwpck_require__(2348);
+      const WatchEvent = __nccwpck_require__(7137);
 
       const serializers = {};
 
-      if (!config.DISABLE_EVENTS.includes("comments")) {
-        serializers.IssueCommentEvent = (item) => {
-          if (item.payload.action === "created") {
-            return config.COMMENTS_ACTIVITY.replace(
-              /{ID}/g,
-              toUrlFormat(item, "comment")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "comment"))
-              .replace(/{URL}/g, makeCustomUrl(item, "comment"));
-          } else {
-            return "";
-          }
-        };
-        // return `🗣 Commented on ${toUrlFormat(item)} in ${toUrlFormat(
-        //   item.repo.name
-        // )}`;
+      if (!DISABLE_EVENTS.includes("comments")) {
+        serializers.IssueCommentEvent = IssueCommentEvent;
+        serializers.CommitCommentEvent = CommitCommentEvent;
+        serializers.PullRequestReviewCommentEvent =
+          PullRequestReviewCommentEvent;
       }
 
-      if (!config.DISABLE_EVENTS.includes("issues")) {
-        serializers.IssuesEvent = (item) => {
-          if (item.payload.action === "opened") {
-            return config.ISSUE_OPENED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "issue_open")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
-              .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
-          } else if (item.payload.action === "closed") {
-            return config.ISSUE_CLOSED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "issue_close")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
-              .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-          }
-          // else {
-          //   return `❗️ ${capitalize(item.payload.action)} issue ${toUrlFormat(
-          //     item
-          //   )} in ${toUrlFormat(item.repo.name)}`;
-          // }
-          else {
-            return "";
-          }
-        };
+      if (!DISABLE_EVENTS.includes("issues")) {
+        serializers.IssuesEvent = IssuesEvent;
       }
 
-      if (!config.DISABLE_EVENTS.includes("pr")) {
-        serializers.PullRequestEvent = (item) => {
-          if (item.payload.action === "opened") {
-            return config.PR_OPENED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_open")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
-          } else if (item.payload.pull_request.merged) {
-            return config.PR_MERGED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_merge")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
-          } else if (
-            item.payload.action === "closed" &&
-            !item.payload.pull_request.merged
-          ) {
-            return config.PR_CLOSED.replace(
-              /{ID}/g,
-              toUrlFormat(item, "pr_close")
-            )
-              .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
-              .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
-          } else {
-            return "";
-          }
-        };
+      if (!DISABLE_EVENTS.includes("pr")) {
+        serializers.PullRequestEvent = PullRequestEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("create_repo")) {
+        serializers.CreateEvent = CreateEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("fork")) {
+        serializers.ForkEvent = ForkEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("wiki")) {
+        serializers.GollumEvent = GollumEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("member")) {
+        serializers.MemberEvent = MemberEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("review")) {
+        serializers.PullRequestReviewEvent = PullRequestReviewEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("release")) {
+        serializers.ReleaseEvent = ReleaseEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("star")) {
+        serializers.WatchEvent = WatchEvent;
       }
 
       module.exports = serializers;
@@ -19021,7 +19446,7 @@
     const { Toolkit } = __nccwpck_require__(7045);
 
     // configuration
-    const config = __nccwpck_require__(5532);
+    const { GH_USERNAME, README_FILE, MAX_LINES } = __nccwpck_require__(5532);
 
     // functions
     const appendDate = __nccwpck_require__(2310);
@@ -19034,13 +19459,13 @@
     Toolkit.run(
       async (tools) => {
         // Get the user's public events
-        tools.log.debug(`Getting activity for ${config.GH_USERNAME}`);
+        tools.log.debug(`Getting activity for ${GH_USERNAME}`);
         const events = await tools.github.activity.listPublicEventsForUser({
-          username: config.GH_USERNAME,
+          username: GH_USERNAME,
           per_page: 100,
         });
         tools.log.debug(
-          `${events.data.length} events found for ${config.GH_USERNAME}.`
+          `${events.data.length} events found for ${GH_USERNAME}.`
         );
 
         let eventData = events.data
@@ -19052,12 +19477,10 @@
         let readmeContent;
 
         try {
-          readmeContent = fs
-            .readFileSync(config.README_FILE, "utf-8")
-            .split("\n");
+          readmeContent = fs.readFileSync(README_FILE, "utf-8").split("\n");
         } catch (err) {
           return tools.exit.failure(
-            `Couldn't find the file named ${config.README_FILE}`
+            `Couldn't find the file named ${README_FILE}`
           );
         }
 
@@ -19082,8 +19505,8 @@
           tools.exit.success("No events found. Leaving readme unchanged.");
         }
 
-        if (content.length < config.MAX_LINES) {
-          tools.log.info(`Found less than ${config.MAX_LINES} activities`);
+        if (content.length < MAX_LINES) {
+          tools.log.info(`Found less than ${MAX_LINES} activities`);
         }
 
         if (startIdx !== -1 && endIdx === -1) {
@@ -19103,7 +19526,7 @@
           readmeContent = appendDate(readmeContent);
 
           // Update README
-          fs.writeFileSync(config.README_FILE, readmeContent.join("\n"));
+          fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
           // Commit to the remote repository
           try {
@@ -19156,7 +19579,7 @@
         readmeContent = appendDate(readmeContent);
 
         // Update README
-        fs.writeFileSync(config.README_FILE, readmeContent.join("\n"));
+        fs.writeFileSync(README_FILE, readmeContent.join("\n"));
 
         // Commit to the remote repository
         try {
