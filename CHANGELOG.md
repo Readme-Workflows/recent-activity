@@ -37,4 +37,4 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 [#54]: https://github.com/Readme-Workflows/recent-activity/pull/54
 
 ## Older changelogs
-- [v1](https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.3.0)
+- [v1](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/changelogs/CHANGELOG_v1.md)
