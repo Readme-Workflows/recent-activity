@@ -7,7 +7,7 @@ const fs = require("fs");
 const { Toolkit } = require("actions-toolkit");
 
 // configuration
-const { gh_username, readme_file, max_lines } = require("./config");
+const { username, readme_file, max_lines } = require("./config");
 
 // functions
 const appendDate = require("./functions/appendDate");
@@ -20,12 +20,12 @@ const serializers = require("./serializers");
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
-    tools.log.debug(`Getting activity for ${gh_username}`);
+    tools.log.debug(`Getting activity for ${username}`);
     const events = await tools.github.activity.listPublicEventsForUser({
-      username: gh_username,
+      username: username,
       per_page: 100,
     });
-    tools.log.debug(`${events.data.length} events found for ${gh_username}.`);
+    tools.log.debug(`${events.data.length} events found for ${username}.`);
 
     let eventData = events.data
       // Filter out any boring activity

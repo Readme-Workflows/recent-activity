@@ -20,7 +20,7 @@ const defaultVals = {
   readme_file: "./README.md",
   disable_events: "",
   url_text: "{REPO}{ID}",
-  comments_activity: "💬 Commented on {ID} in {REPO}",
+  comments: "💬 Commented on {ID} in {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",
   issue_closed: "✔️ Closed issue {ID} in {REPO}",
   pr_opened: "💪 Opened PR {ID} in {REPO}",
@@ -67,13 +67,13 @@ module.exports = {
 /***/ 6986:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { comments_activity } = __nccwpck_require__(5532);
+const { comments } = __nccwpck_require__(5532);
 const makeCustomUrl = __nccwpck_require__(9397);
 const toUrlFormat = __nccwpck_require__(394);
 
 const CommitCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity
+    return comments
       .replace(/{ID}/g, toUrlFormat(item, "commit_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
@@ -164,13 +164,13 @@ module.exports = GollumEvent;
 /***/ 454:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { comments_activity } = __nccwpck_require__(5532);
+const { comments } = __nccwpck_require__(5532);
 const makeCustomUrl = __nccwpck_require__(9397);
 const toUrlFormat = __nccwpck_require__(394);
 
 const IssueCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity
+    return comments
       .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
@@ -273,13 +273,13 @@ module.exports = PullRequestEvent;
 /***/ 1552:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { comments_activity } = __nccwpck_require__(5532);
+const { comments } = __nccwpck_require__(5532);
 const makeCustomUrl = __nccwpck_require__(9397);
 const toUrlFormat = __nccwpck_require__(394);
 
 const PullRequestReviewCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity
+    return comments
       .replace(/{ID}/g, toUrlFormat(item, "pr_review_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));

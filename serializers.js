@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { disable_events } = require("./config");
+const { disabled_events } = require("./config");
 
 // Events
 const IssueCommentEvent = require("./events/IssueCommentEvent");
@@ -21,45 +21,45 @@ const WatchEvent = require("./events/WatchEvent");
 
 const serializers = {};
 
-if (!disable_events.includes("comments")) {
+if (!disabled_events.includes("comments")) {
   serializers.IssueCommentEvent = IssueCommentEvent;
   serializers.CommitCommentEvent = CommitCommentEvent;
   serializers.PullRequestReviewCommentEvent = PullRequestReviewCommentEvent;
 }
 
-if (!disable_events.includes("issues")) {
+if (!disabled_events.includes("issues")) {
   serializers.IssuesEvent = IssuesEvent;
 }
 
-if (!disable_events.includes("pr")) {
+if (!disabled_events.includes("pr")) {
   serializers.PullRequestEvent = PullRequestEvent;
 }
 
-if (!disable_events.includes("create_repo")) {
+if (!disabled_events.includes("create_repo")) {
   serializers.CreateEvent = CreateEvent;
 }
 
-if (!disable_events.includes("fork")) {
+if (!disabled_events.includes("fork")) {
   serializers.ForkEvent = ForkEvent;
 }
 
-if (!disable_events.includes("wiki")) {
+if (!disabled_events.includes("wiki")) {
   serializers.GollumEvent = GollumEvent;
 }
 
-if (!disable_events.includes("member")) {
+if (!disabled_events.includes("member")) {
   serializers.MemberEvent = MemberEvent;
 }
 
-if (!disable_events.includes("review")) {
+if (!disabled_events.includes("review")) {
   serializers.PullRequestReviewEvent = PullRequestReviewEvent;
 }
 
-if (!disable_events.includes("release")) {
+if (!disabled_events.includes("release")) {
   serializers.ReleaseEvent = ReleaseEvent;
 }
 
-if (!disable_events.includes("star")) {
+if (!disabled_events.includes("star")) {
   serializers.WatchEvent = WatchEvent;
 }
 
