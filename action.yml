@@ -92,6 +92,12 @@ inputs:
     default: "🔴 Requested changes in {ID} in {REPO}"
     required: false
 
+  # RELEASE
+  RELEASE:
+    description: "How the 'release' activity should be printed."
+    default: "✌️ Released {ID} in {REPO}"
+    required: false
+
   # DATE
   TIMEZONE_OFFSET:
     description: "Timezone in which time is to be displayed"

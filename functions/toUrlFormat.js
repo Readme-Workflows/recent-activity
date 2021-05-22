@@ -36,6 +36,9 @@ const toUrlFormat = (item, type) => {
       case "wiki":
         url = `[${item.page_name}](${item.html_url})`;
         break;
+      case "release":
+        url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
+        break;
       default:
         tools.exit.failure("Failed while creating the url format.");
         break;
