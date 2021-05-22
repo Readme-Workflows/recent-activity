@@ -20,6 +20,9 @@ const filterContent = (eventData) => {
     }
   }
 
+  temp_content = temp_content.flat();
+  temp_content.length = MAX_LINES;
+
   return temp_content;
 };
 

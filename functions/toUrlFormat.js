@@ -30,6 +30,9 @@ const toUrlFormat = (item, type) => {
       case "fork":
         url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
         break;
+      case "wiki":
+        url = `[${item.page_name}](${item.html_url})`;
+        break;
       default:
         tools.exit.failure("Failed while creating the url format.");
         break;

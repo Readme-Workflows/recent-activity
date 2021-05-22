@@ -71,6 +71,15 @@ const makeCustomUrl = (item, type) => {
         ) +
         `](${item.payload.forkee.html_url})`;
       break;
+    case "wiki":
+      url =
+        `[` +
+        URL_TEXT.replace(/{WIKI}/g, `${item.page_name}`).replace(
+          /{REPO}/g,
+          item.repo_name
+        ) +
+        `](${item.html_url})`;
+      break;
     default:
       tools.exit.failure("Failed while creating the url string.");
       break;

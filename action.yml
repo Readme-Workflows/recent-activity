@@ -70,6 +70,12 @@ inputs:
     default: "🔱 Forked {FORK} from {REPO}"
     required: false
 
+  # WIKI
+  WIKI_CREATE:
+    description: "How the 'create wiki' activity should be printed."
+    default: "📖 Created new wiki {WIKI} in {REPO}"
+    required: false
+
   # DATE
   TIMEZONE_OFFSET:
     description: "Timezone in which time is to be displayed"
