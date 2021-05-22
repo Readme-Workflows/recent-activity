@@ -8,14 +8,15 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 > **Released:** `TBA`
 
 ### Added features
-- The Action now allows to list Repositories created and Pull request comments or reviews given [[#50
-- `CREATE_REPO`
+- The Action now allows to list repositories created and pull request reviews (including pr review comment) [[#50]]
+  - `CREATE_REPO`
 
 ### Changes
 - Split the index.js file into different modules [[#45]]
 - Make `{ID}` point to the exact issue comment for comment actions [[#42]]
 
 [v1.4.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v1.4.0
+[#50]: https://github.com/Readme-Workflows/recent-activity/pull/50
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
 [#45]: https://github.com/Readme-Workflows/recent-activity/pull/45
 
