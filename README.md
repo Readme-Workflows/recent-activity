@@ -75,57 +75,63 @@ The Action currently has the following Settings that you can set through the `wi
     </tr>
     <tr>
       <td><code>COMMENTS_ACTIVITY</code></td>
-      <td>Text displayed for making a comment.<br/>Includes comments on Issues and Pull requests</td>
+      <td>Text displayed when making a comment.<br/>Includes comments on Issues and Pull requests</td>
       <td><code>💬 Commented on {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>ISSUE_OPENED</code></td>
-      <td>Text displayed for opening an issue.</td>
+      <td>Text displayed when opening an issue.</td>
       <td><code>❗️ Opened issue {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>ISSUE_CLOSED</code></td>
-      <td>Text displayed for closing an issue.</td>
+      <td>Text displayed when closing an issue.</td>
       <td><code>✔ Closed issue {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>PR_OPENED</code></td>
-      <td>Text displayed for opening a Pull request.</td>
+      <td>Text displayed when opening a Pull request.</td>
       <td><code>💪 Opened PR {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>PR_CLOSED</code></td>
-      <td>Text displayed for closing a Pull request without merging.</td>
+      <td>Text displayed when closing a Pull request without merging.</td>
       <td><code>❌ Closed PR {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>PR_MERGED</code></td>
-      <td>Text displayed for merging a Pull request.</td>
+      <td>Text displayed when merging a Pull request.</td>
       <td><code>🎉 Merged PR {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
       <td><code>CREATE_REPO</code></td>
-      <td>Text displayed for creating a new Repository.</td>
+      <td>Text displayed when creating a new Repository.</td>
       <td><code>📔 Created new repository {REPO}</code></td>
       <td><code>{REPO}</code</td>
     </tr>
     <tr>
       <td><code>FORK_REPO</code></td>
-      <td>Text displayed for forking a repo.</td>
+      <td>Text displayed when forking a repo.</td>
       <td><code>🔱 Forked {FORK} from {REPO}</code></td>
       <td><code>{FORK}</code> and <code>{REPO}</code></td>
     </tr>
     <tr>
       <td><code>WIKI_CREATE</code></td>
-      <td>Text displayed for creating a wiki page.</td>
+      <td>Text displayed when creating a wiki page.</td>
       <td><code>📖 Created new wiki page {WIKI} in {REPO}</code></td>
       <td><code>{WIKI}</code> and <code>{REPO}</code></td>
+    </tr>
+    <tr>
+      <td><code>ADDED_MEMBER</code></td>
+      <td>Text displayed when you are added as a collaborator to a repo.</td>
+      <td><code>🤝 Became collaborator on {REPO}</code></td>
+      <td><code>{REPO}</code></td>
     </tr>
     </tr>
       <td>&#8203;</td>
@@ -216,6 +222,16 @@ The following placeholders may be used in the aforementioned settings, if the `S
       <td><code>{DATE}</code></td>
       <td>Current time and date to display.<br>This is <b>ONLY</b> usable in the <a href="#settings">DATE_STRING</a> setting!</b></td>
       <td>01.01.2021 00:00:00</td>
+    </tr>
+    <tr>
+      <td><code>{FORK}</code></td>
+      <td>The forked repo name.</td>
+      <td>Readme-Workflows/forked-repo</td>
+    </tr>
+    <tr>
+      <td><code>{WIKI}</code></td>
+      <td>The Wiki page name</b></td>
+      <td>Home</td>
     </tr>
   </tbody>
 </table>

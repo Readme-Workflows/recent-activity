@@ -599,6 +599,8 @@
         temp_content = temp_content.flat();
         temp_content.length = MAX_LINES;
 
+        console.log(temp_content);
+
         return temp_content;
       };
 
