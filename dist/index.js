@@ -15,7 +15,7 @@ const parseYaml = __nccwpck_require__(8414);
 
 const defaultVals = {
   username: core.getInput("GH_USERNAME"),
-  commit_msg: ":zap: Update README with the recent activity",
+  commit_msg: "⚡ Update README with the recent activity",
   max_lines: 5,
   readme_file: "./README.md",
   disabled_events: [],
