@@ -33,6 +33,11 @@ const defaultVals = {
     "DATE_FORMAT": "dddd, mmmm dS, yyyy, h:MM:ss TT"
 };
 
+let conf = {
+    ...defaultVals,
+    parseYaml(core.getInput("CONFIG_FILE"))
+};
+
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
@@ -63,28 +68,6 @@ DISABLE_EVENTS = DISABLE_EVENTS.map((event) => event.trim());
 const urlPrefix = "https://github.com";
 
 module.exports = {
-  GH_USERNAME,
-  COMMIT_MSG,
-  MAX_LINES,
-  README_FILE,
-  COMMENTS_ACTIVITY,
-  ISSUE_OPENED,
-  ISSUE_CLOSED,
-  PR_OPENED,
-  PR_CLOSED,
-  PR_MERGED,
-  URL_TEXT,
-  TIMEZONE_OFFSET,
-  DATE_STRING,
-  DATE_FORMAT,
-  DISABLE_EVENTS,
-  CREATE_REPO,
-  FORK_REPO,
-  WIKI_CREATE,
-  ADDED_MEMBER,
-  REVIEW_APPROVED,
-  CHANGES_REQUESTED,
-  RELEASE,
-  STAR,
+  conf,
   urlPrefix,
 };
