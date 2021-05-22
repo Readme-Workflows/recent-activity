@@ -8,7 +8,7 @@ const fs = require("fs");
 //const { config_file } = require("../config");
 
 const parseYaml = (file) => {
-  return config = yaml.load(fs.readFileSync(file, "utf8"));
+  return yaml.load(fs.readFileSync(file, "utf8"));
 };
 
 module.exports = parseYaml;
