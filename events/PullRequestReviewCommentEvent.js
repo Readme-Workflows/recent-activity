@@ -4,10 +4,8 @@ const toUrlFormat = require("../functions/toUrlFormat");
 
 const PullRequestReviewCommentEvent = (item) => {
   if (item.payload.action === "created") {
-    return comments_activity.replace(
-      /{ID}/g,
-      toUrlFormat(item, "pr_review_comment")
-    )
+    return comments_activity
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review_comment"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
   } else {

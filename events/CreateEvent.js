@@ -4,10 +4,9 @@ const toUrlFormat = require("../functions/toUrlFormat");
 
 const CreateEvent = (item) => {
   if (item.payload.ref_type === "repository") {
-    return create_repo.replace(
-      /{REPO}/g,
-      toUrlFormat(item.repo.name, "create_repo")
-    ).replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
+    return create_repo
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "create_repo"))
+      .replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
   } else {
     return "";
   }

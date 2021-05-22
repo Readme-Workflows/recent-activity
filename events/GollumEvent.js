@@ -8,7 +8,8 @@ const GollumEvent = (item) => {
     if (page.action === "created") {
       page.repo_name = item.repo.name;
       finalArray.push(
-        wiki_create.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+        wiki_create
+          .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
           .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
           .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
       );

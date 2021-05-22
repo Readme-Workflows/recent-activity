@@ -4,10 +4,9 @@ const toUrlFormat = require("../functions/toUrlFormat");
 
 const WatchEvent = (item) => {
   if (item.payload.action === "started") {
-    return new_star.replace(/{REPO}/g, toUrlFormat(item.repo.name, "star")).replace(
-      /{URL}/g,
-      makeCustomUrl(item, "star")
-    );
+    return new_star
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "star"))
+      .replace(/{URL}/g, makeCustomUrl(item, "star"));
   } else {
     return "";
   }
