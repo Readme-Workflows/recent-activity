@@ -33,9 +33,11 @@ const defaultVals = {
     "DATE_FORMAT": "dddd, mmmm dS, yyyy, h:MM:ss TT"
 };
 
+const userVals = parseYaml(core.getInput("CONFIG_FILE"));
+
 let conf = {
     ...defaultVals,
-    parseYaml(core.getInput("CONFIG_FILE"))
+    ...userVals
 };
 
 // Get config inputs
