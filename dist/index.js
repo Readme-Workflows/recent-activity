@@ -35,6 +35,7 @@
       const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
       const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
       const RELEASE = core.getInput("RELEASE");
+      const STAR = core.getInput("STAR");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -67,6 +68,7 @@
         REVIEW_APPROVED,
         CHANGES_REQUESTED,
         RELEASE,
+        STAR,
         urlPrefix,
       };
 
@@ -375,7 +377,7 @@
 
       const ReleaseEvent = (item) => {
         if (item.payload.action === "published") {
-          return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "release"))
+          return RELEASE.replace(/{ID}/g, toUrlFormat(item, "release"))
             .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
             .replace(/{URL}/g, makeCustomUrl(item, "release"));
         } else {
@@ -384,6 +386,31 @@
       };
 
       module.exports = ReleaseEvent;
+
+      /***/
+    },
+
+    /***/ 7137: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { STAR } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const WatchEvent = (item) => {
+        if (item.payload.action === "published") {
+          return STAR.replace(
+            /{REPO}/g,
+            toUrlFormat(item.repo.name, "star")
+          ).replace(/{URL}/g, makeCustomUrl(item, "star"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = WatchEvent;
 
       /***/
     },
@@ -653,6 +680,8 @@
               `](${item.payload.review.html_url})`;
             break;
           case "create_repo":
+          case "member":
+          case "star":
             url =
               `[` +
               URL_TEXT.replace(/{REPO}/g, item.repo.name) +
@@ -662,7 +691,7 @@
             url =
               `[` +
               URL_TEXT.replace(
-                /{FORK}/g,
+                /{ID}/g,
                 `${item.payload.forkee.full_name}`
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.forkee.html_url})`;
@@ -670,17 +699,11 @@
           case "wiki":
             url =
               `[` +
-              URL_TEXT.replace(/{WIKI}/g, `${item.page_name}`).replace(
+              URL_TEXT.replace(/{ID}/g, `${item.page_name}`).replace(
                 /{REPO}/g,
                 item.repo_name
               ) +
               `](${item.html_url})`;
-            break;
-          case "member":
-            url =
-              `[` +
-              URL_TEXT.replace(/{REPO}/g, item.repo_name) +
-              `](${urlPrefix}/${item.repo.name})`;
             break;
           case "release":
             url =
@@ -19180,6 +19203,7 @@
       const MemberEvent = __nccwpck_require__(466);
       const PullRequestReviewEvent = __nccwpck_require__(2185);
       const ReleaseEvent = __nccwpck_require__(2348);
+      const WatchEvent = __nccwpck_require__(7137);
 
       const serializers = {};
 
@@ -19218,8 +19242,12 @@
         serializers.PullRequestReviewEvent = PullRequestReviewEvent;
       }
 
-      if (!DISABLE_EVENTS.includes("review")) {
+      if (!DISABLE_EVENTS.includes("release")) {
         serializers.ReleaseEvent = ReleaseEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("star")) {
+        serializers.WatchEvent = WatchEvent;
       }
 
       module.exports = serializers;
