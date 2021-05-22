@@ -30,6 +30,7 @@
       const DATE_FORMAT = core.getInput("DATE_FORMAT");
       const CREATE_REPO = core.getInput("CREATE_REPO");
       const FORK_REPO = core.getInput("FORK_REPO");
+      const WIKI_CREATE = core.getInput("WIKI_CREATE");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -57,6 +58,7 @@
         DISABLE_EVENTS,
         CREATE_REPO,
         FORK_REPO,
+        WIKI_CREATE,
         urlPrefix,
       };
 
@@ -131,6 +133,40 @@
       };
 
       module.exports = ForkEvent;
+
+      /***/
+    },
+
+    /***/ 7021: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { WIKI_CREATE } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const GollumEvent = (item) => {
+        let finalArray = [];
+        item.payload.pages.forEach((page) => {
+          if (page.action === "created") {
+            page.repo_name = item.repo.name;
+            finalArray.push(
+              WIKI_CREATE.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+                .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
+                .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
+            );
+          }
+        });
+
+        if (finalArray.length == 0) {
+          return "";
+        } else {
+          return finalArray;
+        }
+      };
+
+      module.exports = GollumEvent;
 
       /***/
     },
@@ -436,6 +472,9 @@
           }
         }
 
+        temp_content = temp_content.flat();
+        temp_content.length = MAX_LINES;
+
         return temp_content;
       };
 
@@ -522,6 +561,15 @@
               ).replace(/{REPO}/g, item.repo.name) +
               `](${item.payload.forkee.html_url})`;
             break;
+          case "wiki":
+            url =
+              `[` +
+              URL_TEXT.replace(/{WIKI}/g, `${item.page_name}`).replace(
+                /{REPO}/g,
+                item.repo_name
+              ) +
+              `](${item.html_url})`;
+            break;
           default:
             tools.exit.failure("Failed while creating the url string.");
             break;
@@ -570,6 +618,9 @@
               break;
             case "fork":
               url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
+              break;
+            case "wiki":
+              url = `[${item.page_name}](${item.html_url})`;
               break;
             default:
               tools.exit.failure("Failed while creating the url format.");
@@ -18998,6 +19049,7 @@
       const PullRequestEvent = __nccwpck_require__(8089);
       const CreateEvent = __nccwpck_require__(7744);
       const ForkEvent = __nccwpck_require__(9634);
+      const GollumEvent = __nccwpck_require__(7021);
 
       const serializers = {};
 
@@ -19022,6 +19074,10 @@
 
       if (!DISABLE_EVENTS.includes("fork")) {
         serializers.ForkEvent = ForkEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("wiki")) {
+        serializers.GollumEvent = GollumEvent;
       }
 
       module.exports = serializers;
