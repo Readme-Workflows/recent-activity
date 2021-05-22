@@ -21,6 +21,8 @@ const appendDate = (fullContent) => {
     let offset;
     let finalDate;
 
+    console.log(TIMEZONE_OFFSET);
+
     if (TIMEZONE_OFFSET.split("/").length === 2) {
       process.env.TZ = TIMEZONE_OFFSET;
       finalDate = new Date();
