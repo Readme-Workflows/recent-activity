@@ -165,7 +165,7 @@ The Action currently has the following Settings that you can set through the `wi
     </tr>
     <tr>
       <td><code>DISABLE_EVENTS</code></td>
-      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUE</code>, <code>PR</code>, <code>COMMENTS</code> and <code>CREATE_REPO</code></td>
+      <td>Comma-separated String of Events to disable.<br/>Available are <code>ISSUES</code>, <code>PR</code>, <code>COMMENTS</code>, <code>CREATE_REPO</code>, <code>FORK</code>, <code>WIKI</code>, <code>MEMBER</code>, <code>REVIEW</code>, <code>RELEASE</code> and <code>STAR</code></td>
       <td><i>Empty String</i></td>
       <td></td>
     </tr>
