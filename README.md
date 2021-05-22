@@ -76,7 +76,7 @@ The Action currently has the following Settings that you can set through the `wi
     <tr>
       <td><code>COMMENTS_ACTIVITY</code></td>
       <td>Text displayed for making a comment.<br/>Includes comments on Issues and Pull requests</td>
-      <td><code>🗣 Commented on {ID} in {REPO}</code></td>
+      <td><code>💬 Commented on {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
@@ -88,7 +88,7 @@ The Action currently has the following Settings that you can set through the `wi
     <tr>
       <td><code>ISSUE_CLOSED</code></td>
       <td>Text displayed for closing an issue.</td>
-      <td><code>❗️ Closed issue {ID} in {REPO}</code></td>
+      <td><code>✔ Closed issue {ID} in {REPO}</code></td>
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
@@ -110,10 +110,34 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
       <td><code>CREATE_REPO</code></td>
       <td>Text displayed for creating a new Repository.</td>
       <td><code>📔 Created new repository {REPO}</code></td>
       <td><code>{REPO}</code</td>
+    </tr>
+    <tr>
+      <td><code>FORK_REPO</code></td>
+      <td>Text displayed for forking a repo.</td>
+      <td><code>🔱 Forked {FORK} from {REPO}</code></td>
+      <td><code>{FORK}</code> and <code>{REPO}</code></td>
+    </tr>
+    <tr>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+      <td>&#8203;</td>
+    </tr>
+    <tr>
+      <td><code>WIKI_CREATE</code></td>
+      <td>Text displayed for creating a wiki page.</td>
+      <td><code>📖 Created new wiki page {WIKI} in {REPO}</code></td>
+      <td><code>{WIKI}</code> and <code>{REPO}</code></td>
     </tr>
     </tr>
       <td>&#8203;</td>
