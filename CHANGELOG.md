@@ -7,6 +7,9 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 ## [v1.4.0]
 > **Released:** `TBA`
 
+### Breaking changes
+- Timezone can now accept locale string as "continent/city" e.g. GMT+0530 or Asia/Kolkata and `TIMEZONE_OFFSET` input has been renamed to `TIMEZONE` [[#54]]
+
 ### Added features
 - New Action types added [[#50]]
   - `CREATE_REPO` - When creating a new Repository
@@ -29,6 +32,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 [#42]: https://github.com/Readme-Workflows/recent-activity/pull/42
 [#45]: https://github.com/Readme-Workflows/recent-activity/pull/45
 [#50]: https://github.com/Readme-Workflows/recent-activity/pull/50
+[#54]: https://github.com/Readme-Workflows/recent-activity/pull/54
 
 ## [v1.3.0]
 > **Released:** `17.05.2021`
