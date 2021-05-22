@@ -5,6 +5,8 @@
 
 const core = require("@actions/core");
 
+const parseYaml = require("./functions/parseYaml.js");
+
 // Get config inputs
 const GH_USERNAME = core.getInput("GH_USERNAME");
 const COMMIT_MSG = core.getInput("COMMIT_MSG");
