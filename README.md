@@ -133,7 +133,31 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>🤝 Became collaborator on {REPO}</code></td>
       <td><code>{REPO}</code></td>
     </tr>
+    <tr>
+      <td><code>REVIEW_APPROVED</code></td>
+      <td>Text displayed when you approved a pr.</td>
+      <td><code>👍 Approved {ID} in {REPO}</code></td>
+      <td><code>{ID}</code> and <code>{REPO}</code></td>
     </tr>
+    <tr>
+      <td><code>CHANGES_REQUESTED</code></td>
+      <td>Text displayed when you requested changes when approving a pr.</td>
+      <td><code>🔴 Requested changes in {ID} in {REPO}</code></td>
+      <td><code>{ID}</code> and <code>{REPO}</code></td>
+    </tr>
+    <tr>
+      <td><code>RELEASE</code></td>
+      <td>Text displayed when you release new version in a repo.</td>
+      <td><code>✌️ Released {ID} in {REPO}</code></td>
+      <td><code>{ID}</code> and <code>{REPO}</code></td>
+    </tr>
+    <tr>
+      <td><code>STAR</code></td>
+      <td>Text displayed when you star a repo.</td>
+      <td><code>⭐ Starred {REPO}</code></td>
+      <td><code>{REPO}</code></td>
+    </tr>
+    <tr>
       <td>&#8203;</td>
       <td>&#8203;</td>
       <td>&#8203;</td>
