@@ -34,6 +34,7 @@
       const ADDED_MEMBER = core.getInput("ADDED_MEMBER");
       const REVIEW_APPROVED = core.getInput("REVIEW_APPROVED");
       const CHANGES_REQUESTED = core.getInput("CHANGES_REQUESTED");
+      const RELEASE = core.getInput("RELEASE");
 
       let DISABLE_EVENTS = core
         .getInput("DISABLE_EVENTS")
@@ -65,6 +66,7 @@
         ADDED_MEMBER,
         REVIEW_APPROVED,
         CHANGES_REQUESTED,
+        RELEASE,
         urlPrefix,
       };
 
@@ -358,6 +360,30 @@
       };
 
       module.exports = PullRequestReviewEvent;
+
+      /***/
+    },
+
+    /***/ 2348: /***/ (
+      module,
+      __unused_webpack_exports,
+      __nccwpck_require__
+    ) => {
+      const { RELEASE } = __nccwpck_require__(5532);
+      const makeCustomUrl = __nccwpck_require__(9397);
+      const toUrlFormat = __nccwpck_require__(394);
+
+      const ReleaseEvent = (item) => {
+        if (item.payload.action === "published") {
+          return ISSUE_OPENED.replace(/{ID}/g, toUrlFormat(item, "release"))
+            .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
+            .replace(/{URL}/g, makeCustomUrl(item, "release"));
+        } else {
+          return "";
+        }
+      };
+
+      module.exports = ReleaseEvent;
 
       /***/
     },
@@ -656,6 +682,15 @@
               URL_TEXT.replace(/{REPO}/g, item.repo_name) +
               `](${urlPrefix}/${item.repo.name})`;
             break;
+          case "release":
+            url =
+              `[` +
+              URL_TEXT.replace(/{ID}/g, `${item.payload.release.name}`).replace(
+                /{REPO}/g,
+                item.repo.name
+              ) +
+              `](${item.payload.release.html_url})`;
+            break;
           default:
             tools.exit.failure("Failed while creating the url string.");
             break;
@@ -710,6 +745,9 @@
               break;
             case "wiki":
               url = `[${item.page_name}](${item.html_url})`;
+              break;
+            case "release":
+              url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
               break;
             default:
               tools.exit.failure("Failed while creating the url format.");
@@ -19141,6 +19179,7 @@
       const GollumEvent = __nccwpck_require__(7021);
       const MemberEvent = __nccwpck_require__(466);
       const PullRequestReviewEvent = __nccwpck_require__(2185);
+      const ReleaseEvent = __nccwpck_require__(2348);
 
       const serializers = {};
 
@@ -19177,6 +19216,10 @@
 
       if (!DISABLE_EVENTS.includes("review")) {
         serializers.PullRequestReviewEvent = PullRequestReviewEvent;
+      }
+
+      if (!DISABLE_EVENTS.includes("review")) {
+        serializers.ReleaseEvent = ReleaseEvent;
       }
 
       module.exports = serializers;
