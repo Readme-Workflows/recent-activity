@@ -110,12 +110,6 @@ The Action currently has the following Settings that you can set through the `wi
       <td><code>{REPO}</code><br/><code>{ID}</code><br/><code>{URL}</code></td>
     </tr>
     <tr>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
-    </tr>
-    <tr>
       <td><code>CREATE_REPO</code></td>
       <td>Text displayed for creating a new Repository.</td>
       <td><code>📔 Created new repository {REPO}</code></td>
@@ -126,12 +120,6 @@ The Action currently has the following Settings that you can set through the `wi
       <td>Text displayed for forking a repo.</td>
       <td><code>🔱 Forked {FORK} from {REPO}</code></td>
       <td><code>{FORK}</code> and <code>{REPO}</code></td>
-    </tr>
-    <tr>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
-      <td>&#8203;</td>
     </tr>
     <tr>
       <td><code>WIKI_CREATE</code></td>
