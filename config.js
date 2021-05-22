@@ -8,7 +8,7 @@ const core = require("@actions/core");
 const parseYaml = require("./functions/parseYaml.js");
 
 const defaultVals = {
-    "GH_USERNAME": ${{ github.repository_owner }},
+    "GH_USERNAME": core.getInput("GH_USERNAME"),
     "COMMIT_MSG": ":zap: Update README with the recent activity",
     "MAX_LINES": 5,
     "README_FILE": "./README.md",
@@ -20,6 +20,17 @@ const defaultVals = {
     "PR_OPENED": "💪 Opened PR {ID} in {REPO}",
     "PR_CLOSED": "❌ Closed PR {ID} in {REPO}",
     "PR_MERGED": "🎉 Merged PR {ID} in {REPO}",
+    "CREATE_REPO": "📔 Created new repository {REPO}",
+    "FORK_REPO": "🔱 Forked {FORK} from {REPO}",
+    "WIKI_CREATE": "📖 Created new wiki page {WIKI} in {REPO}",
+    "ADDED_MEMBER": "🤝 Became collaborator on {REPO}",
+    "REVIEW_APPROVED": "👍 Approved {ID} in {REPO}",
+    "CHANGES_REQUESTED": "🔴 Requested changes in {ID} in {REPO}",
+    "RELEASE": "✌️ Released {ID} in {REPO}",
+    "STAR": "⭐ Starred {REPO}",
+    "TIMEZONE_OFFSET": "0",
+    "DATE_STRING": "Last Updated: {DATE}",
+    "DATE_FORMAT": "dddd, mmmm dS, yyyy, h:MM:ss TT"
 };
 
 // Get config inputs
