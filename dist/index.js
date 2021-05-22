@@ -400,7 +400,7 @@
       const toUrlFormat = __nccwpck_require__(394);
 
       const WatchEvent = (item) => {
-        if (item.payload.action === "published") {
+        if (item.payload.action === "started") {
           return STAR.replace(
             /{REPO}/g,
             toUrlFormat(item.repo.name, "star")
