@@ -10,8 +10,8 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 > **Released:** `TBA`
 
 ### Breaking changes
-- Timezone can now accept locale string as "continent/city" e.g. GMT+0530 or Asia/Kolkata [[#54]]
-- Settings have been moved to a dedicated YAML file in the `.github` directory (default name is `recent-activity.config.yml` and can be changed through `CONFIG_FILE`) [[#53]]
+- Timezone can now accept locale string as "continent/city" e.g. Asia/Kolkata [[#54]]
+- Settings have been moved to a YAML file (by default filename is `recent-activity.config.yml` in the `.github` directory and can be changed through `CONFIG_FILE`) [[#53]]
 
 ### Added features
 - New Action types added [[#50]]
