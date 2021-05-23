@@ -21,5 +21,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # Dates
-          date_string: "Last Updated: {DATE} (GMT)"
+          CONFIG_FILE: "sample.yml"
