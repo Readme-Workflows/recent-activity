@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { README_FILE, COMMIT_MSG } = require("../config");
+const { readme_file, commit_msg } = require("../config");
 
 const exec = require("./execute");
 
@@ -21,8 +21,8 @@ const commitFile = async () => {
     "41898282+github-actions[bot]@users.noreply.github.com",
   ]);
   await exec("git", ["config", "--global", "user.name", "readme-bot"]);
-  await exec("git", ["add", README_FILE]);
-  await exec("git", ["commit", "-m", COMMIT_MSG]);
+  await exec("git", ["add", readme_file]);
+  await exec("git", ["commit", "-m", commit_msg]);
   await exec("git", ["push"]);
 };
 

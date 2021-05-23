@@ -1,4 +1,4 @@
-const { WIKI_CREATE } = require("../config");
+const { wiki_create } = require("../config");
 const makeCustomUrl = require("../functions/makeCustomUrl");
 const toUrlFormat = require("../functions/toUrlFormat");
 
@@ -8,7 +8,8 @@ const GollumEvent = (item) => {
     if (page.action === "created") {
       page.repo_name = item.repo.name;
       finalArray.push(
-        WIKI_CREATE.replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+        wiki_create
+          .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
           .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
           .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
       );

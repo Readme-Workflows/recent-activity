@@ -7,7 +7,7 @@ const fs = require("fs");
 const { Toolkit } = require("actions-toolkit");
 
 // configuration
-const { GH_USERNAME, README_FILE, MAX_LINES } = require("./config");
+const { username, readme_file, max_lines } = require("./config");
 
 // functions
 const appendDate = require("./functions/appendDate");
@@ -20,12 +20,12 @@ const serializers = require("./serializers");
 Toolkit.run(
   async (tools) => {
     // Get the user's public events
-    tools.log.debug(`Getting activity for ${GH_USERNAME}`);
+    tools.log.debug(`Getting activity for ${username}`);
     const events = await tools.github.activity.listPublicEventsForUser({
-      username: GH_USERNAME,
+      username: username,
       per_page: 100,
     });
-    tools.log.debug(`${events.data.length} events found for ${GH_USERNAME}.`);
+    tools.log.debug(`${events.data.length} events found for ${username}.`);
 
     let eventData = events.data
       // Filter out any boring activity
@@ -36,9 +36,9 @@ Toolkit.run(
     let readmeContent;
 
     try {
-      readmeContent = fs.readFileSync(README_FILE, "utf-8").split("\n");
+      readmeContent = fs.readFileSync(readme_file, "utf-8").split("\n");
     } catch (err) {
-      return tools.exit.failure(`Couldn't find the file named ${README_FILE}`);
+      return tools.exit.failure(`Couldn't find the file named ${readme_file}`);
     }
 
     // Find the index corresponding to <!--RECENT_ACTIVITY:start--> comment
@@ -62,8 +62,8 @@ Toolkit.run(
       tools.exit.success("No events found. Leaving readme unchanged.");
     }
 
-    if (content.length < MAX_LINES) {
-      tools.log.info(`Found less than ${MAX_LINES} activities`);
+    if (content.length < max_lines) {
+      tools.log.info(`Found less than ${max_lines} activities`);
     }
 
     if (startIdx !== -1 && endIdx === -1) {
@@ -83,7 +83,7 @@ Toolkit.run(
       readmeContent = appendDate(readmeContent);
 
       // Update README
-      fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+      fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
       // Commit to the remote repository
       try {
@@ -136,7 +136,7 @@ Toolkit.run(
     readmeContent = appendDate(readmeContent);
 
     // Update README
-    fs.writeFileSync(README_FILE, readmeContent.join("\n"));
+    fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
     // Commit to the remote repository
     try {
