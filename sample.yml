@@ -1,12 +1,13 @@
-settings: 
+settings:
   username: "Readme-Workflows" # Replace with your username or comment out this line
   commit_msg: "⚡ Update README with the recent activity"
   max_lines: 5
   readme_file: "./README.md"
-  disabled_events: []
+  disabled_events:
+    - "comments"
   url_text: "{REPO}{ID}"
   date:
-    timezone: "0"
+    timezone: "GMT+00:00"
     text: "Last Updated: {DATE}"
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT"
 messages:
