@@ -35,7 +35,7 @@ const defaultVals = {
   fork_repo: "🔱 Forked {FORK} from {REPO}",
   wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
   added_member: "🤝 Became collaborator on {REPO}",
-  review_approved: "👍 Approved {ID} in {REPO}",
+  changes_approved: "👍 Approved {ID} in {REPO}",
   changes_requested: "🔴 Requested changes in {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
@@ -302,7 +302,7 @@ module.exports = PullRequestReviewCommentEvent;
 /***/ 2185:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const { review_approved, changes_requested } = __nccwpck_require__(5532);
+const { changes_approved, changes_requested } = __nccwpck_require__(5532);
 const makeCustomUrl = __nccwpck_require__(9397);
 const toUrlFormat = __nccwpck_require__(394);
 
@@ -311,7 +311,7 @@ const PullRequestReviewEvent = (item) => {
     item.payload.action === "created" &&
     item.payload.review.state == "approved"
   ) {
-    return review_approved
+    return changes_approved
       .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
       .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
