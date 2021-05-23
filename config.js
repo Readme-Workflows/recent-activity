@@ -29,7 +29,7 @@ const defaultVals = {
   fork_repo: "🔱 Forked {FORK} from {REPO}",
   wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
   added_member: "🤝 Became collaborator on {REPO}",
-  review_approved: "👍 Approved {ID} in {REPO}",
+  changes_approved: "👍 Approved {ID} in {REPO}",
   changes_requested: "🔴 Requested changes in {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
