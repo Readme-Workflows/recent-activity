@@ -1,5 +1,5 @@
 settings: 
-  username: 'Readme-Workflows' # Replace with your username or comment out this line
+  username: "Readme-Workflows" # Replace with your username or comment out this line
   commit_msg: "⚡ Update README with the recent activity"
   max_lines: 5
   readme_file: "./README.md"
