@@ -21,7 +21,6 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@airbrake/node": "^2.1.4",
     "@vercel/ncc": "^0.28.5",
     "prettier": "^2.3.0"
   },
