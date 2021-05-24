@@ -36,6 +36,7 @@ const defaultVals = {
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));
+console.log(core.getInput("TEST_SECRET"));
 
 if (userVals.settings) {
   userVals.settings.date = { ...defaultVals.date, ...userVals.settings.date };
