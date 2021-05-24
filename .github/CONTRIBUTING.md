@@ -1,4 +1,4 @@
-[coc]: https://github.com/Readme-Workflows/recent-activity/blob/main/CODE_OF_CONDUCT.md
+[coc]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CODE_OF_CONDUCT.md
 [discord]: https://discord.gg/2a9VC4AK6x
 [support]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/SUPPORT.md
 [discussion]: https://github.com/Readme-Workflows/recent-activity/discussions
