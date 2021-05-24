@@ -11,10 +11,6 @@ inputs:
     description: "Path to configuration file"
     default: "./.github/recent-activity.config.yml"
     required: false
-  TEST_SECRET:
-    description: "Secret for testing"
-    default: ${{ secrets.TEST_SECRET }}
-    required: false
 
 branding:
   color: orange
