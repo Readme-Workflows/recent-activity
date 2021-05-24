@@ -13,7 +13,7 @@ inputs:
     required: false
   TEST_SECRET:
     description: "Secret for testing"
-    default: "${{ secrets.TEST_SECRET }}"
+    default: ${{ secrets.TEST_SECRET }}
     required: false
 
 branding:
