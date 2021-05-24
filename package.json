@@ -2,7 +2,7 @@
   "name": "activity-readme",
   "version": "1.4.0",
   "description": "Updates README with the recent GitHub activity of a user. This project is a fork of https://github.com/jamesgeorge007/github-activity-readme",
-  "main": "index.js",
+  "main": "src/index.js",
   "keywords": [
     "github-profile",
     "activity"
@@ -10,9 +10,9 @@
   "author": "James George, The Readme-Workflows organisation",
   "license": "MIT",
   "scripts": {
-    "format:check": "prettier --check **/*.js",
-    "format": "prettier --write **/*.js",
-    "build": "ncc build index.js --license LICENSE"
+    "format:check": "prettier --check src/**.js",
+    "format": "prettier --write src/*.js",
+    "build": "ncc build src/index.js --license LICENSE"
   },
   "dependencies": {
     "@actions/core": "^1.3.0",
