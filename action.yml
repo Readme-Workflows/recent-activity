@@ -10,6 +10,7 @@ inputs:
   CONFIG_FILE:
     description: "Path to configuration file"
     default: "./.github/recent-activity.config.yml"
+    required: false
 
 branding:
   color: orange

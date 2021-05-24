@@ -12,7 +12,7 @@ const defaultVals = {
   commit_msg: "⚡ Update README with the recent activity",
   max_lines: 5,
   readme_file: "./README.md",
-  disabled_events: [],
+  disabled_events: ["comments"],
   url_text: "{REPO}{ID}",
   date: {
     timezone: "0",

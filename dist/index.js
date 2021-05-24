@@ -1,765 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 5532:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const core = __nccwpck_require__(2186);
-
-const parseYaml = __nccwpck_require__(8414);
-
-const defaultVals = {
-  username: core.getInput("GH_USERNAME"),
-  commit_msg: "⚡ Update README with the recent activity",
-  max_lines: 5,
-  readme_file: "./README.md",
-  disabled_events: [],
-  url_text: "{REPO}{ID}",
-  date: {
-    timezone: "0",
-    text: "Last Updated: {DATE}",
-    format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
-  },
-  comments: "💬 Commented on {ID} in {REPO}",
-  issue_opened: "❗️ Opened issue {ID} in {REPO}",
-  issue_closed: "✔️ Closed issue {ID} in {REPO}",
-  pr_opened: "💪 Opened PR {ID} in {REPO}",
-  pr_closed: "❌ Closed PR {ID} in {REPO}",
-  pr_merged: "🎉 Merged PR {ID} in {REPO}",
-  create_repo: "📔 Created new repository {REPO}",
-  fork_repo: "🔱 Forked {FORK} from {REPO}",
-  wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
-  added_member: "🤝 Became collaborator on {REPO}",
-  changes_approved: "👍 Approved {ID} in {REPO}",
-  changes_requested: "🔴 Requested changes in {ID} in {REPO}",
-  new_release: "✌️ Released {ID} in {REPO}",
-  new_star: "⭐ Starred {REPO}",
-};
-
-const userVals = parseYaml(core.getInput("CONFIG_FILE"));
-
-if (userVals.settings) {
-  userVals.settings.date = { ...defaultVals.date, ...userVals.settings.date };
-}
-
-let conf = {
-  ...defaultVals,
-  ...userVals.settings,
-  ...userVals.messages,
-};
-
-let disabled = [];
-conf.disabled_events.forEach((event) => {
-  disabled.push(event.trim().toLowerCase());
-});
-
-conf.disabled_events = disabled;
-
-const urlPrefix = "https://github.com";
-
-module.exports = {
-  ...conf,
-  urlPrefix,
-};
-
-
-/***/ }),
-
-/***/ 6986:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { comments } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const CommitCommentEvent = (item) => {
-  if (item.payload.action === "created") {
-    return comments
-      .replace(/{ID}/g, toUrlFormat(item, "commit_comment"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = CommitCommentEvent;
-
-
-/***/ }),
-
-/***/ 7744:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { create_repo } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const CreateEvent = (item) => {
-  if (item.payload.ref_type === "repository") {
-    return create_repo
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "create_repo"))
-      .replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = CreateEvent;
-
-
-/***/ }),
-
-/***/ 9634:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { fork_repo } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const ForkEvent = (item) => {
-  return fork_repo
-    .replace(/{FORK}/g, toUrlFormat(item, "fork"))
-    .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
-    .replace(/{URL}/g, makeCustomUrl(item, "fork"));
-};
-
-module.exports = ForkEvent;
-
-
-/***/ }),
-
-/***/ 7021:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { wiki_create } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const GollumEvent = (item) => {
-  let finalArray = [];
-  item.payload.pages.forEach((page) => {
-    if (page.action === "created") {
-      page.repo_name = item.repo.name;
-      finalArray.push(
-        wiki_create
-          .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
-          .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
-          .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
-      );
-    }
-  });
-
-  if (finalArray.length == 0) {
-    return "";
-  } else {
-    return finalArray;
-  }
-};
-
-module.exports = GollumEvent;
-
-
-/***/ }),
-
-/***/ 454:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { comments } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const IssueCommentEvent = (item) => {
-  if (item.payload.action === "created") {
-    return comments
-      .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = IssueCommentEvent;
-
-
-/***/ }),
-
-/***/ 1183:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { issue_opened, issue_closed } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const IssuesEvent = (item) => {
-  if (item.payload.action === "opened") {
-    return issue_opened
-      .replace(/{ID}/g, toUrlFormat(item, "issue_open"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
-      .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
-  } else if (item.payload.action === "closed") {
-    return issue_closed
-      .replace(/{ID}/g, toUrlFormat(item, "issue_close"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
-      .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = IssuesEvent;
-
-
-/***/ }),
-
-/***/ 466:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { added_member } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const MemberEvent = (item) => {
-  if (item.payload.action === "added") {
-    return added_member
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "member"))
-      .replace(/{URL}/g, makeCustomUrl(item, "member"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = MemberEvent;
-
-
-/***/ }),
-
-/***/ 8089:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { pr_opened, pr_merged, pr_closed } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const PullRequestEvent = (item) => {
-  if (item.payload.action === "opened") {
-    return pr_opened
-      .replace(/{ID}/g, toUrlFormat(item, "pr_open"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
-  } else if (item.payload.pull_request.merged) {
-    return pr_merged
-      .replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
-  } else if (
-    item.payload.action === "closed" &&
-    !item.payload.pull_request.merged
-  ) {
-    return pr_closed
-      .replace(/{ID}/g, toUrlFormat(item, "pr_close"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = PullRequestEvent;
-
-
-/***/ }),
-
-/***/ 1552:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { comments } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const PullRequestReviewCommentEvent = (item) => {
-  if (item.payload.action === "created") {
-    return comments
-      .replace(/{ID}/g, toUrlFormat(item, "pr_review_comment"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = PullRequestReviewCommentEvent;
-
-
-/***/ }),
-
-/***/ 2185:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { changes_approved, changes_requested } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const PullRequestReviewEvent = (item) => {
-  if (
-    item.payload.action === "created" &&
-    item.payload.review.state == "approved"
-  ) {
-    return changes_approved
-      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
-  } else if (
-    item.payload.action === "created" &&
-    item.payload.review.state == "changes_requested"
-  ) {
-    return changes_requested
-      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
-      .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = PullRequestReviewEvent;
-
-
-/***/ }),
-
-/***/ 2348:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { new_release } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const ReleaseEvent = (item) => {
-  if (item.payload.action === "published") {
-    return new_release
-      .replace(/{ID}/g, toUrlFormat(item, "release"))
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
-      .replace(/{URL}/g, makeCustomUrl(item, "release"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = ReleaseEvent;
-
-
-/***/ }),
-
-/***/ 7137:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-const { new_star } = __nccwpck_require__(5532);
-const makeCustomUrl = __nccwpck_require__(9397);
-const toUrlFormat = __nccwpck_require__(394);
-
-const WatchEvent = (item) => {
-  if (item.payload.action === "started") {
-    return new_star
-      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "star"))
-      .replace(/{URL}/g, makeCustomUrl(item, "star"));
-  } else {
-    return "";
-  }
-};
-
-module.exports = WatchEvent;
-
-
-/***/ }),
-
-/***/ 2310:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const dateFormat = __nccwpck_require__(1512);
-
-const { date } = __nccwpck_require__(5532);
-
-const appendDate = (fullContent) => {
-  let dateStartIdx = fullContent.findIndex(
-    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
-  );
-
-  if (dateStartIdx !== -1) {
-    let dateEndIdx = fullContent.findIndex(
-      (content, index) =>
-        content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
-        index > dateStartIdx
-    );
-
-    let offset;
-    let finalDate;
-
-    if (date.timezone.split("/").length === 2) {
-      process.env.TZ = date.timezone;
-      finalDate = new Date();
-    } else {
-      let tz = date.timezone.replace("GMT", "").split(":");
-      let tz_hours = parseInt(tz[0].trim());
-
-      if (tz.length > 1) {
-        offset = tz_hours * 60 + parseInt(tz[1].trim());
-      } else {
-        if (tz_hours > 99) {
-          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
-        } else {
-          offset = tz_hours * 60;
-        }
-      }
-
-      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
-      finalDate = new Date(utc + offset * 60000);
-    }
-
-    finalDateString = date.text.replace(
-      "{DATE}",
-      dateFormat(finalDate, date.format)
-    );
-
-    if (dateEndIdx === -1) {
-      fullContent.splice(
-        dateStartIdx + 1,
-        0,
-        finalDateString,
-        "<!--RECENT_ACTIVITY:last_update_end-->"
-      );
-    } else {
-      fullContent.splice(
-        dateStartIdx + 1,
-        dateEndIdx - dateStartIdx - 1,
-        finalDateString
-      );
-    }
-  }
-  return fullContent;
-};
-
-module.exports = appendDate;
-
-
-/***/ }),
-
-/***/ 3803:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const { readme_file, commit_msg } = __nccwpck_require__(5532);
-
-const exec = __nccwpck_require__(4058);
-
-/**
- * Make a commit
- *
- * @returns {Promise<void>}
- */
-
-const commitFile = async () => {
-  await exec("git", [
-    "config",
-    "--global",
-    "user.email",
-    "41898282+github-actions[bot]@users.noreply.github.com",
-  ]);
-  await exec("git", ["config", "--global", "user.name", "readme-bot"]);
-  await exec("git", ["add", readme_file]);
-  await exec("git", ["commit", "-m", commit_msg]);
-  await exec("git", ["push"]);
-};
-
-module.exports = commitFile;
-
-
-/***/ }),
-
-/***/ 4058:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const { spawn } = __nccwpck_require__(3129);
-
-/**
- * Execute shell command
- * @param {String} cmd - root command
- * @param {String[]} args - args to be passed along with
- *
- * @returns {Promise<void>}
- */
-
-const exec = (cmd, args = []) =>
-  new Promise((resolve, reject) => {
-    const app = spawn(cmd, args, { stdio: "pipe" });
-    let stdout = "";
-    app.stdout.on("data", (data) => {
-      stdout = data;
-    });
-    app.on("close", (code) => {
-      if (code !== 0 && !stdout.includes("nothing to commit")) {
-        err = new Error(`Invalid status code: ${code}`);
-        err.code = code;
-        return reject(err);
-      }
-      return resolve(code);
-    });
-    app.on("error", reject);
-  });
-
-module.exports = exec;
-
-
-/***/ }),
-
-/***/ 9347:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const serializers = __nccwpck_require__(102);
-const { max_lines } = __nccwpck_require__(5532);
-
-const filterContent = (eventData) => {
-  let temp_content = [];
-
-  for (i = 0; i < eventData.length; i++) {
-    let event_string = serializers[eventData[i].type](eventData[i]);
-
-    if (event_string !== "") {
-      temp_content.push(event_string);
-    }
-    if (temp_content.length == max_lines) {
-      break;
-    }
-  }
-
-  temp_content = temp_content.flat();
-  temp_content.length = max_lines;
-
-  console.log(temp_content);
-
-  return temp_content;
-};
-
-module.exports = filterContent;
-
-
-/***/ }),
-
-/***/ 9397:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const { url_text, urlPrefix } = __nccwpck_require__(5532);
-
-const makeCustomUrl = (item, type) => {
-  let url;
-  switch (type.toLowerCase()) {
-    case "issue_open":
-    case "issue_close":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#${item.payload.issue.number}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.issue.html_url})`;
-      break;
-    case "issue_comment":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#${item.payload.issue.number}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.comment.html_url})`;
-      break;
-    case "commit_comment":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#commit`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.comment.html_url})`;
-      break;
-    case "pr_review_comment":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.comment.html_url})`;
-      break;
-    case "pr_open":
-    case "pr_close":
-    case "pr_merge":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.pull_request.html_url})`;
-      break;
-    case "pr_review":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.review.html_url})`;
-      break;
-    case "create_repo":
-    case "member":
-    case "star":
-      url =
-        `[` +
-        url_text.replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name})`;
-      break;
-    case "fork":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `${item.payload.forkee.full_name}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.forkee.html_url})`;
-      break;
-    case "wiki":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `${item.page_name}`)
-          .replace(/{REPO}/g, item.repo_name) +
-        `](${item.html_url})`;
-      break;
-    case "release":
-      url =
-        `[` +
-        url_text
-          .replace(/{ID}/g, `${item.payload.release.name}`)
-          .replace(/{REPO}/g, item.repo.name) +
-        `](${item.payload.release.html_url})`;
-      break;
-    default:
-      tools.exit.failure("Failed while creating the url string.");
-      break;
-  }
-  return url;
-};
-
-module.exports = makeCustomUrl;
-
-
-/***/ }),
-
-/***/ 8414:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const yaml = __nccwpck_require__(1917);
-const fs = __nccwpck_require__(5747);
-
-//const { config_file } = require("../config");
-
-const parseYaml = (file) => {
-  try {
-    return yaml.load(fs.readFileSync(file, "utf8"));
-  } catch (error) {
-    console.error(error);
-    return {};
-  }
-};
-
-module.exports = parseYaml;
-
-
-/***/ }),
-
-/***/ 394:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
-
-/**
- * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
- */
-
-const { urlPrefix } = __nccwpck_require__(5532);
-
-const toUrlFormat = (item, type) => {
-  let url;
-  if (typeof item === "object") {
-    switch (type.toLowerCase()) {
-      case "issue_open":
-      case "issue_close":
-        url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
-        break;
-      case "issue_comment":
-        url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
-        break;
-      case "commit_comment":
-        url = `[commit](${item.payload.comment.html_url})`;
-        break;
-      case "pr_review_comment":
-        url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
-        break;
-      case "pr_open":
-      case "pr_close":
-      case "pr_merge":
-        url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
-        break;
-      case "pr_review":
-        url = `[#${item.payload.pull_request.number}](${item.payload.review.html_url})`;
-        break;
-      case "fork":
-        url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
-        break;
-      case "wiki":
-        url = `[${item.page_name}](${item.html_url})`;
-        break;
-      case "release":
-        url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
-        break;
-      default:
-        tools.exit.failure("Failed while creating the url format.");
-        break;
-    }
-    return url;
-  }
-  return `[${item}](${urlPrefix}/${item})`;
-};
-
-module.exports = toUrlFormat;
-
-
-/***/ }),
-
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -20177,7 +19418,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 102:
+/***/ 4570:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 /**
@@ -20185,21 +19426,780 @@ function wrappy (fn, cb) {
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { disabled_events } = __nccwpck_require__(5532);
+const core = __nccwpck_require__(2186);
+
+const parseYaml = __nccwpck_require__(928);
+
+const defaultVals = {
+  username: core.getInput("GH_USERNAME"),
+  commit_msg: "⚡ Update README with the recent activity",
+  max_lines: 5,
+  readme_file: "./README.md",
+  disabled_events: ["comments"],
+  url_text: "{REPO}{ID}",
+  date: {
+    timezone: "0",
+    text: "Last Updated: {DATE}",
+    format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
+  },
+  comments: "💬 Commented on {ID} in {REPO}",
+  issue_opened: "❗️ Opened issue {ID} in {REPO}",
+  issue_closed: "✔️ Closed issue {ID} in {REPO}",
+  pr_opened: "💪 Opened PR {ID} in {REPO}",
+  pr_closed: "❌ Closed PR {ID} in {REPO}",
+  pr_merged: "🎉 Merged PR {ID} in {REPO}",
+  create_repo: "📔 Created new repository {REPO}",
+  fork_repo: "🔱 Forked {FORK} from {REPO}",
+  wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
+  added_member: "🤝 Became collaborator on {REPO}",
+  changes_approved: "👍 Approved {ID} in {REPO}",
+  changes_requested: "🔴 Requested changes in {ID} in {REPO}",
+  new_release: "✌️ Released {ID} in {REPO}",
+  new_star: "⭐ Starred {REPO}",
+};
+
+const userVals = parseYaml(core.getInput("CONFIG_FILE"));
+
+if (userVals.settings) {
+  userVals.settings.date = { ...defaultVals.date, ...userVals.settings.date };
+}
+
+let conf = {
+  ...defaultVals,
+  ...userVals.settings,
+  ...userVals.messages,
+};
+
+let disabled = [];
+conf.disabled_events.forEach((event) => {
+  disabled.push(event.trim().toLowerCase());
+});
+
+conf.disabled_events = disabled;
+
+const urlPrefix = "https://github.com";
+
+module.exports = {
+  ...conf,
+  urlPrefix,
+};
+
+
+/***/ }),
+
+/***/ 4694:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { comments } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const CommitCommentEvent = (item) => {
+  if (item.payload.action === "created") {
+    return comments
+      .replace(/{ID}/g, toUrlFormat(item, "commit_comment"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "commit_comment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "commit_comment"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = CommitCommentEvent;
+
+
+/***/ }),
+
+/***/ 4865:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { create_repo } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const CreateEvent = (item) => {
+  if (item.payload.ref_type === "repository") {
+    return create_repo
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "create_repo"))
+      .replace(/{URL}/g, makeCustomUrl(item, "create_repo"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = CreateEvent;
+
+
+/***/ }),
+
+/***/ 8075:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { fork_repo } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const ForkEvent = (item) => {
+  return fork_repo
+    .replace(/{FORK}/g, toUrlFormat(item, "fork"))
+    .replace(/{REPO}/g, toUrlFormat(item.repo.name, "fork"))
+    .replace(/{URL}/g, makeCustomUrl(item, "fork"));
+};
+
+module.exports = ForkEvent;
+
+
+/***/ }),
+
+/***/ 5620:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { wiki_create } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const GollumEvent = (item) => {
+  let finalArray = [];
+  item.payload.pages.forEach((page) => {
+    if (page.action === "created") {
+      page.repo_name = item.repo.name;
+      finalArray.push(
+        wiki_create
+          .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
+          .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
+          .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
+      );
+    }
+  });
+
+  if (finalArray.length == 0) {
+    return "";
+  } else {
+    return finalArray;
+  }
+};
+
+module.exports = GollumEvent;
+
+
+/***/ }),
+
+/***/ 6338:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { comments } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const IssueCommentEvent = (item) => {
+  if (item.payload.action === "created") {
+    return comments
+      .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_comment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "issue_comment"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = IssueCommentEvent;
+
+
+/***/ }),
+
+/***/ 9211:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { issue_opened, issue_closed } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const IssuesEvent = (item) => {
+  if (item.payload.action === "opened") {
+    return issue_opened
+      .replace(/{ID}/g, toUrlFormat(item, "issue_open"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_open"))
+      .replace(/{URL}/g, makeCustomUrl(item, "issue_open"));
+  } else if (item.payload.action === "closed") {
+    return issue_closed
+      .replace(/{ID}/g, toUrlFormat(item, "issue_close"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "issue_close"))
+      .replace(/{URL}/g, makeCustomUrl(item, "issue_close"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = IssuesEvent;
+
+
+/***/ }),
+
+/***/ 5392:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { added_member } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const MemberEvent = (item) => {
+  if (item.payload.action === "added") {
+    return added_member
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "member"))
+      .replace(/{URL}/g, makeCustomUrl(item, "member"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = MemberEvent;
+
+
+/***/ }),
+
+/***/ 2199:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { pr_opened, pr_merged, pr_closed } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const PullRequestEvent = (item) => {
+  if (item.payload.action === "opened") {
+    return pr_opened
+      .replace(/{ID}/g, toUrlFormat(item, "pr_open"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_open"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_open"));
+  } else if (item.payload.pull_request.merged) {
+    return pr_merged
+      .replace(/{ID}/g, toUrlFormat(item, "pr_merge"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_merge"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_merge"));
+  } else if (
+    item.payload.action === "closed" &&
+    !item.payload.pull_request.merged
+  ) {
+    return pr_closed
+      .replace(/{ID}/g, toUrlFormat(item, "pr_close"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_close"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_close"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = PullRequestEvent;
+
+
+/***/ }),
+
+/***/ 232:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { comments } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const PullRequestReviewCommentEvent = (item) => {
+  if (item.payload.action === "created") {
+    return comments
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review_comment"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review_comment"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_review_comment"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = PullRequestReviewCommentEvent;
+
+
+/***/ }),
+
+/***/ 8454:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { changes_approved, changes_requested } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const PullRequestReviewEvent = (item) => {
+  if (
+    item.payload.action === "created" &&
+    item.payload.review.state == "approved"
+  ) {
+    return changes_approved
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+  } else if (
+    item.payload.action === "created" &&
+    item.payload.review.state == "changes_requested"
+  ) {
+    return changes_requested
+      .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
+      .replace(/{URL}/g, makeCustomUrl(item, "pr_review"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = PullRequestReviewEvent;
+
+
+/***/ }),
+
+/***/ 4633:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { new_release } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const ReleaseEvent = (item) => {
+  if (item.payload.action === "published") {
+    return new_release
+      .replace(/{ID}/g, toUrlFormat(item, "release"))
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "release"))
+      .replace(/{URL}/g, makeCustomUrl(item, "release"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = ReleaseEvent;
+
+
+/***/ }),
+
+/***/ 9875:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { new_star } = __nccwpck_require__(4570);
+const makeCustomUrl = __nccwpck_require__(434);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const WatchEvent = (item) => {
+  if (item.payload.action === "started") {
+    return new_star
+      .replace(/{REPO}/g, toUrlFormat(item.repo.name, "star"))
+      .replace(/{URL}/g, makeCustomUrl(item, "star"));
+  } else {
+    return "";
+  }
+};
+
+module.exports = WatchEvent;
+
+
+/***/ }),
+
+/***/ 3927:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const dateFormat = __nccwpck_require__(1512);
+
+const { date } = __nccwpck_require__(4570);
+
+const appendDate = (fullContent) => {
+  let dateStartIdx = fullContent.findIndex(
+    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
+  );
+
+  if (dateStartIdx !== -1) {
+    let dateEndIdx = fullContent.findIndex(
+      (content, index) =>
+        content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
+        index > dateStartIdx
+    );
+
+    let offset;
+    let finalDate;
+
+    if (date.timezone.split("/").length === 2) {
+      process.env.TZ = date.timezone;
+      finalDate = new Date();
+    } else {
+      let tz = date.timezone.replace("GMT", "").split(":");
+      let tz_hours = parseInt(tz[0].trim());
+
+      if (tz.length > 1) {
+        offset = tz_hours * 60 + parseInt(tz[1].trim());
+      } else {
+        if (tz_hours > 99) {
+          offset = Math.floor(tz_hours / 100) * 60 + (tz_hours % 100);
+        } else {
+          offset = tz_hours * 60;
+        }
+      }
+
+      const utc = new Date().getTime() + new Date().getTimezoneOffset() * 60000;
+      finalDate = new Date(utc + offset * 60000);
+    }
+
+    finalDateString = date.text.replace(
+      "{DATE}",
+      dateFormat(finalDate, date.format)
+    );
+
+    if (dateEndIdx === -1) {
+      fullContent.splice(
+        dateStartIdx + 1,
+        0,
+        finalDateString,
+        "<!--RECENT_ACTIVITY:last_update_end-->"
+      );
+    } else {
+      fullContent.splice(
+        dateStartIdx + 1,
+        dateEndIdx - dateStartIdx - 1,
+        finalDateString
+      );
+    }
+  }
+  return fullContent;
+};
+
+module.exports = appendDate;
+
+
+/***/ }),
+
+/***/ 6652:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const { readme_file, commit_msg } = __nccwpck_require__(4570);
+
+const exec = __nccwpck_require__(9694);
+
+/**
+ * Make a commit
+ *
+ * @returns {Promise<void>}
+ */
+
+const commitFile = async () => {
+  await exec("git", [
+    "config",
+    "--global",
+    "user.email",
+    "41898282+github-actions[bot]@users.noreply.github.com",
+  ]);
+  await exec("git", ["config", "--global", "user.name", "readme-bot"]);
+  await exec("git", ["add", readme_file]);
+  await exec("git", ["commit", "-m", commit_msg]);
+  await exec("git", ["push"]);
+};
+
+module.exports = commitFile;
+
+
+/***/ }),
+
+/***/ 9694:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const { spawn } = __nccwpck_require__(3129);
+
+/**
+ * Execute shell command
+ * @param {String} cmd - root command
+ * @param {String[]} args - args to be passed along with
+ *
+ * @returns {Promise<void>}
+ */
+
+const exec = (cmd, args = []) =>
+  new Promise((resolve, reject) => {
+    const app = spawn(cmd, args, { stdio: "pipe" });
+    let stdout = "";
+    app.stdout.on("data", (data) => {
+      stdout = data;
+    });
+    app.on("close", (code) => {
+      if (code !== 0 && !stdout.includes("nothing to commit")) {
+        err = new Error(`Invalid status code: ${code}`);
+        err.code = code;
+        return reject(err);
+      }
+      return resolve(code);
+    });
+    app.on("error", reject);
+  });
+
+module.exports = exec;
+
+
+/***/ }),
+
+/***/ 6292:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const serializers = __nccwpck_require__(3169);
+const { max_lines } = __nccwpck_require__(4570);
+
+const filterContent = (eventData) => {
+  let temp_content = [];
+
+  for (i = 0; i < eventData.length; i++) {
+    let event_string = serializers[eventData[i].type](eventData[i]);
+
+    if (event_string !== "") {
+      temp_content.push(event_string);
+    }
+    if (temp_content.length == max_lines) {
+      break;
+    }
+  }
+
+  temp_content = temp_content.flat();
+  temp_content.length = max_lines;
+
+  console.log(temp_content);
+
+  return temp_content;
+};
+
+module.exports = filterContent;
+
+
+/***/ }),
+
+/***/ 434:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const { url_text, urlPrefix } = __nccwpck_require__(4570);
+
+const makeCustomUrl = (item, type) => {
+  let url;
+  switch (type.toLowerCase()) {
+    case "issue_open":
+    case "issue_close":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.issue.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.issue.html_url})`;
+      break;
+    case "issue_comment":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.issue.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "commit_comment":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#commit`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "pr_review_comment":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.comment.html_url})`;
+      break;
+    case "pr_open":
+    case "pr_close":
+    case "pr_merge":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.pull_request.html_url})`;
+      break;
+    case "pr_review":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `#${item.payload.pull_request.number}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.review.html_url})`;
+      break;
+    case "create_repo":
+    case "member":
+    case "star":
+      url =
+        `[` +
+        url_text.replace(/{REPO}/g, item.repo.name) +
+        `](${urlPrefix}/${item.repo.name})`;
+      break;
+    case "fork":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `${item.payload.forkee.full_name}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.forkee.html_url})`;
+      break;
+    case "wiki":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `${item.page_name}`)
+          .replace(/{REPO}/g, item.repo_name) +
+        `](${item.html_url})`;
+      break;
+    case "release":
+      url =
+        `[` +
+        url_text
+          .replace(/{ID}/g, `${item.payload.release.name}`)
+          .replace(/{REPO}/g, item.repo.name) +
+        `](${item.payload.release.html_url})`;
+      break;
+    default:
+      tools.exit.failure("Failed while creating the url string.");
+      break;
+  }
+  return url;
+};
+
+module.exports = makeCustomUrl;
+
+
+/***/ }),
+
+/***/ 928:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const yaml = __nccwpck_require__(1917);
+const fs = __nccwpck_require__(5747);
+
+//const { config_file } = require("../config");
+
+const parseYaml = (file) => {
+  try {
+    return yaml.load(fs.readFileSync(file, "utf8"));
+  } catch (error) {
+    console.error(error);
+    return {};
+  }
+};
+
+module.exports = parseYaml;
+
+
+/***/ }),
+
+/***/ 5879:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const { urlPrefix } = __nccwpck_require__(4570);
+
+const toUrlFormat = (item, type) => {
+  let url;
+  if (typeof item === "object") {
+    switch (type.toLowerCase()) {
+      case "issue_open":
+      case "issue_close":
+        url = `[#${item.payload.issue.number}](${item.payload.issue.html_url})`;
+        break;
+      case "issue_comment":
+        url = `[#${item.payload.issue.number}](${item.payload.comment.html_url})`;
+        break;
+      case "commit_comment":
+        url = `[commit](${item.payload.comment.html_url})`;
+        break;
+      case "pr_review_comment":
+        url = `[#${item.payload.pull_request.number}](${item.payload.comment.html_url})`;
+        break;
+      case "pr_open":
+      case "pr_close":
+      case "pr_merge":
+        url = `[#${item.payload.pull_request.number}](${item.payload.pull_request.html_url})`;
+        break;
+      case "pr_review":
+        url = `[#${item.payload.pull_request.number}](${item.payload.review.html_url})`;
+        break;
+      case "fork":
+        url = `[${item.payload.forkee.full_name}](${item.payload.forkee.html_url})`;
+        break;
+      case "wiki":
+        url = `[${item.page_name}](${item.html_url})`;
+        break;
+      case "release":
+        url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
+        break;
+      default:
+        tools.exit.failure("Failed while creating the url format.");
+        break;
+    }
+    return url;
+  }
+  return `[${item}](${urlPrefix}/${item})`;
+};
+
+module.exports = toUrlFormat;
+
+
+/***/ }),
+
+/***/ 3169:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+/**
+ * Copyright (c) 2020 James George
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
+
+const { disabled_events } = __nccwpck_require__(4570);
 
 // Events
-const IssueCommentEvent = __nccwpck_require__(454);
-const CommitCommentEvent = __nccwpck_require__(6986);
-const PullRequestReviewCommentEvent = __nccwpck_require__(1552);
-const IssuesEvent = __nccwpck_require__(1183);
-const PullRequestEvent = __nccwpck_require__(8089);
-const CreateEvent = __nccwpck_require__(7744);
-const ForkEvent = __nccwpck_require__(9634);
-const GollumEvent = __nccwpck_require__(7021);
-const MemberEvent = __nccwpck_require__(466);
-const PullRequestReviewEvent = __nccwpck_require__(2185);
-const ReleaseEvent = __nccwpck_require__(2348);
-const WatchEvent = __nccwpck_require__(7137);
+const IssueCommentEvent = __nccwpck_require__(6338);
+const CommitCommentEvent = __nccwpck_require__(4694);
+const PullRequestReviewCommentEvent = __nccwpck_require__(232);
+const IssuesEvent = __nccwpck_require__(9211);
+const PullRequestEvent = __nccwpck_require__(2199);
+const CreateEvent = __nccwpck_require__(4865);
+const ForkEvent = __nccwpck_require__(8075);
+const GollumEvent = __nccwpck_require__(5620);
+const MemberEvent = __nccwpck_require__(5392);
+const PullRequestReviewEvent = __nccwpck_require__(8454);
+const ReleaseEvent = __nccwpck_require__(4633);
+const WatchEvent = __nccwpck_require__(9875);
 
 const serializers = {};
 
@@ -20438,15 +20438,15 @@ const fs = __nccwpck_require__(5747);
 const { Toolkit } = __nccwpck_require__(7045);
 
 // configuration
-const { username, readme_file, max_lines } = __nccwpck_require__(5532);
+const { username, readme_file, max_lines } = __nccwpck_require__(4570);
 
 // functions
-const appendDate = __nccwpck_require__(2310);
-const commitFile = __nccwpck_require__(3803);
-const filterContent = __nccwpck_require__(9347);
+const appendDate = __nccwpck_require__(3927);
+const commitFile = __nccwpck_require__(6652);
+const filterContent = __nccwpck_require__(6292);
 
 // accepted events
-const serializers = __nccwpck_require__(102);
+const serializers = __nccwpck_require__(3169);
 
 Toolkit.run(
   async (tools) => {
