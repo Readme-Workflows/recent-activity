@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.28.5",
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.0",
+    "@airbrake/node": "^2.1.4"
   },
   "repository": {
     "type": "git",
