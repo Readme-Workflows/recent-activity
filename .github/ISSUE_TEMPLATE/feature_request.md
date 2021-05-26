@@ -9,7 +9,7 @@ assignees: ''
 
 Please check these things before submitting your issue:
 
-- [ ] I searched for duplicate or closed feature request [here](https://github.com/PuneetGopinath/github-activity-readme/issues?q=is%3Aissue)
+- [ ] I searched for duplicate or closed feature request [here](https://github.com/Readme-Workflows/recent-activity/issues?q=is%3Aissue)
 
 **Is your feature request related to a problem? Please describe.**
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
