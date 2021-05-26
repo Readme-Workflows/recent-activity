@@ -10,7 +10,7 @@ assignees: ''
 Please check these things before submitting your issue:
 
 - [ ] I am using a [supported version](https://github.com/Readme-Workflows/recent-activity/blob/main/SUPPORTED_VERSIONS.md)
-- [ ] I searched for duplicate or closed bug report [here](https://github.com/PuneetGopinath/github-activity-readme/issues?q=is%3Aissue)
+- [ ] I searched for duplicate or closed bug report [here](https://github.com/Readme-Workflows/recent-activity/issues?q=is%3Aissue)
 
 **Describe the bug**
 A clear and concise description of what the bug is.
