@@ -19,8 +19,8 @@ const exec = require("./execute");
  */
 
 const commitFile = async () => {
-  await exec("git", ["config", "--global", "user.email", commitEmail]);
-  await exec("git", ["config", "--global", "user.name", commitName]);
+  await exec("git", ["config", "--global", "user.email", commit_email]);
+  await exec("git", ["config", "--global", "user.name", commit_name]);
   await exec("git", ["add", readme_file]);
   await exec("git", ["commit", "-m", commit_msg]);
   await exec("git", ["push"]);

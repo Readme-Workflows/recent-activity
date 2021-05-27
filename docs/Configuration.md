@@ -112,6 +112,15 @@ There are two valid ways to set names for disabling:
     - event2
     - event3
   ```
+#### `commit_username`
+> **Default:** `readme-bot`
+
+This setting allows you to change what is the author of the Committer.
+
+#### `commit_email`
+> **Default:** `41898282+github-actions[bot]@users.noreply.github.com`
+
+This setting allows you to change what is the email of the Committer.
 
 You can currently set the following values:
 
