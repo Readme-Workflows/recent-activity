@@ -1,0 +1,26 @@
+name: Update Wiki
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'docs/**'
+    branches:
+      - 'main'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: Updating Wiki
+      uses: docker://decathlon/wiki-page-creator-action:latest
+      env:
+        ACTION_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+        ACTION_NAME: 'Wiki-Bot'
+        GH_PAT: ${{ secrets.WIKI_PAT }}
+        MD_FOLDER: docs
+        OWNER: Readme-Workflows
+        REPO_NAME: recent-activity
+        SKIP_MD: 'README.md'
+        WIKI_PUSH_MESSAGE: ${{ github.event.commits[0].message }} ## Use the message of the first commit as commit message
