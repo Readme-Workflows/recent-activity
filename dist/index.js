@@ -19457,7 +19457,7 @@ const defaultVals = {
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
-  commit_email: "41898282+github-actions[bot]@users.noreply.github.com"
+  commit_email: "41898282+github-actions[bot]@users.noreply.github.com",
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));
@@ -19880,7 +19880,12 @@ module.exports = appendDate;
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { readme_file, commit_msg, commit_name, commit_email } = __nccwpck_require__(4570);
+const {
+  readme_file,
+  commit_msg,
+  commit_name,
+  commit_email,
+} = __nccwpck_require__(4570);
 
 const exec = __nccwpck_require__(9694);
 
@@ -19891,13 +19896,8 @@ const exec = __nccwpck_require__(9694);
  */
 
 const commitFile = async () => {
-  await exec("git", [
-    "config",
-    "--global",
-    "user.email",
-    commitEmail,
-  ]);
-  await exec("git", ["config", "--global", "user.name", commitName]);
+  await exec("git", ["config", "--global", "user.email", commit_email]);
+  await exec("git", ["config", "--global", "user.name", commit_name]);
   await exec("git", ["add", readme_file]);
   await exec("git", ["commit", "-m", commit_msg]);
   await exec("git", ["push"]);
