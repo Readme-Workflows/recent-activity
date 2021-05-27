@@ -33,6 +33,8 @@ const defaultVals = {
   changes_requested: "🔴 Requested changes in {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
+  commit_name: "readme-bot",
+  commit_email: "41898282+github-actions[bot]@users.noreply.github.com",
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));
