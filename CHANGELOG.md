@@ -6,8 +6,17 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 [Older changelogs](#older-changelogs)
 
-## [v2.0.0]
+## [v2.1.0]
 > **Released:** `TBA`
+
+### Added features
+- Added `commit_name` and `commit_email` to set custom name and e-mail for the committer. [[#63]]
+
+[v2.0.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.1.0
+[#63]: https://github.com/Readme-Workflows/recent-activity/pull/63
+
+## [v2.0.0]
+> **Released:** `23-05-2021`
 
 ### Breaking changes
 - Timezone can now accept locale string as "continent/city" e.g. Asia/Kolkata [[#54]]
