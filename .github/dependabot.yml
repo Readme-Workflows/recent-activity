@@ -30,6 +30,7 @@ updates:
       timezone: "Asia/Kolkata"
     labels:
       - "Updates: dependencies"
+      - "Updates: npm deps"
     pull-request-branch-name:
       separator: "-"
     commit-message:
