@@ -1,4 +1,4 @@
-# Recent Activity Wiki
+# Welcome to the Wiki of Recent Activity
 
 Welcome to the `docs` directory of Recent Activity.  
 This folder contains all the pages that can be found in our [Wiki].
