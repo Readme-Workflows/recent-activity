@@ -112,21 +112,12 @@ There are two valid ways to set names for disabling:
     - event2
     - event3
   ```
-#### `commit_username`
-> **Default:** `readme-bot`
-
-This setting allows you to change what is the author of the Committer.
-
-#### `commit_email`
-> **Default:** `41898282+github-actions[bot]@users.noreply.github.com`
-
-This setting allows you to change what is the email of the Committer.
 
 You can currently set the following values:
 
 | Type:         | Disabled Actions:                                 |
 | ------------- | ------------------------------------------------- |
-| `comments`    | Commenting on Issues    |
+| `comments`    | Commenting on Issues                              |
 | `create_repo` | Creating a new Repository                         |
 | `fork`        | Forking a Repository                              |
 | `issues`      | Opening or closing Issues                         |
@@ -136,6 +127,16 @@ You can currently set the following values:
 | `review`      | Approving or requesting Changes in a Pull request |
 | `star`        | Starring a Repository                             |
 | `wiki`        | Creating a new Wiki page                          |
+
+#### `commit_username`
+> **Default:** `readme-bot`
+
+This setting allows you to change what is the author of the Committer.
+
+#### `commit_email`
+> **Default:** `41898282+github-actions[bot]@users.noreply.github.com`
+
+This setting allows you to change what is the email of the Committer.
 
 #### `url_text`
 > **Default:** `{REPO}{ID}`
