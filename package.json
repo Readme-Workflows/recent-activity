@@ -21,7 +21,7 @@
     "js-yaml": "^4.1.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.5",
+    "@vercel/ncc": "^0.28.6",
     "prettier": "^2.3.0"
   },
   "repository": {
