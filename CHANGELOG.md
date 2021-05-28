@@ -11,9 +11,11 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 ### Added features
 - Added `commit_name` and `commit_email` to set custom name and e-mail for the committer. [[#63]]
+- Added `docs` folder for the Wiki. [[#64]]
 
 [v2.0.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.1.0
 [#63]: https://github.com/Readme-Workflows/recent-activity/pull/63
+[#64]: https://github.com/Readme-Workflows/recent-activity/pull/64
 
 ## [v2.0.0]
 > **Released:** `23-05-2021`
