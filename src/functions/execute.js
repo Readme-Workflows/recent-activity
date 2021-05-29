@@ -5,6 +5,8 @@
 
 const { spawn } = require("child_process");
 
+const apiRequest = require("./apiRequest");
+
 /**
  * Execute shell command
  * @param {String} cmd - root command
@@ -25,8 +27,9 @@ const exec = (cmd, args = []) =>
         err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         return reject(err);
+      } else {
+        return resolve(code);
       }
-      return resolve(code);
     });
     app.on("error", reject);
   });
