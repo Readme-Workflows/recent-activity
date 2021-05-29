@@ -14,7 +14,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 - Added `docs` folder for the Wiki. [[#64]]
 - The GitHub Action will collect specific data used for statistics ([Read More][stats]). [[#67]]
 
-[v2.0.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.1.0
+[v2.1.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.1.0
 [#63]: https://github.com/Readme-Workflows/recent-activity/pull/63
 [#64]: https://github.com/Readme-Workflows/recent-activity/pull/64
 [#67]: https://github.com/Readme-Workflows/recent-activity/pull/67
