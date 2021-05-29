@@ -20,7 +20,7 @@ jobs:
         ACTION_NAME: 'Wiki-Bot'
         GH_PAT: ${{ secrets.WIKI_PAT }}
         MD_FOLDER: docs
-        OWNER: Readme-Workflows
+        OWNER: ${{ github.repository_owner }}
         REPO_NAME: recent-activity
         SKIP_MD: 'README.md'
         WIKI_PUSH_MESSAGE: ${{ github.event.commits[0].message }} ## Use the message of the first commit as commit message
