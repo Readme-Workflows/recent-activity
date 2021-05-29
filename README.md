@@ -79,6 +79,16 @@ You can find the contributing guidelines [here][guidelines].
 
 Join our [Discord Servers][discord] and follow the `#news` channel there to get notified about new updates and other important news.
 
+## Collected Data and Statistics
+
+This Action will collect certain statistics to improve it in the future.  
+Collected data includes username, username of commiter, e-mail of committer, time of the last workflow run and number of successful and failed runs.
+
+Data is refreshed at least once every 7 days and complete data is discarded if the action was not used for 7 days.  
+We do not share any data with 3rd-parties and only use it for improving this Action.
+
+By using this Action will you agree to allowing the aformentioned data to be collected.
+
 <!-- Links -->
 [forks]: https://github.com/Readme-Workflows/recent-activity/network/members
 [issues]: https://github.com/Readme-Workflows/recent-activity/issues
