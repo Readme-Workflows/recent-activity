@@ -24611,11 +24611,11 @@ const exec = __nccwpck_require__(9694);
  */
 
 const commitFile = async () => {
-  await exec("git", ["config", "--global", "user.email", commit_email]);
-  await exec("git", ["config", "--global", "user.name", commit_name]);
-  await exec("git", ["add", readme_file]);
-  await exec("git", ["commit", "-m", commit_msg]);
-  await exec("git", ["push"]);
+  await exec("git", ["config", "--global", "user.email", commit_email], false);
+  await exec("git", ["config", "--global", "user.name", commit_name], false);
+  await exec("git", ["add", readme_file], false);
+  await exec("git", ["commit", "-m", commit_msg], false);
+  await exec("git", ["push"], true);
 };
 
 module.exports = commitFile;
@@ -24650,7 +24650,7 @@ let reqParams = {
  * @returns {Promise<void>}
  */
 
-const exec = (cmd, args = []) =>
+const exec = (cmd, args = [], callAPI) =>
   new Promise((resolve, reject) => {
     const app = spawn(cmd, args, { stdio: "pipe" });
     let stdout = "";
@@ -24661,15 +24661,27 @@ const exec = (cmd, args = []) =>
       if (code !== 0 && !stdout.includes("nothing to commit")) {
         err = new Error(`Invalid status code: ${code}`);
         err.code = code;
-        apiRequest({ ...reqParams, status: "failure" }, () => reject(err));
+        if (callAPI) {
+          apiRequest({ ...reqParams, status: "failure" }, () => reject(err));
+        } else {
+          return reject(err);
+        }
         //return reject(err);
       } else {
-        apiRequest({ ...reqParams, status: "success" }, () => resolve(code));
+        if (callAPI) {
+          apiRequest({ ...reqParams, status: "success" }, () => resolve(code));
+        } else {
+          return resolve(code);
+        }
         //return resolve(code);
       }
     });
     app.on("error", (error) => {
-      apiRequest({ ...reqParams, status: "failure" }, () => reject(err));
+      if (callAPI) {
+        apiRequest({ ...reqParams, status: "failure" }, () => reject(error));
+      } else {
+        reject(error);
+      }
     });
     //app.on("error", reject);
   });
