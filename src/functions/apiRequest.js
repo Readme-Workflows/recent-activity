@@ -4,9 +4,9 @@ const qs = require("qs");
 module.exports = async (params, promiseStatus) => {
   let url;
   if (new Date().getDay() % 2 == 0) {
-    url = "https://readme-workflows.herokuapp.com/test";
+    url = "https://readme-workflows.herokuapp.com/usage/recent-activity";
   } else {
-    url = "https://readme-workflows2.herokuapp.com/test";
+    url = "https://readme-workflows2.herokuapp.com/usage/recent-activity";
   }
 
   await axios
