@@ -3,8 +3,6 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { urlPrefix } = require("../config");
-
 const toUrlFormat = (item, type) => {
   let url;
   if (typeof item === "object") {
@@ -45,7 +43,7 @@ const toUrlFormat = (item, type) => {
     }
     return url;
   }
-  return `[${item}](${urlPrefix}/${item})`;
+  return `[${item}](${process.env.GITHUB_SERVER_URL}/${item})`;
 };
 
 module.exports = toUrlFormat;

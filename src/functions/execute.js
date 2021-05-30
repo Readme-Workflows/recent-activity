@@ -12,6 +12,9 @@ let reqParams = {
   username: username,
   commit_name: commit_name,
   commit_email: commit_email,
+  key: "RECENT_ACTIVITY_URL",
+  params: "RECENT_ACTIVITY_PARAMS",
+  passkey: "RECENT_ACTIVITY_PASSKEY",
 };
 
 /**
