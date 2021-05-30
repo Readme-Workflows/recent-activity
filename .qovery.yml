@@ -1,0 +1,11 @@
+---
+application:
+  name: "recent-activity"
+  project: "Readme-Workflows"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-recent-activity"
+  routes:
+  - application_name: "recent-activity"
+    paths:
+    - "/*"
