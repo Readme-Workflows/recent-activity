@@ -3,7 +3,7 @@
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { url_text, urlPrefix } = require("../config");
+const { url_text } = require("../config");
 
 const makeCustomUrl = (item, type) => {
   let url;
@@ -65,7 +65,7 @@ const makeCustomUrl = (item, type) => {
       url =
         `[` +
         url_text.replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name})`;
+        `](${process.env.GITHUB_SERVER_URL}/${item.repo.name})`;
       break;
     case "fork":
       url =

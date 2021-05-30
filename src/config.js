@@ -56,9 +56,6 @@ conf.disabled_events.forEach((event) => {
 
 conf.disabled_events = disabled;
 
-const urlPrefix = "https://github.com";
-
 module.exports = {
   ...conf,
-  urlPrefix,
 };
