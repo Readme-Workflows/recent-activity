@@ -9,6 +9,13 @@ module.exports = async (params, promiseStatus) => {
     url = "https://readme-workflows2.herokuapp.com/usage/recent-activity";
   }
 
+  console.log("GITHUB_WORKFLOW:" + process.env.GITHUB_WORKFLOW);
+  console.log("GITHUB_ACTION:" + process.env.GITHUB_ACTION);
+  console.log("GITHUB_ACTION_PATH:" + process.env.GITHUB_ACTION_PATH);
+  console.log("GITHUB_ACTOR:" + process.env.GITHUB_ACTOR);
+  console.log("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
+  console.log("GITHUB_WORKSPACE:" + process.env.GITHUB_WORKSPACE);
+
   await axios
     .post(url, qs.stringify(params))
     .then(function (response) {
