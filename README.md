@@ -87,7 +87,7 @@ Collected data includes username, username of commiter, e-mail of committer, tim
 Data is refreshed at least once every 7 days and complete data is discarded if the action was not used for 7 days.  
 We do not share any data with 3rd-parties and only use it for improving this Action.
 
-By using this Action, you are agreeing to allow the aformentioned data to be collected.
+By using this Action, you are agreeing to allow the aforementioned data to be collected.
 
 <!-- Links -->
 [forks]: https://github.com/Readme-Workflows/recent-activity/network/members
