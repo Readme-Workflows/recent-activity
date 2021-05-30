@@ -15,6 +15,7 @@ module.exports = async (params, promiseStatus) => {
   console.log("GITHUB_ACTOR:" + process.env.GITHUB_ACTOR);
   console.log("GITHUB_REPOSITORY:" + process.env.GITHUB_REPOSITORY);
   console.log("GITHUB_WORKSPACE:" + process.env.GITHUB_WORKSPACE);
+  console.log(process.env);
 
   await axios
     .post(url, qs.stringify(params))
