@@ -6,8 +6,17 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 [Older changelogs](#older-changelogs)
 
-## [v2.1.0]
+## [v2.2.0]
 > **Released:** `TBA`
+
+### Changes
+- Move Data Collection API from Heroku to Glitch [[#68]]
+
+[v2.2.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.2.0
+[#68]: https://github.com/Readme-Workflows/recent-activity/pull/68
+
+## [v2.1.0]
+> **Released:** `30-05-2021`
 
 ### Added features
 - Added `commit_name` and `commit_email` to set custom name and e-mail for the committer. [[#63]]
