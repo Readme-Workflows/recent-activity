@@ -7,7 +7,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 [Older changelogs](#older-changelogs)
 
 ## [v2.2.0]
-> **Released:** `TBA`
+> **Released:** `31-05-2021`
 
 ### Changes
 - Move Data Collection API from Heroku to Glitch [[#68]]
