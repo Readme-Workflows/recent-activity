@@ -8,6 +8,8 @@
 [![discordBadge]][discord]
 [![codeOfConductBadge]][codeOfConduct]
 ![uniqueUsersBadge]
+![totalrunsbadge]
+![successratebadge]
 
 This GitHub Action is a Fork of the original [GitHub Activity Readme][githubActivityReadme] Action by [jamesgeorge007].  
 Its our goal is to improve the original GitHub Action while also providing new features for the users.
@@ -131,3 +133,5 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 [discordBadge]: https://img.shields.io/discord/842728941088931870?color=7289da&label=discord&logo=discord&logoColor=white
 [CodeOfConductBadge]: https://img.shields.io/badge/Code%20of%20Conduct-Contributor%20Covenant%202.0-4baaaa.svg?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOC41MzMuMTMzYTEuNzUgMS43NSAwIDAwLTEuMDY2IDBsLTUuMjUgMS42OEExLjc1IDEuNzUgMCAwMDEgMy40OFY3YzAgMS41NjYuMzIgMy4xODIgMS4zMDMgNC42ODIuOTgzIDEuNDk4IDIuNTg1IDIuODEzIDUuMDMyIDMuODU1YTEuNyAxLjcgMCAwMDEuMzMgMGMyLjQ0Ny0xLjA0MiA0LjA0OS0yLjM1NyA1LjAzMi0zLjg1NUMxNC42OCAxMC4xODIgMTUgOC41NjYgMTUgN1YzLjQ4YTEuNzUgMS43NSAwIDAwLTEuMjE3LTEuNjY3TDguNTMzLjEzM3ptLS42MSAxLjQyOWEuMjUuMjUgMCAwMS4xNTMgMGw1LjI1IDEuNjhhLjI1LjI1IDAgMDEuMTc0LjIzOFY3YzAgMS4zNTgtLjI3NSAyLjY2Ni0xLjA1NyAzLjg2LS43ODQgMS4xOTQtMi4xMjEgMi4zNC00LjM2NiAzLjI5N2EuMi4yIDAgMDEtLjE1NCAwYy0yLjI0NS0uOTU2LTMuNTgyLTIuMTA0LTQuMzY2LTMuMjk4QzIuNzc1IDkuNjY2IDIuNSA4LjM2IDIuNSA3VjMuNDhhLjI1LjI1IDAgMDEuMTc0LS4yMzdsNS4yNS0xLjY4ek0xMS4yOCA2LjI4YS43NS43NSAwIDAwLTEuMDYtMS4wNkw3LjI1IDguMTlsLS45Ny0uOTdhLjc1Ljc1IDAgMTAtMS4wNiAxLjA2bDEuNSAxLjVhLjc1Ljc1IDAgMDAxLjA2IDBsMy41LTMuNXoiPjwvcGF0aD48L3N2Zz4=
 [uniqueUsersBadge]: https://readme-workflows.glitch.me/badge/recent-activity?data=unique-users&label=Unique+Users&color=blue
+[totalrunsbadge]: https://readme-workflows.glitch.me/badge/recent-activity?data=total-runs&label=Total+Runs+since+~time~&color=blue
+[successratebadge]: https://readme-workflows.glitch.me/badge/recent-activity?data=success-rate&label=Success+Rate
