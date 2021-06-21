@@ -247,7 +247,7 @@ This text is displayed whenever you merge a Pull request.
 
 This text is displayed whenever you create a new Repository.
 
-#### `repo_forked`
+#### `fork_repo`
 > **Default:** `🔱 Forked {FORK} from {REPO}`
 >
 > **Supported Placeholders:**
