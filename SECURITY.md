@@ -34,12 +34,3 @@ Source code for Recent Activity website is [here](https://github.com/Readme-Work
 ## Qualifying Vulnerabilities
 
 Any reproducible vulnerability that has a severe effect on the security or privacy of our users is likely to be in scope for the program.
-
-Some common examples are:
-
- * XSS (Cross Site Scripting)
- * CSRF (Cross-Site Request Forgery)
- * SSRF (Server-side request forgery)
- * RCE (Remote Code Execution)
- * SQLi (SQL injection)
- * privilege escalation.

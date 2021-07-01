@@ -1,6 +1,6 @@
 ## Supported Versions
 
-These are the current versions that support development OR users can report bugs for these versions.
+These are the current versions that support development, users can report bugs and/or request features for these versions.
 
 | Version | Supported          |
 | ------- | ------------------ |
