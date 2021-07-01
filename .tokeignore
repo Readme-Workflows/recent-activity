@@ -5,3 +5,5 @@ LICENSE
 .github/*.yml
 *ignore*
 dist/
+*.json
+
