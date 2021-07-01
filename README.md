@@ -32,6 +32,28 @@ Last Updated: Thursday, May 20th, 2021, 3:17:39 PM (GMT)
 5. 💪 Opened PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
 <!--RECENT_ACTIVITY:end-->
 
+## Features
+
+### Support for many events
+
+Events we support:
+- CommitCommentEvent - commenting on a commit
+- CreateEvent - A new repo was created
+- ForkEvent - You forked a repo
+- GollumEvent - Wiki was updated in a repo
+- IssueCommentEvent - You commented on a issue
+- IssuesEvent - You opened a issue
+- MemberEvent - You joined a org/repo as a member
+- PullRequestEvent - You opened a pr.
+- PullRequestReviewCommentEvent - You commented on a pr review
+- PullRequestReviewEvent - You reviewed a pr
+- ReleaseEvent - You released a new version
+- WatchEvent - You watched a repo.
+
+### Customizable Settings
+
+Adjust the settings to fit all the needs of your profile readme. You can select disabled events, commit message, text for the events, the timezone, etc.
+
 ## Settings
 
 All available settings can be found on the [Wiki].
