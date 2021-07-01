@@ -5,7 +5,7 @@
 [![issuesBadge]][issues]
 ![sizeBadge]
 ![codelinesBadge]
-[![discordBadge]][discord]
+[![discordBadge]][Discord]
 [![codeOfConductBadge]][codeOfConduct]
 ![uniqueUsersBadge]
 ![totalrunsbadge]
@@ -39,8 +39,9 @@ All available settings can be found on the [Wiki].
 ## History
 
 - The original project was inspired by [JasonEtco/activity-box][activityBox]
-- The original project was unmaintained when [PuneetGopinath] and [Abhishek][abhijoshi2k] wanted to add a new feature, so Puneet forked the repository and Abhishek supported his efforts.
-- [Andre601] joined as a Memmber to maintain the documentation of the project.
+- The original project was unmaintained when [PuneetGopinath] and [Abhishek][abhijoshi2k] wanted to get new feature added, so Puneet forked the repository and Abhishek supported his efforts.
+- We brought up the project to a new organisation named Readme-Workflows.
+- [Andre601] joined as a Member to maintain the documentation of the project.
 - Version 2 of the project was released bringing a new configuration-file, new events to list and more.
 
 ## Community
@@ -72,7 +73,7 @@ Visit our [Roadmap] for planned and upcoming features.
 ## Support us
 
 Do you like this project?
-Why don't show your support by staring it and joining all the other [stargazers]?
+Why don't show your support by staring it ⭐ and joining all the other [stargazers]?
 
 ## Contributing
 
@@ -80,7 +81,7 @@ You can find the contributing guidelines [here][guidelines].
 
 ## News
 
-Join our [Discord Servers][discord] and follow the `#news` channel there to get notified about new updates and other important news.
+Join our [Discord] and follow the `#news` channel or get a role from `#roles` channel to get notified about new updates and other important news.
 
 ## Collected Data and Statistics
 
@@ -118,7 +119,7 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 
 [guidelines]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md
 
-[discord]: https://discord.gg/aR6TcVzpbF
+[Discord]: https://discord.gg/aR6TcVzpbF
 
 <!-- Images -->
 [stargazersImg]: https://reporoster.com/stars/Readme-Workflows/recent-activity
