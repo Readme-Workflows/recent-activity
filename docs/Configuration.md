@@ -113,7 +113,7 @@ The setting can be used in two ways:
   ```
 
 #### `whitelisted_events`
-> **Default:** *`Empty`*
+> **Default:** *`Undefined`*
 
 `whitelisted_events` allows you to set a list of events that should be included when updating the activity list.  
 This setting will take priority over the [`disabled_events`](#disabled_events) setting, even if the list is empty!
