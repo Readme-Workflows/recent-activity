@@ -9,10 +9,10 @@
 
 ## Links
 - **GitHub**
-  - [Issues]
-  - [Pull requests][pr]
-  - [Discussions]
-  - [**License**][license]
+  - [![IconIssue] Issues][issues]
+  - [![IconPR] Pull requests][pr]
+  - [![IconDiscussion] Discussions][discussions]
+  - [![IconLicense] License][license]
 - **Other**
   - [Website]
   - [Discord]
@@ -24,3 +24,9 @@
 
 [website]: https://readme-workflows.github.io/recent-activity/
 [discord]: https://discord.gg/aR6TcVzpbF
+
+<!-- Icons -->
+[IconIssue]: https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/IssueNeutral.svg
+[IconPR]: https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/PullRequestNeutral.svg
+[IconDiscussion]: https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/Discussions.svg
+[IconLicense]: https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/License.svg
