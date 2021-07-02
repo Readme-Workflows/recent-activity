@@ -6,6 +6,17 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 [Older changelogs](#older-changelogs)
 
+## [v2.3.0]
+> **Released:** `02-07-2021`
+
+### Added Features
+- Add `whitelisted_events` option [#77]  
+  Only events defined in this list will be included in the activity list.  
+  It takes priority over the `disabled_events` option
+
+[v2.3.0]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.3.0
+[#77]: https://github.com/Readme-Workflows/recent-activity/pull/77
+
 ## [v2.2.0]
 > **Released:** `31-05-2021`
 
