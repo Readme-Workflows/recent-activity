@@ -92,19 +92,18 @@ Only valid Markdown files are supported.
 #### `disabled_events`
 > **Default:** `[comments]`
 
-With the `disabled_events` option can you set a list of events that the Action should ignore when creating the Activity-list.
+`disabled_events` allows you to set a list of evenets that should be ignored when updating the activity list.  
+Please see the [list of supported events](#supported-events) for all the events you can disable.
 
-There are two valid ways to set names for disabling:
+The setting can be used in two ways:
 
-- **option 1:**
-  
+- **option 1:**  
   ```yaml
   settings:
     disabled_events: [event1, event2, event3]
   ```
 
-- **Option 2:**
-  
+- **Option 2:**  
   ```yaml
   settings:
     disabled_events:
@@ -113,7 +112,33 @@ There are two valid ways to set names for disabling:
     - event3
   ```
 
-You can currently set the following values:
+#### `whitelisted_events`
+> **Default:** `Empty`
+
+`whitelisted_events` allows you to set a list of evenets that should be included when updating the activity list.  
+When this and the the [`disabled_events`](#disabled_events) setting are defined will this setting take priority over the other.
+
+Please see the [list of supported events](#supported-events) for all the events you can disable.
+
+The setting can be used in two ways:
+
+- **option 1:**  
+  ```yaml
+  settings:
+    whitelisted_events: [event1, event2, event3]
+  ```
+
+- **Option 2:**  
+  ```yaml
+  settings:
+    whitelisted_events:
+    - event1
+    - event2
+    - event3
+  ```
+
+##### Supported Events
+The following list of events is supported for the [`disabled_events`](#disabled_events) and [`whitelisted_events`](#whitelisted_events) setting.
 
 | Type:         | Disabled Actions:                                 |
 | ------------- | ------------------------------------------------- |
