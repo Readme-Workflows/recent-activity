@@ -6,7 +6,7 @@
 const core = require("@actions/core");
 
 const parseYaml = require("./functions/parseYaml.js");
-const eventList = require("../eventList.js");
+const eventList = require("./eventList.js");
 
 const defaultVals = {
   username: core.getInput("GH_USERNAME"),
