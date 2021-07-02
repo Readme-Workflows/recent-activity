@@ -54,8 +54,10 @@ let disabled = [];
 
 try {
   if (conf.whitelisted_events) {
-    disabled = eventList.filter((event) => {
-      !conf.whitelisted_events.includes(event);
+    eventList.forEach((event) => {
+      if (!conf.whitelisted_events.includes(event)) {
+        disabled.push(event.trim().toLowerCase());
+      }
     });
   } else {
     conf.disabled_events.forEach((event) => {
@@ -67,6 +69,10 @@ try {
   console.log("Error: " + e);
 }
 
-conf.disabled_events = disabled;
+if (disabled.length == 0) {
+  conf.disabled_events = defaultVals.disabled_events;
+} else {
+  conf.disabled_events = disabled;
+}
 
 module.exports = conf;
