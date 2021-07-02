@@ -1,3 +1,6 @@
+/**
+ * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ */
 module.exports = [
   "comments",
   "create_repo",
