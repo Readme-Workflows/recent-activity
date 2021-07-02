@@ -1,25 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9332:
-/***/ ((module) => {
-
-module.exports = [
-  "comments",
-  "create_repo",
-  "fork",
-  "issues",
-  "member",
-  "pr",
-  "release",
-  "review",
-  "star",
-  "wiki",
-];
-
-
-/***/ }),
-
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -24150,7 +24131,7 @@ function wrappy (fn, cb) {
 const core = __nccwpck_require__(2186);
 
 const parseYaml = __nccwpck_require__(928);
-const eventList = __nccwpck_require__(9332);
+const eventList = __nccwpck_require__(5394);
 
 const defaultVals = {
   username: core.getInput("GH_USERNAME"),
@@ -24220,6 +24201,25 @@ if (disabled.length == 0) {
 }
 
 module.exports = conf;
+
+
+/***/ }),
+
+/***/ 5394:
+/***/ ((module) => {
+
+module.exports = [
+  "comments",
+  "create_repo",
+  "fork",
+  "issues",
+  "member",
+  "pr",
+  "release",
+  "review",
+  "star",
+  "wiki",
+];
 
 
 /***/ }),
