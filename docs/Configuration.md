@@ -156,12 +156,12 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 #### `commit_username`
 > **Default:** `readme-bot`
 
-This setting allows you to change what is the author of the Committer.
+This setting allows you to change the name of the account that pushes the Readme Update.
 
 #### `commit_email`
 > **Default:** `41898282+github-actions[bot]@users.noreply.github.com`
 
-This setting allows you to change what is the email of the Committer.
+This setting allows you to change the e-mail of the account that pushes the Readme Update.
 
 #### `url_text`
 > **Default:** `{REPO}{ID}`
