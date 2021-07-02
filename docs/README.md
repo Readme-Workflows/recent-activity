@@ -1,3 +1,5 @@
+[wiki]: https://github.com/Readme-Workflows/recent-activity/wiki
+
 # Welcome to the Wiki of Recent Activity
 
 Welcome to the `docs` directory of Recent Activity.  
