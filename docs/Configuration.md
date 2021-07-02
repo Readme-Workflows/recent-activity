@@ -115,7 +115,7 @@ The setting can be used in two ways:
 #### `whitelisted_events`
 > **Default:** *`Empty`*
 
-`whitelisted_events` allows you to set a list of evenets that should be included when updating the activity list.  
+`whitelisted_events` allows you to set a list of events that should be included when updating the activity list.  
 This setting will take priority over the [`disabled_events`](#disabled_events) setting, even if the list is empty!
 
 Please see the [list of supported events](#supported-events) for all the events you can disable.
