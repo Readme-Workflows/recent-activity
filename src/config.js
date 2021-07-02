@@ -6,6 +6,7 @@
 const core = require("@actions/core");
 
 const parseYaml = require("./functions/parseYaml.js");
+const eventList = require("./eventList.js");
 
 const defaultVals = {
   username: core.getInput("GH_USERNAME"),
@@ -50,12 +51,28 @@ let conf = {
 };
 
 let disabled = [];
-conf.disabled_events.forEach((event) => {
-  disabled.push(event.trim().toLowerCase());
-});
 
-conf.disabled_events = disabled;
+try {
+  if (conf.whitelisted_events) {
+    eventList.forEach((event) => {
+      if (!conf.whitelisted_events.includes(event)) {
+        disabled.push(event.trim().toLowerCase());
+      }
+    });
+  } else {
+    conf.disabled_events.forEach((event) => {
+      disabled.push(event.trim().toLowerCase());
+    });
+  }
+} catch (e) {
+  console.log("Config file error! Using default config.");
+  console.log("Error: " + e);
+}
 
-module.exports = {
-  ...conf,
-};
+if (disabled.length == 0) {
+  conf.disabled_events = defaultVals.disabled_events;
+} else {
+  conf.disabled_events = disabled;
+}
+
+module.exports = conf;
