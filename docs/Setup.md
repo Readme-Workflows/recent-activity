@@ -16,7 +16,7 @@ When creating the Repository, make sure you have setup the following things:
 - You set the Repository to `Public`
 - You checked `Add a README file`
 
-You can also use a template Repository such as the [`activity-template`][template] from Readme-Workflows to quickly setup your Profile-README. Important is only that the name of the repository is your own.
+You can also use a template Repository such as the [`activity-template`][template] provided by Readme-Workflows to quickly setup your Profile-README. Important is only that the name of the repository is your GitHub username.
 
 ## 1) Create Workflow file
 
@@ -110,7 +110,7 @@ jobs:
 ```
 The action has some settings that are directly set through `with` options such as `CONFIG_FILE` which allows you to set a different config file to use (Explained next).
 
-Once you're donw with your setup commit the changes. You know you did it right if you can see `.github/workflows` in the directory where your README is located at.
+Once you're done with your setup commit the changes. You know you did it right if you can see `.github/workflows` in the directory where your README is located at.
 
 ## 2) Configure Recent-Activity
 
@@ -122,14 +122,14 @@ When no configuration was defined would the action default to specific values:
 - `username` defaults to the Repository-Owner
 - `max_lines` defaults to 5
 - `readme_file` defaults to `./README.md`
-- `disabled_events` defaults to `comments`
+- `disabled_events` defaults to `["comments"]`
 
 Please see the [`sample.yml`][sample] file for all options and their default values.  
 You can also check the [[Configuration]] Page for any info about the different options.
 
 ## 3) Configure README file
 
-The final step is to now update the README.md file. If you selected `Add a README file` should there be a README file in your Repository that you can just edit.  
+The final step is to now update the README.md file. If you selected `Add a README file` when creating the repo, there should be a README file in your Repository that you can just edit.  
 If there isn't a README file will you need to create one first.
 
 While editing the README.md can you design it however you like. The only important part is, that you include a `<!--RECENT_ACTIVITY:start-->` and optionally a `<!--RECENT_ACTIVITY:last_update-->` comment in the README file.  
