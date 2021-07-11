@@ -56,7 +56,7 @@ Adjust the settings to fit all the needs of your profile readme. You can select 
 
 ## Setup
 
-A guide on how to set up this Action for the first time can be found on the [Setup Wiki page][setup]
+A guide on how to set up this Action for the first time can be found on the [Setup Wiki page][setup].
 
 ## Settings
 
