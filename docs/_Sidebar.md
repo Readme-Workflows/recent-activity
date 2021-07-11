@@ -1,11 +1,12 @@
 ## Pages
 - [[Home]]
+- [[Setup]]
 - [[Configuration]]
   - [[Setup|Configuration#setup]]
   - [[Inputs|Configuration#inputs]]
   - [[Sample Configuration|Configuration#sample-configuration]]
   - [[Options|Configuration#options]]
-- [[Examples]] (Deprecated. Not recommended)
+- [[Examples]] (Outdated. Not recommended)
 
 ## Links
 - **GitHub**

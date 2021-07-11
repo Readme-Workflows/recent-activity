@@ -54,9 +54,13 @@ Events we support:
 
 Adjust the settings to fit all the needs of your profile readme. You can select disabled events, commit message, text for the events, the timezone, etc.
 
+## Setup
+
+A guide on how to set up this Action for the first time can be found on the [Setup Wiki page][setup].
+
 ## Settings
 
-All available settings can be found on the [Wiki].
+All available settings can be found on the [Wiki][settings].
 
 ## History
 
@@ -123,7 +127,8 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 [githubActivityReadme]: https://github.com/jamesgeorge007/github-activity-readme
 [jamesgeorge007]: https://github.com/jamesgeorge007
 
-[wiki]: https://github.com/Readme-Workflows/recent-activity/wiki/Configuration
+[settings]: https://github.com/Readme-Workflows/recent-activity/wiki/Configuration
+[setup]: https://github.com/Readme-Workflows/recent-activity/wiki/Setup
 
 [puneetGopinath]: https://github.com/PuneetGopinath
 [abhijoshi2k]: https://github.com/abhijoshi2k
