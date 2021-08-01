@@ -1,0 +1,113 @@
+name: Bug report
+description: Create a bug report to help us improve
+title: 'Bug report: '
+labels:
+- 'Type: bug'
+
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Thank you for opening a new issue!
+      
+      Please remember that you should fill out all files marked with a `*` and that you should give as much information as possible.
+      Large errors and similar should be provided through a Pastebin or Hastebin-like service.
+      
+      Some known and accepted sites:
+      - [Paste.gg](https://paste.gg)
+      - [Hastebin.de](https://hastebin.de) (The original hastebin.com and hasteb.in are unstable)
+      - [Pastebin.com](https://pastebin.com)
+- type: checkboxes
+  attributes:
+    label: Checks
+    description: Make sure you have performed these important steps before opening this issue.
+    options:
+    - label: I use a [supported version](https://github.com/Readme-Workflows/recent-activity/blob/main/SUPPORTED_VERSIONS.md) of Recent Activity.
+      required: true
+    - label: I [searched the issues page](https://github.com/Readme-Workflows/recent-activity/issues?q=is%3Aissue) for already existing bug reports.
+      required: true
+- type: textarea
+  attributes:
+    label: Description
+    description: |-
+      Try to describe the bug as detailed as possible.
+      Use the below text fields for reproduction steps and a configuration example.
+    placeholder: Recent Activity did...
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce
+    description: Please list the steps to **reliably** reproduce the bug.
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Configuration
+    description: |-
+      Please share both your **Workflow file** and the configuration **file of Recent Activity**.
+      This text field automatically formats your input as YAML code so you don't have to provide any backticks to it.
+    render: yaml
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Expected behaviour
+    description: What did you expect Recent Activity to do?
+    placeholder: Recent Activity should...
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Actual behaviour
+    description: What does Recent Activity do instead?
+    placeholder: Recent Activity does...
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: Device
+    description: |-
+      What device did you use?
+      
+      Make sure to mention the device you used in the "Device version" field when selecting "Other"!
+    options:
+    - Windows
+    - Max
+    - Linux
+    - Android
+    - iOS
+    - Other
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Device version
+    description: The current version of your device.
+    placeholder: Windows 10 Pro
+  validations:
+    required: true
+- type: dropdown
+  attributes:
+    label: Browser/App
+    description: |-
+      What Browser/App did you use?
+      
+      Make sure to mention the browser/app you used in the "Browser/App version" field when selecting "Other"!
+    options:
+    - Microsoft Edge
+    - Chrome
+    - Safari
+    - Opera
+    - GitHub App (Android)
+    - GitHub App (iOS)
+    - Other
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Browser/App version
+    description: The current version of your browser/app.
+    placeholder: GitHub Mobile v1.24.0-beta
+  validations:
+    required: true
