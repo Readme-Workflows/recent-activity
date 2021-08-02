@@ -64,50 +64,8 @@ body:
     placeholder: Recent Activity does...
   validations:
     required: true
-- type: dropdown
-  attributes:
-    label: Device
-    description: |-
-      What device did you use?
-      
-      Make sure to mention the device you used in the "Device version" field when selecting "Other"!
-    options:
-    - Windows
-    - Max
-    - Linux
-    - Android
-    - iOS
-    - Other
-  validations:
-    required: true
 - type: input
   attributes:
-    label: Device version
-    description: The current version of your device.
-    placeholder: Windows 10 Pro
-  validations:
-    required: true
-- type: dropdown
-  attributes:
-    label: Browser/App
-    description: |-
-      What Browser/App did you use?
-      
-      Make sure to mention the browser/app you used in the "Browser/App version" field when selecting "Other"!
-    options:
-    - Microsoft Edge
-    - Chrome
-    - Safari
-    - Opera
-    - GitHub App (Android)
-    - GitHub App (iOS)
-    - Other
-  validations:
-    required: true
-- type: input
-  attributes:
-    label: Browser/App version
-    description: The current version of your browser/app.
-    placeholder: GitHub Mobile v1.24.0-beta
-  validations:
-    required: true
+    label: Failed runs
+    description: Please provide a link to any failed run if available.
+    placeholder: 'https://github.com/...'
