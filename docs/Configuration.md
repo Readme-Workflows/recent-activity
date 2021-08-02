@@ -232,6 +232,9 @@ This text is displayed whenever you approve changes in a Pull request.
 > - `{AMOUNT}`
 > - [`{URL}`](#url_text)
 
+This text is displayed whenever you request changes to a Pull request.  
+The action will combine multiple Change requests for the same Pull request into one. The `{AMOUNT}` placeholder can be used to display the amount of changes requested for a Pull request.
+
 #### `comments`
 > **Default:** `💬 Commented on {ID} in {REPO}`
 >
@@ -335,6 +338,3 @@ This text is displayed whenever you merge a Pull request.
 > - `{WIKI}`
 
 This text is displayed whenever you create a new Wiki page. `{WIKI}` will be the name of the Wiki page created.
-
-This text is displayed whenever you request changes to a Pull request.  
-The action will combine multiple Change requests for the same Pull request into one. The `{AMOUNT}` placeholder can be used to display the amount of changes requested for a Pull request.
