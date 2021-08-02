@@ -5,11 +5,12 @@
 
 const serializers = require("../serializers");
 const { max_lines } = require("../config");
+const { amountReplace } = require("./amountReplacer");
 
 const filterContent = (eventData) => {
   let temp_content = [];
 
-  for (i = 0; i < eventData.length; i++) {
+  for (let i = 0; i < eventData.length; i++) {
     let event_string = serializers[eventData[i].type](eventData[i]);
 
     if (event_string !== "") {
@@ -22,6 +23,10 @@ const filterContent = (eventData) => {
 
   temp_content = temp_content.flat();
   temp_content.length = max_lines;
+
+  temp_content = temp_content.join("\n\n");
+
+  temp_content = amountReplace(temp_content).split("\n\n");
 
   console.log(temp_content);
 
