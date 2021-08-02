@@ -25169,7 +25169,7 @@ const defaultVals = {
   wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
   added_member: "🤝 Became collaborator on {REPO}",
   changes_approved: "👍 Approved {ID} in {REPO}",
-  changes_requested: "🔴 Requested {AMOUNT} change(s) in {ID} in {REPO}",
+  changes_requested: "🔴 Requested {AMOUNT} change(s) for {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
@@ -25708,6 +25708,7 @@ const commitFile = async () => {
   await exec("git", ["config", "--global", "user.email", commit_email], false);
   await exec("git", ["config", "--global", "user.name", commit_name], false);
   await exec("git", ["add", readme_file], false);
+  await exec("git", ["pull"], false);
   await exec("git", ["commit", "-m", commit_msg], false);
   await exec("git", ["push"], true);
 };
