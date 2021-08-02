@@ -1,0 +1,41 @@
+name: Feature request
+description: Suggest an idea for this project
+title: 'Feature request: '
+labels:
+- 'Type: enhancement'
+
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Thank you for opening a new issue!
+      
+      Please remember that you should fill out all files marked with a `*` and that you should give as much information as possible.
+      Large pieces of code and similar should be provided through a Pastebin or Hastebin-like service.
+      
+      Some known and accepted sites:
+      - [Paste.gg](https://paste.gg)
+      - [Hastebin.de](https://hastebin.de) (The original hastebin.com and hasteb.in are unstable)
+      - [Pastebin.com](https://pastebin.com)
+- type: checkboxes
+  attributes:
+    label: Checks
+    description: Make sure you have performed these important steps before opening this issue.
+    options:
+    - label: I [searched the issues page](https://github.com/Readme-Workflows/recent-activity/issues?q=is%3Aissue) for already existing feature requests.
+      required: true
+- type: textarea
+  attributes:
+    label: Description
+    description: |-
+      Try to describe your feature request as detailed as possible.
+      If it is related to an existing problem should you mention that. If there exists an option GitHub issue about this should you also link to it using `#<id>`.
+      
+      The text field also allows you to upload screenshots and similar.
+    placeholder: Recent Activity could benefit from...
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Alternatives considered
+    description: Do you consider any alternatives to use? This is optional
