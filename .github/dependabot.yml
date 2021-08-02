@@ -18,7 +18,6 @@ updates:
       prefix: "Github Actions"
       include: "scope"
     reviewers:
-      - PuneetGopinath
       - abhijoshi2k
 
   - package-ecosystem: "npm"
@@ -37,5 +36,4 @@ updates:
       prefix: "npm"
       include: "scope"
     reviewers:
-      - PuneetGopinath
       - abhijoshi2k
