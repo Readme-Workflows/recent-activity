@@ -25169,7 +25169,7 @@ const defaultVals = {
   wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
   added_member: "🤝 Became collaborator on {REPO}",
   changes_approved: "👍 Approved {ID} in {REPO}",
-  changes_requested: "🔴 Requested {AMOUNT} change(s) for {ID} in {REPO}",
+  changes_requested: "🔴 Requested {AMOUNT} change(s) in {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
