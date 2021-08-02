@@ -64,6 +64,7 @@ The config file is split into two major sections: [Settings](#settings) and [Mes
 
 Every option in the file is **optional** and will default to a specific value (See `Default` section for what)
 
+----
 ### Settings
 The `Settings` area contains various settings to configure.
 
@@ -194,6 +195,7 @@ Supported are all options mentioned in the [dateformat NPM package][dateformat].
 
 Note that the `Z` cannot display the actual timezone such as `CET`/`CEST` but only timezones within the US (`EST`/`MDT`) or `GMT` with the offset appended to it (i.e. `GMT+0100`).
 
+----
 ### Messages
 The `messages` section contains all the different messages you can set for the Activity-List to display.
 
