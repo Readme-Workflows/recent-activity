@@ -25169,7 +25169,7 @@ const defaultVals = {
   wiki_create: "📖 Created new wiki page {WIKI} in {REPO}",
   added_member: "🤝 Became collaborator on {REPO}",
   changes_approved: "👍 Approved {ID} in {REPO}",
-  changes_requested: "🔴 Requested changes in {ID} in {REPO}",
+  changes_requested: "🔴 Requested {AMOUNT} change(s) for {ID} in {REPO}",
   new_release: "✌️ Released {ID} in {REPO}",
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
@@ -25473,6 +25473,7 @@ module.exports = PullRequestReviewCommentEvent;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const { changes_approved, changes_requested } = __nccwpck_require__(4570);
+const { amountUpdate } = __nccwpck_require__(3195);
 const makeCustomUrl = __nccwpck_require__(434);
 const toUrlFormat = __nccwpck_require__(5879);
 
@@ -25489,6 +25490,9 @@ const PullRequestReviewEvent = (item) => {
     item.payload.action === "created" &&
     item.payload.review.state == "changes_requested"
   ) {
+    if (!amountUpdate(item.payload.review.pull_request_url)) {
+      return "";
+    }
     return changes_requested
       .replace(/{ID}/g, toUrlFormat(item, "pr_review"))
       .replace(/{REPO}/g, toUrlFormat(item.repo.name, "pr_review"))
@@ -25544,6 +25548,37 @@ const WatchEvent = (item) => {
 };
 
 module.exports = WatchEvent;
+
+
+/***/ }),
+
+/***/ 3195:
+/***/ ((module) => {
+
+const identifier = [];
+const amount = [];
+
+const amountUpdate = (data) => {
+  let amt = identifier.indexOf(data);
+  if (amt !== -1) {
+    amount[amt] += 1;
+    return false;
+  } else {
+    identifier.push(data);
+    amount.push(1);
+    return true;
+  }
+};
+
+const amountReplace = (data) => {
+  amount.forEach((amt) => {
+    data = data.replace("{AMOUNT}", amt);
+  });
+
+  return data;
+};
+
+module.exports = { amountUpdate, amountReplace };
 
 
 /***/ }),
@@ -25673,6 +25708,7 @@ const commitFile = async () => {
   await exec("git", ["config", "--global", "user.email", commit_email], false);
   await exec("git", ["config", "--global", "user.name", commit_name], false);
   await exec("git", ["add", readme_file], false);
+  await exec("git", ["pull"], false);
   await exec("git", ["commit", "-m", commit_msg], false);
   await exec("git", ["push"], true);
 };
@@ -25721,7 +25757,8 @@ const exec = (cmd, args = [], callAPI) =>
     });
     app.on("close", (code) => {
       if (code !== 0 && !stdout.includes("nothing to commit")) {
-        err = new Error(`Invalid status code: ${code}`);
+        console.log(stdout);
+        let err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         if (callAPI) {
           apiRequest({ ...reqParams, status: "failure" }, () => reject(err));
@@ -25763,11 +25800,12 @@ module.exports = exec;
 
 const serializers = __nccwpck_require__(3169);
 const { max_lines } = __nccwpck_require__(4570);
+const { amountReplace } = __nccwpck_require__(3195);
 
 const filterContent = (eventData) => {
   let temp_content = [];
 
-  for (i = 0; i < eventData.length; i++) {
+  for (let i = 0; i < eventData.length; i++) {
     let event_string = serializers[eventData[i].type](eventData[i]);
 
     if (event_string !== "") {
@@ -25780,6 +25818,10 @@ const filterContent = (eventData) => {
 
   temp_content = temp_content.flat();
   temp_content.length = max_lines;
+
+  temp_content = temp_content.join("\n\n");
+
+  temp_content = amountReplace(temp_content).split("\n\n");
 
   console.log(temp_content);
 
@@ -25888,7 +25930,7 @@ const makeCustomUrl = (item, type) => {
         `](${item.payload.release.html_url})`;
       break;
     default:
-      tools.exit.failure("Failed while creating the url string.");
+      url = "";
       break;
   }
   return url;
@@ -25968,7 +26010,7 @@ const toUrlFormat = (item, type) => {
         url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
         break;
       default:
-        tools.exit.failure("Failed while creating the url format.");
+        url = "";
         break;
     }
     return url;

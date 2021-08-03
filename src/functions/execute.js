@@ -34,7 +34,8 @@ const exec = (cmd, args = [], callAPI) =>
     });
     app.on("close", (code) => {
       if (code !== 0 && !stdout.includes("nothing to commit")) {
-        err = new Error(`Invalid status code: ${code}`);
+        console.log(stdout);
+        let err = new Error(`Invalid status code: ${code}`);
         err.code = code;
         if (callAPI) {
           apiRequest({ ...reqParams, status: "failure" }, () => reject(err));

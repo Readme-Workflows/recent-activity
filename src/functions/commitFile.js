@@ -22,6 +22,7 @@ const commitFile = async () => {
   await exec("git", ["config", "--global", "user.email", commit_email], false);
   await exec("git", ["config", "--global", "user.name", commit_name], false);
   await exec("git", ["add", readme_file], false);
+  await exec("git", ["pull"], false);
   await exec("git", ["commit", "-m", commit_msg], false);
   await exec("git", ["push"], true);
 };

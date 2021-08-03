@@ -38,7 +38,7 @@ const toUrlFormat = (item, type) => {
         url = `[${item.payload.release.name}](${item.payload.release.html_url})`;
         break;
       default:
-        tools.exit.failure("Failed while creating the url format.");
+        url = "";
         break;
     }
     return url;

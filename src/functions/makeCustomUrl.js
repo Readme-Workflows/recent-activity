@@ -92,7 +92,7 @@ const makeCustomUrl = (item, type) => {
         `](${item.payload.release.html_url})`;
       break;
     default:
-      tools.exit.failure("Failed while creating the url string.");
+      url = "";
       break;
   }
   return url;
