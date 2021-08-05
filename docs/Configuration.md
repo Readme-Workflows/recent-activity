@@ -64,6 +64,7 @@ The config file is split into two major sections: [Settings](#settings) and [Mes
 
 Every option in the file is **optional** and will default to a specific value (See `Default` section for what)
 
+----
 ### Settings
 The `Settings` area contains various settings to configure.
 
@@ -194,15 +195,45 @@ Supported are all options mentioned in the [dateformat NPM package][dateformat].
 
 Note that the `Z` cannot display the actual timezone such as `CET`/`CEST` but only timezones within the US (`EST`/`MDT`) or `GMT` with the offset appended to it (i.e. `GMT+0100`).
 
+----
 ### Messages
 The `messages` section contains all the different messages you can set for the Activity-List to display.
 
 **Notes about Placeholders:**  
 - Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}` and `{WIKI}`
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
-- With the exception of `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
-  - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links. `{ID}` will still be prefixed with a `#`
+- With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
+  - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
 
+#### `added_member`
+> **Default:** `🤝 Became collaborator on {REPO}`
+>
+> **Supported Placeholders:**
+> - `{REPO}`
+
+This text is displayed whenever you get added as a Member/Collaborator to a Repository.
+
+#### `changes_approved`
+> **Default:** `👍 Approved {ID} in {REPO}`
+>
+> **Supported Placeholders:**
+> - `{ID}`
+> - `{REPO}`
+> - [`{URL}`](#url_text)
+
+This text is displayed whenever you approve changes in a Pull request.
+
+#### `changes_requested`
+> **Default:** `🔴 Requested {AMOUNT} change(s) in {ID} in {REPO}`
+>
+> **Supported Placeholders:**
+> - `{ID}`
+> - `{REPO}`
+> - `{AMOUNT}`
+> - [`{URL}`](#url_text)
+
+This text is displayed whenever you request changes to a Pull request.  
+The action will combine multiple Change requests for the same Pull request into one. The `{AMOUNT}` placeholder can be used to display the amount of changes requested for a Pull request.
 
 #### `comments`
 > **Default:** `💬 Commented on {ID} in {REPO}`
@@ -213,6 +244,23 @@ The `messages` section contains all the different messages you can set for the A
 > - [`{URL}`](#url_text)
 
 This text is displayed whenever you commented on an issue, Pull request (Includes default Review comments but not actual [change requests](#changes_requested) or [approvals](#review_approved)) or commit.
+
+#### `create_repo`
+> **Default:** `📔 Created new repository {REPO}`
+>
+> **Supported Placeholders:**
+> - `{REPO}`
+
+This text is displayed whenever you create a new Repository.
+
+#### `fork_repo`
+> **Default:** `🔱 Forked {FORK} from {REPO}`
+>
+> **Supported Placeholders:**
+> - `{FORK}`
+> - `{REPO}`
+
+This text is displayed whenever you fork a Repository.
 
 #### `issue_opened`
 > **Default:** `❗️ Opened issue {ID} in {REPO}`
@@ -233,6 +281,24 @@ This text is displayed whenever you open a new Issue.
 > - [`{URL}`](#url_text)
 
 This text is displayed whenever you close an issue.
+
+#### `new_release`
+> **Default:** `✌️ Released {ID} in {REPO}`
+>
+> **Supported Placeholders:**
+> - `{ID}`
+> - `{REPO}`
+> - [`{URL}`](#url_text)
+
+This text is displayed whenever you create a new release. `{ID}` will represent the Tag of the release.
+
+#### `new_star`
+> **Default:** `⭐ Starred {REPO}`
+>
+> **Supported Placeholders:**
+> - `{REPO}`
+
+This text is displayed whenever you star a Repository.
 
 #### `pr_opened`
 > **Default:** `💪 Opened PR {ID} in {REPO}`
@@ -264,23 +330,6 @@ This text is displayed whenever you close a Pull request without merging it.
 
 This text is displayed whenever you merge a Pull request.
 
-#### `create_repo`
-> **Default:** `📔 Created new repository {REPO}`
->
-> **Supported Placeholders:**
-> - `{REPO}`
-
-This text is displayed whenever you create a new Repository.
-
-#### `fork_repo`
-> **Default:** `🔱 Forked {FORK} from {REPO}`
->
-> **Supported Placeholders:**
-> - `{FORK}`
-> - `{REPO}`
-
-This text is displayed whenever you fork a Repository.
-
 #### `wiki_create`
 > **Default:** `📖 Created new wiki page {WIKI} in {REPO}`
 >
@@ -289,49 +338,3 @@ This text is displayed whenever you fork a Repository.
 > - `{WIKI}`
 
 This text is displayed whenever you create a new Wiki page. `{WIKI}` will be the name of the Wiki page created.
-
-#### `added_member`
-> **Default:** `🤝 Became collaborator on {REPO}`
->
-> **Supported Placeholders:**
-> - `{REPO}`
-
-This text is displayed whenever you get added as a Member/Collaborator to a Repository.
-
-#### `changes_approved`
-> **Default:** `👍 Approved {ID} in {REPO}`
->
-> **Supported Placeholders:**
-> - `{ID}`
-> - `{REPO}`
-> - [`{URL}`](#url_text)
-
-This text is displayed whenever you approve changes in a Pull request.
-
-#### `changes_requested`
-> **Default:** `🔴 Requested changes in {ID} in {REPO}`
->
-> **Supported Placeholders:**
-> - `{ID}`
-> - `{REPO}`
-> - [`{URL}`](#url_text)
-
-This text is displayed whenever you request changes to a Pull request.
-
-#### `new_release`
-> **Default:** `✌️ Released {ID} in {REPO}`
->
-> **Supported Placeholders:**
-> - `{ID}`
-> - `{REPO}`
-> - [`{URL}`](#url_text)
-
-This text is displayed whenever you create a new release. `{ID}` will represent the Tag of the release.
-
-#### `new_star`
-> **Default:** `⭐ Starred {REPO}`
->
-> **Supported Placeholders:**
-> - `{REPO}`
-
-This text is displayed whenever you star a Repository.

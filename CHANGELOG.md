@@ -6,6 +6,15 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 
 [Older changelogs](#older-changelogs)
 
+## [v2.3.1]
+> **Released:** `{TBA}`
+
+### Added Features
+- Added `{AMOUNT}` placeholder for `changes_requested` message. [#90]
+
+[v2.3.1]: https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.3.1
+[#90]: https://github.com/Readme-Workflows/recent-activity/pull/90
+
 ## [v2.3.0]
 > **Released:** `02-07-2021`
 
