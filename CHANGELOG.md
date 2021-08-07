@@ -7,7 +7,7 @@ Note that the displayed date is in the format `dd-mm-yyyy`
 [Older changelogs](#older-changelogs)
 
 ## [v2.3.1]
-> **Released:** `{TBA}`
+> **Released:** `07-08-2021`
 
 ### Added Features
 - Added `{AMOUNT}` placeholder for `changes_requested` message. [#90]
