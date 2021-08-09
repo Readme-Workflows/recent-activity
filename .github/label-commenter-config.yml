@@ -1,9 +1,8 @@
 comment:
-  footer: "\
-    ----\n\n
-    > *This is an automated response created by a **GitHub Action***\n
-    > *Mentioning the bot won't have any effect!*
-    "
+  footer: |-
+    ----
+    > *This is an automated response created by a **GitHub Action***
+    > *Mentioning the user won't have any effect!*
 
 # Send a Comment when the PR was (un)labeled with the "Status: Ready" label
 labels:
