@@ -28,25 +28,25 @@ labels:
           Hello @{{ issue.user.login }},
           
           Your Issue has been marked as **Invalid** and was automatically closed.
-          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Issue accordingly.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md) and update your Issue accordingly.
         action: close
       pr:
         body: |-
           Hello @{{ pull_request.user.login }},
           
           Your Pull request has been marked as **Invalid** and was automatically closed.
-          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly.
+          To get it re-opened, make sure to follow our [Contributing Guidelines](https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md) and update your Pull request accordingly.
         action: close
     unlabeled:
       issue:
         body: |-
-          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
+          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md) @{{ issue.user.login }}!
           
           Your Issue is **no longer marked as Invalid**.
         action: open
       pr:
         body: |-
-          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md) @{{ pull_request.user.login }}!
+          Thank you for following our [Contributing Guidelines](https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md) @{{ pull_request.user.login }}!
           
           Your Pull request is **no longer marked as Invalid**.
         action: open
