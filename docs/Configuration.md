@@ -68,6 +68,20 @@ Every option in the file is **optional** and will default to a specific value (S
 ### Settings
 The `Settings` area contains various settings to configure.
 
+- [`username`](#username)
+- [`commit_msg`](#commit_msg)
+- [`max_lines`](#max_lines)
+- [`readme_file`](#readme_file)
+- [`disabled_events`](#disabled_events)
+- [`whitelisted_events`](#whitelisted_events)
+  - [Supported Events](#supported-events)
+- [`commit_username`](#commit_username)
+- [`commit_email`](#commit_email)
+- [`url_text`](#url_text)
+- [`date.timezone`](#datetimezone)
+- [`date.text`](#datetext)
+- [`date.format`](#dateformat)
+
 #### `username`
 > **Default:** Repository Owner
 
@@ -204,6 +218,21 @@ The `messages` section contains all the different messages you can set for the A
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
 - With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
+
+- [`added_member`](#added_member)
+- [`changes_approved`](#changes_approved)
+- [`changes_requested`](#changes_requested)
+- [`comments`](#comments)
+- [`create_repo`](#create_repo)
+- [`fork_repo`](#fork_repo)
+- [`issue_opened`](#issue_opened)
+- [`issue_closed`](#issue_closed)
+- [`new_release`](#new_release)
+- [`new_star`](#new_star)
+- [`pr_opened`](#pr_opened)
+- [`pr_closed`](#pr_closed)
+- [`pr_merged`](#pr_merged)
+- [`wiki_create`](#wiki_create)
 
 #### `added_member`
 > **Default:** `🤝 Became collaborator on {REPO}`
