@@ -66,3 +66,11 @@ labels:
           Your Pull request has been marked as **Duplicate** which means that a Pull request with the same changes already exists.
           Please check for already existing Pull requests next time.
         action: close
+  - name: 'Type: enhancement'
+    labeled:
+      discussion:
+        body: |-
+          Thank you very much for your suggestion/feature request @{{ discussion.user.login }}!
+          
+          It has been discussed by the team and is considered to be implemented in a future release.
+          Unfortunately can we not give any ETAs on when this could happen, so it's recommended to [join our Discord](https://discord.gg/2a9VC4AK6x) to stay up to date.
