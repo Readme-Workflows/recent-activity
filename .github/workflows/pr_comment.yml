@@ -9,6 +9,10 @@ on:
     types:
     - labeled
     - unlabeled
+  discussion:
+    types:
+    - labeled
+    - unlabeled
 
 jobs:
   give_comment:
