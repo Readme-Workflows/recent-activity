@@ -1,0 +1,7 @@
+[
+  {
+    "search": "{tba}",
+    "replace": "DATETIME",
+    "eval": true
+  }
+]
