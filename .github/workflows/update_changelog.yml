@@ -15,7 +15,6 @@ jobs:
         env:
           GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
         with:
-          # Those are all default values and only are shown for demonstration
           TEMPLATE_FILE: './CHANGELOG.md'
           COMMIT_FILE: './CHANGELOG.md'
           CUSTOM_REPLACER_FILE: './.github/replacer.json'
