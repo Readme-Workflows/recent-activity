@@ -13,9 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - uses: Readme-Workflows/readme-replacer@v1.0.1
-        env:
-          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
-        with:
-          TEMPLATE_FILE: './CHANGELOG.md'
-          COMMIT_FILE: './CHANGELOG.md'
-          CUSTOM_REPLACER_FILE: './.github/replacer.json'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        TEMPLATE_FILE: './CHANGELOG.md'
+        COMMIT_FILE: './CHANGELOG.md'
+        CUSTOM_REPLACER_FILE: './.github/replacer.json'
