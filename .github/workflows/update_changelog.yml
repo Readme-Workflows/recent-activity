@@ -1,0 +1,21 @@
+
+name: Update Changelog
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Replace {tba} placeholder
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - uses: Readme-Workflows/readme-replacer@v1.0.1
+        env:
+          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+        with:
+          # Those are all default values and only are shown for demonstration
+          TEMPLATE_FILE: './CHANGELOG.md'
+          COMMIT_FILE: './CHANGELOG.md'
+          CUSTOM_REPLACER_FILE: './.github/replacer.json'
