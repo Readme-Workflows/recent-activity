@@ -151,8 +151,8 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 [Discord]: https://discord.gg/aR6TcVzpbF
 
 <!-- Images -->
-[stargazersImg]: https://reporoster.com/stars/Readme-Workflows/recent-activity
-[contributorsImg]: https://contrib.rocks/image?repo=Readme-Workflows/recent-activity
+[stargazersImg]: https://starchart.cc/Readme-Workflows/recent-activity.svg
+[contributorsImg]: https://contributor-graph-api.apiseven.com/contributors-svg?chart=contributorOverTime&repo=Readme-Workflows/recent-activity
 
 <!-- Badges -->
 [starsBadge]: https://img.shields.io/github/stars/Readme-Workflows/recent-activity?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOCAuMjVhLjc1Ljc1IDAgMDEuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwMS40MTYgMS4yNzlsLTMuMDQ2IDIuOTcuNzE5IDQuMTkyYS43NS43NSAwIDAxLTEuMDg4Ljc5MUw4IDEyLjM0N2wtMy43NjYgMS45OGEuNzUuNzUgMCAwMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMDEuNDE2LTEuMjhsNC4yMS0uNjExTDcuMzI3LjY2OEEuNzUuNzUgMCAwMTggLjI1eiI+PC9wYXRoPjwvc3ZnPg==
