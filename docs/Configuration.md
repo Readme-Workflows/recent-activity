@@ -1,3 +1,4 @@
+[releases]: https://github.com/Readme-Workflows/recent-activity/releases
 [discord]: https://discord.gg/2a9VC4AK6x
 [sample]: https://github.com/Readme-Workflows/recent-activity/blob/main/sample.yml
 [timezones]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -18,7 +19,8 @@ Version 2 of the Recent-Activity Action provided a new Configuration file which 
 
 ----
 ## Setup
-To get started, first make sure to have at least version 2.0.0 of the Action, as versions prior to it don't have the config options.
+To get started, first make sure to have at least version 2.0.0 of the Action, as versions prior to it don't have the config options.  
+The latest version can be found on the [Releases Section][releases] of this repository.
 
 An example workflow should look something like this for you:  
 ```yaml
@@ -36,7 +38,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2.3.4
-      - uses: Readme-Workflows/recent-activity@v2.0.0
+      #
+      # "{version}" is a placeholder and should be replaced with the latest release of recent-activity
+      - uses: Readme-Workflows/recent-activity@{version}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
