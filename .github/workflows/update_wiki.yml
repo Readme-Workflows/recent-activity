@@ -14,13 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2.3.4
     - name: Updating Wiki
-      uses: docker://decathlon/wiki-page-creator-action:latest
+      uses: Andrew-Chen-Wang/github-wiki-action@v2
       env:
-        ACTION_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
-        ACTION_NAME: 'Wiki-Bot'
-        GH_PAT: ${{ secrets.WIKI_PAT }}
-        MD_FOLDER: docs
-        OWNER: ${{ github.repository_owner }}
-        REPO_NAME: recent-activity
-        SKIP_MD: 'README.md'
-        WIKI_PUSH_MESSAGE: ${{ github.event.commits[0].message }} ## Use the message of the first commit as commit message
+        WIKI_DIR: docs/
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+        GH_NAME: 'github-actions[bot]'
+        EXCLUDED_FILES: 'README.md'
+        WIKI_PUSH_MESSAGE: '${{ github.event.commits[0].message }}'
