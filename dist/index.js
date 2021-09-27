@@ -25928,7 +25928,7 @@ const appendDate = (fullContent) => {
       finalDate = new Date(utc + offset * 60000);
     }
 
-    finalDateString = date.text.replace(
+    let finalDateString = date.text.replace(
       "{DATE}",
       dateFormat(finalDate, date.format)
     );
