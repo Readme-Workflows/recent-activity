@@ -5,18 +5,18 @@ changelog:
     - 'Updates: documentation'
     - 'Updates: github actions'
   categories:
-  - title: '### 💥 Breaking Changes'
+  - title: '💥 Breaking Changes'
     labels:
     - 'Type: breaking'
-  - title: '### 🚀 Features'
+  - title: '🚀 Features'
     labels:
     - 'Type: enhancement'
-  - title: '### 🐛 Bug fixes'
+  - title: '🐛 Bug fixes'
     labels:
     - 'Type: bug'
-  - title: '### 🔧 Chores'
+  - title: '🔧 Chores'
     labels:
     - 'Updates: dependencies'
-  - title: '### ❔ Misc'
+  - title: '❔ Misc'
     labels:
     - '*'
