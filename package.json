@@ -18,7 +18,7 @@
     "@actions/core": "^1.6.0",
     "actions-toolkit": "^6.0.1",
     "axios": "^0.22.0",
-    "dateformat": "^4.5.1",
+    "dateformat": "^4.6.3",
     "js-yaml": "^4.1.0",
     "qs": "^6.10.1"
   },
