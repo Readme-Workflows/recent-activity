@@ -10,7 +10,7 @@ settings:
     timezone: "GMT+00:00"
     text: "Last Updated: {DATE}"
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT"
-  commit_username: "readme-bot"
+  commit_name: "readme-bot"
   commit_email: "41898282+github-actions[bot]@users.noreply.github.com"
 messages:
   comments: "💬 Commented on {ID} in {REPO}"

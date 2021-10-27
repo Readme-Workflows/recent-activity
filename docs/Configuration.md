@@ -79,7 +79,7 @@ The `Settings` area contains various settings to configure.
 - [`disabled_events`](#disabled_events)
 - [`whitelisted_events`](#whitelisted_events)
   - [Supported Events](#supported-events)
-- [`commit_username`](#commit_username)
+- [`commit_name`](#commit_name)
 - [`commit_email`](#commit_email)
 - [`url_text`](#url_text)
 - [`date.timezone`](#datetimezone)
@@ -172,7 +172,7 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 | `star`        | Starring a Repository                             |
 | `wiki`        | Creating a new Wiki page                          |
 
-#### `commit_username`
+#### `commit_name`
 > **Default:** `readme-bot`
 
 This setting allows you to change the name of the account that pushes the Readme Update.
