@@ -109,7 +109,7 @@ The `readme_file` options sets the path relative to your repository's root-direc
 Only valid Markdown files are supported.
 
 #### `disabled_events`
-> **Default:** [`[comments]`](#supported-events)
+> **Default:** *`Undefined`*
 
 `disabled_events` allows you to set a list of events that should be ignored when updating the activity list.  
 Please see the [list of supported events](#supported-events) for all the events you can disable.
