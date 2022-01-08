@@ -26859,6 +26859,7 @@ const makeCustomUrl = __nccwpck_require__(434);
 const toUrlFormat = __nccwpck_require__(5879);
 
 const IssueCommentEvent = (item) => {
+  console.log(item);
   if (item.payload.action === "created") {
     return comments
       .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
