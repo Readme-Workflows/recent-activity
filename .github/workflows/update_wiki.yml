@@ -18,7 +18,7 @@ jobs:
       env:
         WIKI_DIR: docs/
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GH_EMAIL: '41898282+github-actions[bot]@users.noreply.github.com'
+        GH_MAIL: '41898282+github-actions[bot]@users.noreply.github.com'
         GH_NAME: 'github-actions[bot]'
         EXCLUDED_FILES: 'README.md'
         WIKI_PUSH_MESSAGE: '${{ github.event.commits[0].message }}'
