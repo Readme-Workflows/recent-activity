@@ -3,6 +3,7 @@ const makeCustomUrl = require("../functions/makeCustomUrl");
 const toUrlFormat = require("../functions/toUrlFormat");
 
 const IssueCommentEvent = (item) => {
+  console.log(item);
   if (item.payload.action === "created") {
     return comments
       .replace(/{ID}/g, toUrlFormat(item, "issue_comment"))
