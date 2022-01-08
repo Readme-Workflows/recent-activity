@@ -26665,7 +26665,7 @@ const defaultVals = {
   commit_msg: "⚡ Update README with the recent activity",
   max_lines: 5,
   readme_file: "./README.md",
-  disabled_events: ["comments"],
+  disabled_events: [],
   url_text: "{REPO}{ID}",
   date: {
     timezone: "0",
@@ -26721,11 +26721,7 @@ try {
   console.log("Error: " + e);
 }
 
-if (disabled.length == 0) {
-  conf.disabled_events = defaultVals.disabled_events;
-} else {
-  conf.disabled_events = disabled;
-}
+conf.disabled_events = disabled;
 
 module.exports = conf;
 
