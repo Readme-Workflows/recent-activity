@@ -26711,7 +26711,7 @@ try {
         disabled.push(event.trim().toLowerCase());
       }
     });
-  } else {
+  } else if (conf.disabled_events) {
     conf.disabled_events.forEach((event) => {
       disabled.push(event.trim().toLowerCase());
     });
@@ -27606,7 +27606,7 @@ if (!disabled_events.includes("star")) {
   serializers.WatchEvent = WatchEvent;
 }
 
-console.log('serializers');
+console.log("serializers");
 console.log(serializers);
 
 module.exports = serializers;
