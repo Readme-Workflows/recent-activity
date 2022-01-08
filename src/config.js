@@ -59,7 +59,7 @@ try {
         disabled.push(event.trim().toLowerCase());
       }
     });
-  } else {
+  } else if (conf.disabled_events) {
     conf.disabled_events.forEach((event) => {
       disabled.push(event.trim().toLowerCase());
     });

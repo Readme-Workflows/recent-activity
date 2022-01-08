@@ -63,7 +63,7 @@ if (!disabled_events.includes("star")) {
   serializers.WatchEvent = WatchEvent;
 }
 
-console.log('serializers');
+console.log("serializers");
 console.log(serializers);
 
 module.exports = serializers;
