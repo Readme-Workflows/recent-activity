@@ -20,7 +20,7 @@
     "axios": "^0.24.0",
     "dateformat": "^4.5.1",
     "js-yaml": "^4.1.0",
-    "qs": "^6.10.2"
+    "qs": "^6.10.3"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.1",
