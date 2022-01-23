@@ -26,7 +26,7 @@ jobs:
       - name: Check code style
         run: npm run format:check
       - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
+        uses: EndBug/add-and-commit@v8
         with:
           author_name: github-actions[bot]
           author_email: 41898282+github-actions[bot]@users.noreply.github.com
