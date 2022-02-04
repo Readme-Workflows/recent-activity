@@ -78,7 +78,7 @@ You prove that the Recent-Activity Action has some value for you!
 
 ### Stargazers
 
-[{%- await embed(`stats-stargazers`, {stargazers: true, stargazers_charts_type: chartist}) %}][stargazers]
+[{%- await embed(`stats-stargazers`, {stargazers: true, stargazers_charts_type: "chartist"}) %}][stargazers]
 
 ### Contributors
 
