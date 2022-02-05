@@ -1,0 +1,29 @@
+name: 'Update README'
+
+on:
+  schedule:
+    - cron: '0 */24 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  stats:
+    name: 'Update SVGs for Readme stats'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@v3.19
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: Readme-Workflows
+          repo: recent-activity
+          template: markdown
+          filename: README.md
+          markdown: TEMPLATE.md
+          markdown_cache: '.github/svg_cache'
+          
+          base: ""
+          
+          plugin_stargazers: yes
+          plugin_contributors: yes
