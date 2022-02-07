@@ -1,8 +1,9 @@
 name: 'Update README'
 
 on:
-  schedule:
-    - cron: '0 */24 * * *'
+# Disabled for now due to issues
+#  schedule:
+#    - cron: '0 */24 * * *'
   workflow_dispatch:
   push:
     branches:
