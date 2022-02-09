@@ -78,13 +78,13 @@ You prove that the Recent-Activity Action has some value for you!
 
 ### Stargazers
 
-[{%- await embed(`stats-stargazers`, {stargazers: true, stargazers_charts_type: "chartist"}) %}][stargazers]
+[{%- await embed(`stats-stargazers`, {template: "repository", repo: "recent-activity", stargazers: true, stargazers_charts_type: "chartist"}) %}][stargazers]
 
 ### Contributors
 
 Thanks to all contributors again!
 
-[{%- await embed(`stats-contributors`, {contributors: true, contributors_sections: "categories"}) %}][contributors]
+[{%- await embed(`stats-contributors`, {template: "repository", repo: "recent-activity", contributors: true, contributors_sections: "categories"}) %}][contributors]
 
 ## Roadmap
 
