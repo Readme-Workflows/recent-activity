@@ -21,17 +21,9 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-
-Last Updated: Thursday, May 20th, 2021, 3:17:39 PM (GMT)
-
 <!--RECENT_ACTIVITY:last_update_end-->
-<!--RECENT_ACTIVITY:start-->
 
-1. ❗️ Closed issue [#5](https://github.com/Readme-Workflows/recent-activity/issues/5) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/5)
-2. 🎉 Merged PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
-3. 🗣 Commented on [#3](https://github.com/Readme-Workflows/recent-activity/discussions/3) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/discussions/3)
-4. ❗️ Closed issue [#4](https://github.com/Readme-Workflows/recent-activity/issues/4) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/issues/4)
-5. 💪 Opened PR [#6](https://github.com/Readme-Workflows/recent-activity/pull/6) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity/pull/6)
+<!--RECENT_ACTIVITY:start-->
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
@@ -86,13 +78,13 @@ You prove that the Recent-Activity Action has some value for you!
 
 ### Stargazers
 
-[![stargazersImg]][stargazers]
+[<img src="https://github.com/Readme-Workflows/recent-activity/blob/main/.github/svg_cache/stats-stargazers.svg">][stargazers]
 
 ### Contributors
 
 Thanks to all contributors again!
 
-[![contributorsImg]][contributors]
+[<img src="https://github.com/Readme-Workflows/recent-activity/blob/main/.github/svg_cache/stats-contributors.svg">][contributors]
 
 ## Roadmap
 
@@ -141,7 +133,6 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 [support]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/SUPPORT.md
 
 [stargazers]: https://github.com/Readme-Workflows/recent-activity/stargazers
-
 [contributors]: https://github.com/Readme-Workflows/recent-activity/contributors
 
 [Roadmap]: https://github.com/Readme-Workflows/recent-activity/projects/1
@@ -149,10 +140,6 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 [guidelines]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md
 
 [Discord]: https://discord.gg/aR6TcVzpbF
-
-<!-- Images -->
-[stargazersImg]: https://starchart.cc/Readme-Workflows/recent-activity.svg
-[contributorsImg]: https://contributor-graph-api.apiseven.com/contributors-svg?chart=contributorOverTime&repo=Readme-Workflows/recent-activity
 
 <!-- Badges -->
 [starsBadge]: https://img.shields.io/github/stars/Readme-Workflows/recent-activity?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOCAuMjVhLjc1Ljc1IDAgMDEuNjczLjQxOGwxLjg4MiAzLjgxNSA0LjIxLjYxMmEuNzUuNzUgMCAwMS40MTYgMS4yNzlsLTMuMDQ2IDIuOTcuNzE5IDQuMTkyYS43NS43NSAwIDAxLTEuMDg4Ljc5MUw4IDEyLjM0N2wtMy43NjYgMS45OGEuNzUuNzUgMCAwMS0xLjA4OC0uNzlsLjcyLTQuMTk0TC44MTggNi4zNzRhLjc1Ljc1IDAgMDEuNDE2LTEuMjhsNC4yMS0uNjExTDcuMzI3LjY2OEEuNzUuNzUgMCAwMTggLjI1eiI+PC9wYXRoPjwvc3ZnPg==
