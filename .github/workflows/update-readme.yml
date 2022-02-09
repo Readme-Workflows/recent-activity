@@ -26,5 +26,7 @@ jobs:
           
           base: ""
           
+          config_octicon: yes
+          
           plugin_stargazers: yes
           plugin_contributors: yes
