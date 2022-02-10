@@ -84,7 +84,7 @@ You prove that the Recent-Activity Action has some value for you!
 
 Thanks to all contributors again!
 
-[{%- await embed(`stats-contributors`, {template: "repository", repo: "recent-activity", contributors: true, contributors_sections: "categories", contributors_categories: {":octicon-book: Documentation": ["README.md", "docs/**"], ":octicon-code: Code": ["src/**"], ":octicon-asterisk: Other": ["*"]}}) %}][contributors]
+[{%- await embed(`stats-contributors`, {template: "repository", repo: "recent-activity", contributors: true, contributors_sections: "categories", contributors_categories: {":octicon-book: Documentation": ["README.md", "docs/**"], ":octicon-code: Code": ["src/**"], ":octicon-key-asterisk: Other": ["*"]}}) %}][contributors]
 
 ## Roadmap
 
