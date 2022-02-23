@@ -137,7 +137,7 @@ By using this Action, you are agreeing to allow the aforementioned data to be co
 
 [Roadmap]: https://github.com/Readme-Workflows/recent-activity/projects/1
 
-[guidelines]: https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md
+[guidelines]: https://github.com/Readme-Workflows/recent-activity/blob/main/.github/CONTRIBUTING.md
 
 [Discord]: https://discord.gg/aR6TcVzpbF
 
