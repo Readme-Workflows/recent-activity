@@ -24,6 +24,6 @@ jobs:
       with:
         ref: main
     - name: Send Pull request comment
-      uses: peaceiris/actions-label-commenter@550d10ad28a560c975ff8d26934fb1b7a53a1f83
+      uses: peaceiris/actions-label-commenter@v1.10.0
       with:
         github_token: ${{ secrets.LABEL_COMMENTER }}
