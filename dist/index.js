@@ -30704,33 +30704,19 @@ Toolkit.run(
 
     // Recent GitHub Activity content between the comments
     const readmeActivitySection = readmeContent.slice(startIdx, endIdx);
-    if (!readmeActivitySection.length) {
-      content.some((line, idx) => {
-        // User doesn't have 5 public events
-        if (!line) {
-          return true;
-        }
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
-      });
-      tools.log.success("Wrote to README");
-    } else {
-      // It is likely that a newline is inserted after the <!--RECENT_ACTIVITY:start--> comment (code formatter)
-      let count = 0;
-
-      readmeActivitySection.some((line, idx) => {
-        // User doesn't have 5 public events
-        if (!content[count]) {
-          return true;
-        }
-        if (line !== "") {
-          readmeContent[startIdx + idx] = `${count + 1}. ${content[count]}`;
-          count++;
-        }
-      });
-      tools.log.success("Updated README with the recent activity");
+    if (readmeActivitySection.length) {
+      // Remove existing recent activity lines
+      readmeContent.splice(startIdx, endIdx-startIdx);
     }
-
+    content.some((line, idx) => {
+      // User doesn't have 5 public events
+      if (!line) {
+        return true;
+      }
+      readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+    });
     readmeContent = appendDate(readmeContent);
+    tools.log.success("Updated README with the recent activity");
 
     // Update README
     fs.writeFileSync(readme_file, readmeContent.join("\n"));
