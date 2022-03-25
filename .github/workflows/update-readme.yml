@@ -13,7 +13,7 @@ jobs:
     name: 'Update SVGs for Readme stats'
     runs-on: ubuntu-latest
     steps:
-      - uses: lowlighter/metrics@v3.21
+      - uses: lowlighter/metrics@v3.22
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Readme-Workflows
