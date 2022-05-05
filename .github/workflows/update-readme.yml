@@ -29,3 +29,16 @@ jobs:
           
           plugin_stargazers: yes
           plugin_contributors: yes
+  update:
+    needs: stats
+    runs-on: ubuntu-latest
+    name: 'Update README with latest activity'
+    steps:
+      - name: 'Checkout Repository'
+        uses: actions/Checkout@v3
+      - name: 'Update README.md from TEMPLATE.md'
+        uses: Readme-Workflows/recent-activity@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          CONFIG_FILE: 'sample.yml'
