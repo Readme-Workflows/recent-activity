@@ -14,7 +14,7 @@
 [![discordBadge]][Discord]
 
 This GitHub Action is a Fork of the original [GitHub Activity Readme][githubActivityReadme] Action by [jamesgeorge007].  
-Its our goal is to improve the original GitHub Action while also providing new features for the users.
+Its our goal to improve the original GitHub Action while also providing new features for the users.
 
 ## Live Preview
 
