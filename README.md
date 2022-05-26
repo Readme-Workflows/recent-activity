@@ -21,9 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
+Last Updated: Thursday, May 26th, 2022, 1:26:17 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
+1. ⭐ Starred [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+2. 🎉 Merged PR [#188](https://github.com/Readme-Workflows/recent-activity/pull/188) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+3. 💪 Opened PR [#188](https://github.com/Readme-Workflows/recent-activity/pull/188) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+4. 🎉 Merged PR [#183](https://github.com/Readme-Workflows/recent-activity/pull/183) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+5. 🎉 Merged PR [#186](https://github.com/Readme-Workflows/recent-activity/pull/186) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
