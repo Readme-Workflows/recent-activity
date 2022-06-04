@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Friday, June 3rd, 2022, 1:09:12 AM
+Last Updated: Saturday, June 4th, 2022, 1:09:50 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. 👍 Approved [#191](https://github.com/Readme-Workflows/recent-activity/pull/191#pullrequestreview-992851338) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-2. 💪 Opened PR [#191](https://github.com/Readme-Workflows/recent-activity/pull/191) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-3. ❗️ Opened issue [#190](https://github.com/Readme-Workflows/recent-activity/issues/190) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-4. 🔱 Forked [offs/Readme-Icons](https://github.com/offs/Readme-Icons) from [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
-5. 🔱 Forked [orhanar/recent-activity](https://github.com/orhanar/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. 🎉 Merged PR [#191](https://github.com/Readme-Workflows/recent-activity/pull/191) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+2. 🎉 Merged PR [#189](https://github.com/Readme-Workflows/recent-activity/pull/189) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+3. 👍 Approved [#189](https://github.com/Readme-Workflows/recent-activity/pull/189#pullrequestreview-994861288) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+4. 👍 Approved [#191](https://github.com/Readme-Workflows/recent-activity/pull/191#pullrequestreview-994857300) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+5. 👍 Approved [#191](https://github.com/Readme-Workflows/recent-activity/pull/191#pullrequestreview-992851338) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
