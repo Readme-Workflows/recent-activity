@@ -237,6 +237,7 @@ The `messages` section contains all the different messages you can set for the A
 - [`pr_opened`](#pr_opened)
 - [`pr_closed`](#pr_closed)
 - [`pr_merged`](#pr_merged)
+- [`push`](#push)
 - [`wiki_create`](#wiki_create)
 
 #### `added_member`
