@@ -32059,14 +32059,12 @@ module.exports = PullRequestReviewEvent;
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
 const { push } = __nccwpck_require__(4570);
-const makeCustomUrl = __nccwpck_require__(434);
 const toUrlFormat = __nccwpck_require__(5879);
 
 const PushEvent = (item) => {
   return push
     .replace(/{AMOUNT}/g, item.payload.size)
-    .replace(/{REPO}/g, toUrlFormat(item.repo.name, "push"))
-    .replace(/{URL}/g, makeCustomUrl(item, "push"));
+    .replace(/{REPO}/g, toUrlFormat(item.repo.name, "push"));
 };
 
 module.exports = PushEvent;
@@ -32495,12 +32493,6 @@ const makeCustomUrl = (item, type) => {
           .replace(/{ID}/g, `${item.payload.release.name}`)
           .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.release.html_url})`;
-      break;
-    case "push":
-      url =
-        `[` +
-        url_text.replace(/{REPO}/g, item.repo.name) +
-        `](${process.env.GITHUB_SERVER_URL}/${item.repo.name})`;
       break;
     default:
       url = "";
