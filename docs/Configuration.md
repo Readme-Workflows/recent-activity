@@ -370,7 +370,6 @@ This text is displayed whenever you merge a Pull request.
 > **Supported Placeholders:**
 > - `{AMOUNT}`
 > - `{REPO}`
-> - [`{URL}`](#url_text)
 
 This text is displayed whenever you make a commit to a repository.  
 `{AMOUNT}` will display the amount of commits performed.
