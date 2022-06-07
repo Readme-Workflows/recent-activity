@@ -167,6 +167,7 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 | `issues`      | Opening or closing Issues                         |
 | `member`      | Getting added as a Collaborator/Member            |
 | `pr`          | Opening, closing or Merging a Pull request        |
+| `push`        | All commits performed                             |
 | `release`     | Publishing a new Release                          |
 | `review`      | Approving or requesting Changes in a Pull request |
 | `star`        | Starring a Repository                             |
@@ -362,6 +363,17 @@ This text is displayed whenever you close a Pull request without merging it.
 > - [`{URL}`](#url_text)
 
 This text is displayed whenever you merge a Pull request.
+
+#### `push`
+> **Default:** `⬆️ Pushed {AMOUNT} commit(s) to {REPO}`
+> 
+> **Supported Placeholders:**
+> - `{AMOUNT}`
+> - `{REPO}`
+> - [`{URL}`](#url_text)
+
+This text is displayed whenever you make a commit to a repository.  
+`{AMOUNT}` will display the amount of commits performed.
 
 #### `wiki_create`
 > **Default:** `📖 Created new wiki page {WIKI} in {REPO}`
