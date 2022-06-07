@@ -167,6 +167,7 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 | `issues`      | Opening or closing Issues                         |
 | `member`      | Getting added as a Collaborator/Member            |
 | `pr`          | Opening, closing or Merging a Pull request        |
+| `push`        | All commits performed                             |
 | `release`     | Publishing a new Release                          |
 | `review`      | Approving or requesting Changes in a Pull request |
 | `star`        | Starring a Repository                             |
@@ -218,7 +219,7 @@ Note that the `Z` cannot display the actual timezone such as `CET`/`CEST` but on
 The `messages` section contains all the different messages you can set for the Activity-List to display.
 
 **Notes about Placeholders:**  
-- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}` and `{WIKI}`
+- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}`, `{AMOUNT}` and `{WIKI}`
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
 - With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
@@ -236,6 +237,7 @@ The `messages` section contains all the different messages you can set for the A
 - [`pr_opened`](#pr_opened)
 - [`pr_closed`](#pr_closed)
 - [`pr_merged`](#pr_merged)
+- [`push`](#push)
 - [`wiki_create`](#wiki_create)
 
 #### `added_member`
@@ -362,6 +364,16 @@ This text is displayed whenever you close a Pull request without merging it.
 > - [`{URL}`](#url_text)
 
 This text is displayed whenever you merge a Pull request.
+
+#### `push`
+> **Default:** `⬆️ Pushed {AMOUNT} commit(s) to {REPO}`
+> 
+> **Supported Placeholders:**
+> - `{AMOUNT}`
+> - `{REPO}`
+
+This text is displayed whenever you make a commit to a repository.  
+`{AMOUNT}` will display the amount of commits performed.
 
 #### `wiki_create`
 > **Default:** `📖 Created new wiki page {WIKI} in {REPO}`
