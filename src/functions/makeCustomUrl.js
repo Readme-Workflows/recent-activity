@@ -91,6 +91,12 @@ const makeCustomUrl = (item, type) => {
           .replace(/{REPO}/g, item.repo.name) +
         `](${item.payload.release.html_url})`;
       break;
+    case "push":
+      url =
+        `[` +
+        url_text.replace(/{REPO}/g, item.repo.name) +
+        `](${process.env.GITHUB_SERVER_URL}/${item.repo.name})`;
+      break;
     default:
       url = "";
       break;

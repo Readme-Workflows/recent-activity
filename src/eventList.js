@@ -3,6 +3,7 @@
  */
 module.exports = [
   "comments",
+  "push",
   "create_repo",
   "fork",
   "issues",
