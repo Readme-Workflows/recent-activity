@@ -219,7 +219,7 @@ Note that the `Z` cannot display the actual timezone such as `CET`/`CEST` but on
 The `messages` section contains all the different messages you can set for the Activity-List to display.
 
 **Notes about Placeholders:**  
-- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}` and `{WIKI}`
+- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}`, `{AMOUNT}` and `{WIKI}`
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
 - With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
