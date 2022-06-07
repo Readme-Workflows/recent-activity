@@ -21,6 +21,7 @@ const defaultVals = {
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
   },
   comments: "💬 Commented on {ID} in {REPO}",
+  push: "⬆️ Pushed {AMOUNT} commit(s) to {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",
   issue_closed: "✔️ Closed issue {ID} in {REPO}",
   pr_opened: "💪 Opened PR {ID} in {REPO}",

@@ -31709,6 +31709,7 @@ const defaultVals = {
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
   },
   comments: "💬 Commented on {ID} in {REPO}",
+  push: "⬆️ Pushed {AMOUNT} commit(s) to {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",
   issue_closed: "✔️ Closed issue {ID} in {REPO}",
   pr_opened: "💪 Opened PR {ID} in {REPO}",
@@ -31772,6 +31773,7 @@ module.exports = conf;
  */
 module.exports = [
   "comments",
+  "push",
   "create_repo",
   "fork",
   "issues",
@@ -32049,6 +32051,23 @@ const PullRequestReviewEvent = (item) => {
 };
 
 module.exports = PullRequestReviewEvent;
+
+
+/***/ }),
+
+/***/ 4476:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+const { push } = __nccwpck_require__(4570);
+const toUrlFormat = __nccwpck_require__(5879);
+
+const PushEvent = (item) => {
+  return push
+    .replace(/{AMOUNT}/g, item.payload.size)
+    .replace(/{REPO}/g, toUrlFormat(item.repo.name, "push"));
+};
+
+module.exports = PushEvent;
 
 
 /***/ }),
@@ -32583,6 +32602,7 @@ const { disabled_events } = __nccwpck_require__(4570);
 const IssueCommentEvent = __nccwpck_require__(6338);
 const CommitCommentEvent = __nccwpck_require__(4694);
 const PullRequestReviewCommentEvent = __nccwpck_require__(232);
+const PushEvent = __nccwpck_require__(4476);
 const IssuesEvent = __nccwpck_require__(9211);
 const PullRequestEvent = __nccwpck_require__(2199);
 const CreateEvent = __nccwpck_require__(4865);
@@ -32599,6 +32619,10 @@ if (!disabled_events.includes("comments")) {
   serializers.IssueCommentEvent = IssueCommentEvent;
   serializers.CommitCommentEvent = CommitCommentEvent;
   serializers.PullRequestReviewCommentEvent = PullRequestReviewCommentEvent;
+}
+
+if (!disabled_events.includes("push")) {
+  serializers.PushEvent = PushEvent;
 }
 
 if (!disabled_events.includes("issues")) {
