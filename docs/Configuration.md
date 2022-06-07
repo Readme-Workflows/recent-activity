@@ -37,7 +37,7 @@ jobs:
     name: Update Profile README
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
       #
       # "{version}" is a placeholder and should be replaced with the latest release of recent-activity
       - uses: Readme-Workflows/recent-activity@{version}
