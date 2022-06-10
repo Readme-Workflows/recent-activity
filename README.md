@@ -21,14 +21,14 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Thursday, June 9th, 2022, 1:16:58 AM
+Last Updated: Friday, June 10th, 2022, 1:21:05 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. 👍 Approved [#6](https://github.com/Readme-Workflows/activity-template/pull/6#pullrequestreview-1000589563) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)
-2. 💪 Opened PR [#6](https://github.com/Readme-Workflows/activity-template/pull/6) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)
-3. ✌️ Released [Recent Activity v2.4.0 released!](https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.4.0) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-4. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. ✔️ Closed issue [#187](https://github.com/Readme-Workflows/recent-activity/issues/187) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+2. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)
+3. 🎉 Merged PR [#6](https://github.com/Readme-Workflows/activity-template/pull/6) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)
+4. 👍 Approved [#6](https://github.com/Readme-Workflows/activity-template/pull/6#pullrequestreview-1000746329) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)
 5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 <!--RECENT_ACTIVITY:end-->
 
