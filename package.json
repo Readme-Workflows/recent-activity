@@ -15,7 +15,7 @@
     "build": "ncc build src/index.js --license LICENSE"
   },
   "dependencies": {
-    "@actions/core": "^1.9.0",
+    "@actions/core": "^1.9.1",
     "actions-toolkit": "^6.0.1",
     "axios": "^0.27.2",
     "dateformat": "^4.5.1",
