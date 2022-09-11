@@ -23,9 +23,15 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: main
+    - name: Generate App Token
+      id: gen_token
+      uses: tibdex/github-app-token@v1.6.0
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PEM }}
     - name: Send Pull request comment
       uses: peaceiris/actions-label-commenter@v1.10.0
       with:
-        github_token: ${{ secrets.LABEL_COMMENTER }}
+        github_token: ${{ steps.gen_token.outputs.token }}
       env:
         RUNNER_DEBUG: 1
