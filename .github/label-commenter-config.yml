@@ -13,14 +13,14 @@ labels:
           The Pull request of @{{ pull_request.user.login }} has been marked as **Ready**!
           
           It can now be reviewed and/or merged by Maintainers.
-        action: ready
+        draft: false
     unlabeled:
       pr:
         body: |-
           The Pull request of @{{ pull_request.user.login }} is **no longer marked as Ready**!
           
           Maintainers should wait with merging the Pull request until it is marked as ready again.
-        action: draft
+        draft: true
   - name: 'Type: invalid'
     labeled:
       issue:
