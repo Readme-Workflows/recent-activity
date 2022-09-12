@@ -1,0 +1,51 @@
+name: Reply to new Issues/PRs and merged PRs
+
+on:
+  issues:
+    types:
+    - opened
+  pull_request:
+    types:
+    - opened
+    - closed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate App token
+      id: gen_token
+      uses: tibdex/github-app-token@v1.6.0
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PEM }}
+    - name: Comment on new Issues and new or merged first PRs
+      uses: wow-actions/welcome@v1
+      with:
+        GITHUB_TOKEN: ${{ steps.gen_token.outputs.token }}
+        FIRST_ISSUE: |-
+          Thank you for opening your first issue on this Repository @{{ author }}
+          
+          A maintainer should reply to you shortly. While you wait, make sure to have read our [Contributing Guidelines][guidelines].
+          You can also [join our Discord Server][discord] to ask questions or have a casual chat.
+          
+          [guidelines]: https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md
+          [discord]: https://discord.gg/2a9VC4AK6x
+        FIRST_PR: |-
+          Thank you for creating a Pull request @{{ author }}!
+          
+          Make sure you have read our [Contributing Guidelines][guidelines], specifically how we [handle specific Pull request states][pr-status].
+          When your Pull request is ready will a Maintainer take a look at it.
+          
+          If you have further questions, [join our Discord Server][discord] to get faster responses.
+          
+          [guidelines]: https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md
+          [pr-status]: https://github.com/Readme-Workflows/.github/blob/main/.github/CONTRIBUTING.md#status
+          [discord]: https://discord.gg/2a9VC4AK6x
+        FIRST_PR_MERGED: |-
+          **🏅 Achievement Unlocked:** First merged Pull request[^1]
+          
+          Your first Pull request got merged. Congratulations!
+          Feel free to make additional ones if they help this action to improve.
+          
+          [^1]: Not an actual achievement... sorry.
