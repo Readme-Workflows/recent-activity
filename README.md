@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Wednesday, October 12th, 2022, 2:01:02 AM
+Last Updated: Thursday, October 13th, 2022, 1:49:00 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. ⭐ Starred [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-2. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-3. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-4. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
+2. ✌️ Released [Icons Update v1.1.4](https://github.com/Readme-Workflows/Readme-Icons/releases/tag/v1.1.4) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
+3. ✔️ Closed issue [#28](https://github.com/Readme-Workflows/Readme-Icons/issues/28) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
+4. 🎉 Merged PR [#29](https://github.com/Readme-Workflows/Readme-Icons/pull/29) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
+5. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
