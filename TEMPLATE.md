@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Sunday, December 4th, 2022, 1:09:25 AM
+Last Updated: Monday, December 5th, 2022, 1:06:47 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-2. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-3. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. ❌ Closed PR [#228](https://github.com/Readme-Workflows/recent-activity/pull/228) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+2. 💪 Opened PR [#232](https://github.com/Readme-Workflows/recent-activity/pull/232) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+3. ⭐ Starred [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 4. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-5. 🔱 Forked [nabad600/recent-activity](https://github.com/nabad600/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
