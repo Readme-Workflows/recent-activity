@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Monday, December 12th, 2022, 1:09:49 AM
+Last Updated: Tuesday, December 13th, 2022, 1:12:55 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. ❌ Closed PR [#230](https://github.com/Readme-Workflows/recent-activity/pull/230) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-2. 💪 Opened PR [#235](https://github.com/Readme-Workflows/recent-activity/pull/235) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-3. 💪 Opened PR [#234](https://github.com/Readme-Workflows/recent-activity/pull/234) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-4. ❌ Closed PR [#231](https://github.com/Readme-Workflows/recent-activity/pull/231) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
-5. 💪 Opened PR [#233](https://github.com/Readme-Workflows/recent-activity/pull/233) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+2. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+3. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+4. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+5. ❌ Closed PR [#230](https://github.com/Readme-Workflows/recent-activity/pull/230) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
