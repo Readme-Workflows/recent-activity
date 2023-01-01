@@ -17,7 +17,7 @@
   "dependencies": {
     "@actions/core": "^1.9.1",
     "actions-toolkit": "^6.0.1",
-    "axios": "^0.27.2",
+    "axios": "^1.2.2",
     "dateformat": "^4.5.1",
     "js-yaml": "^4.1.0",
     "qs": "^6.11.0"
