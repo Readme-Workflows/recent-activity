@@ -32441,6 +32441,7 @@ const defaultVals = {
     text: "Last Updated: {DATE}",
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
   },
+  ignored_repos:[],
   comments: "💬 Commented on {ID} in {REPO}",
   push: "⬆️ Pushed {AMOUNT} commit(s) to {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",
@@ -33097,12 +33098,16 @@ module.exports = exec;
  */
 
 const serializers = __nccwpck_require__(3169);
-const { max_lines } = __nccwpck_require__(4570);
+const { max_lines, ignored_repos } = __nccwpck_require__(4570);
 const { amountReplace } = __nccwpck_require__(3195);
 
 const filterContent = (eventData) => {
   let temp_content = [];
 
+  // ignore the repos passed in the configuration
+  if (ignored_repos instanceof Array && (ignored_repos.length != 0)) {
+    eventData = eventData.filter(event => !ignored_repos.includes(event.repo.name));
+  }
   for (let i = 0; i < eventData.length; i++) {
     let event_string = serializers[eventData[i].type](eventData[i]);
 

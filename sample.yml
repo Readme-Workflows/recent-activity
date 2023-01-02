@@ -12,6 +12,8 @@ settings:
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT"
   commit_name: "readme-bot"
   commit_email: "41898282+github-actions[bot]@users.noreply.github.com"
+  ignored_repos:
+    - username/repo
 messages:
   comments: "💬 Commented on {ID} in {REPO}"
   issue_opened: "❗️ Opened issue {ID} in {REPO}"
