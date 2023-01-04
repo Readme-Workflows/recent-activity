@@ -18,7 +18,7 @@ Its our goal is to improve the original GitHub Action while also providing new f
 
 ## Live Preview
 
-This is an example live preview that is updated every time a commit is pushed using github actions.
+This is an example live preview that is updated every time a commit is pushed or during regular intervals using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
 Last Updated: Wednesday, January 4th, 2023, 1:06:27 AM
