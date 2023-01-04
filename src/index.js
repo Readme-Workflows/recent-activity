@@ -73,7 +73,7 @@ Toolkit.run(
         readmeContent.splice(
           startIdx + idx,
           0,
-          `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+          `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}<br>`
         )
       );
 
@@ -87,7 +87,7 @@ Toolkit.run(
       readmeContent = appendDate(readmeContent);
 
       // Update README
-      fs.writeFileSync(readme_file, readmeContent.join("<br>\n"));
+      fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
       // Commit to the remote repository
       try {
@@ -115,14 +115,14 @@ Toolkit.run(
       readmeContent.splice(
         startIdx + idx,
         0,
-        `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+        `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}<br>`
       );
     });
     readmeContent = appendDate(readmeContent);
     tools.log.success("Updated README with the recent activity");
 
     // Update README
-    fs.writeFileSync(readme_file, readmeContent.join("<br>\n"));
+    fs.writeFileSync(readme_file, readmeContent.join("\n"));
 
     // Commit to the remote repository
     try {
