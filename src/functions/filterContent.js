@@ -11,8 +11,10 @@ const filterContent = (eventData) => {
   let temp_content = [];
 
   // ignore the repos passed in the configuration
-  if (ignored_repos instanceof Array && (ignored_repos.length != 0)) {
-    eventData = eventData.filter(event => !ignored_repos.includes(event.repo.name));
+  if (ignored_repos instanceof Array && ignored_repos.length != 0) {
+    eventData = eventData.filter(
+      (event) => !ignored_repos.includes(event.repo.name)
+    );
   }
   for (let i = 0; i < eventData.length; i++) {
     let event_string = serializers[eventData[i].type](eventData[i]);
