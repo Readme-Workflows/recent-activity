@@ -35055,21 +35055,13 @@ Toolkit.run(
       tools.exit.success("Wrote to README");
     }
 
-    // const oldContent = readmeContent.slice(startIdx + 1, endIdx).join("\n");
-    // const newContent = content
-    //   .map((line, idx) => `${idx + 1}. ${line}`)
-    //   .join("\n");
-
-    // // if (oldContent.trim() === newContent.trim())
-    // //   tools.exit.success("No changes detected.");
-
     startIdx++;
 
     // Recent GitHub Activity content between the comments
     const readmeActivitySection = readmeContent.slice(startIdx, endIdx);
     if (readmeActivitySection.length) {
       // Remove existing recent activity lines
-      readmeContent.splice(startIdx, endIdx-startIdx);
+      readmeContent.splice(startIdx, endIdx - startIdx);
     }
     content.some((line, idx) => {
       // User doesn't have 5 public events
