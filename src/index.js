@@ -7,7 +7,7 @@ const fs = require("fs");
 const { Toolkit } = require("actions-toolkit");
 
 // configuration
-const { username, readme_file, max_lines } = require("./config");
+const { username, readme_file, max_lines, line_prefix } = require("./config");
 
 // functions
 const appendDate = require("./functions/appendDate");
@@ -70,7 +70,11 @@ Toolkit.run(
       // Add one since the content needs to be inserted just after the initial comment
       startIdx++;
       content.forEach((line, idx) =>
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
+        readmeContent.splice(
+          startIdx + idx,
+          0,
+          `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}<br>`
+        )
       );
 
       // Append <!--RECENT_ACTIVITY:end--> comment
@@ -95,28 +99,24 @@ Toolkit.run(
       tools.exit.success("Wrote to README");
     }
 
-    // const oldContent = readmeContent.slice(startIdx + 1, endIdx).join("\n");
-    // const newContent = content
-    //   .map((line, idx) => `${idx + 1}. ${line}`)
-    //   .join("\n");
-
-    // // if (oldContent.trim() === newContent.trim())
-    // //   tools.exit.success("No changes detected.");
-
     startIdx++;
 
     // Recent GitHub Activity content between the comments
     const readmeActivitySection = readmeContent.slice(startIdx, endIdx);
     if (readmeActivitySection.length) {
       // Remove existing recent activity lines
-      readmeContent.splice(startIdx, endIdx-startIdx);
+      readmeContent.splice(startIdx, endIdx - startIdx);
     }
     content.some((line, idx) => {
       // User doesn't have 5 public events
       if (!line) {
         return true;
       }
-      readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+      readmeContent.splice(
+        startIdx + idx,
+        0,
+        `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}<br>`
+      );
     });
     readmeContent = appendDate(readmeContent);
     tools.log.success("Updated README with the recent activity");
