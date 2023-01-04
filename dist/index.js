@@ -29792,6 +29792,7 @@ const defaultVals = {
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
   commit_email: "41898282+github-actions[bot]@users.noreply.github.com",
+  line_prefix: "{NUM}. ",
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));
@@ -34967,7 +34968,7 @@ const fs = __nccwpck_require__(7147);
 const { Toolkit } = __nccwpck_require__(7045);
 
 // configuration
-const { username, readme_file, max_lines } = __nccwpck_require__(4570);
+const { username, readme_file, max_lines, line_prefix } = __nccwpck_require__(4570);
 
 // functions
 const appendDate = __nccwpck_require__(3927);
@@ -35030,7 +35031,11 @@ Toolkit.run(
       // Add one since the content needs to be inserted just after the initial comment
       startIdx++;
       content.forEach((line, idx) =>
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
+        readmeContent.splice(
+          startIdx + idx,
+          0,
+          `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+        )
       );
 
       // Append <!--RECENT_ACTIVITY:end--> comment
@@ -35068,7 +35073,11 @@ Toolkit.run(
       if (!line) {
         return true;
       }
-      readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+      readmeContent.splice(
+        startIdx + idx,
+        0,
+        `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+      );
     });
     readmeContent = appendDate(readmeContent);
     tools.log.success("Updated README with the recent activity");
