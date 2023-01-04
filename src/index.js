@@ -87,7 +87,7 @@ Toolkit.run(
       readmeContent = appendDate(readmeContent);
 
       // Update README
-      fs.writeFileSync(readme_file, readmeContent.join("\n"));
+      fs.writeFileSync(readme_file, readmeContent.join("<br>\n"));
 
       // Commit to the remote repository
       try {
