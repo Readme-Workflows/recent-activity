@@ -37,6 +37,7 @@ const defaultVals = {
   new_star: "⭐ Starred {REPO}",
   commit_name: "readme-bot",
   commit_email: "41898282+github-actions[bot]@users.noreply.github.com",
+  line_prefix: "{NUM}. ",
 };
 
 const userVals = parseYaml(core.getInput("CONFIG_FILE"));

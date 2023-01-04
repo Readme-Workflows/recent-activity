@@ -7,7 +7,7 @@ const fs = require("fs");
 const { Toolkit } = require("actions-toolkit");
 
 // configuration
-const { username, readme_file, max_lines } = require("./config");
+const { username, readme_file, max_lines, line_prefix } = require("./config");
 
 // functions
 const appendDate = require("./functions/appendDate");
@@ -70,7 +70,11 @@ Toolkit.run(
       // Add one since the content needs to be inserted just after the initial comment
       startIdx++;
       content.forEach((line, idx) =>
-        readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`)
+        readmeContent.splice(
+          startIdx + idx,
+          0,
+          `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+        )
       );
 
       // Append <!--RECENT_ACTIVITY:end--> comment
@@ -108,7 +112,11 @@ Toolkit.run(
       if (!line) {
         return true;
       }
-      readmeContent.splice(startIdx + idx, 0, `${idx + 1}. ${line}`);
+      readmeContent.splice(
+        startIdx + idx,
+        0,
+        `${line_prefix.replace(/{NUM}/g, idx + 1)}${line}`
+      );
     });
     readmeContent = appendDate(readmeContent);
     tools.log.success("Updated README with the recent activity");
