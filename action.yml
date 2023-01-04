@@ -17,5 +17,5 @@ branding:
   icon: activity
 
 runs:
-  using: node12
+  using: node18
   main: dist/index.js
