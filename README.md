@@ -18,18 +18,18 @@ Its our goal is to improve the original GitHub Action while also providing new f
 
 ## Live Preview
 
-This is an example live preview that is updated every time a commit is pushed or during regular intervals using github actions.
+This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Wednesday, January 4th, 2023, 1:06:27 AM
+Last Updated: Thursday, January 5th, 2023, 1:08:35 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
-2. 🎉 Merged PR [#33](https://github.com/Readme-Workflows/Readme-Icons/pull/33) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
-3. 👍 Approved [#33](https://github.com/Readme-Workflows/Readme-Icons/pull/33#pullrequestreview-1234150816) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
-4. 💪 Opened PR [#33](https://github.com/Readme-Workflows/Readme-Icons/pull/33) in [Readme-Workflows/Readme-Icons](https://github.com/Readme-Workflows/Readme-Icons)
-5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)
+1. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+2. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+3. 🎉 Merged PR [#214](https://github.com/Readme-Workflows/recent-activity/pull/214) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+4. 👍 Approved [#214](https://github.com/Readme-Workflows/recent-activity/pull/214#pullrequestreview-1235893944) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
