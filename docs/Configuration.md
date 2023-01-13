@@ -206,7 +206,7 @@ A list of supported zones can be found [on Wikipedia][timezones]
 
 The `text` option in `date` allows you to set the text that should be displayed when the Activity list gets updated. The `{DATE}` placeholder can be used to insert the date and time of when the List was updated. The format for that can be changed through the [`format`](#dateformat) option mentioned below.
 
-To display this text will you need to place a `<!--RECENT_ACTIVITY:last_update-->` placeholder. The text will then be added below it.
+To display this text you will need to place a `<!--RECENT_ACTIVITY:last_update-->` placeholder. The text will then be added below it.
 
 #### `date.format`
 > **Default:** `dddd. mmmm dS, yyyy, h:MM:ss TT`
@@ -247,7 +247,7 @@ The setting can be used in two ways:
 **Notes about Placeholders:**  
 - Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}`, `{AMOUNT}`, `{WIKI}` and {NUM}
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
-- With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
+- With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}`, all other placeholders will turn into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
 ----
 ### Messages
