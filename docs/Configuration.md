@@ -249,6 +249,7 @@ The setting can be used in two ways:
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
 - With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}`, all other placeholders will turn into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
+
 ----
 ### Messages
 The `messages` section contains all the different messages you can set for the Activity-List to display.
