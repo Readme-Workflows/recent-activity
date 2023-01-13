@@ -85,6 +85,8 @@ The `Settings` area contains various settings to configure.
 - [`date.timezone`](#datetimezone)
 - [`date.text`](#datetext)
 - [`date.format`](#dateformat)
+- [`line_prefix`](#line_prefix)
+- [`ignored_repos`](#ignored_repos)
 
 #### `username`
 > **Default:** Repository Owner
@@ -214,15 +216,42 @@ Supported are all options mentioned in the [dateformat NPM package][dateformat].
 
 Note that the `Z` cannot display the actual timezone such as `CET`/`CEST` but only timezones within the US (`EST`/`MDT`) or `GMT` with the offset appended to it (i.e. `GMT+0100`).
 
-----
-### Messages
-The `messages` section contains all the different messages you can set for the Activity-List to display.
+#### `line_prefix`
+> **Default:** `{NUM}. `
 
+The `line_prefix` option is used to set the prefix for each line that shows activity.  
+The {NUM} placeholder is replaced by serial number for the activity line.
+
+#### `ignored_repos`
+> **Default:** `(empty list)`
+
+The `ignored_repos` option is used to ignore certain repositories and hide them from the recent activity.  
+The setting can be used in two ways:
+
+- **option 1:**  
+  ```yaml
+  settings:
+    ignored_repos: [username1/repo1, username1/repo2, username2/repo3]
+  ```
+
+- **Option 2:**  
+  ```yaml
+  settings:
+    whitelisted_events:
+    - username1/repo1
+    - username1/repo2
+    - username2/repo3
+  ```
+
+----
 **Notes about Placeholders:**  
-- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}`, `{AMOUNT}` and `{WIKI}`
+- Available Placeholders are: `{DATE}`, `{ID}`, `{FORK}`, `{REPO}`, `{URL}`, `{AMOUNT}`, `{WIKI}` and {NUM}
 - Each option only supports specific Placeholders which are mentioned in the `Supported Placeholders` section.
 - With the exception of `{AMOUNT}`, `{DATE}` and `{WIKI}` will all placeholders be turned into embedded links (i.e. `{ID}` becomes `[#1](:url)`)
   - `{ID}` and `{REPO}` can be used in [`url_text`](#url_text) and won't be turned into embedded links there. `{ID}` will still be prefixed with a `#`
+----
+### Messages
+The `messages` section contains all the different messages you can set for the Activity-List to display.
 
 - [`added_member`](#added_member)
 - [`changes_approved`](#changes_approved)
