@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Saturday, January 14th, 2023, 1:03:48 AM
+Last Updated: Sunday, January 15th, 2023, 1:11:06 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. 💪 Opened PR [#7](https://github.com/Readme-Workflows/activity-template/pull/7) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)<br>
-2. 👍 Approved [#247](https://github.com/Readme-Workflows/recent-activity/pull/247#pullrequestreview-1247770758) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-3. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-4. 🔴 Requested changes in [#247](https://github.com/Readme-Workflows/recent-activity/pull/247#pullrequestreview-1247754293) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-5. ✌️ Released [v2.4.1](https://github.com/Readme-Workflows/recent-activity/releases/tag/v2.4.1) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+1. 🔱 Forked [Shivam171/recent-activity](https://github.com/Shivam171/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+2. 🔱 Forked [ahmaddyd/recent-activity](https://github.com/ahmaddyd/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+3. 🔱 Forked [Vatsy145/recent-activity](https://github.com/Vatsy145/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+4. ❗️ Opened issue [#248](https://github.com/Readme-Workflows/recent-activity/issues/248) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+5. ✔️ Closed issue [#245](https://github.com/Readme-Workflows/recent-activity/issues/245) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
