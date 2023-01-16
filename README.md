@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Sunday, January 15th, 2023, 1:11:06 AM
+Last Updated: Monday, January 16th, 2023, 1:07:03 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. 🔱 Forked [Shivam171/recent-activity](https://github.com/Shivam171/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-2. 🔱 Forked [ahmaddyd/recent-activity](https://github.com/ahmaddyd/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-3. 🔱 Forked [Vatsy145/recent-activity](https://github.com/Vatsy145/recent-activity) from [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-4. ❗️ Opened issue [#248](https://github.com/Readme-Workflows/recent-activity/issues/248) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-5. ✔️ Closed issue [#245](https://github.com/Readme-Workflows/recent-activity/issues/245) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+1. ⭐ Starred [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+2. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+3. 🎉 Merged PR [#249](https://github.com/Readme-Workflows/recent-activity/pull/249) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+4. ⬆️ Pushed 2 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+5. 🎉 Merged PR [#250](https://github.com/Readme-Workflows/recent-activity/pull/250) in [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
