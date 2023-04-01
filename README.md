@@ -44,7 +44,9 @@ Events we support:
 - IssueCommentEvent - You commented on a issue
 - IssuesEvent - You opened a issue
 - MemberEvent - You joined a org/repo as a member
-- PullRequestEvent - You opened a pr.
+- PullRequestOpenEvent - You opened a pr.
+- PullRequestMergeEvent - You merged a pr.
+- PullRequestCloseEvent - You closed a pr.
 - PullRequestReviewCommentEvent - You commented on a pr review
 - PullRequestReviewEvent - You reviewed a pr
 - ReleaseEvent - You released a new version
