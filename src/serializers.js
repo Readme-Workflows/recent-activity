@@ -10,7 +10,8 @@ const IssueCommentEvent = require("./events/IssueCommentEvent");
 const CommitCommentEvent = require("./events/CommitCommentEvent");
 const PullRequestReviewCommentEvent = require("./events/PullRequestReviewCommentEvent");
 const PushEvent = require("./events/PushEvent");
-const IssuesEvent = require("./events/IssuesEvent");
+const IssuesOpenEvent = require("./events/IssuesOpenEvent");
+const IssuesCloseEvent = require("./events/IssuesCloseEvent");
 const PullRequestOpenEvent = require("./events/PullRequestOpenEvent");
 const PullRequestMergeEvent = require("./events/PullRequestMergeEvent");
 const PullRequestCloseEvent = require("./events/PullRequestCloseEvent");
@@ -34,8 +35,12 @@ if (!disabled_events.includes("push")) {
   serializers.PushEvent = PushEvent;
 }
 
-if (!disabled_events.includes("issues")) {
-  serializers.IssuesEvent = IssuesEvent;
+if (!disabled_events.includes("issues_open")) {
+  serializers.IssuesEvent = IssuesOpenEvent;
+}
+
+if (!disabled_events.includes("issues_close")) {
+  serializers.IssuesEvent = IssuesCloseEvent;
 }
 
 if (!disabled_events.includes("pr_open")) {
