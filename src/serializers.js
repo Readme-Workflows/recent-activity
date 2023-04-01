@@ -36,11 +36,11 @@ if (!disabled_events.includes("push")) {
 }
 
 if (!disabled_events.includes("issues_open")) {
-  serializers.IssuesEvent = IssuesOpenEvent;
+  serializers.IssuesOpenEvent = IssuesOpenEvent;
 }
 
 if (!disabled_events.includes("issues_close")) {
-  serializers.IssuesEvent = IssuesCloseEvent;
+  serializers.IssuesCloseEvent = IssuesCloseEvent;
 }
 
 if (!disabled_events.includes("pr_open")) {
