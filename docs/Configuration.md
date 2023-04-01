@@ -168,7 +168,9 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 | `fork`        | Forking a Repository                              |
 | `issues`      | Opening or closing Issues                         |
 | `member`      | Getting added as a Collaborator/Member            |
-| `pr`          | Opening, closing or Merging a Pull request        |
+| `pr_open`     | Opening a Pull request                            |
+| `pr_merge`    | Merging a Pull request                            |
+| `pr_close`    | Closing a Pull request                            |
 | `push`        | All commits performed                             |
 | `release`     | Publishing a new Release                          |
 | `review`      | Approving or requesting Changes in a Pull request |
@@ -254,21 +256,46 @@ The setting can be used in two ways:
 ### Messages
 The `messages` section contains all the different messages you can set for the Activity-List to display.
 
-- [`added_member`](#added_member)
-- [`changes_approved`](#changes_approved)
-- [`changes_requested`](#changes_requested)
-- [`comments`](#comments)
-- [`create_repo`](#create_repo)
-- [`fork_repo`](#fork_repo)
-- [`issue_opened`](#issue_opened)
-- [`issue_closed`](#issue_closed)
-- [`new_release`](#new_release)
-- [`new_star`](#new_star)
-- [`pr_opened`](#pr_opened)
-- [`pr_closed`](#pr_closed)
-- [`pr_merged`](#pr_merged)
-- [`push`](#push)
-- [`wiki_create`](#wiki_create)
+- [Configuring - Recent Activity](#configuring---recent-activity)
+  - [Table of Contents](#table-of-contents)
+  - [Setup](#setup)
+  - [Inputs](#inputs)
+    - [`GH_USERNAME`](#gh_username)
+    - [`CONFIG_FILE`](#config_file)
+  - [Sample Configuration](#sample-configuration)
+  - [Options](#options)
+    - [Settings](#settings)
+      - [`username`](#username)
+      - [`commit_msg`](#commit_msg)
+      - [`max_lines`](#max_lines)
+      - [`readme_file`](#readme_file)
+      - [`disabled_events`](#disabled_events)
+      - [`whitelisted_events`](#whitelisted_events)
+        - [Supported Events](#supported-events)
+      - [`commit_name`](#commit_name)
+      - [`commit_email`](#commit_email)
+      - [`url_text`](#url_text)
+      - [`date.timezone`](#datetimezone)
+      - [`date.text`](#datetext)
+      - [`date.format`](#dateformat)
+      - [`line_prefix`](#line_prefix)
+      - [`ignored_repos`](#ignored_repos)
+    - [Messages](#messages)
+      - [`added_member`](#added_member)
+      - [`changes_approved`](#changes_approved)
+      - [`changes_requested`](#changes_requested)
+      - [`comments`](#comments)
+      - [`create_repo`](#create_repo)
+      - [`fork_repo`](#fork_repo)
+      - [`issue_opened`](#issue_opened)
+      - [`issue_closed`](#issue_closed)
+      - [`new_release`](#new_release)
+      - [`new_star`](#new_star)
+      - [`pr_opened`](#pr_opened)
+      - [`pr_closed`](#pr_closed)
+      - [`pr_merged`](#pr_merged)
+      - [`push`](#push)
+      - [`wiki_create`](#wiki_create)
 
 #### `added_member`
 > **Default:** `🤝 Became collaborator on {REPO}`
