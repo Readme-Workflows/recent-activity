@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2020 James George
- * Copyright (c) 2021 The Readme-Workflows organisation and Contributors
+ * Copyright (c) 2023 The Readme-Workflows organisation and Contributors
  */
 
 const { disabled_events } = require("./config");
@@ -10,11 +10,8 @@ const IssueCommentEvent = require("./events/IssueCommentEvent");
 const CommitCommentEvent = require("./events/CommitCommentEvent");
 const PullRequestReviewCommentEvent = require("./events/PullRequestReviewCommentEvent");
 const PushEvent = require("./events/PushEvent");
-const IssuesOpenEvent = require("./events/IssuesOpenEvent");
-const IssuesCloseEvent = require("./events/IssuesCloseEvent");
-const PullRequestOpenEvent = require("./events/PullRequestOpenEvent");
-const PullRequestMergeEvent = require("./events/PullRequestMergeEvent");
-const PullRequestCloseEvent = require("./events/PullRequestCloseEvent");
+const IssuesEvent = require("./events/IssuesEvent");
+const PullRequestEvent = require("./events/PullRequestEvent");
 const CreateEvent = require("./events/CreateEvent");
 const ForkEvent = require("./events/ForkEvent");
 const GollumEvent = require("./events/GollumEvent");
@@ -35,24 +32,12 @@ if (!disabled_events.includes("push")) {
   serializers.PushEvent = PushEvent;
 }
 
-if (!disabled_events.includes("issues_open")) {
-  serializers.IssuesOpenEvent = IssuesOpenEvent;
+if (!disabled_events.includes("issues")) {
+  serializers.IssuesEvent = IssuesEvent;
 }
 
-if (!disabled_events.includes("issues_close")) {
-  serializers.IssuesCloseEvent = IssuesCloseEvent;
-}
-
-if (!disabled_events.includes("pr_open")) {
-  serializers.PullRequestOpenEvent = PullRequestOpenEvent;
-}
-
-if (!disabled_events.includes("pr_merge")) {
-  serializers.PullRequestMergeEvent = PullRequestMergeEvent;
-}
-
-if (!disabled_events.includes("pr_close")) {
-  serializers.PullRequestCloseEvent = PullRequestCloseEvent;
+if (!disabled_events.includes("pr")) {
+  serializers.PullRequestEvent = PullRequestEvent;
 }
 
 if (!disabled_events.includes("create_repo")) {

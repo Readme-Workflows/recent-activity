@@ -4,7 +4,7 @@
  */
 
 const serializers = require("../serializers");
-const { max_lines, ignored_repos } = require("../config");
+const { max_lines, ignored_repos, disabled_events } = require("../config");
 const { amountReplace } = require("./amountReplacer");
 
 const filterContent = (eventData) => {
@@ -16,6 +16,45 @@ const filterContent = (eventData) => {
       (event) => !ignored_repos.includes(event.repo.name)
     );
   }
+
+  if (disabled_events instanceof Array && disabled_events.length != 0) {
+    eventData = eventData.filter((event) => {
+      if (
+        disabled_events.includes("issues_open") &&
+        event.payload.action === "opened" &&
+        event.type === "IssuesEvent"
+      ) {
+        return false;
+      } else if (
+        disabled_events.includes("issues_close") &&
+        event.payload.action === "closed" &&
+        event.type === "IssuesEvent"
+      ) {
+        return false;
+      } else if (
+        disabled_events.includes("pr_open") &&
+        event.payload.action === "opened" &&
+        event.type === "PullRequestEvent"
+      ) {
+        return false;
+      } else if (
+        disabled_events.includes("pr_merge") &&
+        event.payload.pull_request.merged &&
+        event.type === "PullRequestEvent"
+      ) {
+        return false;
+      } else if (
+        disabled_events.includes("pr_close") &&
+        event.payload.action === "closed" &&
+        event.type === "PullRequestEvent"
+      ) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  }
+
   for (let i = 0; i < eventData.length; i++) {
     let event_string = serializers[eventData[i].type](eventData[i]);
 

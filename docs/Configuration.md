@@ -166,9 +166,11 @@ The following list of events is supported for the [`disabled_events`](#disabled_
 | `comments`     | Commenting on Issues                              |
 | `create_repo`  | Creating a new Repository                         |
 | `fork`         | Forking a Repository                              |
+| `issues`       | All Issues actions                                |
 | `issues_open`  | Opening Issues                                    |
 | `issues_close` | Closing Issues                                    |
 | `member`       | Getting added as a Collaborator/Member            |
+| `pr`           | All Pull request actions                          |
 | `pr_open`      | Opening a Pull request                            |
 | `pr_merge`     | Merging a Pull request                            |
 | `pr_close`     | Closing a Pull request                            |
