@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: recent-activity
     steps:
-      - uses: lowlighter/metrics@v3.32
+      - uses: lowlighter/metrics@v3.33
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: Readme-Workflows
