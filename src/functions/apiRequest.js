@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2023 The Readme-Workflows organisation and Contributors
+ */
+
 const axios = require("axios");
 const qs = require("qs");
 
