@@ -20,7 +20,7 @@ const defaultVals = {
     text: "Last Updated: {DATE}",
     format: "dddd, mmmm dS, yyyy, h:MM:ss TT",
   },
-  ignored_repos:[],
+  ignored_repos: [],
   comments: "💬 Commented on {ID} in {REPO}",
   push: "⬆️ Pushed {AMOUNT} commit(s) to {REPO}",
   issue_opened: "❗️ Opened issue {ID} in {REPO}",

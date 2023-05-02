@@ -161,19 +161,24 @@ The setting can be used in two ways:
 ##### Supported Events
 The following list of events is supported for the [`disabled_events`](#disabled_events) and [`whitelisted_events`](#whitelisted_events) setting.
 
-| Type:         | Disabled Actions:                                 |
-| ------------- | ------------------------------------------------- |
-| `comments`    | Commenting on Issues                              |
-| `create_repo` | Creating a new Repository                         |
-| `fork`        | Forking a Repository                              |
-| `issues`      | Opening or closing Issues                         |
-| `member`      | Getting added as a Collaborator/Member            |
-| `pr`          | Opening, closing or Merging a Pull request        |
-| `push`        | All commits performed                             |
-| `release`     | Publishing a new Release                          |
-| `review`      | Approving or requesting Changes in a Pull request |
-| `star`        | Starring a Repository                             |
-| `wiki`        | Creating a new Wiki page                          |
+| Type:          | Disabled Actions:                                 |
+| -------------- | ------------------------------------------------- |
+| `comments`     | Commenting on Issues                              |
+| `create_repo`  | Creating a new Repository                         |
+| `fork`         | Forking a Repository                              |
+| `issues`       | All Issues actions                                |
+| `issues_open`  | Opening Issues                                    |
+| `issues_close` | Closing Issues                                    |
+| `member`       | Getting added as a Collaborator/Member            |
+| `pr`           | All Pull request actions                          |
+| `pr_open`      | Opening a Pull request                            |
+| `pr_merge`     | Merging a Pull request                            |
+| `pr_close`     | Closing a Pull request                            |
+| `push`         | All commits performed                             |
+| `release`      | Publishing a new Release                          |
+| `review`       | Approving or requesting Changes in a Pull request |
+| `star`         | Starring a Repository                             |
+| `wiki`         | Creating a new Wiki page                          |
 
 #### `commit_name`
 > **Default:** `readme-bot`
