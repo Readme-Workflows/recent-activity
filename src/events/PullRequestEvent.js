@@ -3,6 +3,7 @@ const makeCustomUrl = require("../functions/makeCustomUrl");
 const toUrlFormat = require("../functions/toUrlFormat");
 
 const PullRequestEvent = (item) => {
+  console.log(item.payload);
   if (item.payload.action === "opened") {
     return pr_opened
       .replace(/{ID}/g, toUrlFormat(item, "pr_open"))
