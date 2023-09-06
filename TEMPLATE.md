@@ -21,15 +21,15 @@ Its our goal is to improve the original GitHub Action while also providing new f
 This is an example live preview that is updated every time a commit is pushed using github actions.
 
 <!--RECENT_ACTIVITY:last_update-->
-Last Updated: Tuesday, September 5th, 2023, 12:52:59 AM
+Last Updated: Wednesday, September 6th, 2023, 12:53:53 AM
 <!--RECENT_ACTIVITY:last_update_end-->
 
 <!--RECENT_ACTIVITY:start-->
-1. 👍 Approved [#8](https://github.com/Readme-Workflows/activity-template/pull/8#pullrequestreview-1609944901) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)<br>
-2. 💪 Opened PR [#8](https://github.com/Readme-Workflows/activity-template/pull/8) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)<br>
+1. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+2. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
 3. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
 4. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
-5. ⬆️ Pushed 1 commit(s) to [Readme-Workflows/recent-activity](https://github.com/Readme-Workflows/recent-activity)<br>
+5. 👍 Approved [#8](https://github.com/Readme-Workflows/activity-template/pull/8#pullrequestreview-1609944901) in [Readme-Workflows/activity-template](https://github.com/Readme-Workflows/activity-template)<br>
 <!--RECENT_ACTIVITY:end-->
 
 ## Features
