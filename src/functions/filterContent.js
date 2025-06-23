@@ -13,7 +13,7 @@ const filterContent = (eventData) => {
   // ignore the repos passed in the configuration
   if (ignored_repos instanceof Array && ignored_repos.length != 0) {
     eventData = eventData.filter(
-      (event) => !ignored_repos.includes(event.repo.name)
+      (event) => !ignored_repos.includes(event.repo.name),
     );
   }
 

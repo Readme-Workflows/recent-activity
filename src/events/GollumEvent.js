@@ -11,7 +11,7 @@ const GollumEvent = (item) => {
         wiki_create
           .replace(/{WIKI}/g, toUrlFormat(page, "wiki"))
           .replace(/{REPO}/g, toUrlFormat(page.repo_name, "wiki"))
-          .replace(/{URL}/g, makeCustomUrl(page, "wiki"))
+          .replace(/{URL}/g, makeCustomUrl(page, "wiki")),
       );
     }
   });

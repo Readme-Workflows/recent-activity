@@ -8,14 +8,14 @@ const { date } = require("../config");
 
 const appendDate = (fullContent) => {
   let dateStartIdx = fullContent.findIndex(
-    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->"
+    (content) => content.trim() === "<!--RECENT_ACTIVITY:last_update-->",
   );
 
   if (dateStartIdx !== -1) {
     let dateEndIdx = fullContent.findIndex(
       (content, index) =>
         content.trim() === "<!--RECENT_ACTIVITY:last_update_end-->" &&
-        index > dateStartIdx
+        index > dateStartIdx,
     );
 
     let offset;
@@ -44,7 +44,7 @@ const appendDate = (fullContent) => {
 
     let finalDateString = date.text.replace(
       "{DATE}",
-      dateFormat(finalDate, date.format)
+      dateFormat(finalDate, date.format),
     );
 
     if (dateEndIdx === -1) {
@@ -52,13 +52,13 @@ const appendDate = (fullContent) => {
         dateStartIdx + 1,
         0,
         finalDateString,
-        "<!--RECENT_ACTIVITY:last_update_end-->"
+        "<!--RECENT_ACTIVITY:last_update_end-->",
       );
     } else {
       fullContent.splice(
         dateStartIdx + 1,
         dateEndIdx - dateStartIdx - 1,
-        finalDateString
+        finalDateString,
       );
     }
   }
