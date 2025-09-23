@@ -5,7 +5,6 @@
 
 const { spawn } = require("child_process");
 
-const apiRequest = require("./apiRequest");
 const { username, commit_name, commit_email } = require("../config");
 
 let reqParams = {
@@ -25,7 +24,7 @@ let reqParams = {
  * @returns {Promise<void>}
  */
 
-const exec = (cmd, args = [], callAPI) =>
+const exec = (cmd, args = []) =>
   new Promise((resolve, reject) => {
     const app = spawn(cmd, args, { stdio: "pipe" });
     let stdout = "";
@@ -37,27 +36,15 @@ const exec = (cmd, args = [], callAPI) =>
         console.log(stdout);
         let err = new Error(`Invalid status code: ${code}`);
         err.code = code;
-        if (callAPI) {
-          apiRequest({ ...reqParams, status: "failure" }, () => reject(err));
-        } else {
-          return reject(err);
-        }
+        return reject(err);
         //return reject(err);
       } else {
-        if (callAPI) {
-          apiRequest({ ...reqParams, status: "success" }, () => resolve(code));
-        } else {
-          return resolve(code);
-        }
+        return resolve(code);
         //return resolve(code);
       }
     });
     app.on("error", (error) => {
-      if (callAPI) {
-        apiRequest({ ...reqParams, status: "failure" }, () => reject(error));
-      } else {
-        reject(error);
-      }
+      reject(error);
     });
     //app.on("error", reject);
   });
