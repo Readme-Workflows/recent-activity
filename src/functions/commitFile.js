@@ -19,12 +19,12 @@ const exec = require("./execute");
  */
 
 const commitFile = async () => {
-  await exec("git", ["config", "--global", "user.email", commit_email], false);
-  await exec("git", ["config", "--global", "user.name", commit_name], false);
-  await exec("git", ["add", readme_file], false);
-  await exec("git", ["pull"], false);
-  await exec("git", ["commit", "-m", commit_msg], false);
-  await exec("git", ["push"], true);
+  await exec("git", ["config", "--global", "user.email", commit_email]);
+  await exec("git", ["config", "--global", "user.name", commit_name]);
+  await exec("git", ["add", readme_file]);
+  await exec("git", ["pull"]);
+  await exec("git", ["commit", "-m", commit_msg]);
+  await exec("git", ["push"]);
 };
 
 module.exports = commitFile;
