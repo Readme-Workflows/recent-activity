@@ -28,9 +28,9 @@ async function run() {
     per_page: 100,
   });
 
-  core.debug(`${events.data.length} events found for ${username}.`);
+  core.debug(`${events.length} events found for ${username}.`);
 
-  let eventData = events.data
+  let eventData = events
     // Filter out any boring activity
     .filter((event) => serializers.hasOwnProperty(event.type));
 
