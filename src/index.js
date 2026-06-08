@@ -28,6 +28,8 @@ async function run() {
     per_page: 100,
   });
 
+  core.debug(JSON.stringify(events[0]));
+
   core.debug(`${events.length} events found for ${username}.`);
 
   let eventData = events

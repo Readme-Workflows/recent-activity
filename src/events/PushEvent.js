@@ -2,6 +2,8 @@ const { push } = require("../config");
 const toUrlFormat = require("../functions/toUrlFormat");
 
 const PushEvent = (item) => {
+  console.log("PushEvent", item);
+  
   return push
     .replace(/{AMOUNT}/g, item.payload.size)
     .replace(/{REPO}/g, toUrlFormat(item.repo.name, "push"));
