@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout Repository'
-        uses: actions/Checkout@v3
+        uses: actions/Checkout@v5
       - name: 'Update README.md from TEMPLATE.md'
         uses: Readme-Workflows/recent-activity@main
         env:
